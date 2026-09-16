@@ -93,16 +93,7 @@ td{padding:6px 8px;border-bottom:1px solid rgba(34,42,58,.5);font-variant-numeri
     <div class="card"><h2>板块净买入聚合 <span class="tag" id="themeDate"></span></h2><div id="cTheme" class="chart sm"></div></div>
   </div>
 
-  <div class="card" style="margin-top:12px" id="inboxCard">
-    <h2>截图收件箱 <span class="tag">把个股截图拖进来（或点选）→ 本地自动读图·校正·分析，约 1–3 分钟出结果</span></h2>
-    <div id="drop" style="border:1.5px dashed var(--line);border-radius:10px;padding:22px;text-align:center;color:var(--sub);cursor:pointer;transition:.15s">
-      <div style="font-size:15px">⬇ 拖拽个股截图到此处，或点击选择文件</div>
-      <div style="font-size:12px;color:var(--dim);margin-top:6px">支持 png / jpg / webp，可多张 · 需通过 http://127.0.0.1:8899/ 打开本页</div>
-    </div>
-    <input id="fileInput" type="file" accept="image/*" multiple hidden>
-    <div id="upStat" style="font-size:12px;color:var(--dim);margin-top:8px"></div>
-    <div id="inboxList" style="margin-top:10px"></div>
-  </div>
+  
 
   <div class="foot">
     <b>口径：</b>温度分=沪深主力净额(超大单+大单)在过去60个交易日的百分位；六态=温度分档（沸点≥85/过热≥70/微热≥55/微冷≥40/过冷≥25/冰点&lt;25）。溢价率=昨日涨停股（剔除一字板）今日平均涨跌幅；红盘率=其中今日上涨占比；大面=其中今日跌幅&gt;4%的只数。炸板率=炸板数/(涨停数+炸板数)。连板高度=当日最高连板数。板块净买入=该板块涨停股当日龙虎榜净买入合计。数据来自东方财富公开接口，涨停池历史约30个交易日。本页由本地脚本于收盘后预计算生成，不构成投资建议。
@@ -212,43 +203,6 @@ renderDay(def);
 }
 fetch('./tide-data.json').then(function(r){return r.json()}).then(boot).catch(function(e){document.querySelector('.wrap').innerHTML='<p style="color:#f6465d">数据加载失败：'+e+'</p>'});
 </script>
-<script>
-(function(){
-  var drop=document.getElementById('drop'),fi=document.getElementById('fileInput'),stat=document.getElementById('upStat'),list=document.getElementById('inboxList');
-  if(!drop) return;
-  var httpOn = (location.protocol==='http:'||location.protocol==='https:');
-  function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
-  function upload(files){
-    if(!files||!files.length) return;
-    if(!httpOn){ stat.textContent='\u26a0 \u4e0a\u4f20\u9700\u901a\u8fc7\u672c\u5730\u670d\u52a1\u5668\u6253\u5f00\uff08http://127.0.0.1:8899/\uff09\uff0c\u5f53\u524d\u662f\u672c\u5730\u6587\u4ef6\u3002'; return; }
-    Array.prototype.forEach.call(files,function(f){
-      if(!/^image\//.test(f.type)) return;
-      stat.textContent='\u4e0a\u4f20\u4e2d\uff1a'+f.name+' \u2026';
-      fetch('/upload?name='+encodeURIComponent(f.name),{method:'POST',body:f}).then(function(r){return r.json();}).then(function(j){
-        stat.textContent = j.ok ? ('\u5df2\u4e0a\u4f20 '+j.name+'\uff08\u7ea6 1\u20133 \u5206\u949f\u51fa\u7ed3\u679c\uff0c\u4e0b\u65b9\u81ea\u52a8\u5237\u65b0\uff09') : ('\u4e0a\u4f20\u5931\u8d25\uff1a'+(j.error||''));
-        refresh();
-      }).catch(function(e){ stat.textContent='\u4e0a\u4f20\u5931\u8d25\uff1a'+e; });
-    });
-  }
-  drop.addEventListener('click',function(){ fi.click(); });
-  drop.addEventListener('dragover',function(e){ e.preventDefault(); drop.style.borderColor='var(--gold)'; });
-  drop.addEventListener('dragleave',function(){ drop.style.borderColor='var(--line)'; });
-  drop.addEventListener('drop',function(e){ e.preventDefault(); drop.style.borderColor='var(--line)'; upload(e.dataTransfer.files); });
-  fi.addEventListener('change',function(){ upload(fi.files); fi.value=''; });
-  function refresh(){
-    if(!httpOn){ list.innerHTML='<div style="color:var(--dim);font-size:12px">\uff08\u4e0a\u4f20/\u7ed3\u679c\u9700\u901a\u8fc7\u672c\u5730\u670d\u52a1\u5668 http://127.0.0.1:8899/ \u6253\u5f00\u672c\u9875\uff09</div>'; return; }
-    fetch('/inbox').then(function(r){return r.json();}).then(function(j){
-      var items=(j.items||[]);
-      if(!items.length){ list.innerHTML='<div style="color:var(--dim);font-size:12px">\u6536\u4ef6\u7bb1\u6682\u65e0\u7ed3\u679c</div>'; return; }
-      var h='<div style="color:var(--sub);font-size:12px;margin-bottom:6px">\u6700\u8fd1 '+items.length+' \u6761\u7ed3\u679c</div>';
-      items.forEach(function(it,ix){
-        h+='<details class="lbcard"'+(ix===0?' open':'')+'><summary style="cursor:pointer"><b>'+esc(it.name)+'</b> <span style="color:var(--dim);font-size:11px">'+new Date(it.ts).toLocaleString()+'</span></summary><pre style="white-space:pre-wrap;font-size:12px;margin-top:6px;color:var(--txt);font-family:inherit">'+esc(it.text)+'</pre></details>';
-      });
-      list.innerHTML=h;
-    }).catch(function(){});
-  }
-  refresh(); setInterval(refresh, 15000);
-})();
-</script>
+
 </body>
 </html>
