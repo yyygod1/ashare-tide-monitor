@@ -7,4 +7,5 @@
 
 昨日高标断板: 超声电子(昨3板)、凯盛新能(昨3板)
 
-大面名单: 拉取失败 Command failed: curl.exe -s -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 -e https://quote.eastmoney.com/ --max-time 25 https://push2.eastmoney.com/api/qt/clist/get?pn=1&pz=200&fs=b:BK0815&fields=f12,f14,f3
+大面名单: 拉取失败 Unexpected token '<', "<html>
+<h"... is not valid JSON
