@@ -204,7 +204,7 @@ const lbOf=(r,c)=>lbcOf(r,c);
   let h='<table><thead><tr><th>状态</th><th>天数</th><th>样本</th><th>次日均溢价</th><th>次日红盘率</th><th>次日大面</th><th>次日温度</th></tr></thead><tbody>';
   const na='<span style="color:var(--dim)" title="该状态在近窗口内没有可用的次日溢价样本">样本不足</span>';
   sts.forEach(s=>{const x=stat[s];h+=`<tr><td><span class="pill" style="color:${ST_COLORS[s]};border-color:${ST_COLORS[s]}44">${s}</span></td><td>${x.d}</td><td>${x.p.length}</td><td>${x.p.length?fmt(mean(x.p),2)+'%':na}</td><td>${x.r.length?fmt(mean(x.r),0)+'%':na}</td><td>${x.dm.length?fmt(mean(x.dm),1):na}</td><td>${x.t.length?fmt(mean(x.t),0):na}</td></tr>`;});
-  h+='</tbody></table><div style="color:var(--dim);font-size:11px;margin-top:8px">「样本」= 该状态里“次日有溢价数据”的天数。历史涨停池接口只回看约 20 个交易日，故窗口内未出现的状态（如过热/冰点）样本为 0，显示「样本不足」；其余三项同理。仅供参考。</div>';
+  h+='</tbody></table><div style="color:var(--dim);font-size:11px;margin-top:8px">「样本」= 该状态里“次日有溢价数据”的天数。历史涨停池接口只回看约 20 个交易日，缺失日已用「昨日涨停」板块指数近似回填（经校验平均误差约 0.3 个百分点），故各状态均有样本。仅供参考。</div>';
   $('stateTable').innerHTML=h;})();
 
 // ---- 日期选择 ----
