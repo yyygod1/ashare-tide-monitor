@@ -73,7 +73,7 @@ td{padding:6px 8px;border-bottom:1px solid rgba(34,42,58,.5);font-variant-numeri
   <div class="grid metrics" style="margin-top:12px" id="kpis"></div>
 
   <div class="two grid" style="margin-top:12px">
-    <div class="card"><h2>昨日涨停今日溢价率<span class="tag">不含一字板 · 柱=平均涨幅 线=红盘率</span></h2><div id="cPrem" class="chart sm"></div></div>
+    <div class="card"><h2>昨日涨停今日溢价率<span class="tag">不含一字板 · 柱=平均涨幅（淡色虚线柱=历史估算）· 线=红盘率</span></h2><div id="cPrem" class="chart sm"></div></div>
     <div class="card"><h2>承接转弱预警：大面数 & 炸板率<span class="tag">大面=昨日涨停今日跌幅&gt;4%</span></h2><div id="cDanger" class="chart sm"></div></div>
   </div>
 
@@ -133,11 +133,12 @@ mk('cTemp',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:[
       markArea:{silent:true,data:rows.map((r,i)=>[{xAxis:i,itemStyle:{color:ST_COLORS[r.state6]+'22'}},{xAxis:i+1,itemStyle:{color:ST_COLORS[r.state6]+'22'}}])}},
     {name:'连板高度',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.max_lbc),lineStyle:{width:2,color:'#4e7fff'},itemStyle:{color:'#4e7fff'}},
     {name:'背离',type:'scatter',data:rows.map((r,i)=>r.diverge?[i,r.temp]:null),symbolSize:11,itemStyle:{color:'#f6465d'}}]});
-mk('cPrem',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['平均涨幅%','红盘率%']},
-  tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>平均涨幅 '+r.prem_avg+'%<br/>红盘率 '+r.prem_red+'%<br/>大面 '+r.damian;}},
+mk('cPrem',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['平均涨幅%','估算*','红盘率%']},
+  tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>平均涨幅 '+r.prem_avg+'%'+(r.prem_est?'（估算*）':'')+'<br/>红盘率 '+(r.prem_red==null?'—':r.prem_red+'%')+'<br/>大面 '+(r.damian==null?'—':r.damian);}},
   yAxis:[{type:'value',axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{lineStyle:{color:'#1a2130'}}},{type:'value',min:0,max:100,axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{show:false}}],
-  series:[{name:'平均涨幅%',type:'bar',data:rows.map(r=>r.prem_avg),itemStyle:{color:p=>p.value>=0?'#f6465d':'#0ecb81'},barWidth:'50%'},
-    {name:'红盘率%',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.prem_red),lineStyle:{width:2,color:'#f0b90b'},itemStyle:{color:'#f0b90b'}}]});
+  series:[{name:'平均涨幅%',type:'bar',stack:'prem',data:rows.map(r=>(r.prem_avg==null||r.prem_est)?null:r.prem_avg),itemStyle:{color:p=>p.value>=0?'#f6465d':'#0ecb81'},barWidth:'50%'},
+    {name:'估算*',type:'bar',stack:'prem',data:rows.map(r=>(r.prem_avg!=null&&r.prem_est)?r.prem_avg:null),itemStyle:{color:p=>p.value>=0?'rgba(246,70,93,.32)':'rgba(14,203,129,.32)',borderColor:p=>p.value>=0?'#f6465d':'#0ecb81',borderWidth:1,borderType:'dashed'},barWidth:'50%'},
+    {name:'红盘率%',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.prem_red),lineStyle:{width:2,color:'#f0b90b'},itemStyle:{color:'#f0b90b'},connectNulls:true}]});
 mk('cDanger',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['大面数','炸板率%']},
   tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>大面 '+r.damian+' 只<br/>炸板率 '+r.zb_rate+'%<br/>炸板 '+r.zb;}},
   yAxis:[{type:'value',axisLabel:{color:'#8b93a7',fontSize:10},splitLine:{lineStyle:{color:'#1a2130'}}},{type:'value',min:0,axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{show:false}}],
@@ -199,12 +200,12 @@ const lbOf=(r,c)=>lbcOf(r,c);
 
 // ---- 六态后验 ----
 (function(){const sts=['沸点','过热','微热','微冷','过冷','冰点'];const stat={};sts.forEach(s=>stat[s]={d:0,p:[],r:[],dm:[],t:[]});
-  rows.forEach((r,i)=>{const s=stat[r.state6];if(!s)return;s.d++;if(i+1<rows.length){const n=rows[i+1];if(n.prem_avg!=null){s.p.push(n.prem_avg);s.r.push(n.prem_red);s.dm.push(n.damian);}s.t.push(n.temp);}});
+  rows.forEach((r,i)=>{const s=stat[r.state6];if(!s)return;s.d++;if(i+1<rows.length){const n=rows[i+1];s.t.push(n.temp);if(n.prem_avg!=null){s.p.push(n.prem_avg);if(n.prem_red!=null)s.r.push(n.prem_red);if(n.damian!=null)s.dm.push(n.damian);}}});
   const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
   let h='<table><thead><tr><th>状态</th><th>天数</th><th>样本</th><th>次日均溢价</th><th>次日红盘率</th><th>次日大面</th><th>次日温度</th></tr></thead><tbody>';
   const na='<span style="color:var(--dim)" title="该状态在近窗口内没有可用的次日溢价样本">样本不足</span>';
   sts.forEach(s=>{const x=stat[s];h+=`<tr><td><span class="pill" style="color:${ST_COLORS[s]};border-color:${ST_COLORS[s]}44">${s}</span></td><td>${x.d}</td><td>${x.p.length}</td><td>${x.p.length?fmt(mean(x.p),2)+'%':na}</td><td>${x.r.length?fmt(mean(x.r),0)+'%':na}</td><td>${x.dm.length?fmt(mean(x.dm),1):na}</td><td>${x.t.length?fmt(mean(x.t),0):na}</td></tr>`;});
-  h+='</tbody></table><div style="color:var(--dim);font-size:11px;margin-top:8px">「样本」= 该状态里“次日有溢价数据”的天数。历史涨停池接口只回看约 20 个交易日，缺失日已用「昨日涨停」板块指数近似回填（经校验平均误差约 0.3 个百分点），故各状态均有样本。仅供参考。</div>';
+  h+='</tbody></table><div style="color:var(--dim);font-size:11px;margin-top:8px">「样本」= 该状态里“次日有溢价”的天数。「次日溢价」的历史缺失日已用「昨日涨停」板块指数近似回填（平均误差约 0.3 个百分点）；「红盘率/大面」只统计有真实数据的日子（样本可能更少）。仅供参考。</div>';
   $('stateTable').innerHTML=h;})();
 
 // ---- 日期选择 ----
