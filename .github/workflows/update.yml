@@ -39,7 +39,6 @@ jobs:
           node tide-monitor/fund.js
           node tide-monitor/premium.js
           node tide-monitor/aggregate.js
-          node tide-monitor/backfill-prem.js
           node tide-monitor/build-v3.js
           node tide-monitor/report.js
           node tide-monitor/similar.js

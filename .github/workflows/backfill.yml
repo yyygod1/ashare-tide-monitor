@@ -1,0 +1,54 @@
+name: backfill-prem
+
+# Fills historical premium from the 昨日涨停 board index (BK0815) for days the ZT-pool API can't reach.
+# Runs on its own schedule (NOT right after premium.js) to avoid East Money rate-limiting the runner.
+on:
+  schedule:
+    - cron: '20 0-13 * * 1-5'   # ~08:00-21:00 CST hourly at :20
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: tide-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Backfill premium
+        run: node tide-monitor/backfill-prem.js
+
+      - name: Rebuild site
+        run: node build-site.js
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tide-monitor/tide-data.json docs
+          if git diff --cached --quiet; then echo "no changes"; else git commit -m "backfill $(date -u +%H:%MZ)"; git push; fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
