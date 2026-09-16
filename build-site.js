@@ -5,7 +5,10 @@
 const fs = require('fs');
 const path = require('path');
 const dir = path.join(__dirname, 'tide-monitor');
-const tpl = fs.readFileSync(path.join(dir, 'template.html'), 'utf8');
+const tpl = fs.readFileSync(path.join(dir, 'template.html'), 'utf8')
+  // public site: the screenshot-inbox card is a LOCAL-only feature (needs the local vision service) -> strip it
+  .replace(/<!--INBOX_START-->[\s\S]*?<!--INBOX_END-->/g, '')
+  .replace(/<!--INBOXJ_START-->[\s\S]*?<!--INBOXJ_END-->/g, '');
 const ed = fs.readFileSync(path.join(dir, 'echarts.min.js'), 'utf8');
 
 const CDN_TAG = '<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>';

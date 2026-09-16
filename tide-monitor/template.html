@@ -93,6 +93,7 @@ td{padding:6px 8px;border-bottom:1px solid rgba(34,42,58,.5);font-variant-numeri
     <div class="card"><h2>板块净买入聚合 <span class="tag" id="themeDate"></span></h2><div id="cTheme" class="chart sm"></div></div>
   </div>
 
+  <!--INBOX_START-->
   <div class="card" style="margin-top:12px" id="inboxCard">
     <h2>截图收件箱 <span class="tag">把个股截图拖进来（或点选）→ 本地自动读图·校正·分析，约 1–3 分钟出结果</span></h2>
     <div id="drop" style="border:1.5px dashed var(--line);border-radius:10px;padding:22px;text-align:center;color:var(--sub);cursor:pointer;transition:.15s">
@@ -103,6 +104,7 @@ td{padding:6px 8px;border-bottom:1px solid rgba(34,42,58,.5);font-variant-numeri
     <div id="upStat" style="font-size:12px;color:var(--dim);margin-top:8px"></div>
     <div id="inboxList" style="margin-top:10px"></div>
   </div>
+  <!--INBOX_END-->
 
   <div class="foot">
     <b>口径：</b>温度分=沪深主力净额(超大单+大单)在过去60个交易日的百分位；六态=温度分档（沸点≥85/过热≥70/微热≥55/微冷≥40/过冷≥25/冰点&lt;25）。溢价率=昨日涨停股（剔除一字板）今日平均涨跌幅；红盘率=其中今日上涨占比；大面=其中今日跌幅&gt;4%的只数。炸板率=炸板数/(涨停数+炸板数)。连板高度=当日最高连板数。板块净买入=该板块涨停股当日龙虎榜净买入合计。数据来自东方财富公开接口，涨停池历史约30个交易日。本页由本地脚本于收盘后预计算生成，不构成投资建议。
@@ -212,6 +214,7 @@ renderDay(def);
 }
 /*__BOOT__*/
 </script>
+<!--INBOXJ_START-->
 <script>
 (function(){
   var drop=document.getElementById('drop'),fi=document.getElementById('fileInput'),stat=document.getElementById('upStat'),list=document.getElementById('inboxList');
@@ -250,5 +253,6 @@ renderDay(def);
   refresh(); setInterval(refresh, 15000);
 })();
 </script>
+<!--INBOXJ_END-->
 </body>
 </html>
