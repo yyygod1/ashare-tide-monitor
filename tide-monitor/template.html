@@ -136,8 +136,8 @@ mk('cTemp',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:[
 mk('cPrem',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['平均涨幅%','估算*','红盘率%']},
   tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>平均涨幅 '+r.prem_avg+'%'+(r.prem_est?'（估算*）':'')+'<br/>红盘率 '+(r.prem_red==null?'—':r.prem_red+'%')+'<br/>大面 '+(r.damian==null?'—':r.damian);}},
   yAxis:[{type:'value',axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{lineStyle:{color:'#1a2130'}}},{type:'value',min:0,max:100,axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{show:false}}],
-  series:[{name:'平均涨幅%',type:'bar',data:rows.map(r=>(r.prem_avg==null||r.prem_est)?null:r.prem_avg),itemStyle:{color:p=>p.value>=0?'#f6465d':'#0ecb81'},barWidth:'50%'},
-    {name:'估算*',type:'bar',data:rows.map(r=>(r.prem_avg!=null&&r.prem_est)?r.prem_avg:null),itemStyle:{color:p=>p.value>=0?'rgba(246,70,93,.32)':'rgba(14,203,129,.32)',borderColor:p=>p.value>=0?'#f6465d':'#0ecb81',borderWidth:1,borderType:'dashed'},barWidth:'50%'},
+  series:[{name:'平均涨幅%',type:'bar',stack:'prem',data:rows.map(r=>(r.prem_avg==null||r.prem_est)?null:r.prem_avg),itemStyle:{color:p=>p.value>=0?'#f6465d':'#0ecb81'},barWidth:'50%'},
+    {name:'估算*',type:'bar',stack:'prem',data:rows.map(r=>(r.prem_avg!=null&&r.prem_est)?r.prem_avg:null),itemStyle:{color:p=>p.value>=0?'rgba(246,70,93,.32)':'rgba(14,203,129,.32)',borderColor:p=>p.value>=0?'#f6465d':'#0ecb81',borderWidth:1,borderType:'dashed'},barWidth:'50%'},
     {name:'红盘率%',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.prem_red),lineStyle:{width:2,color:'#f0b90b'},itemStyle:{color:'#f0b90b'},connectNulls:true}]});
 mk('cDanger',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['大面数','炸板率%']},
   tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>大面 '+r.damian+' 只<br/>炸板率 '+r.zb_rate+'%<br/>炸板 '+r.zb;}},
