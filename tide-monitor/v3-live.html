@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股情绪潮汐监测 v3 · 潮汐+龙虎榜</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0b0e14;--card:#131722;--border:#1f2530;--line:#222a3a;--txt:#e6e8ee;--sub:#8b93a7;--dim:#5c6478;--up:#f6465d;--down:#0ecb81;--gold:#f0b90b;--blue:#4e7fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.5}
+.wrap{max-width:1440px;margin:0 auto;padding:16px 20px 40px}
+.hd{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:6px 2px 14px}
+.hd h1{font-size:22px;font-weight:700}.hd h1 span{color:var(--gold);font-size:13px;font-weight:400;margin-left:8px}
+select{background:var(--card);color:var(--txt);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:13px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.card h2{font-size:14px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card h2 .tag{font-size:11px;color:var(--sub);font-weight:400}
+.grid{display:grid;gap:12px}
+.metrics{grid-template-columns:repeat(5,1fr)}
+.two{grid-template-columns:1fr 1fr}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.metric .k{font-size:12px;color:var(--sub)}.metric .v{font-size:24px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}.metric .s{font-size:11px;color:var(--dim);margin-top:2px}
+.up{color:var(--up)}.down{color:var(--down)}.gold{color:var(--gold)}.blue{color:var(--blue)}
+.chart{width:100%;height:300px}.chart.sm{height:240px}
+.tide-hero{display:flex;flex-direction:column;gap:10px;justify-content:center}
+.tide-state{font-size:12px;color:var(--sub)}
+.tide-name{font-size:30px;font-weight:800;letter-spacing:2px}
+.tide-temp{display:flex;align-items:baseline;gap:8px}.tide-temp .num{font-size:44px;font-weight:800;font-variant-numeric:tabular-nums}
+.tide-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.tstep{border:1px solid var(--border);border-radius:8px;padding:6px 4px;text-align:center;color:var(--sub);font-size:12px}
+.tstep.cur{border-color:var(--gold);background:rgba(240,185,11,.1);color:var(--gold);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{color:var(--sub);font-weight:500;text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);font-size:12px;white-space:nowrap}
+td{padding:6px 8px;border-bottom:1px solid rgba(34,42,58,.5);font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:1px 8px;border-radius:20px;font-size:11px;border:1px solid var(--line);color:var(--sub)}
+.pill.jq{color:var(--down);border-color:rgba(14,203,129,.4);background:rgba(14,203,129,.08)}
+.pill.fq{color:var(--gold);border-color:rgba(240,185,11,.4);background:rgba(240,185,11,.08)}
+.pill.tc{color:var(--up);border-color:rgba(246,70,93,.4);background:rgba(246,70,93,.08)}
+.lbcard{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:8px}
+.lbcard .h{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:6px}.lbcard .h b{color:var(--txt);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:3px 9px;border:1px solid var(--line);border-radius:6px;font-size:12px;color:var(--txt)}
+.chip .th{color:var(--dim);font-size:11px}
+.chip.core{border-color:rgba(240,185,11,.55);background:rgba(240,185,11,.08)}
+.chip.danger{border-color:rgba(246,70,93,.5);background:rgba(246,70,93,.07)}
+.foot{color:var(--dim);font-size:12px;margin-top:18px;padding-top:12px;border-top:1px solid var(--line);line-height:1.8}
+.warn{border-color:rgba(246,70,93,.5)!important;background:rgba(246,70,93,.07)}
+@media(max-width:900px){.metrics,.two,.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hd">
+    <h1>A股情绪潮汐监测 <span>v3 · 资金温度+承接 + 龙虎榜/板块 · <span id="gen"></span></span></h1>
+    <select id="dateSel"></select>
+  </div>
+
+  <div class="grid" style="grid-template-columns:300px 1fr">
+    <div class="card tide-hero">
+      <div class="tide-state">情绪状态 · <span id="d"></span></div>
+      <div class="tide-name" id="st"></div>
+      <div class="tide-temp"><span class="num" id="temp"></span><span style="color:var(--sub)">/100 温度分</span></div>
+      <div class="tide-steps" id="steps"></div>
+      <div id="alert"></div>
+    </div>
+    <div class="card">
+      <h2>情绪温度（资金分层）· 叠加连板高度<span class="tag">温度=主力净额60日百分位；红点=背离（温度新高、连板高度不新高）</span></h2>
+      <div id="cTemp" class="chart"></div>
+    </div>
+  </div>
+
+  <div class="grid metrics" style="margin-top:12px" id="kpis"></div>
+
+  <div class="two grid" style="margin-top:12px">
+    <div class="card"><h2>昨日涨停今日溢价率<span class="tag">不含一字板 · 柱=平均涨幅 线=红盘率</span></h2><div id="cPrem" class="chart sm"></div></div>
+    <div class="card"><h2>承接转弱预警：大面数 & 炸板率<span class="tag">大面=昨日涨停今日跌幅&gt;4%</span></h2><div id="cDanger" class="chart sm"></div></div>
+  </div>
+
+  <div class="two grid" style="margin-top:12px">
+    <div class="card"><h2>涨停 / 连板 / 首板 家数</h2><div id="cCount" class="chart sm"></div></div>
+    <div class="card"><h2>六态 · 后验统计<span class="tag">该状态出现后，次日平均表现（历史）</span></h2><div id="stateTable"></div></div>
+  </div>
+
+  <div class="two grid" style="margin-top:12px">
+    <div class="card"><h2>热钱净买入榜（龙虎榜）<span class="tag" id="lhbDate"></span></h2><div style="max-height:420px;overflow:auto"><table id="lhbTable"><thead><tr><th>个股</th><th>涨跌幅</th><th>净买入</th><th>连板</th><th>上榜原因</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>连板梯队 <span class="tag" id="lbDate"></span></h2><div id="lbBox"></div>
+      <div style="margin-top:10px;border-top:1px dashed var(--line);padding-top:10px"><h2>昨日高标 · 今日断板</h2><div id="failBox"></div></div></div>
+  </div>
+
+  <div class="two grid" style="margin-top:12px">
+    <div class="card"><h2>板块晋级榜<span class="tag">昨日热门板块→今日：资金延续×高度提升</span></h2><div style="overflow:auto"><table id="flowTable"><thead><tr><th>板块</th><th>昨净买入</th><th>今净买入</th><th>今排名</th><th>资金延续</th><th>高度提升</th><th>状态</th><th>核心个股</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>板块净买入聚合 <span class="tag" id="themeDate"></span></h2><div id="cTheme" class="chart sm"></div></div>
+  </div>
+
+  <div class="card" style="margin-top:12px" id="inboxCard">
+    <h2>截图收件箱 <span class="tag">把个股截图拖进来（或点选）→ 本地自动读图·校正·分析，约 1–3 分钟出结果</span></h2>
+    <div id="drop" style="border:1.5px dashed var(--line);border-radius:10px;padding:22px;text-align:center;color:var(--sub);cursor:pointer;transition:.15s">
+      <div style="font-size:15px">⬇ 拖拽个股截图到此处，或点击选择文件</div>
+      <div style="font-size:12px;color:var(--dim);margin-top:6px">支持 png / jpg / webp，可多张 · 需通过 http://127.0.0.1:8899/ 打开本页</div>
+    </div>
+    <input id="fileInput" type="file" accept="image/*" multiple hidden>
+    <div id="upStat" style="font-size:12px;color:var(--dim);margin-top:8px"></div>
+    <div id="inboxList" style="margin-top:10px"></div>
+  </div>
+
+  <div class="foot">
+    <b>口径：</b>温度分=沪深主力净额(超大单+大单)在过去60个交易日的百分位；六态=温度分档（沸点≥85/过热≥70/微热≥55/微冷≥40/过冷≥25/冰点&lt;25）。溢价率=昨日涨停股（剔除一字板）今日平均涨跌幅；红盘率=其中今日上涨占比；大面=其中今日跌幅&gt;4%的只数。炸板率=炸板数/(涨停数+炸板数)。连板高度=当日最高连板数。板块净买入=该板块涨停股当日龙虎榜净买入合计。数据来自东方财富公开接口，涨停池历史约30个交易日。本页由本地脚本于收盘后预计算生成，不构成投资建议。
+  </div>
+</div>
+<script>
+function boot(DATA){
+const rows = DATA.rows;
+const $ = id => document.getElementById(id);
+const ST_COLORS={'沸点':'#ff3b3b','过热':'#f6465d','微热':'#f0b90b','微冷':'#8b93a7','过冷':'#4e7fff','冰点':'#2b6cff'};
+const last = rows[rows.length-1];
+const fmt=(v,d=1)=>v==null?'—':Number(v).toFixed(d);
+const idx = rows.map(r=>r.date.slice(5));
+const mk=(id,opt)=>{const c=echarts.init($(id));c.setOption(opt);window.addEventListener('resize',()=>c.resize());return c;};
+const base={tooltip:{trigger:'axis',backgroundColor:'#0e121c',borderColor:'#2a3550',textStyle:{color:'#e6e8ee',fontSize:12}},
+  xAxis:{type:'category',data:idx,axisLine:{lineStyle:{color:'#2a3550'}},axisLabel:{color:'#8b93a7',fontSize:10,interval:3}},
+  grid:{left:46,right:46,top:30,bottom:30}};
+$('gen').textContent = DATA.generated.slice(0,10);
+
+// ---- 趋势图（整窗） ----
+mk('cTemp',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['温度分','连板高度','背离']},
+  tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>温度 '+r.temp+'（'+r.state6+'）<br/>连板高度 '+r.max_lbc+' 板<br/>涨停 '+r.zt+' · 炸板率 '+r.zb_rate+'%';}},
+  yAxis:[{type:'value',min:0,max:100,axisLabel:{color:'#8b93a7',fontSize:10},splitLine:{lineStyle:{color:'#1a2130'}}},{type:'value',min:0,axisLabel:{color:'#8b93a7',fontSize:10},splitLine:{show:false}}],
+  series:[
+    {name:'温度分',type:'line',smooth:true,data:rows.map(r=>r.temp),lineStyle:{width:2.5,color:'#f0b90b'},itemStyle:{color:'#f0b90b'},areaStyle:{color:'rgba(240,185,11,.08)'},
+      markArea:{silent:true,data:rows.map((r,i)=>[{xAxis:i,itemStyle:{color:ST_COLORS[r.state6]+'22'}},{xAxis:i+1,itemStyle:{color:ST_COLORS[r.state6]+'22'}}])}},
+    {name:'连板高度',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.max_lbc),lineStyle:{width:2,color:'#4e7fff'},itemStyle:{color:'#4e7fff'}},
+    {name:'背离',type:'scatter',data:rows.map((r,i)=>r.diverge?[i,r.temp]:null),symbolSize:11,itemStyle:{color:'#f6465d'}}]});
+mk('cPrem',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['平均涨幅%','红盘率%']},
+  tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>平均涨幅 '+r.prem_avg+'%<br/>红盘率 '+r.prem_red+'%<br/>大面 '+r.damian;}},
+  yAxis:[{type:'value',axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{lineStyle:{color:'#1a2130'}}},{type:'value',min:0,max:100,axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{show:false}}],
+  series:[{name:'平均涨幅%',type:'bar',data:rows.map(r=>r.prem_avg),itemStyle:{color:p=>p.value>=0?'#f6465d':'#0ecb81'},barWidth:'50%'},
+    {name:'红盘率%',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.prem_red),lineStyle:{width:2,color:'#f0b90b'},itemStyle:{color:'#f0b90b'}}]});
+mk('cDanger',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['大面数','炸板率%']},
+  tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>大面 '+r.damian+' 只<br/>炸板率 '+r.zb_rate+'%<br/>炸板 '+r.zb;}},
+  yAxis:[{type:'value',axisLabel:{color:'#8b93a7',fontSize:10},splitLine:{lineStyle:{color:'#1a2130'}}},{type:'value',min:0,axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{show:false}}],
+  series:[{name:'大面数',type:'bar',data:rows.map(r=>r.damian),itemStyle:{color:'#f6465d'},barWidth:'50%'},
+    {name:'炸板率%',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.zb_rate),lineStyle:{width:2,color:'#f0b90b'},itemStyle:{color:'#f0b90b'}}]});
+mk('cCount',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['涨停','连板','首板']},
+  tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>涨停 '+r.zt+' / 连板 '+r.zt_lianban+' / 首板 '+r.zt_first+'<br/>最高 '+r.max_lbc+' 板';}},
+  yAxis:{type:'value',axisLabel:{color:'#8b93a7',fontSize:10},splitLine:{lineStyle:{color:'#1a2130'}}},
+  series:[{name:'涨停',type:'bar',data:rows.map(r=>r.zt),itemStyle:{color:'#f6465d'},barWidth:'26%'},
+    {name:'连板',type:'bar',data:rows.map(r=>r.zt_lianban),itemStyle:{color:'#f0b90b'},barWidth:'26%'},
+    {name:'首板',type:'bar',data:rows.map(r=>r.zt_first),itemStyle:{color:'#4e7fff'},barWidth:'26%'}]});
+const themeChart = mk('cTheme',{grid:{left:96,right:50,top:10,bottom:24},tooltip:{trigger:'axis',axisPointer:{type:'shadow'},backgroundColor:'#0e121c',borderColor:'#2a3550',textStyle:{color:'#e6e8ee',fontSize:12}},
+  xAxis:{type:'value',axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}亿'},splitLine:{lineStyle:{color:'#1a2130'}}},
+  yAxis:{type:'category',data:[],axisLabel:{color:'#e6e8ee',fontSize:11}},
+  series:[{type:'bar',data:[],barWidth:'58%',itemStyle:{color:p=>p.value>=0?'#f6465d':'#0ecb81',borderRadius:[0,4,4,0]},label:{show:true,position:'right',fontSize:10,color:'#8b93a7',formatter:p=>p.value+'亿'}}]});
+function renderThemeChart(r){const t=(r.themes||[]).slice(0,10).reverse().map(x=>({value:x.net,theme:x.theme,zt:x.zt,max_lbc:x.max_lbc}));
+  themeChart.setOption({yAxis:{data:t.map(x=>x.theme)},series:[{data:t.map(x=>x.value)}],tooltip:{formatter:p=>{const x=t[p[0].dataIndex];return x.theme+'<br/>净买入 '+x.value+'亿<br/>涨停 '+x.zt+' 只 · 最高 '+x.max_lbc+' 板';}}});}
+
+// ---- 单日渲染 ----
+function chips(list,core){ if(!list||!list.length) return '<span style="color:var(--dim);font-size:11px">—</span>';
+  return '<div class="chips">'+list.map(s=>`<span class="chip${core?' core':''}">${s.name}${s.lbc>=2?' <span class="th">'+s.lbc+'板</span>':''}</span>`).join('')+'</div>'; }
+function renderState(r){
+  $('d').textContent=r.date; $('st').textContent=r.state6; $('st').style.color=ST_COLORS[r.state6];
+  $('temp').textContent=r.temp; $('temp').style.color=ST_COLORS[r.state6];
+  $('steps').innerHTML=Object.keys(ST_COLORS).map(s=>`<div class="tstep ${s===r.state6?'cur':''}">${s}</div>`).join('');
+  $('alert').innerHTML = r.diverge ? '<div class="metric warn" style="padding:8px 10px"><div class="k up">⚠ 背离预警</div><div class="s">温度创5日新高、连板高度未创新高 → 提防承接转弱</div></div>' : '<div class="metric" style="padding:8px 10px"><div class="k">背离</div><div class="s">温度与连板高度未背离</div></div>';
+  const l=r;
+  const kpi=[['温度分（资金）',r.temp,'六态：'+r.state6,ST_COLORS[r.state6]],
+    ['主力净额',(r.main_yi>=0?'+':'')+r.main_yi+' 亿','超大 '+r.huge_yi+' / 大 '+r.big_yi+' 亿',r.main_yi>=0?'up':'down'],
+    ['涨停 / 连板 / 首板',r.zt+' / '+r.zt_lianban+' / '+r.zt_first,'最高 '+r.max_lbc+' 板',''],
+    ['炸板率',r.zb_rate+'%','炸板 '+r.zb+' 只',r.zb_rate>=35?'up':''],
+    ['昨日涨停今日溢价',(r.prem_avg>=0?'+':'')+fmt(r.prem_avg)+'%','红盘率 '+fmt(r.prem_red,0)+'%',r.prem_avg>=0?'up':'down'],
+    ['大面数',r.damian==null?'—':r.damian,'昨日涨停今日跌>4%',(r.damian||0)>=8?'up':''],
+    ['连板高度',r.max_lbc,'市场最高连板',r.max_lbc>=5?'up':''],
+    ['炸板数',r.zb,'盘中炸板',''],
+    ['龙虎榜净买入',(l.lhb_net>=0?'+':'')+fmt(l.lhb_net,2)+' 亿',l.date+' · 上榜 '+(l.lhb_top||[]).length+' 只',l.lhb_net>=0?'up':'down'],
+    ['昨日涨停股数',r.n_prev==null?'—':r.n_prev,'参与统计（不含一字）','']];
+  $('kpis').innerHTML=kpi.map(x=>`<div class="metric"><div class="k">${x[0]}</div><div class="v ${x[3]||''}">${x[1]}</div><div class="s">${x[2]}</div></div>`).join('');
+}
+function renderDay(r){
+  $('lhbDate').textContent=r.date;
+  const lbMap={}; (r.lianban?Object.keys(r.lianban):[]).forEach(k=>lbMap[k]=1);
+  const _lp=(r.lhb_top||[]); document.querySelector('#lhbTable tbody').innerHTML=(_lp.length?_lp:[{code:'',name:'—',chg:0,net:0,reason:'该日龙虎榜未公布（收盘后约18:30披露）'}]).map(x=>{const lb=r.lianban&&r.lianban[String(lbOf(r,x.code))]; return `<tr><td>${x.name}<br><span style="color:var(--dim);font-size:11px">${x.code}</span></td><td class="${x.chg>=0?'up':'down'}">${fmt(x.chg,2)}%</td><td class="${x.net>=0?'up':'down'}"><b>${x.net>=0?'+':''}${x.net}亿</b></td><td>${lbcOf(r,x.code)?'<span class="pill">'+lbcOf(r,x.code)+'板</span>':'—'}</td><td style="color:var(--dim);font-size:12px">${x.reason}</td></tr>`;}).join('');
+  $('lbDate').textContent=r.date;
+  let lh=''; const lb=r.lianban||{};
+  Object.keys(lb).sort((a,b)=>b-a).forEach(k=>{const n=+k; if(!n)return; const col=n>=3?'#f6465d':'#8b93a7';
+    lh+=`<div class="lbcard"><div class="h"><b style="color:${col}">${n}板${n>=3?' · 高标':''}</b><span>${lb[k].length}只</span></div><div class="chips">`+lb[k].map(s=>`<span class="chip">${s.name} <span class="th">${s.theme}</span></span>`).join('')+'</div></div>';});
+  $('lbBox').innerHTML=lh||'<div style="color:var(--dim)">当日无连板</div>';
+  const fh=r.fail_high||[];
+  $('failBox').innerHTML=fh.length?('<div class="chips">'+fh.map(f=>`<span class="chip danger">${f.name} <span class="th">昨${f.prev_lbc}板 · ${f.theme}</span></span>`).join('')+'</div>'):'<div style="color:var(--sub);font-size:13px">今日高标全部晋级，无断板</div>';
+  const fl=(r.theme_flow||[]);
+  document.querySelector('#flowTable tbody').innerHTML=fl.map(t=>{const p=t.status==='晋级'?'<span class="pill jq">晋级</span>':(t.status==='分歧'?'<span class="pill fq">分歧</span>':'<span class="pill tc">退潮</span>');
+    const th=(r.themes||[]).find(x=>x.theme===t.theme);
+    return `<tr><td><b>${t.theme}</b></td><td>${fmt(t.prev_net,2)}亿</td><td>${fmt(t.cur_net,2)}亿</td><td>${t.cur_rank?'#'+t.cur_rank:'—'}</td><td>${t.fund_ok?'<span class="down">✓</span>':'<span class="dim">✗</span>'}</td><td>${t.height_ok?'<span class="down">✓</span>':'<span class="dim">✗</span>'}</td><td>${p}</td><td>${th?chips(th.core,true):'—'}</td></tr>`;}).join('')||'<tr><td colspan="8" style="color:var(--dim)">无数据</td></tr>';
+  $('themeDate').textContent=r.date; renderThemeChart(r); renderState(r);
+}
+function lbcOf(r,code){const lb=r.lianban||{};for(const k in lb){if(lb[k].some(s=>s.code===code))return +k;}return 0;}
+const lbOf=(r,c)=>lbcOf(r,c);
+
+// ---- 六态后验 ----
+(function(){const sts=['沸点','过热','微热','微冷','过冷','冰点'];const stat={};sts.forEach(s=>stat[s]={d:0,p:[],r:[],dm:[],t:[]});
+  rows.forEach((r,i)=>{const s=stat[r.state6];if(!s)return;s.d++;if(i+1<rows.length){const n=rows[i+1];if(n.prem_avg!=null){s.p.push(n.prem_avg);s.r.push(n.prem_red);s.dm.push(n.damian);}s.t.push(n.temp);}});
+  const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+  let h='<table><thead><tr><th>状态</th><th>天数</th><th>次日均溢价</th><th>次日红盘率</th><th>次日大面</th><th>次日温度</th></tr></thead><tbody>';
+  sts.forEach(s=>{const x=stat[s];h+=`<tr><td><span class="pill" style="color:${ST_COLORS[s]};border-color:${ST_COLORS[s]}44">${s}</span></td><td>${x.d}</td><td>${x.p.length?fmt(mean(x.p),2)+'%':'—'}</td><td>${x.r.length?fmt(mean(x.r),0)+'%':'—'}</td><td>${x.dm.length?fmt(mean(x.dm),1):'—'}</td><td>${x.t.length?fmt(mean(x.t),0):'—'}</td></tr>`;});
+  h+='</tbody></table><div style="color:var(--dim);font-size:11px;margin-top:8px">样本小（涨停池历史约30日），仅供参考。</div>';
+  $('stateTable').innerHTML=h;})();
+
+// ---- 日期选择 ----
+const sel=$('dateSel'); sel.innerHTML=rows.map(r=>`<option value="${r.date}">${r.date}</option>`).join('');
+const def=last; // 初始默认=今日，可随日期切换（含情绪状态）
+sel.value=def.date; sel.onchange=()=>{const r=rows.find(x=>x.date===sel.value); if(r) renderDay(r);};
+renderDay(def);
+}
+fetch('./tide-data.json').then(function(r){return r.json()}).then(boot).catch(function(e){document.querySelector('.wrap').innerHTML='<p style="color:#f6465d">鏁版嵁鍔犺浇澶辫触锛堥渶閫氳繃鏈湴鏈嶅姟鍣ㄦ墦寮€锛屾垨鎶?tide-data.json 鏀惧悓鐩綍锛夛細'+e+'</p>'});
+</script>
+<script>
+(function(){
+  var drop=document.getElementById('drop'),fi=document.getElementById('fileInput'),stat=document.getElementById('upStat'),list=document.getElementById('inboxList');
+  if(!drop) return;
+  var httpOn = (location.protocol==='http:'||location.protocol==='https:');
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+  function upload(files){
+    if(!files||!files.length) return;
+    if(!httpOn){ stat.textContent='\u26a0 \u4e0a\u4f20\u9700\u901a\u8fc7\u672c\u5730\u670d\u52a1\u5668\u6253\u5f00\uff08http://127.0.0.1:8899/\uff09\uff0c\u5f53\u524d\u662f\u672c\u5730\u6587\u4ef6\u3002'; return; }
+    Array.prototype.forEach.call(files,function(f){
+      if(!/^image\//.test(f.type)) return;
+      stat.textContent='\u4e0a\u4f20\u4e2d\uff1a'+f.name+' \u2026';
+      fetch('/upload?name='+encodeURIComponent(f.name),{method:'POST',body:f}).then(function(r){return r.json();}).then(function(j){
+        stat.textContent = j.ok ? ('\u5df2\u4e0a\u4f20 '+j.name+'\uff08\u7ea6 1\u20133 \u5206\u949f\u51fa\u7ed3\u679c\uff0c\u4e0b\u65b9\u81ea\u52a8\u5237\u65b0\uff09') : ('\u4e0a\u4f20\u5931\u8d25\uff1a'+(j.error||''));
+        refresh();
+      }).catch(function(e){ stat.textContent='\u4e0a\u4f20\u5931\u8d25\uff1a'+e; });
+    });
+  }
+  drop.addEventListener('click',function(){ fi.click(); });
+  drop.addEventListener('dragover',function(e){ e.preventDefault(); drop.style.borderColor='var(--gold)'; });
+  drop.addEventListener('dragleave',function(){ drop.style.borderColor='var(--line)'; });
+  drop.addEventListener('drop',function(e){ e.preventDefault(); drop.style.borderColor='var(--line)'; upload(e.dataTransfer.files); });
+  fi.addEventListener('change',function(){ upload(fi.files); fi.value=''; });
+  function refresh(){
+    if(!httpOn){ list.innerHTML='<div style="color:var(--dim);font-size:12px">\uff08\u4e0a\u4f20/\u7ed3\u679c\u9700\u901a\u8fc7\u672c\u5730\u670d\u52a1\u5668 http://127.0.0.1:8899/ \u6253\u5f00\u672c\u9875\uff09</div>'; return; }
+    fetch('/inbox').then(function(r){return r.json();}).then(function(j){
+      var items=(j.items||[]);
+      if(!items.length){ list.innerHTML='<div style="color:var(--dim);font-size:12px">\u6536\u4ef6\u7bb1\u6682\u65e0\u7ed3\u679c</div>'; return; }
+      var h='<div style="color:var(--sub);font-size:12px;margin-bottom:6px">\u6700\u8fd1 '+items.length+' \u6761\u7ed3\u679c</div>';
+      items.forEach(function(it,ix){
+        h+='<details class="lbcard"'+(ix===0?' open':'')+'><summary style="cursor:pointer"><b>'+esc(it.name)+'</b> <span style="color:var(--dim);font-size:11px">'+new Date(it.ts).toLocaleString()+'</span></summary><pre style="white-space:pre-wrap;font-size:12px;margin-top:6px;color:var(--txt);font-family:inherit">'+esc(it.text)+'</pre></details>';
+      });
+      list.innerHTML=h;
+    }).catch(function(){});
+  }
+  refresh(); setInterval(refresh, 15000);
+})();
+</script>
+</body>
+</html>

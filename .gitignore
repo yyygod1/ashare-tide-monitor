@@ -1,0 +1,6 @@
+node_modules/
+lib/cache/
+*.log
+tide-monitor/v2.html
+tide-monitor/v2-live.html
+tide-monitor/premium-daily.json.tmp

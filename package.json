@@ -1,0 +1,10 @@
+{
+  "name": "tide-monitor-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A-share sentiment tide dashboard: data pipeline + static site",
+  "scripts": {
+    "update": "node tide-monitor/fund.js && node tide-monitor/premium.js && node tide-monitor/aggregate.js && node tide-monitor/build-v3.js && node tide-monitor/report.js && node tide-monitor/similar.js && node build-site.js"
+  },
+  "engines": { "node": ">=18" }
+}

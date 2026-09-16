@@ -1,0 +1,70 @@
+name: update-and-deploy
+
+on:
+  schedule:
+    # 18:35 Asia/Shanghai, Mon-Fri  (GitHub cron is UTC; scheduled runs can be delayed a few min)
+    - cron: '35 10 * * 1-5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: tide-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Connectivity check (East Money)
+        run: |
+          echo "probing East Money from GitHub runner IP..."
+          curl -s -m 25 -A 'Mozilla/5.0' -e 'https://quote.eastmoney.com/' \
+            'https://push2his.eastmoney.com/api/qt/stock/fflow/daykline/get?lmt=0&klt=101&secid=1.000001&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56' \
+            -o em-test.json || true
+          head -c 300 em-test.json; echo
+          grep -q '"klines"' em-test.json || (echo "::warning::East Money not reachable from runner IP - data step may fail")
+
+      - name: Generate data
+        run: |
+          node tide-monitor/fund.js
+          node tide-monitor/premium.js
+          node tide-monitor/aggregate.js
+          node tide-monitor/build-v3.js
+          node tide-monitor/report.js
+          node tide-monitor/similar.js
+          node build-site.js
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tide-monitor/fund-daily.json tide-monitor/premium-daily.json \
+                  tide-monitor/tide-data.json tide-monitor/daily-report.txt \
+                  tide-monitor/kline-cache tide-monitor/v3.html tide-monitor/v3-live.html docs
+          git commit -m "auto update $(date -u +%Y-%m-%dT%H:%MZ)" || echo "no changes"
+          git push
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
