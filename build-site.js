@@ -38,7 +38,7 @@ const out = path.join(__dirname, 'docs');
 if (!fs.existsSync(out)) fs.mkdirSync(out, { recursive: true });
 
 const LIVE_BOOT =
-  "fetch('./tide-data.json').then(function(r){return r.json()}).then(boot).catch(function(e){" +
+  "fetch('./tide-data.json?t='+Date.now()).then(function(r){return r.json()}).then(boot).catch(function(e){" +
   "document.querySelector('.wrap').innerHTML='<p style=\"color:#f6465d\">\u6570\u636e\u52a0\u8f7d\u5931\u8d25\uff1a'+e+'</p>'});";
 
 function emit(html, name) { fs.writeFileSync(path.join(out, name), html); console.log(name + ' -> ' + fs.statSync(path.join(out, name)).size + ' bytes'); }

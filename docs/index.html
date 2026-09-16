@@ -201,7 +201,7 @@ const def=last; // 初始默认=今日，可随日期切换（含情绪状态）
 sel.value=def.date; sel.onchange=()=>{const r=rows.find(x=>x.date===sel.value); if(r) renderDay(r);};
 renderDay(def);
 }
-fetch('./tide-data.json').then(function(r){return r.json()}).then(boot).catch(function(e){document.querySelector('.wrap').innerHTML='<p style="color:#f6465d">数据加载失败：'+e+'</p>'});
+fetch('./tide-data.json?t='+Date.now()).then(function(r){return r.json()}).then(boot).catch(function(e){document.querySelector('.wrap').innerHTML='<p style="color:#f6465d">数据加载失败：'+e+'</p>'});
 </script>
 
 </body>

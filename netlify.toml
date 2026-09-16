@@ -1,0 +1,7 @@
+# Netlify config
+# The page shell is only re-deployed when it actually changes.
+# Data (/tide-data.json) is served live through the rewrite in docs/_redirects, so the frequent
+# data updates do NOT create production deploys (each one would cost 15 of the 300 free monthly credits).
+[build]
+  publish = "docs"
+  ignore = "git diff --quiet HEAD^ HEAD -- docs/index.html docs/_redirects docs/_headers netlify.toml"
