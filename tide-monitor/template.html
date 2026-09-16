@@ -158,7 +158,7 @@ function renderThemeChart(r){const t=(r.themes||[]).slice(0,10).reverse().map(x=
 function chips(list,core){ if(!list||!list.length) return '<span style="color:var(--dim);font-size:11px">—</span>';
   return '<div class="chips">'+list.map(s=>`<span class="chip${core?' core':''}">${s.name}${s.lbc>=2?' <span class="th">'+s.lbc+'板</span>':''}</span>`).join('')+'</div>'; }
 function renderState(r){
-  $('d').textContent=r.date; $('st').textContent=r.state6; $('st').style.color=ST_COLORS[r.state6];
+  $('d').textContent=r.date+(r.intraday?(' · 盘中 '+r.asof):''); $('st').textContent=r.state6; $('st').style.color=ST_COLORS[r.state6];
   $('temp').textContent=r.temp; $('temp').style.color=ST_COLORS[r.state6];
   $('steps').innerHTML=Object.keys(ST_COLORS).map(s=>`<div class="tstep ${s===r.state6?'cur':''}">${s}</div>`).join('');
   $('alert').innerHTML = r.diverge ? '<div class="metric warn" style="padding:8px 10px"><div class="k up">⚠ 背离预警</div><div class="s">温度创5日新高、连板高度未创新高 → 提防承接转弱</div></div>' : '<div class="metric" style="padding:8px 10px"><div class="k">背离</div><div class="s">温度与连板高度未背离</div></div>';
@@ -205,7 +205,7 @@ const lbOf=(r,c)=>lbcOf(r,c);
   $('stateTable').innerHTML=h;})();
 
 // ---- 日期选择 ----
-const sel=$('dateSel'); sel.innerHTML=rows.map(r=>`<option value="${r.date}">${r.date}</option>`).join('');
+const sel=$('dateSel'); sel.innerHTML=rows.map(r=>`<option value="${r.date}">${r.date}${r.intraday?' 盘中':''}</option>`).join('');
 const def=last; // 初始默认=今日，可随日期切换（含情绪状态）
 sel.value=def.date; sel.onchange=()=>{const r=rows.find(x=>x.date===sel.value); if(r) renderDay(r);};
 renderDay(def);

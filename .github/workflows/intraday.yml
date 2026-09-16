@@ -1,0 +1,53 @@
+name: intraday-refresh
+
+on:
+  schedule:
+    # every 15 min during CN trading hours (script itself guards the exact session 09:25-11:30, 13:00-15:10 CST)
+    - cron: '*/15 1-3,5-7 * * 1-5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: tide-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build today (intraday)
+        run: node tide-monitor/intraday.js
+
+      - name: Rebuild site
+        run: node build-site.js
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tide-monitor/tide-today.json docs
+          if git diff --cached --quiet; then echo "no changes"; else git commit -m "intraday $(date -u +%H:%MZ)"; git push; fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
