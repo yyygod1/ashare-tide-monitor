@@ -1,7 +1,7 @@
 // ===== 全量聚合：潮汐数据 + 龙虎榜 + 板块 =====
 // 输出 tide-data.json（供合并页 v3 使用）。收盘后(18:30)跑一次即可。
 const fs = require('fs');
-const { getJSON } = require('../lib/em');
+const { getJSON, getJSONMulti, push2 } = require('../lib/em');
 const j = (u, tries = 3) => getJSON(u, { tries });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function pool(tasks, limit, delay = 0) {
@@ -106,7 +106,7 @@ const ZB = d => `https://push2ex.eastmoney.com/getTopicZBPool?ut=7eea3edcaed734b
   try {
     let list = [], pn = 1;
     while (true) {
-      const d = await j(`https://push2.eastmoney.com/api/qt/clist/get?pn=${pn}&pz=200&fs=b:BK0815&fields=f12,f14,f3`);
+      const d = await getJSONMulti(push2([`/api/qt/clist/get?pn=${pn}&pz=200&fs=b:BK0815&fields=f12,f14,f3`]));
       const diff = d.data && d.data.diff; if (!diff) break;
       const arr = Array.isArray(diff) ? diff : Object.values(diff); list.push(...arr); if (arr.length < 200) break; pn++;
     }

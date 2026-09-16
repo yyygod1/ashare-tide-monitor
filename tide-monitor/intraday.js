@@ -4,13 +4,13 @@
 // Usage: node intraday.js [--force]   (--force skips the trading-hours guard)
 const fs = require('fs');
 const path = require('path');
-const { getJSON } = require('../lib/em');
+const { getJSON, getJSONMulti, push2 } = require('../lib/em');
 const j = (u) => getJSON(u, { tries: 2 });
 
 const compact = d => d.replace(/-/g, '');
 const ZT = d => `https://push2ex.eastmoney.com/getTopicZTPool?ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wz.ztzt&Pageindex=0&pagesize=500&sort=fbt%3Aasc&date=${compact(d)}`;
 const ZB = d => `https://push2ex.eastmoney.com/getTopicZBPool?ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wz.ztzt&Pageindex=0&pagesize=500&sort=fbt%3Aasc&date=${compact(d)}`;
-const FFLOW = secid => `https://push2.eastmoney.com/api/qt/stock/fflow/kline/get?lmt=0&klt=1&secid=${secid}&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56`;
+const FFLOW = secid => push2([`/api/qt/stock/fflow/kline/get?lmt=0&klt=1&secid=${secid}&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56`]);
 const BAND = t => t >= 85 ? '沸点' : t >= 70 ? '过热' : t >= 55 ? '微热' : t >= 40 ? '微冷' : t >= 25 ? '过冷' : '冰点';
 
 function cstNow() { return new Date(Date.now() + 8 * 3600 * 1000); }
@@ -34,7 +34,7 @@ function inTradingHours(force) {
   const prevDate = fund[fund.length - 1].date;   // last completed trading day
 
   // --- live fund flow (cumulative for today) ---
-  const day0 = await j(FFLOW('1.000001')); const day1 = await j(FFLOW('0.399001'));
+  const day0 = await getJSONMulti(FFLOW('1.000001')); const day1 = await getJSONMulti(FFLOW('0.399001'));
   const k0 = (day0.data && day0.data.klines || []); const k1 = (day1.data && day1.data.klines || []);
   if (!k0.length || !k1.length) throw new Error('no minute fund-flow data');
   const p0 = k0[k0.length - 1].split(',').map(Number); const p1 = k1[k1.length - 1].split(',').map(Number);
@@ -79,7 +79,7 @@ function inTradingHours(force) {
   let prem_avg = null, prem_red = null, damian = null, n_prev = null;
   try {
     let list = [], pn = 1;
-    while (true) { const d = await j(`https://push2.eastmoney.com/api/qt/clist/get?pn=${pn}&pz=200&fs=b:BK0815&fields=f12,f14,f3`); const diff = d.data && d.data.diff; if (!diff) break; const a = Array.isArray(diff) ? diff : Object.values(diff); list.push(...a); if (a.length < 200) break; pn++; }
+    while (true) { const d = await getJSONMulti(push2([`/api/qt/clist/get?pn=${pn}&pz=200&fs=b:BK0815&fields=f12,f14,f3`])); const diff = d.data && d.data.diff; if (!diff) break; const a = Array.isArray(diff) ? diff : Object.values(diff); list.push(...a); if (a.length < 200) break; pn++; }
     const chgs = list.map(x => x.f3 == null ? null : x.f3 / 100).filter(v => v != null);
     if (chgs.length) { n_prev = list.length; prem_avg = +(chgs.reduce((a, c) => a + c, 0) / chgs.length).toFixed(2); prem_red = Math.round(chgs.filter(x => x > 0).length / chgs.length * 100); damian = chgs.filter(x => x <= -4).length; }
   } catch (e) { console.log('premium(BK0815) failed: ' + e.message); }
