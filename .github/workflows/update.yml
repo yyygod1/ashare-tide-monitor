@@ -28,11 +28,11 @@ jobs:
       - name: Connectivity check (East Money)
         run: |
           echo "probing East Money from GitHub runner IP..."
-          curl -s -m 25 -A 'Mozilla/5.0' -e 'https://quote.eastmoney.com/' \
-            'https://push2his.eastmoney.com/api/qt/stock/fflow/daykline/get?lmt=0&klt=101&secid=1.000001&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56' \
-            -o em-test.json || true
-          head -c 300 em-test.json; echo
-          grep -q '"klines"' em-test.json || (echo "::warning::East Money not reachable from runner IP - data step may fail")
+          URL='https://push2his.eastmoney.com/api/qt/stock/fflow/daykline/get?lmt=0&klt=101&secid=1.000001&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56'
+          curl -s -m 25 -A 'Mozilla/5.0' -e 'https://quote.eastmoney.com/' "$URL" -o em-test.json || echo "curl exit $?"
+          if [ -s em-test.json ]; then head -c 300 em-test.json; echo; else echo "(empty response)"; fi
+          if grep -q '"klines"' em-test.json 2>/dev/null; then echo "OK: East Money reachable"; else echo "::warning::East Money not reachable this run (non-fatal, data steps will retry)"; fi
+          true
 
       - name: Generate data
         run: |
