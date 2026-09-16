@@ -73,7 +73,7 @@ td{padding:6px 8px;border-bottom:1px solid rgba(34,42,58,.5);font-variant-numeri
   <div class="grid metrics" style="margin-top:12px" id="kpis"></div>
 
   <div class="two grid" style="margin-top:12px">
-    <div class="card"><h2>昨日涨停今日溢价率<span class="tag">不含一字板 · 柱=平均涨幅 线=红盘率</span></h2><div id="cPrem" class="chart sm"></div></div>
+    <div class="card"><h2>昨日涨停今日溢价率<span class="tag">不含一字板 · 柱=平均涨幅（淡色虚线柱=历史估算）· 线=红盘率</span></h2><div id="cPrem" class="chart sm"></div></div>
     <div class="card"><h2>承接转弱预警：大面数 & 炸板率<span class="tag">大面=昨日涨停今日跌幅&gt;4%</span></h2><div id="cDanger" class="chart sm"></div></div>
   </div>
 
@@ -122,11 +122,12 @@ mk('cTemp',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:[
       markArea:{silent:true,data:rows.map((r,i)=>[{xAxis:i,itemStyle:{color:ST_COLORS[r.state6]+'22'}},{xAxis:i+1,itemStyle:{color:ST_COLORS[r.state6]+'22'}}])}},
     {name:'连板高度',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.max_lbc),lineStyle:{width:2,color:'#4e7fff'},itemStyle:{color:'#4e7fff'}},
     {name:'背离',type:'scatter',data:rows.map((r,i)=>r.diverge?[i,r.temp]:null),symbolSize:11,itemStyle:{color:'#f6465d'}}]});
-mk('cPrem',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['平均涨幅%','红盘率%']},
-  tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>平均涨幅 '+r.prem_avg+'%<br/>红盘率 '+r.prem_red+'%<br/>大面 '+r.damian;}},
+mk('cPrem',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['平均涨幅%','估算*','红盘率%']},
+  tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>平均涨幅 '+r.prem_avg+'%'+(r.prem_est?'（估算*）':'')+'<br/>红盘率 '+(r.prem_red==null?'—':r.prem_red+'%')+'<br/>大面 '+(r.damian==null?'—':r.damian);}},
   yAxis:[{type:'value',axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{lineStyle:{color:'#1a2130'}}},{type:'value',min:0,max:100,axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{show:false}}],
-  series:[{name:'平均涨幅%',type:'bar',data:rows.map(r=>r.prem_avg),itemStyle:{color:p=>p.value>=0?'#f6465d':'#0ecb81'},barWidth:'50%'},
-    {name:'红盘率%',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.prem_red),lineStyle:{width:2,color:'#f0b90b'},itemStyle:{color:'#f0b90b'}}]});
+  series:[{name:'平均涨幅%',type:'bar',data:rows.map(r=>(r.prem_avg==null||r.prem_est)?null:r.prem_avg),itemStyle:{color:p=>p.value>=0?'#f6465d':'#0ecb81'},barWidth:'50%'},
+    {name:'估算*',type:'bar',data:rows.map(r=>(r.prem_avg!=null&&r.prem_est)?r.prem_avg:null),itemStyle:{color:p=>p.value>=0?'rgba(246,70,93,.32)':'rgba(14,203,129,.32)',borderColor:p=>p.value>=0?'#f6465d':'#0ecb81',borderWidth:1,borderType:'dashed'},barWidth:'50%'},
+    {name:'红盘率%',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.prem_red),lineStyle:{width:2,color:'#f0b90b'},itemStyle:{color:'#f0b90b'},connectNulls:true}]});
 mk('cDanger',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['大面数','炸板率%']},
   tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>大面 '+r.damian+' 只<br/>炸板率 '+r.zb_rate+'%<br/>炸板 '+r.zb;}},
   yAxis:[{type:'value',axisLabel:{color:'#8b93a7',fontSize:10},splitLine:{lineStyle:{color:'#1a2130'}}},{type:'value',min:0,axisLabel:{color:'#8b93a7',fontSize:10,formatter:'{value}%'},splitLine:{show:false}}],
