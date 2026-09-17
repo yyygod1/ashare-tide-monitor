@@ -158,6 +158,11 @@ function renderState(r){
   $('steps').innerHTML=Object.keys(ST_COLORS).map(s=>`<div class="tstep ${s===r.state6?'cur':''}">${s}</div>`).join('');
   $('alert').innerHTML = r.diverge ? '<div class="metric warn" style="padding:8px 10px"><div class="k up">⚠ 背离预警</div><div class="s">资金温度创5日新高、连板高度未创新高 → 提防承接转弱</div></div>' : '<div class="metric" style="padding:8px 10px"><div class="k">背离</div><div class="s">资金温度与连板高度未背离</div></div>';
   const l=r;
+  const v=r.veto||null;
+  { let vb='';
+    if(v&&v.final_state&&v.final_state!==v.base_state) vb+=`<div class="metric warn" style="padding:8px 10px"><div class="k up">⚠ 强制降档 ${v.base_state} → ${v.final_state}</div><div class="s">${(v.reasons||[]).map(x=>x.text||x).join('；')}${(v.trend_reasons&&v.trend_reasons.length)?('（趋势 '+v.trend_reasons.join('、')+'）'):''}</div></div>`;
+    if(v&&v.prewarn&&v.prewarn.on) vb+=`<div class="metric" style="padding:8px 10px;border-color:rgba(240,185,11,.5)"><div class="k" style="color:var(--gold)">⚠ ${v.prewarn.note||'盘中预检'}</div><div class="s">命中 ${(v.prewarn.triggers||[]).join('、')}${v.prewarn.point?(' · '+v.prewarn.point):''}</div></div>`;
+    $('alert').innerHTML+=vb; }
   const kpi=[['情绪分',r.sent==null?'—':r.sent,'六态：'+(r.state6||'—')+' · 资金温度 '+r.temp,ST_COLORS[r.state6]||''],
     ['主力净额',(r.main_yi>=0?'+':'')+r.main_yi+' 亿','超大 '+r.huge_yi+' / 大 '+r.big_yi+' 亿',r.main_yi>=0?'up':'down'],
     ['涨停 / 连板 / 首板',r.zt+' / '+r.zt_lianban+' / '+r.zt_first,'最高 '+r.max_lbc+' 板',''],
@@ -168,6 +173,7 @@ function renderState(r){
     ['炸板数',r.zb,'盘中炸板',''],
     ['龙虎榜净买入',(l.lhb_net>=0?'+':'')+fmt(l.lhb_net,2)+' 亿',l.date+' · 上榜 '+(l.lhb_top||[]).length+' 只',l.lhb_net>=0?'up':'down'],
     ['昨日涨停股数',r.n_prev==null?'—':r.n_prev,'参与统计（不含一字）','']];
+  if(v&&v.final_state) kpi.push(['硬约束层', v.final_state===v.base_state?'未触发':('降档→'+v.final_state), '基础态 '+v.base_state+(v.total!=null?(' · total '+v.total):''), v.final_state===v.base_state?'':'up']);
   $('kpis').innerHTML=kpi.map(x=>`<div class="metric"><div class="k">${x[0]}</div><div class="v ${x[3]||''}">${x[1]}</div><div class="s">${x[2]}</div></div>`).join('');
 }
 function renderDay(r){

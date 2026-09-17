@@ -11,6 +11,7 @@ const P = s => { lines.push(s); console.log(s); };
 (async () => {
   P(`===== 收盘复盘 ${last.date} =====`);
   P(`情绪: ${last.state6}(情绪分 ${last.sent})  资金温度 ${last.temp}  主力净额 ${last.main_yi}亿  ${last.diverge ? '⚠背离' : '无背离'}`);
+  if (last.veto) P(`硬约束: ${last.veto.final_state}${last.veto.final_state !== last.veto.base_state ? ('（基础态 ' + last.veto.base_state + '）') : ''}  命中 ${Object.keys(last.veto.hits).filter(k => last.veto.hits[k]).join(',') || '无'}  ${(last.veto.reasons || []).map(x => x.text).join('；')}`);
   P(`涨停 ${last.zt} / 连板 ${last.zt_lianban} / 首板 ${last.zt_first}  最高 ${last.max_lbc}板  炸板率 ${last.zb_rate}%`);
   P(`昨日涨停今日溢价 ${last.prem_avg}%  红盘率 ${last.prem_red}%  大面 ${last.damian}`);
   // 高标

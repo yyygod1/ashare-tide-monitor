@@ -102,10 +102,12 @@ const ZB = d => `https://push2ex.eastmoney.com/getTopicZBPool?ut=7eea3edcaed734b
   try { const P = JSON.parse(fs.readFileSync(__dirname + '/tide-data.json', 'utf8')); (P.rows || []).forEach(r => prevRows[r.date] = r); } catch (e) {}
   const poolKeys = ['zt', 'zt_lianban', 'zt_first', 'max_lbc', 'zb', 'zb_rate', 'lianban', 'fail_high', 'themes', 'theme_flow'];
   const premKeys = ['prem_avg', 'prem_red', 'damian', 'n_prev', 'prem_est'];
+  const bKeys = ['market_red', 'flat_ratio', 'dt', 'idx_chg', 'idx_break_ma20', 'ma20', 'idx_close', 'market_amt_yi'];
   let kept = 0;
   rows.forEach(r => { const p = prevRows[r.date]; if (!p) return;
     if (!r.zt && p.zt) { poolKeys.forEach(k => { r[k] = p[k]; }); kept++; }
     if (r.prem_avg == null && p.prem_avg != null) { premKeys.forEach(k => { r[k] = p[k]; }); }
+    if (r.market_red == null && p.market_red != null) { bKeys.forEach(k => { r[k] = p[k]; }); }
   });
   if (kept) console.log('保留历史日涨停池数据: ' + kept + ' 天');
 
@@ -138,6 +140,22 @@ const ZB = d => `https://push2ex.eastmoney.com/getTopicZBPool?ut=7eea3edcaed734b
   computeSentiment(rows, W);
   // 背离 = 资金温度创5日新高、但连板高度未创新高（资金与情绪结构背离）
   rows.forEach((r, i) => { if (i >= 5) { const th = r.temp >= Math.max(...rows.slice(i - 5, i).map(x => x.temp)); const lh = r.max_lbc > Math.max(...rows.slice(i - 5, i).map(x => x.max_lbc)); r.diverge = th && !lh; } });
+
+  // 硬约束层（收盘终判）：情绪分基础态 → veto.final_state
+  try {
+    const { fetchBreadth } = require('./breadth');
+    const { evaluateSeries } = require('./veto');
+    const cstToday = new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10);
+    const L = rows[rows.length - 1];
+    if (L.date === cstToday) {
+      const b = await fetchBreadth();
+      Object.assign(L, { market_red: b.market_red, flat_ratio: b.flat_ratio, dt: b.dt, idx_chg: b.idx_chg, idx_break_ma20: b.idx_break_ma20, ma20: b.ma20, idx_close: b.idx_close, market_amt_yi: b.market_amt_yi });
+      console.log('breadth: 红盘率 ' + b.market_red + '% 跌停 ' + b.dt + ' 沪指 ' + b.idx_chg + '% MA20 ' + b.ma20 + ' 新破 ' + b.idx_break_ma20 + ' 成交额 ' + b.market_amt_yi + '亿');
+    } else { console.log('breadth: 最后一天 ' + L.date + ' != 今日，跳过实时取数'); }
+    evaluateSeries(rows, { mode: 'conservative', t7_warn_only: true });
+    const ch = rows.filter(r => r.veto && r.veto.final_state !== r.state6);
+    console.log('硬约束层: ' + (ch.length ? ch.map(r => r.date + ' ' + r.state6 + '→' + r.veto.final_state).join(', ') : '无降档'));
+  } catch (e) { console.log('硬约束层失败: ' + e.message); }
 
   fs.writeFileSync(__dirname + '/tide-data.json', JSON.stringify({ generated: new Date().toISOString(), window: { start: dates[0], end: dates[dates.length - 1], days: dates.length }, rows }));
   console.log('已写 tide-data.json；rows=' + rows.length);

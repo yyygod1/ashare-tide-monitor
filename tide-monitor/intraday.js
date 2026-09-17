@@ -126,6 +126,17 @@ function tradingProgress(asof) {
   } catch (e) {}
   row.diverge = diverge;
 
+  // 硬约束层：盘中只做预检预警，不改 state6
+  try {
+    const { fetchBreadth } = require('./breadth');
+    const { prewarnFor } = require('./veto');
+    const b = await fetchBreadth();
+    Object.assign(row, { market_red: b.market_red, flat_ratio: b.flat_ratio, dt: b.dt, idx_chg: b.idx_chg, idx_break_ma20: b.idx_break_ma20, ma20: b.ma20, idx_close: b.idx_close, market_amt_yi: b.market_amt_yi });
+    const pw = prewarnFor([row], 0);
+    row.veto = { base_state: row.state6, final_state: row.state6, mode: 'intraday', prewarn: pw, data_quality: { t7_warn_only: true, market_red: b.market_red, dt: b.dt } };
+    console.log('breadth 红盘率 ' + b.market_red + '% 跌停 ' + b.dt + ' 新破MA20 ' + b.idx_break_ma20 + ' → 预检 ' + (pw.on ? '命中 ' + pw.triggers.join(',') : '未触发'));
+  } catch (e) { console.log('预检失败: ' + e.message); }
+
   fs.writeFileSync(path.join(__dirname, 'tide-today.json'), JSON.stringify({ generated: new Date().toISOString(), date, intraday: true, asof, row }, null, 0));
 
   // --- 记录盘中快照，供后续做「同一时刻」分位（渐进式） ---
