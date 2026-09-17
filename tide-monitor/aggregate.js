@@ -105,7 +105,7 @@ const ZB = d => `https://push2ex.eastmoney.com/getTopicZBPool?ut=7eea3edcaed734b
   const bKeys = ['market_red', 'flat_ratio', 'dt', 'idx_chg', 'idx_break_ma20', 'ma20', 'idx_close', 'market_amt_yi'];
   let kept = 0;
   rows.forEach(r => { const p = prevRows[r.date]; if (!p) return;
-    if (!r.zt && p.zt) { poolKeys.forEach(k => { r[k] = p[k]; }); kept++; }
+    if (r.zt < p.zt) { poolKeys.forEach(k => { r[k] = p[k]; }); kept++; }   // 历史日重抓若“变小”(部分/空)则保留更完整的旧值
     if (r.prem_avg == null && p.prem_avg != null) { premKeys.forEach(k => { r[k] = p[k]; }); }
     if (r.market_red == null && p.market_red != null) { bKeys.forEach(k => { r[k] = p[k]; }); }
   });

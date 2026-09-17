@@ -136,6 +136,7 @@ function evaluateSeries(rows, opts = {}) {
     meta.set(i, { t, ct });
   }
   // 2) day_state + trend_state + final
+  rows.forEach((r, i) => { r.veto_available = meta.has(i); });   // 明确区分「判定为不变」与「未运行」
   const stateRows = rows.map((r, i) => meta.has(i) ? i : -1).filter(i => i >= 0);
   stateRows.forEach((i, k) => {
     const { t, ct } = meta.get(i);
@@ -156,7 +157,6 @@ function evaluateSeries(rows, opts = {}) {
       base_state: base, total: ct.total, hits: { T1: t.T1, T2: t.T2, T3: t.T3, T4: t.T4, T5: t.T5, T6: t.T6, T7: t.T7 },
       raw_dims: ct.raw_dims, dims: ct.dims, skipped: t.skipped,
       day_state: ds, trend_state: tr, trend_reasons: trReasons, final_state: fin, reasons: t.reasons,
-      prewarn: rows[i].veto ? rows[i].veto.prewarn : { on: false, point: null, triggers: [], note: '' },
       data_quality: Object.assign({ sample_size: winVals(rows, i, x => x.zt, cfg.sampleMin).length, t7_warn_only: t7WarnOnly, anchors: { hit_window_3: h3, hit_window_4: h4, newLow } }, t.q)
     };
   });
