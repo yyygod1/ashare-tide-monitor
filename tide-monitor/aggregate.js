@@ -2,6 +2,7 @@
 // 输出 tide-data.json（供合并页 v3 使用）。收盘后(18:30)跑一次即可。
 const fs = require('fs');
 const { getJSON, getJSONMulti, push2 } = require('../lib/em');
+const { computeSentiment } = require('./sentiment');
 const j = (u, tries = 3) => getJSON(u, { tries });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function pool(tasks, limit, delay = 0) {
@@ -95,24 +96,48 @@ const ZB = d => `https://push2ex.eastmoney.com/getTopicZBPool?ut=7eea3edcaed734b
       prem_avg: avg, prem_red: red, damian, n_prev: nPrev, lhb_net: +lhbNet.toFixed(2), lhb_top: lhbTop,
       lianban: lbGroup, fail_high: failHigh, themes: themes.slice(0, 12), theme_flow: themeFlow });
   }
-  // 温度/六态
+  // 保留历史已抓到、但本次接口未返回的数据
+  // （东财涨停池只回看约20个交易日；若不做保留，旧日的 zt/连板/溢价 会被每次重算清空 → 历史无法累积）
+  let prevRows = {};
+  try { const P = JSON.parse(fs.readFileSync(__dirname + '/tide-data.json', 'utf8')); (P.rows || []).forEach(r => prevRows[r.date] = r); } catch (e) {}
+  const poolKeys = ['zt', 'zt_lianban', 'zt_first', 'max_lbc', 'zb', 'zb_rate', 'lianban', 'fail_high', 'themes', 'theme_flow'];
+  const premKeys = ['prem_avg', 'prem_red', 'damian', 'n_prev', 'prem_est'];
+  let kept = 0;
+  rows.forEach(r => { const p = prevRows[r.date]; if (!p) return;
+    if (!r.zt && p.zt) { poolKeys.forEach(k => { r[k] = p[k]; }); kept++; }
+    if (r.prem_avg == null && p.prem_avg != null) { premKeys.forEach(k => { r[k] = p[k]; }); }
+  });
+  if (kept) console.log('保留历史日涨停池数据: ' + kept + ' 天');
+
+  // 资金温度（仅作资金冷暖参考）：沪深主力净额在过去60个交易日的百分位
   const W = 60;
   fund.forEach((r, i) => { const win = fund.slice(Math.max(0, i - W), i + 1).map(x => x.main);
     Object.assign(rows[i], { main_yi: +(r.main / 1e8).toFixed(1), huge_yi: +(r.huge / 1e8).toFixed(1), big_yi: +(r.big / 1e8).toFixed(1), mid_yi: +(r.mid / 1e8).toFixed(1), small_yi: +(r.small / 1e8).toFixed(1), temp: +(win.filter(x => x <= r.main).length / win.length * 100).toFixed(0) }); });
-  const band = t => t >= 85 ? '沸点' : t >= 70 ? '过热' : t >= 55 ? '微热' : t >= 40 ? '微冷' : t >= 25 ? '过冷' : '冰点';
-  rows.forEach((r, i) => { r.state6 = band(r.temp); if (i >= 5) { const th = r.temp >= Math.max(...rows.slice(i - 5, i).map(x => x.temp)); const lh = r.max_lbc > Math.max(...rows.slice(i - 5, i).map(x => x.max_lbc)); r.diverge = th && !lh; } });
 
-  // 用 BK0815（昨日涨停·不含一字）成分精确覆盖最后一天
+  // 用 BK0815（昨日涨停·不含一字）成分精确覆盖「今日」那一行
+  // 注意：BK0815 指数反映的是「今天」对昨日涨停股的实时表现；只有当最后一行就是今日(收盘后跑)时才能覆盖，
+  //       否则(盘中/非交易日)会把今天的表现错误地写进上一个交易日。
   try {
-    let list = [], pn = 1;
-    while (true) {
-      const d = await getJSONMulti(push2([`/api/qt/clist/get?pn=${pn}&pz=200&fs=b:BK0815&fields=f12,f14,f3`]));
-      const diff = d.data && d.data.diff; if (!diff) break;
-      const arr = Array.isArray(diff) ? diff : Object.values(diff); list.push(...arr); if (arr.length < 200) break; pn++;
+    const cstToday = new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10);
+    const lastRow = rows[rows.length - 1];
+    if (lastRow.date !== cstToday) {
+      console.log('BK0815 覆盖跳过: 最后一天 ' + lastRow.date + ' != 今日 ' + cstToday + '（保留K线推算值）');
+    } else {
+      let list = [], pn = 1;
+      while (true) {
+        const d = await getJSONMulti(push2([`/api/qt/clist/get?pn=${pn}&pz=200&fs=b:BK0815&fields=f12,f14,f3`]));
+        const diff = d.data && d.data.diff; if (!diff) break;
+        const arr = Array.isArray(diff) ? diff : Object.values(diff); list.push(...arr); if (arr.length < 200) break; pn++;
+      }
+      const chgs = list.map(x => (x.f3 == null ? null : x.f3 / 100)).filter(v => v != null);
+      if (chgs.length) { const L = lastRow; L.n_prev = list.length; L.prem_avg = +(chgs.reduce((a, c) => a + c, 0) / chgs.length).toFixed(2); L.prem_red = +(chgs.filter(x => x > 0).length / chgs.length * 100).toFixed(0); L.damian = chgs.filter(x => x <= -4).length; L.prem_est = false; console.log('BK0815 覆盖最后一天: ' + L.date + ' 均' + L.prem_avg + '% 红' + L.prem_red + '% 大面' + L.damian); }
     }
-    const chgs = list.map(x => (x.f3 == null ? null : x.f3 / 100)).filter(v => v != null);
-    if (chgs.length) { const L = rows[rows.length - 1]; L.n_prev = list.length; L.prem_avg = +(chgs.reduce((a, c) => a + c, 0) / chgs.length).toFixed(2); L.prem_red = +(chgs.filter(x => x > 0).length / chgs.length * 100).toFixed(0); L.damian = chgs.filter(x => x <= -4).length; console.log('BK0815 覆盖最后一天: ' + L.date + ' 均' + L.prem_avg + '% 红' + L.prem_red + '% 大面' + L.damian); }
   } catch (e) { console.log('BK0815 覆盖失败: ' + e.message); }
+
+  // 情绪分（多因子合成）→ 六态：放在 BK0815 覆盖之后，保证最后一天的因子是最新的
+  computeSentiment(rows, W);
+  // 背离 = 资金温度创5日新高、但连板高度未创新高（资金与情绪结构背离）
+  rows.forEach((r, i) => { if (i >= 5) { const th = r.temp >= Math.max(...rows.slice(i - 5, i).map(x => x.temp)); const lh = r.max_lbc > Math.max(...rows.slice(i - 5, i).map(x => x.max_lbc)); r.diverge = th && !lh; } });
 
   fs.writeFileSync(__dirname + '/tide-data.json', JSON.stringify({ generated: new Date().toISOString(), window: { start: dates[0], end: dates[dates.length - 1], days: dates.length }, rows }));
   console.log('已写 tide-data.json；rows=' + rows.length);

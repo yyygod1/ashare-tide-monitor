@@ -60,12 +60,13 @@ td{padding:6px 8px;border-bottom:1px solid rgba(34,42,58,.5);font-variant-numeri
     <div class="card tide-hero">
       <div class="tide-state">情绪状态 · <span id="d"></span></div>
       <div class="tide-name" id="st"></div>
-      <div class="tide-temp"><span class="num" id="temp"></span><span style="color:var(--sub)">/100 温度分</span></div>
+      <div class="tide-temp"><span class="num" id="sent"></span><span style="color:var(--sub)">/100 情绪分</span></div>
+      <div class="tide-state">资金温度 <b id="temp"></b>/100（资金冷暖，参考项）</div>
       <div class="tide-steps" id="steps"></div>
       <div id="alert"></div>
     </div>
     <div class="card">
-      <h2>情绪温度（资金分层）· 叠加连板高度<span class="tag">温度=主力净额60日百分位；红点=背离（温度新高、连板高度不新高）</span></h2>
+      <h2>情绪分 vs 资金温度 · 叠加连板高度<span class="tag">情绪分=多因子合成(涨停/高度/大面/溢价/炸板/红盘)；资金温度=主力净额60日百分位；红点=背离（资金温度新高、连板高度未新高）</span></h2>
       <div id="cTemp" class="chart"></div>
     </div>
   </div>
@@ -107,7 +108,7 @@ td{padding:6px 8px;border-bottom:1px solid rgba(34,42,58,.5);font-variant-numeri
   <!--INBOX_END-->
 
   <div class="foot">
-    <b>口径：</b>温度分=沪深主力净额(超大单+大单)在过去60个交易日的百分位；六态=温度分档（沸点≥85/过热≥70/微热≥55/微冷≥40/过冷≥25/冰点&lt;25）。溢价率=昨日涨停股（剔除一字板）今日平均涨跌幅；红盘率=其中今日上涨占比；大面=其中今日跌幅&gt;4%的只数。炸板率=炸板数/(涨停数+炸板数)。连板高度=当日最高连板数。板块净买入=该板块涨停股当日龙虎榜净买入合计。数据来自东方财富公开接口，涨停池历史约30个交易日。本页由本地脚本于收盘后预计算生成，不构成投资建议。
+    <b>口径：</b>情绪分=多因子合成分（涨停家数24%·连板高度18%·大面17%·溢价16%·炸板率15%·红盘率10%；每个因子取它在过去60个交易日的百分位，大面/炸板率取反向），六态=情绪分分档（沸点≥85/过热≥70/微热≥55/微冷≥40/过冷≥25/冰点&lt;25）。资金温度=沪深主力净额(超大单+大单)在过去60个交易日的百分位，仅作资金冷暖参考。盘中(临时)行的资金温度与涨停家数按已交易时间进度折算为「全天当量」后再取分位（避免早盘半天数据直接与历史全天比）。溢价率=昨日涨停股（剔除一字板）今日平均涨跌幅；红盘率=其中今日上涨占比；大面=其中今日跌幅&gt;4%的只数。炸板率=炸板数/(涨停数+炸板数)。连板高度=当日最高连板数。板块净买入=该板块涨停股当日龙虎榜净买入合计。数据来自东方财富公开接口，涨停池历史约30个交易日。不构成投资建议。
   </div>
 </div>
 <script>
@@ -125,13 +126,14 @@ const base={tooltip:{trigger:'axis',backgroundColor:'#0e121c',borderColor:'#2a35
 $('gen').textContent = DATA.generated.slice(0,10);
 
 // ---- 趋势图（整窗） ----
-mk('cTemp',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['温度分','连板高度','背离']},
-  tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>温度 '+r.temp+'（'+r.state6+'）<br/>连板高度 '+r.max_lbc+' 板<br/>涨停 '+r.zt+' · 炸板率 '+r.zb_rate+'%';}},
+mk('cTemp',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['情绪分','资金温度','连板高度','背离']},
+  tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>情绪分 '+fmt(r.sent,0)+'（'+r.state6+'）<br/>资金温度 '+r.temp+'<br/>连板高度 '+r.max_lbc+' 板<br/>涨停 '+r.zt+' · 炸板率 '+r.zb_rate+'%';}},
   yAxis:[{type:'value',min:0,max:100,axisLabel:{color:'#8b93a7',fontSize:10},splitLine:{lineStyle:{color:'#1a2130'}}},{type:'value',min:0,axisLabel:{color:'#8b93a7',fontSize:10},splitLine:{show:false}}],
   series:[
-    {name:'温度分',type:'line',smooth:true,data:rows.map(r=>r.temp),lineStyle:{width:2.5,color:'#f0b90b'},itemStyle:{color:'#f0b90b'},areaStyle:{color:'rgba(240,185,11,.08)'},
-      markArea:{silent:true,data:rows.map((r,i)=>[{xAxis:i,itemStyle:{color:ST_COLORS[r.state6]+'22'}},{xAxis:i+1,itemStyle:{color:ST_COLORS[r.state6]+'22'}}])}},
-    {name:'连板高度',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.max_lbc),lineStyle:{width:2,color:'#4e7fff'},itemStyle:{color:'#4e7fff'}},
+    {name:'情绪分',type:'line',smooth:true,data:rows.map(r=>r.sent),lineStyle:{width:2.5,color:'#f0b90b'},itemStyle:{color:'#f0b90b'},areaStyle:{color:'rgba(240,185,11,.08)'},
+      markArea:{silent:true,data:rows.map((r,i)=>[{xAxis:i,itemStyle:{color:(ST_COLORS[r.state6]||'#000000')+'22'}},{xAxis:i+1,itemStyle:{color:(ST_COLORS[r.state6]||'#000000')+'22'}}])}},
+    {name:'资金温度',type:'line',smooth:true,data:rows.map(r=>r.temp),lineStyle:{width:1.6,color:'#4e7fff',type:'dashed'},itemStyle:{color:'#4e7fff'}},
+    {name:'连板高度',type:'line',yAxisIndex:1,smooth:true,data:rows.map(r=>r.max_lbc),lineStyle:{width:2,color:'#8b93a7'},itemStyle:{color:'#8b93a7'}},
     {name:'背离',type:'scatter',data:rows.map((r,i)=>r.diverge?[i,r.temp]:null),symbolSize:11,itemStyle:{color:'#f6465d'}}]});
 mk('cPrem',{...base,legend:{textStyle:{color:'#8b93a7',fontSize:11},top:0,data:['平均涨幅%','估算*','红盘率%']},
   tooltip:{...base.tooltip,formatter:p=>{const r=rows[p[0].dataIndex];return r.date+'<br/>平均涨幅 '+r.prem_avg+'%'+(r.prem_est?'（估算*）':'')+'<br/>红盘率 '+(r.prem_red==null?'—':r.prem_red+'%')+'<br/>大面 '+(r.damian==null?'—':r.damian);}},
@@ -161,12 +163,13 @@ function renderThemeChart(r){const t=(r.themes||[]).slice(0,10).reverse().map(x=
 function chips(list,core){ if(!list||!list.length) return '<span style="color:var(--dim);font-size:11px">—</span>';
   return '<div class="chips">'+list.map(s=>`<span class="chip${core?' core':''}">${s.name}${s.lbc>=2?' <span class="th">'+s.lbc+'板</span>':''}</span>`).join('')+'</div>'; }
 function renderState(r){
-  $('d').textContent=r.date+(r.intraday?(' · 盘中 '+r.asof):''); $('st').textContent=r.state6; $('st').style.color=ST_COLORS[r.state6];
-  $('temp').textContent=r.temp; $('temp').style.color=ST_COLORS[r.state6];
+  $('d').textContent=r.date+(r.intraday?(' · 盘中 '+r.asof):''); $('st').textContent=r.state6||'—'; $('st').style.color=ST_COLORS[r.state6]||'var(--sub)';
+  $('sent').textContent=r.sent==null?'—':r.sent; $('sent').style.color=ST_COLORS[r.state6]||'var(--sub)';
+  $('temp').textContent=r.temp; $('temp').style.color=ST_COLORS[r.state6]||'var(--sub)';
   $('steps').innerHTML=Object.keys(ST_COLORS).map(s=>`<div class="tstep ${s===r.state6?'cur':''}">${s}</div>`).join('');
-  $('alert').innerHTML = r.diverge ? '<div class="metric warn" style="padding:8px 10px"><div class="k up">⚠ 背离预警</div><div class="s">温度创5日新高、连板高度未创新高 → 提防承接转弱</div></div>' : '<div class="metric" style="padding:8px 10px"><div class="k">背离</div><div class="s">温度与连板高度未背离</div></div>';
+  $('alert').innerHTML = r.diverge ? '<div class="metric warn" style="padding:8px 10px"><div class="k up">⚠ 背离预警</div><div class="s">资金温度创5日新高、连板高度未创新高 → 提防承接转弱</div></div>' : '<div class="metric" style="padding:8px 10px"><div class="k">背离</div><div class="s">资金温度与连板高度未背离</div></div>';
   const l=r;
-  const kpi=[['温度分（资金）',r.temp,'六态：'+r.state6,ST_COLORS[r.state6]],
+  const kpi=[['情绪分',r.sent==null?'—':r.sent,'六态：'+(r.state6||'—')+' · 资金温度 '+r.temp,ST_COLORS[r.state6]||''],
     ['主力净额',(r.main_yi>=0?'+':'')+r.main_yi+' 亿','超大 '+r.huge_yi+' / 大 '+r.big_yi+' 亿',r.main_yi>=0?'up':'down'],
     ['涨停 / 连板 / 首板',r.zt+' / '+r.zt_lianban+' / '+r.zt_first,'最高 '+r.max_lbc+' 板',''],
     ['炸板率',r.zb_rate+'%','炸板 '+r.zb+' 只',r.zb_rate>=35?'up':''],
