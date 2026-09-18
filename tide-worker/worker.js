@@ -17,6 +17,7 @@ async function dispatch(env, wf) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ ref: 'main' }),
+    signal: AbortSignal.timeout(8000), // 单次 8s 超时（等待网络不计 CPU，不会被 10ms 限额杀掉）
   });
   return res.status;
 }
