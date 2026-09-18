@@ -44,6 +44,9 @@ jobs:
           node tide-monitor/similar.js
           node build-site.js
 
+      - name: Verify daily data
+        run: node tide-monitor/verify.js daily
+
       - name: Commit refreshed data
         run: |
           git config user.name  "github-actions[bot]"

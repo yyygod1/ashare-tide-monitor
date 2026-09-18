@@ -37,14 +37,21 @@ const data = JSON.stringify(dataObj);
 const out = path.join(__dirname, 'docs');
 if (!fs.existsSync(out)) fs.mkdirSync(out, { recursive: true });
 
-const LIVE_BOOT =
-  "fetch('./tide-data.json?t='+Date.now()).then(function(r){return r.json()}).then(boot).catch(function(e){" +
-  "document.querySelector('.wrap').innerHTML='<p style=\"color:#f6465d\">\u6570\u636e\u52a0\u8f7d\u5931\u8d25\uff1a'+e+'</p>'});";
+// live boot: 轮询 ./tide-data.json（bootLive/setBar 定义在 template.html 内）
+const LIVE_BOOT = "bootLive();";
 
 function emit(html, name) { fs.writeFileSync(path.join(out, name), html); console.log(name + ' -> ' + fs.statSync(path.join(out, name)).size + ' bytes'); }
 
 emit(tpl.replace(CDN_TAG, CN_CDN).replace('/*__BOOT__*/', LIVE_BOOT), 'index.html');            // online: CDN echarts + fetch json
 emit(tpl.replace(CDN_TAG, '<script>' + ed + '</script>').replace('/*__BOOT__*/', 'boot(' + data + ');'), 'offline.html');  // offline single-file
 fs.writeFileSync(path.join(out, 'tide-data.json'), data);
+const _lastRow = dataObj.rows[dataObj.rows.length - 1] || {};
+fs.writeFileSync(path.join(out, 'status.json'), JSON.stringify({
+  generated: dataObj.generated,
+  built_at: new Date().toISOString(),
+  rows: dataObj.rows.length,
+  last_date: _lastRow.date || null,
+  intraday: dataObj.intraday || null,
+}, null, 0));
 fs.writeFileSync(path.join(out, '.nojekyll'), '');
 console.log('docs/ built.');

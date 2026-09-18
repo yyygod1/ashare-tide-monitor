@@ -47,6 +47,8 @@ td{padding:6px 8px;border-bottom:1px solid rgba(34,42,58,.5);font-variant-numeri
 .foot{color:var(--dim);font-size:12px;margin-top:18px;padding-top:12px;border-top:1px solid var(--line);line-height:1.8}
 .warn{border-color:rgba(246,70,93,.5)!important;background:rgba(246,70,93,.07)}
 @media(max-width:900px){.metrics,.two,.grid{grid-template-columns:1fr}}
+.bar{font-size:12px;color:var(--sub);padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:var(--card);margin:0 0 12px;font-variant-numeric:tabular-nums}
+.bar.warn{border-color:rgba(246,70,93,.55);background:rgba(246,70,93,.08);color:var(--txt)}
 </style>
 </head>
 <body>
@@ -55,6 +57,7 @@ td{padding:6px 8px;border-bottom:1px solid rgba(34,42,58,.5);font-variant-numeri
     <h1>A股情绪潮汐监测 <span>v3 · 资金温度+承接 + 龙虎榜/板块 · <span id="gen"></span></span></h1>
     <select id="dateSel"></select>
   </div>
+  <div id="bar" class="bar"></div>
 
   <div class="grid" style="grid-template-columns:300px 1fr">
     <div class="card tide-hero">
@@ -222,6 +225,51 @@ const sel=$('dateSel'); sel.innerHTML=rows.map(r=>`<option value="${r.date}">${r
 const def=last; // 初始默认=今日，可随日期切换（含情绪状态）
 sel.value=def.date; sel.onchange=()=>{const r=rows.find(x=>x.date===sel.value); if(r) renderDay(r);};
 renderDay(def);
+}
+// ---- 实时刷新（仅 live 版本调用）----
+function cstHour(){ return new Date(Date.now() + 8 * 3600e3); }
+function marketHours(c){
+  c = c || cstHour();
+  var dow = c.getUTCDay(); if (dow < 1 || dow > 5) return false;
+  var m = c.getUTCHours() * 60 + c.getUTCMinutes();
+  return (m >= 9 * 60 + 25 && m <= 11 * 60 + 30) || (m >= 13 * 60 && m <= 15 * 60 + 10);
+}
+function p2(n){ return String(n).padStart(2, '0'); }
+function setBar(D){
+  var el = document.getElementById('bar'); if (!el) return;
+  var c = cstHour();
+  var clock = p2(c.getUTCHours()) + ':' + p2(c.getUTCMinutes()) + ':' + p2(c.getUTCSeconds());
+  var intra = D.intraday || null;
+  var lastRow = (D.rows && D.rows.length) ? D.rows[D.rows.length - 1] : null;
+  var asof = intra ? ('盘中 ' + intra.date + ' ' + intra.asof) : ('收盘 ' + (lastRow ? lastRow.date : '—'));
+  var inMkt = marketHours(c);
+  var stale = false;
+  if (intra && intra.asof && inMkt) {
+    var p = intra.asof.split(':').map(Number);
+    var mins = p[0] * 60 + p[1], nowm = c.getUTCHours() * 60 + c.getUTCMinutes();
+    if (nowm - mins > 10) stale = true;
+  }
+  el.className = 'bar' + (stale ? ' warn' : '');
+  el.innerHTML = (stale ? '<b>⚠ 数据可能延迟</b> · ' : '') + '数据 ' + asof + ' · 拉取于 ' + clock + ' · ' + (inMkt ? '交易时段' : '非交易时段');
+  if (inMkt && !intra) { el.className = 'bar warn'; el.innerHTML += ' · <b>⚠ 尚无盘中数据</b>'; }
+}
+function bootLive(){
+  var last = null;
+  function tick(){
+    var url = './tide-data.json?t=' + Date.now();
+    fetch(url, { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function(D){
+        var g = D.generated + ':' + ((D.intraday && D.intraday.asof) || '');
+        if (g !== last) { last = g; boot(D); }
+        setBar(D);
+      })
+      .catch(function(e){
+        var el = document.getElementById('bar');
+        if (el) { el.className = 'bar warn'; el.textContent = '⚠ 数据加载失败：' + e + '（需通过 http 服务打开，或稍后重试）'; }
+      });
+  }
+  tick();
+  setInterval(tick, marketHours() ? 60000 : 300000);
 }
 /*__BOOT__*/
 </script>
