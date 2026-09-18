@@ -38,7 +38,7 @@ const out = path.join(__dirname, 'docs');
 if (!fs.existsSync(out)) fs.mkdirSync(out, { recursive: true });
 
 // live boot: 轮询 ./tide-data.json（bootLive/setBar 定义在 template.html 内）
-const LIVE_BOOT = "bootLive();";
+const LIVE_BOOT = "bootLive(['./tide-data.json']);";
 
 function emit(html, name) { fs.writeFileSync(path.join(out, name), html); console.log(name + ' -> ' + fs.statSync(path.join(out, name)).size + ' bytes'); }
 

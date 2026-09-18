@@ -224,7 +224,8 @@ function marketHours(c){
   return (m >= 9 * 60 + 25 && m <= 11 * 60 + 30) || (m >= 13 * 60 && m <= 15 * 60 + 10);
 }
 function p2(n){ return String(n).padStart(2, '0'); }
-function setBar(D){
+function srcLabel(s){ if (!s || s.indexOf('./') === 0) return '本地'; try { return new URL(s, location.href).hostname; } catch (e) { return s; } }
+function setBar(D, src){
   var el = document.getElementById('bar'); if (!el) return;
   var c = cstHour();
   var clock = p2(c.getUTCHours()) + ':' + p2(c.getUTCMinutes()) + ':' + p2(c.getUTCSeconds());
@@ -239,28 +240,31 @@ function setBar(D){
     if (nowm - mins > 10) stale = true;
   }
   el.className = 'bar' + (stale ? ' warn' : '');
-  el.innerHTML = (stale ? '<b>⚠ 数据可能延迟</b> · ' : '') + '数据 ' + asof + ' · 拉取于 ' + clock + ' · ' + (inMkt ? '交易时段' : '非交易时段');
+  el.innerHTML = (stale ? '<b>⚠ 数据可能延迟</b> · ' : '') + '数据 ' + asof + ' · 拉取于 ' + clock + ' · ' + (inMkt ? '交易时段' : '非交易时段') + ' · 源 ' + srcLabel(src);
   if (inMkt && !intra) { el.className = 'bar warn'; el.innerHTML += ' · <b>⚠ 尚无盘中数据</b>'; }
 }
-function bootLive(){
-  var last = null;
+function bootLive(sources){
+  sources = (sources && sources.length) ? sources : ['./tide-data.json'];
+  var last = null, si = 0;
+  function bust(s){ return s + (s.indexOf('?') >= 0 ? '&' : '?') + 't=' + Date.now(); }
   function tick(){
-    var url = './tide-data.json?t=' + Date.now();
-    fetch(url, { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    var src = sources[si];
+    fetch(bust(src), { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function(D){
         var g = D.generated + ':' + ((D.intraday && D.intraday.asof) || '');
         if (g !== last) { last = g; boot(D); }
-        setBar(D);
+        setBar(D, src);
       })
       .catch(function(e){
+        if (si < sources.length - 1) { si++; tick(); return; }   // 降级到下一个数据源
         var el = document.getElementById('bar');
-        if (el) { el.className = 'bar warn'; el.textContent = '⚠ 数据加载失败：' + e + '（需通过 http 服务打开，或稍后重试）'; }
+        if (el) { el.className = 'bar warn'; el.textContent = '⚠ 数据加载失败：' + e; }
       });
   }
   tick();
-  setInterval(tick, marketHours() ? 60000 : 300000);
+  setInterval(function(){ si = 0; tick(); }, marketHours() ? 60000 : 300000);
 }
-bootLive();
+bootLive(['./tide-data.json']);
 </script>
 
 </body>

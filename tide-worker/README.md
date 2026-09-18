@@ -21,6 +21,7 @@ npx wrangler deploy
 - GitHub → Settings → Developer settings → **Fine-grained tokens** → Generate new
 - Repository access：**Only select repositories → `yyygod1/ashare-tide-monitor`**
 - Permissions：**Actions → Read and write**（其它一律 No access）
+- 另设一个调试密钥：`npx wrangler secret put TRIGGER_KEY`（任意随机串，用于 `/run`）
 - 设一个到期日（如 90 天），到期前轮换
 
 > ⚠️ 不要用 `gho_` 开头的 OAuth token（那是本地登录凭据，放云端不合适）。
@@ -39,8 +40,11 @@ Worker 内再判一次 09:25–11:30 / 13:00–15:10（所以 cron 覆盖的边�
 ## 验证
 
 - `wrangler tail` 看日志
+- **立即验证调度（不用等 cron）**：先设调试密钥 `npx wrangler secret put TRIGGER_KEY`，然后
+  `curl "https://<worker>/run?key=<TRIGGER_KEY>&wf=intraday.yml"` —— 返回 `dispatch intraday.yml -> HTTP 204` 即成功，
+  去仓库 Actions 应看到新的 `workflow_dispatch` 运行。
+  （生产环境没有 `__scheduled` 端点，只有 `wrangler dev --test-scheduled` 本地才有。）
 - 浏览器打开 `https://<worker>/tide-data.json`，应与仓库 `docs/tide-data.json` 一致（≤60s 延迟）
-- 到点后看仓库 Actions 是否出现 `workflow_dispatch` 触发的运行
 
 ## 切换顺序（重要）
 

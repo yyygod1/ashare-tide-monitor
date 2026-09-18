@@ -49,6 +49,20 @@ export default {
   // 数据端点：反代 raw 并做 60s 边缘缓存；前端可直连本 Worker，不依赖任何 deploy
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    // 调试触发：/run?key=TRIGGER_KEY[&wf=intraday.yml|update.yml]
+    // （生产环境没有 __scheduled 端点；用它可立即验证调度是否通）
+    if (url.pathname === '/run') {
+      if (!env.TRIGGER_KEY || url.searchParams.get('key') !== env.TRIGGER_KEY) {
+        return new Response('forbidden', { status: 403 });
+      }
+      const wf = url.searchParams.get('wf') === 'update.yml' ? 'update.yml' : 'intraday.yml';
+      const s = await dispatch(env, wf);
+      return new Response('dispatch ' + wf + ' -> HTTP ' + s + '\n', {
+        status: s >= 200 && s < 300 ? 200 : 502,
+      });
+    }
+
     if (url.pathname === '/' || url.pathname === '/tide-data.json') {
       const r = await fetch(RAW, { cf: { cacheTtl: 60, cacheEverything: true } });
       return new Response(r.body, {
