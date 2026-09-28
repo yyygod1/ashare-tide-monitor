@@ -25,21 +25,39 @@ async function fetchPool(date) {
   const d = await j(u);
   return ((d.data && d.data.pool) || []).map(p => ({ code: p.c, name: p.n, lbc: p.lbc || 0, fbt: p.fbt, zbc: p.zbc || 0 }));
 }
-async function kline(code) {
+async function kline(code, mustHave) {
   const f = CACHE + '/' + code + '.json';
-  if (fs.existsSync(f)) return JSON.parse(fs.readFileSync(f, 'utf8'));
+  let map = null;
+  if (fs.existsSync(f)) {
+    try { map = JSON.parse(fs.readFileSync(f, 'utf8')); } catch (e) { map = null; }
+    if (map) {
+      const ks = Object.keys(map).sort();
+      const maxD = ks.length ? ks[ks.length - 1] : null;
+      // cache already covers the latest trading day -> use it
+      if (!mustHave || (maxD && maxD >= mustHave)) return map;
+      // stale cache: refresh, but at most once per 12h (halted/suspended stocks never "reach" mustHave)
+      const st = fs.statSync(f);
+      if (Date.now() - st.mtimeMs < 12 * 3600e3) return map;
+    }
+  }
   const u = `https://push2his.eastmoney.com/api/qt/stock/kline/get?secid=${secid(code)}&klt=101&fqt=1&lmt=320&end=20500101&fields1=f1,f2,f3,f4,f5,f6&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61`;
-  const d = await j(u);
-  const kl = (d.data && d.data.klines) || [];
-  const map = {};
-  for (const row of kl) { const p = row.split(','); map[p[0]] = +p[8]; } // 涨跌幅%
-  fs.writeFileSync(f, JSON.stringify(map));
-  return map;
+  try {
+    const d = await j(u);
+    const kl = (d.data && d.data.klines) || [];
+    const fresh = {};
+    for (const row of kl) { const p = row.split(','); fresh[p[0]] = +p[8]; } // 涨跌幅%
+    fs.writeFileSync(f, JSON.stringify(fresh));
+    return fresh;
+  } catch (e) {
+    if (map) return map;   // keep the stale cache instead of losing this code entirely
+    throw e;
+  }
 }
 
 (async () => {
   const fund = JSON.parse(fs.readFileSync(__dirname + '/fund-daily.json', 'utf8'));
   const dates = fund.map(r => r.date);
+  const latestDate = dates[dates.length - 1];
   console.log('trading days:', dates.length, dates[0], '~', dates[dates.length - 1]);
 
   const pools = await pool(dates.map(d => () => fetchPool(d).catch(() => [])), 8);
@@ -49,7 +67,7 @@ async function kline(code) {
 
   let done = 0;
   const klines = {};
-  await pool(codes.map(c => async () => { klines[c] = await kline(c); done++; if (done % 100 === 0) console.log('  kline', done + '/' + codes.length); }), 6);
+  await pool(codes.map(c => async () => { klines[c] = await kline(c, latestDate); done++; if (done % 100 === 0) console.log('  kline', done + '/' + codes.length); }), 6);
 
   const rows = [];
   for (let i = 1; i < dates.length; i++) {
