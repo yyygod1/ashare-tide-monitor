@@ -36,13 +36,26 @@ jobs:
 
       - name: Generate data
         run: |
-          node tide-monitor/fund.js
-          node tide-monitor/premium.js
-          node tide-monitor/aggregate.js
-          node tide-monitor/build-v3.js
-          node tide-monitor/report.js
-          node tide-monitor/similar.js
-          node build-site.js
+          # 东财从 GitHub runner 偶发不可达（curl exit 52），重试 3 次；仍失败则明确报错
+          for attempt in 1 2 3; do
+            echo "::group::data generation attempt $attempt"
+            if node tide-monitor/fund.js \
+               && node tide-monitor/premium.js \
+               && node tide-monitor/aggregate.js \
+               && node tide-monitor/build-v3.js \
+               && node tide-monitor/report.js \
+               && node tide-monitor/similar.js \
+               && node build-site.js; then
+              echo "::endgroup::"
+              echo "data generation OK (attempt $attempt)"
+              exit 0
+            fi
+            echo "::endgroup::"
+            echo "::warning::data generation failed (attempt $attempt)"
+            sleep 25
+          done
+          echo "::error::data generation failed after 3 attempts - East Money likely unreachable from this runner; cloud-trigger (every 15 min) will retry"
+          exit 1
 
       - name: Verify daily data
         run: node tide-monitor/verify.js daily

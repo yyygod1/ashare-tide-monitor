@@ -84,4 +84,8 @@ async function kline(code, mustHave) {
   console.log('\ndate       昨涨停 样本 平均涨幅 红盘率% 大面');
   for (const r of rows.slice(-45)) console.log(`${r.date}  ${String(r.n_prev).padStart(4)} ${String(r.n_excl).padStart(4)}  ${String(r.avg_chg).padStart(6)}  ${String(r.red_rate).padStart(4)}  ${String(r.damian).padStart(3)}`);
   console.log('\nsaved premium-daily.json');
-})();
+})().catch(e => {
+  // 失败时不要写坏 premium-daily.json：保留上一份（aggregate.js 依赖它的溢价/红盘率/大面）
+  console.log('WARN premium.js failed: ' + (e && e.message ? e.message : e) + ' -> keep previous premium-daily.json');
+  process.exitCode = 1;
+});
