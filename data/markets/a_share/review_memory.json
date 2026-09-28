@@ -1,0 +1,5109 @@
+{
+  "updatedAt": "2026-09-28T17:29:42Z",
+  "rows": 120,
+  "range": {
+    "start": "2026-04-07",
+    "end": "2026-09-28"
+  },
+  "stats": {
+    "情绪跳升": {
+      "count": 47,
+      "avgScore": -0.429,
+      "winRate": 0.36,
+      "desc": "次日情绪分上行=记为胜"
+    },
+    "冰点/过冷区": {
+      "count": 53,
+      "avgScore": 0.594,
+      "winRate": 0.74,
+      "desc": "次日情绪分上行=记为胜"
+    },
+    "低位拐点(次日验证)": {
+      "count": 34,
+      "avgScore": 1.116,
+      "winRate": 1.0,
+      "desc": "次日情绪分上行=记为胜"
+    },
+    "溢价转正": {
+      "count": 18,
+      "avgScore": -0.154,
+      "winRate": 0.44,
+      "desc": "次日情绪分上行=记为胜"
+    }
+  },
+  "nodes": [
+    {
+      "date": "2026-04-13",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 100,
+        "state6": "沸点",
+        "temp": 40,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.4,
+        "damian": null,
+        "lhb_net": 21.16,
+        "diverge": null
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "德明利(净+5.59亿, 7.66%)",
+          "兴森科技(净+4.35亿, 9.98%)",
+          "国际复材(净+3.9亿, 16.04%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-14",
+          "sent": 100,
+          "sentDelta": 0.0,
+          "state6": "沸点",
+          "premDelta": 0.03,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-04-16",
+          "sent": 50,
+          "sentDelta": -50.0,
+          "state6": "微冷",
+          "premDelta": -0.82,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.005
+    },
+    {
+      "date": "2026-04-15",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 14,
+        "state6": "冰点",
+        "temp": 14,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.04,
+        "damian": null,
+        "lhb_net": 32.63,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "长源东谷(净+5.59亿, 10%)",
+          "航天工程(净+3.38亿, 9.99%)",
+          "中恒电气(净+3.22亿, 2.14%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-16",
+          "sent": 50,
+          "sentDelta": 36.0,
+          "state6": "微冷",
+          "premDelta": 0.54,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-04-20",
+          "sent": 100,
+          "sentDelta": 86.0,
+          "state6": "沸点",
+          "premDelta": 1.84,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.69
+    },
+    {
+      "date": "2026-04-16",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 50,
+        "state6": "微冷",
+        "temp": 88,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.58,
+        "damian": null,
+        "lhb_net": 13.93,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "中钨高新(净+9.56亿, 10%)",
+          "大普微(净+8.22亿, 430.71%)",
+          "长信科技(净+5.23亿, 14.1%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-17",
+          "sent": 78,
+          "sentDelta": 28.0,
+          "state6": "过热",
+          "premDelta": 0.7,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-04-21",
+          "sent": 18,
+          "sentDelta": -32.0,
+          "state6": "冰点",
+          "premDelta": -0.5,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.583
+    },
+    {
+      "date": "2026-04-17",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 78,
+        "state6": "过热",
+        "temp": 33,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.28,
+        "damian": null,
+        "lhb_net": 36.24,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "光迅科技(净+12.54亿, 10%)",
+          "云南锗业(净+9.19亿, 10.01%)",
+          "品高股份(净+1.85亿, 20%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-20",
+          "sent": 100,
+          "sentDelta": 22.0,
+          "state6": "沸点",
+          "premDelta": 0.6,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-04-22",
+          "sent": 67,
+          "sentDelta": -11.0,
+          "state6": "微热",
+          "premDelta": -0.4,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.467
+    },
+    {
+      "date": "2026-04-20",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 100,
+        "state6": "沸点",
+        "temp": 60,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.88,
+        "damian": null,
+        "lhb_net": 37.33,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "圣阳股份(净+5.07亿, 7.91%)",
+          "立讯精密(净+5.03亿, 10.01%)",
+          "西部材料(净+3.92亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-21",
+          "sent": 18,
+          "sentDelta": -82.0,
+          "state6": "冰点",
+          "premDelta": -1.8,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-04-23",
+          "sent": 23,
+          "sentDelta": -77.0,
+          "state6": "冰点",
+          "premDelta": -1.64,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.667
+    },
+    {
+      "date": "2026-04-21",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 18,
+        "state6": "冰点",
+        "temp": 27,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.08,
+        "damian": null,
+        "lhb_net": 35.4,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "云南锗业(净+9.33亿, 0.29%)",
+          "巨力索具(净+4.37亿, 10.02%)",
+          "巨力索具(净+4.37亿, 10.02%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-22",
+          "sent": 67,
+          "sentDelta": 49.0,
+          "state6": "微热",
+          "premDelta": 0.8,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-04-24",
+          "sent": 7,
+          "sentDelta": -11.0,
+          "state6": "冰点",
+          "premDelta": -1.21,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.95
+    },
+    {
+      "date": "2026-04-22",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 67,
+        "state6": "微热",
+        "temp": 75,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.88,
+        "damian": null,
+        "lhb_net": 30.22,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "中天科技(净+5.83亿, 7.34%)",
+          "协创数据(净+4.27亿, 19.99%)",
+          "长光华芯(净+3.56亿, 20%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-23",
+          "sent": 23,
+          "sentDelta": -44.0,
+          "state6": "冰点",
+          "premDelta": -0.64,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-04-27",
+          "sent": 13,
+          "sentDelta": -54.0,
+          "state6": "冰点",
+          "premDelta": -1.06,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.84
+    },
+    {
+      "date": "2026-04-23",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 23,
+        "state6": "冰点",
+        "temp": 8,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.24,
+        "damian": null,
+        "lhb_net": 2.23,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "大族激光(净+9.92亿, 10%)",
+          "兆驰股份(净+2.66亿, 9.99%)",
+          "汇绿生态(净+2.64亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-24",
+          "sent": 7,
+          "sentDelta": -16.0,
+          "state6": "冰点",
+          "premDelta": -1.37,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-04-28",
+          "sent": 69,
+          "sentDelta": 46.0,
+          "state6": "微热",
+          "premDelta": 0.51,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.495
+    },
+    {
+      "date": "2026-04-24",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 7,
+        "state6": "冰点",
+        "temp": 29,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -0.13,
+        "damian": null,
+        "lhb_net": 38.78,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "恩捷股份(净+7.82亿, 10.01%)",
+          "多氟多(净+7.2亿, 9.99%)",
+          "西藏珠峰(净+3.71亿, 9.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-27",
+          "sent": 13,
+          "sentDelta": 6.0,
+          "state6": "冰点",
+          "premDelta": 0.95,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-04-29",
+          "sent": 18,
+          "sentDelta": 11.0,
+          "state6": "冰点",
+          "premDelta": 0.97,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.258
+    },
+    {
+      "date": "2026-04-27",
+      "types": [
+        "冰点/过冷区",
+        "溢价转正",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 13,
+        "state6": "冰点",
+        "temp": 47,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.82,
+        "damian": null,
+        "lhb_net": 24.01,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "西藏珠峰(净+6.43亿, 10.01%)",
+          "禾盛新材(净+3.85亿, 8.26%)",
+          "江海股份(净+2.72亿, 9.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-28",
+          "sent": 69,
+          "sentDelta": 56.0,
+          "state6": "微热",
+          "premDelta": 0.93,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-04-30",
+          "sent": 78,
+          "sentDelta": 65.0,
+          "state6": "过热",
+          "premDelta": 1.45,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.088
+    },
+    {
+      "date": "2026-04-28",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 69,
+        "state6": "微热",
+        "temp": 13,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.75,
+        "damian": null,
+        "lhb_net": 13.89,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "恒工精密(净+3.38亿, 20%)",
+          "铭普光磁(净+2.22亿, 10%)",
+          "综艺股份(净+1.89亿, 10.06%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-29",
+          "sent": 18,
+          "sentDelta": -51.0,
+          "state6": "冰点",
+          "premDelta": -0.91,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-06",
+          "sent": 100,
+          "sentDelta": 31.0,
+          "state6": "沸点",
+          "premDelta": 1.33,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.002
+    },
+    {
+      "date": "2026-04-29",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 18,
+        "state6": "冰点",
+        "temp": 88,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.84,
+        "damian": null,
+        "lhb_net": 39.5,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "江特电机(净+4.25亿, 9.98%)",
+          "江特电机(净+4.25亿, 9.98%)",
+          "神剑股份(净+4.1亿, 0.15%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-04-30",
+          "sent": 78,
+          "sentDelta": 60.0,
+          "state6": "过热",
+          "premDelta": 1.43,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-07",
+          "sent": 100,
+          "sentDelta": 82.0,
+          "state6": "沸点",
+          "premDelta": 2.51,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.238
+    },
+    {
+      "date": "2026-04-30",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 78,
+        "state6": "过热",
+        "temp": 39,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.27,
+        "damian": null,
+        "lhb_net": 56.3,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "寒武纪(净+20.42亿, 20%)",
+          "中国长城(净+6.45亿, 9.99%)",
+          "芯原股份(净+5.75亿, 20%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-06",
+          "sent": 100,
+          "sentDelta": 22.0,
+          "state6": "沸点",
+          "premDelta": 0.81,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-08",
+          "sent": 90,
+          "sentDelta": 12.0,
+          "state6": "沸点",
+          "premDelta": 0.65,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.502
+    },
+    {
+      "date": "2026-05-06",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 100,
+        "state6": "沸点",
+        "temp": 95,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 3.08,
+        "damian": null,
+        "lhb_net": 54.28,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "江波龙(净+19.35亿, 20%)",
+          "潍柴动力(净+11.31亿, 10%)",
+          "德明利(净+5.67亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-07",
+          "sent": 100,
+          "sentDelta": 0.0,
+          "state6": "沸点",
+          "premDelta": 0.27,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-11",
+          "sent": 82,
+          "sentDelta": -18.0,
+          "state6": "过热",
+          "premDelta": -0.57,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.045
+    },
+    {
+      "date": "2026-05-13",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 88,
+        "state6": "沸点",
+        "temp": 83,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.89,
+        "damian": null,
+        "lhb_net": 33.7,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "德明利(净+14.13亿, 10%)",
+          "大族激光(净+8.96亿, 10%)",
+          "汉缆股份(净+6亿, 9.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-14",
+          "sent": 4,
+          "sentDelta": -84.0,
+          "state6": "冰点",
+          "premDelta": -3.22,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-18",
+          "sent": 15,
+          "sentDelta": -73.0,
+          "state6": "冰点",
+          "premDelta": -2.71,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.937
+    },
+    {
+      "date": "2026-05-14",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 4,
+        "state6": "冰点",
+        "temp": 4,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -0.33,
+        "damian": null,
+        "lhb_net": 18.97,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "协鑫集成(净+6.19亿, 10.11%)",
+          "露笑科技(净+5.26亿, 9.98%)",
+          "正帆科技(净+4.28亿, 19.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-15",
+          "sent": 4,
+          "sentDelta": 0.0,
+          "state6": "冰点",
+          "premDelta": -0.95,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-19",
+          "sent": 82,
+          "sentDelta": 78.0,
+          "state6": "过热",
+          "premDelta": 3.03,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.158
+    },
+    {
+      "date": "2026-05-15",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 4,
+        "state6": "冰点",
+        "temp": 15,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -1.28,
+        "damian": null,
+        "lhb_net": 41.3,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "长盈通(净+8.02亿, 18.12%)",
+          "多氟多(净+7.71亿, 10.02%)",
+          "长盈通(净+5.1亿, 18.12%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-18",
+          "sent": 15,
+          "sentDelta": 11.0,
+          "state6": "冰点",
+          "premDelta": 1.46,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-20",
+          "sent": 10,
+          "sentDelta": 6.0,
+          "state6": "冰点",
+          "premDelta": 1.02,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.427
+    },
+    {
+      "date": "2026-05-18",
+      "types": [
+        "冰点/过冷区",
+        "溢价转正",
+        "情绪跳升",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 15,
+        "state6": "冰点",
+        "temp": 48,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.18,
+        "damian": null,
+        "lhb_net": 44.01,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "华工科技(净+16.99亿, 10%)",
+          "富创精密(净+7.28亿, 4.67%)",
+          "科士达(净+4.92亿, 9.38%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-19",
+          "sent": 82,
+          "sentDelta": 67.0,
+          "state6": "过热",
+          "premDelta": 2.52,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-21",
+          "sent": 3,
+          "sentDelta": -12.0,
+          "state6": "冰点",
+          "premDelta": -1.55,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.537
+    },
+    {
+      "date": "2026-05-19",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 82,
+        "state6": "过热",
+        "temp": 61,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.7,
+        "damian": null,
+        "lhb_net": 11.25,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "弘信电子(净+6.79亿, 20%)",
+          "弘信电子(净+2.87亿, 20%)",
+          "沃格光电(净+2.45亿, 4.8%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-20",
+          "sent": 10,
+          "sentDelta": -72.0,
+          "state6": "冰点",
+          "premDelta": -2.96,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-22",
+          "sent": 65,
+          "sentDelta": -17.0,
+          "state6": "微热",
+          "premDelta": -0.54,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.693
+    },
+    {
+      "date": "2026-05-20",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 10,
+        "state6": "冰点",
+        "temp": 34,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -0.26,
+        "damian": null,
+        "lhb_net": 33.75,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "华工科技(净+16.73亿, 3.17%)",
+          "风华高科(净+7.21亿, 5.04%)",
+          "巨力索具(净+6.91亿, -9.72%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-21",
+          "sent": 3,
+          "sentDelta": -7.0,
+          "state6": "冰点",
+          "premDelta": -1.11,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-25",
+          "sent": 100,
+          "sentDelta": 90.0,
+          "state6": "沸点",
+          "premDelta": 4.14,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.302
+    },
+    {
+      "date": "2026-05-21",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 3,
+        "state6": "冰点",
+        "temp": 7,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -1.37,
+        "damian": null,
+        "lhb_net": 14.05,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "豫能控股(净+5.89亿, 10.01%)",
+          "红板科技(净+4.27亿, 6.78%)",
+          "京东方A(净+4.21亿, 10.09%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-22",
+          "sent": 65,
+          "sentDelta": 62.0,
+          "state6": "微热",
+          "premDelta": 3.53,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-26",
+          "sent": 48,
+          "sentDelta": 45.0,
+          "state6": "微冷",
+          "premDelta": 3.08,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.622
+    },
+    {
+      "date": "2026-05-22",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 65,
+        "state6": "微热",
+        "temp": 97,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.16,
+        "damian": null,
+        "lhb_net": 106.51,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "京东方A(净+18.39亿, 10.02%)",
+          "沪电股份(净+14.63亿, 10%)",
+          "京东方A(净+14亿, 10.02%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-25",
+          "sent": 100,
+          "sentDelta": 35.0,
+          "state6": "沸点",
+          "premDelta": 1.72,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-27",
+          "sent": 41,
+          "sentDelta": -24.0,
+          "state6": "微冷",
+          "premDelta": -0.78,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.87
+    },
+    {
+      "date": "2026-05-25",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 100,
+        "state6": "沸点",
+        "temp": 69,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 3.88,
+        "damian": null,
+        "lhb_net": 29.57,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "中芯国际(净+11.12亿, 18.78%)",
+          "麦格米特(净+5.64亿, 10%)",
+          "通富微电(净+3.64亿, 9.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-26",
+          "sent": 48,
+          "sentDelta": -52.0,
+          "state6": "微冷",
+          "premDelta": -2.17,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-05-28",
+          "sent": 26,
+          "sentDelta": -74.0,
+          "state6": "过冷",
+          "premDelta": -2.93,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.228
+    },
+    {
+      "date": "2026-05-28",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 26,
+        "state6": "过冷",
+        "temp": 69,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.95,
+        "damian": null,
+        "lhb_net": 60.59,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "云南锗业(净+9.79亿, 10%)",
+          "中兴通讯(净+7.5亿, 9.99%)",
+          "联特科技(净+5.6亿, 20%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-29",
+          "sent": 17,
+          "sentDelta": -9.0,
+          "state6": "冰点",
+          "premDelta": -0.98,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-02",
+          "sent": 26,
+          "sentDelta": 0.0,
+          "state6": "过冷",
+          "premDelta": -0.03,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.313
+    },
+    {
+      "date": "2026-05-29",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 17,
+        "state6": "冰点",
+        "temp": 8,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -0.03,
+        "damian": null,
+        "lhb_net": 34.74,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "联特科技(净+10.67亿, 7.93%)",
+          "华天科技(净+5.75亿, -10%)",
+          "四方达(净+4.02亿, 4.92%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-01",
+          "sent": 73,
+          "sentDelta": 56.0,
+          "state6": "过热",
+          "premDelta": 2.33,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-03",
+          "sent": 85,
+          "sentDelta": 68.0,
+          "state6": "沸点",
+          "premDelta": 2.87,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.322
+    },
+    {
+      "date": "2026-06-01",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 73,
+        "state6": "过热",
+        "temp": 30,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.3,
+        "damian": null,
+        "lhb_net": 47.13,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "东山精密(净+26.07亿, -10%)",
+          "风华高科(净+12.49亿, 3.81%)",
+          "合锻智能(净+4.3亿, 9.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-02",
+          "sent": 26,
+          "sentDelta": -47.0,
+          "state6": "过冷",
+          "premDelta": -1.38,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-04",
+          "sent": 35,
+          "sentDelta": -38.0,
+          "state6": "过冷",
+          "premDelta": -1.13,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.013
+    },
+    {
+      "date": "2026-06-02",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 26,
+        "state6": "过冷",
+        "temp": 82,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.92,
+        "damian": null,
+        "lhb_net": 25.58,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "东山精密(净+10.65亿, 10%)",
+          "深圳华强(净+4.3亿, 10.01%)",
+          "锡业股份(净+2.46亿, 10.01%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-03",
+          "sent": 85,
+          "sentDelta": 59.0,
+          "state6": "沸点",
+          "premDelta": 1.92,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-05",
+          "sent": 7,
+          "sentDelta": -19.0,
+          "state6": "冰点",
+          "premDelta": -1.62,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.303
+    },
+    {
+      "date": "2026-06-03",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 85,
+        "state6": "沸点",
+        "temp": 56,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.84,
+        "damian": null,
+        "lhb_net": 38.04,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "通富微电(净+16.22亿, 9.99%)",
+          "亨通光电(净+9.93亿, 10%)",
+          "国机精工(净+3.78亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-04",
+          "sent": 35,
+          "sentDelta": -50.0,
+          "state6": "过冷",
+          "premDelta": -1.67,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-08",
+          "sent": 55,
+          "sentDelta": -30.0,
+          "state6": "微热",
+          "premDelta": -1.13,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.112
+    },
+    {
+      "date": "2026-06-04",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 35,
+        "state6": "过冷",
+        "temp": 33,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.17,
+        "damian": null,
+        "lhb_net": 82.7,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "京东方A(净+14.73亿, 10.02%)",
+          "厦门钨业(净+11.94亿, 6.2%)",
+          "永鼎股份(净+10.67亿, 4.56%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-05",
+          "sent": 7,
+          "sentDelta": -28.0,
+          "state6": "冰点",
+          "premDelta": -1.87,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-09",
+          "sent": 42,
+          "sentDelta": 7.0,
+          "state6": "微冷",
+          "premDelta": 0.16,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.778
+    },
+    {
+      "date": "2026-06-05",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 7,
+        "state6": "冰点",
+        "temp": 22,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -0.7,
+        "damian": null,
+        "lhb_net": 11.77,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "麦捷科技(净+4.47亿, 14.43%)",
+          "麦捷科技(净+4.33亿, 14.43%)",
+          "中大力德(净+2.87亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-08",
+          "sent": 55,
+          "sentDelta": 48.0,
+          "state6": "微热",
+          "premDelta": 2.41,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-10",
+          "sent": 20,
+          "sentDelta": 13.0,
+          "state6": "冰点",
+          "premDelta": 1.0,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.202
+    },
+    {
+      "date": "2026-06-08",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 55,
+        "state6": "微热",
+        "temp": 14,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.71,
+        "damian": null,
+        "lhb_net": 11.54,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "金安国纪(净+8.77亿, 10.01%)",
+          "国机精工(净+4亿, 10%)",
+          "国机精工(净+4亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-09",
+          "sent": 42,
+          "sentDelta": -13.0,
+          "state6": "微冷",
+          "premDelta": -0.38,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-11",
+          "sent": 22,
+          "sentDelta": -33.0,
+          "state6": "冰点",
+          "premDelta": -1.11,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.28
+    },
+    {
+      "date": "2026-06-10",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 20,
+        "state6": "冰点",
+        "temp": 20,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.3,
+        "damian": null,
+        "lhb_net": 9.95,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "宏昌电子(净+5.62亿, 10.01%)",
+          "中科三环(净+3.14亿, 10%)",
+          "雅克科技(净+2.08亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-11",
+          "sent": 22,
+          "sentDelta": 2.0,
+          "state6": "冰点",
+          "premDelta": 0.3,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-15",
+          "sent": 66,
+          "sentDelta": 46.0,
+          "state6": "微热",
+          "premDelta": 1.67,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.083
+    },
+    {
+      "date": "2026-06-11",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 22,
+        "state6": "冰点",
+        "temp": 51,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.6,
+        "damian": null,
+        "lhb_net": 55.28,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "云南锗业(净+9.36亿, 10%)",
+          "宗申动力(净+7亿, 10.03%)",
+          "方邦股份(净+5.9亿, 11.25%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-12",
+          "sent": 22,
+          "sentDelta": 0.0,
+          "state6": "冰点",
+          "premDelta": -0.29,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-16",
+          "sent": 100,
+          "sentDelta": 78.0,
+          "state6": "沸点",
+          "premDelta": 3.62,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.048
+    },
+    {
+      "date": "2026-06-12",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 22,
+        "state6": "冰点",
+        "temp": 87,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.31,
+        "damian": null,
+        "lhb_net": 14.49,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "索辰科技(净+5.18亿, 19.95%)",
+          "康强电子(净+3.7亿, 2.44%)",
+          "铜陵有色(净+3.6亿, 10.08%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-15",
+          "sent": 66,
+          "sentDelta": 44.0,
+          "state6": "微热",
+          "premDelta": 1.66,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-17",
+          "sent": 61,
+          "sentDelta": 39.0,
+          "state6": "微热",
+          "premDelta": 1.55,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.01
+    },
+    {
+      "date": "2026-06-15",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 66,
+        "state6": "微热",
+        "temp": 98,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.97,
+        "damian": null,
+        "lhb_net": 63.32,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "光库科技(净+15.37亿, 20%)",
+          "长芯博创(净+9.76亿, 20%)",
+          "铜冠铜箔(净+9.11亿, 20%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-16",
+          "sent": 100,
+          "sentDelta": 34.0,
+          "state6": "沸点",
+          "premDelta": 2.25,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-18",
+          "sent": 24,
+          "sentDelta": -42.0,
+          "state6": "冰点",
+          "premDelta": -1.33,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.942
+    },
+    {
+      "date": "2026-06-16",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 100,
+        "state6": "沸点",
+        "temp": 67,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 4.22,
+        "damian": null,
+        "lhb_net": 52.47,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "光库科技(净+20.1亿, 14.41%)",
+          "兴森科技(净+7.41亿, 10%)",
+          "欧陆通(净+6.58亿, 16.12%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-17",
+          "sent": 61,
+          "sentDelta": -39.0,
+          "state6": "微热",
+          "premDelta": -2.36,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-22",
+          "sent": 96,
+          "sentDelta": -4.0,
+          "state6": "沸点",
+          "premDelta": -0.64,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.043
+    },
+    {
+      "date": "2026-06-18",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 24,
+        "state6": "冰点",
+        "temp": 46,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.64,
+        "damian": null,
+        "lhb_net": 56.16,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "兆易创新(净+8.79亿, 7.33%)",
+          "铂力特(净+7.37亿, 20%)",
+          "中钨高新(净+6.39亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-22",
+          "sent": 96,
+          "sentDelta": 72.0,
+          "state6": "沸点",
+          "premDelta": 2.94,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-24",
+          "sent": 13,
+          "sentDelta": -11.0,
+          "state6": "冰点",
+          "premDelta": -0.75,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.69
+    },
+    {
+      "date": "2026-06-22",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 96,
+        "state6": "沸点",
+        "temp": 67,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 3.58,
+        "damian": null,
+        "lhb_net": 11.04,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "四方达(净+6.34亿, 20%)",
+          "锡业股份(净+4.11亿, 9.99%)",
+          "力量钻石(净+4.05亿, 20%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-23",
+          "sent": 35,
+          "sentDelta": -61.0,
+          "state6": "过冷",
+          "premDelta": -2.51,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-25",
+          "sent": 80,
+          "sentDelta": -16.0,
+          "state6": "过热",
+          "premDelta": -1.14,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.435
+    },
+    {
+      "date": "2026-06-23",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 35,
+        "state6": "过冷",
+        "temp": 4,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.07,
+        "damian": null,
+        "lhb_net": 85.13,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "旭光电子(净+19.38亿, 5.6%)",
+          "长飞光纤(净+10.93亿, 10%)",
+          "龙磁科技(净+7.31亿, 20%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-24",
+          "sent": 13,
+          "sentDelta": -22.0,
+          "state6": "冰点",
+          "premDelta": -1.18,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-26",
+          "sent": 15,
+          "sentDelta": -20.0,
+          "state6": "冰点",
+          "premDelta": -1.11,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.563
+    },
+    {
+      "date": "2026-06-24",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 13,
+        "state6": "冰点",
+        "temp": 87,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -0.11,
+        "damian": null,
+        "lhb_net": 63.65,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "领益智造(净+13.35亿, 10.03%)",
+          "云南锗业(净+11.77亿, 10%)",
+          "深科技(净+8.1亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-25",
+          "sent": 80,
+          "sentDelta": 67.0,
+          "state6": "过热",
+          "premDelta": 2.55,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-29",
+          "sent": 39,
+          "sentDelta": 26.0,
+          "state6": "过冷",
+          "premDelta": 1.21,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.542
+    },
+    {
+      "date": "2026-06-25",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 80,
+        "state6": "过热",
+        "temp": 61,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.44,
+        "damian": null,
+        "lhb_net": 162.2,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "长电科技(净+41.12亿, 10%)",
+          "兆易创新(净+28.33亿, 9.94%)",
+          "聚辰股份(净+17.16亿, 13.21%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-26",
+          "sent": 15,
+          "sentDelta": -65.0,
+          "state6": "冰点",
+          "premDelta": -2.48,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-06-30",
+          "sent": 91,
+          "sentDelta": 11.0,
+          "state6": "沸点",
+          "premDelta": 0.56,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.497
+    },
+    {
+      "date": "2026-06-26",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 15,
+        "state6": "冰点",
+        "temp": 4,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -0.04,
+        "damian": null,
+        "lhb_net": 45.49,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "TCL中环(净+5.97亿, 10.03%)",
+          "TCL中环(净+5.45亿, 10.03%)",
+          "惠科股份(净+4.18亿, 315.02%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-29",
+          "sent": 39,
+          "sentDelta": 24.0,
+          "state6": "过冷",
+          "premDelta": 1.14,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-01",
+          "sent": 93,
+          "sentDelta": 78.0,
+          "state6": "沸点",
+          "premDelta": 3.17,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.59
+    },
+    {
+      "date": "2026-06-29",
+      "types": [
+        "冰点/过冷区",
+        "溢价转正",
+        "情绪跳升",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 39,
+        "state6": "过冷",
+        "temp": 43,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.1,
+        "damian": null,
+        "lhb_net": -8.56,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "华工科技(净+13.83亿, 10%)",
+          "博迁新材(净+4.92亿, 5.87%)",
+          "红板科技(净+2.81亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-06-30",
+          "sent": 91,
+          "sentDelta": 52.0,
+          "state6": "沸点",
+          "premDelta": 1.9,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-02",
+          "sent": 42,
+          "sentDelta": 3.0,
+          "state6": "微冷",
+          "premDelta": 0.14,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.183
+    },
+    {
+      "date": "2026-06-30",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 91,
+        "state6": "沸点",
+        "temp": 95,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 3,
+        "damian": null,
+        "lhb_net": 79.31,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "长光华芯(净+14.06亿, 20%)",
+          "多氟多(净+10.55亿, 10.01%)",
+          "TCL科技(净+8.41亿, 10.02%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-01",
+          "sent": 93,
+          "sentDelta": 2.0,
+          "state6": "沸点",
+          "premDelta": 0.13,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-03",
+          "sent": 30,
+          "sentDelta": -61.0,
+          "state6": "过冷",
+          "premDelta": -2.07,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.055
+    },
+    {
+      "date": "2026-07-03",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 30,
+        "state6": "过冷",
+        "temp": 67,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.93,
+        "damian": null,
+        "lhb_net": 30.04,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "东山精密(净+11.25亿, 4.98%)",
+          "横店东磁(净+5.5亿, 7.04%)",
+          "绿的谐波(净+5.14亿, 18.15%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-06",
+          "sent": 5,
+          "sentDelta": -25.0,
+          "state6": "冰点",
+          "premDelta": -2.06,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-08",
+          "sent": 31,
+          "sentDelta": 1.0,
+          "state6": "过冷",
+          "premDelta": -0.03,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.76
+    },
+    {
+      "date": "2026-07-06",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 5,
+        "state6": "冰点",
+        "temp": 25,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -1.13,
+        "damian": null,
+        "lhb_net": 10.57,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "中国长城(净+6.27亿, 9.99%)",
+          "蔚蓝锂芯(净+5.1亿, 9.98%)",
+          "立昂微(净+4.79亿, -8.01%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-07",
+          "sent": 2,
+          "sentDelta": -3.0,
+          "state6": "冰点",
+          "premDelta": -1.59,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-09",
+          "sent": 46,
+          "sentDelta": 41.0,
+          "state6": "微冷",
+          "premDelta": 2.3,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.315
+    },
+    {
+      "date": "2026-07-07",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 2,
+        "state6": "冰点",
+        "temp": 26,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -2.72,
+        "damian": null,
+        "lhb_net": 31.01,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "华天科技(净+15.77亿, 9.98%)",
+          "TCL中环(净+4.74亿, 9.98%)",
+          "惠科股份(净+4.74亿, -8.76%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-08",
+          "sent": 31,
+          "sentDelta": 29.0,
+          "state6": "过冷",
+          "premDelta": 3.62,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-10",
+          "sent": 25,
+          "sentDelta": 23.0,
+          "state6": "过冷",
+          "premDelta": 3.22,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.087
+    },
+    {
+      "date": "2026-07-08",
+      "types": [
+        "冰点/过冷区",
+        "溢价转正",
+        "情绪跳升",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 31,
+        "state6": "过冷",
+        "temp": 31,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.9,
+        "damian": null,
+        "lhb_net": 8.41,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "浪潮信息(净+7.31亿, 10.01%)",
+          "网宿科技(净+5.87亿, 19.97%)",
+          "浪潮信息(净+5.01亿, 10.01%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-09",
+          "sent": 46,
+          "sentDelta": 15.0,
+          "state6": "微冷",
+          "premDelta": 0.27,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-13",
+          "sent": 3,
+          "sentDelta": -28.0,
+          "state6": "冰点",
+          "premDelta": -3.55,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.295
+    },
+    {
+      "date": "2026-07-09",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 46,
+        "state6": "微冷",
+        "temp": 93,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.17,
+        "damian": null,
+        "lhb_net": 98.05,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "浪潮信息(净+23.54亿, 10%)",
+          "华天科技(净+18.73亿, 10.01%)",
+          "通富微电(净+15.56亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-10",
+          "sent": 25,
+          "sentDelta": -21.0,
+          "state6": "过冷",
+          "premDelta": -0.67,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-14",
+          "sent": 98,
+          "sentDelta": 52.0,
+          "state6": "沸点",
+          "premDelta": 3.04,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.462
+    },
+    {
+      "date": "2026-07-10",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 25,
+        "state6": "过冷",
+        "temp": 54,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.5,
+        "damian": null,
+        "lhb_net": 13.5,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "紫光股份(净+22.48亿, 7.65%)",
+          "金风科技(净+7.62亿, 9.99%)",
+          "托伦斯(净+6.51亿, 858.85%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-13",
+          "sent": 3,
+          "sentDelta": -22.0,
+          "state6": "冰点",
+          "premDelta": -3.15,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-15",
+          "sent": 56,
+          "sentDelta": 31.0,
+          "state6": "微热",
+          "premDelta": 0.94,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.892
+    },
+    {
+      "date": "2026-07-13",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 3,
+        "state6": "冰点",
+        "temp": 5,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -2.65,
+        "damian": null,
+        "lhb_net": -32.29,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "拓荆科技(净+16.08亿, 1.56%)",
+          "众生药业(净+2.9亿, 6.97%)",
+          "华天科技(净+2.69亿, -4.66%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-14",
+          "sent": 98,
+          "sentDelta": 95.0,
+          "state6": "沸点",
+          "premDelta": 6.86,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-16",
+          "sent": 75,
+          "sentDelta": 72.0,
+          "state6": "过热",
+          "premDelta": 5.07,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 2.727
+    },
+    {
+      "date": "2026-07-14",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 98,
+        "state6": "沸点",
+        "temp": 85,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 4.21,
+        "damian": null,
+        "lhb_net": 21.36,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "东山精密(净+13.35亿, 10%)",
+          "沪电股份(净+12.37亿, 10%)",
+          "风华高科(净+5.74亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-15",
+          "sent": 56,
+          "sentDelta": -42.0,
+          "state6": "微热",
+          "premDelta": -2.77,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-17",
+          "sent": 10,
+          "sentDelta": -88.0,
+          "state6": "冰点",
+          "premDelta": -5.3,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.162
+    },
+    {
+      "date": "2026-07-16",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 75,
+        "state6": "过热",
+        "temp": 28,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.42,
+        "damian": null,
+        "lhb_net": 18.57,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "澜起科技(净+13.23亿, -16.44%)",
+          "儒意电影(净+3.82亿, 10.02%)",
+          "长电科技(净+3.62亿, -10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-17",
+          "sent": 10,
+          "sentDelta": -65.0,
+          "state6": "冰点",
+          "premDelta": -3.51,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-21",
+          "sent": 51,
+          "sentDelta": -24.0,
+          "state6": "微冷",
+          "premDelta": -1.22,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.668
+    },
+    {
+      "date": "2026-07-17",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 10,
+        "state6": "冰点",
+        "temp": 8,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -1.09,
+        "damian": null,
+        "lhb_net": 7.09,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "太极实业(净+4.8亿, -9.98%)",
+          "共进股份(净+4.18亿, 10.01%)",
+          "星网锐捷(净+2.71亿, 5.05%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-20",
+          "sent": 30,
+          "sentDelta": 20.0,
+          "state6": "过冷",
+          "premDelta": 1.59,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-22",
+          "sent": 61,
+          "sentDelta": 51.0,
+          "state6": "微热",
+          "premDelta": 2.57,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.598
+    },
+    {
+      "date": "2026-07-20",
+      "types": [
+        "冰点/过冷区",
+        "溢价转正",
+        "情绪跳升",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 30,
+        "state6": "过冷",
+        "temp": 38,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.5,
+        "damian": null,
+        "lhb_net": 62.59,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "兆易创新(净+10.89亿, -6.66%)",
+          "中国巨石(净+9.07亿, -9.95%)",
+          "东山精密(净+7.27亿, -10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-21",
+          "sent": 51,
+          "sentDelta": 21.0,
+          "state6": "微冷",
+          "premDelta": 0.7,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-23",
+          "sent": 100,
+          "sentDelta": 70.0,
+          "state6": "沸点",
+          "premDelta": 3.86,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.467
+    },
+    {
+      "date": "2026-07-21",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 51,
+        "state6": "微冷",
+        "temp": 93,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.2,
+        "damian": null,
+        "lhb_net": -36.51,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "华虹宏力(净+2.79亿, 20%)",
+          "哈药股份(净+1.85亿, 9.98%)",
+          "格科微(净+1.73亿, 20.03%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-22",
+          "sent": 61,
+          "sentDelta": 10.0,
+          "state6": "微热",
+          "premDelta": 0.28,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-24",
+          "sent": 13,
+          "sentDelta": -38.0,
+          "state6": "冰点",
+          "premDelta": -1.74,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.213
+    },
+    {
+      "date": "2026-07-22",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 61,
+        "state6": "微热",
+        "temp": 70,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.48,
+        "damian": null,
+        "lhb_net": 18.33,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "华电辽能(净+3.75亿, 10.03%)",
+          "红板科技(净+3.51亿, 8.86%)",
+          "星网锐捷(净+3.04亿, 9.43%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-23",
+          "sent": 100,
+          "sentDelta": 39.0,
+          "state6": "沸点",
+          "premDelta": 2.88,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-27",
+          "sent": 77,
+          "sentDelta": 16.0,
+          "state6": "过热",
+          "premDelta": 0.97,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.13
+    },
+    {
+      "date": "2026-07-23",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 100,
+        "state6": "沸点",
+        "temp": 66,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 4.36,
+        "damian": null,
+        "lhb_net": 12,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "盛屯矿业(净+4.82亿, 6.33%)",
+          "兴业银锡(净+2.64亿, 5.86%)",
+          "红板科技(净+2.21亿, 6.23%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-24",
+          "sent": 13,
+          "sentDelta": -87.0,
+          "state6": "冰点",
+          "premDelta": -4.9,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-28",
+          "sent": 36,
+          "sentDelta": -64.0,
+          "state6": "过冷",
+          "premDelta": -3.51,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -2.267
+    },
+    {
+      "date": "2026-07-24",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 13,
+        "state6": "冰点",
+        "temp": 33,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -0.54,
+        "damian": null,
+        "lhb_net": 8.09,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "滨化股份(净+1.78亿, 5.14%)",
+          "孚日股份(净+1.64亿, 10.03%)",
+          "长城军工(净+1.6亿, 9.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-27",
+          "sent": 77,
+          "sentDelta": 64.0,
+          "state6": "过热",
+          "premDelta": 2.99,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-29",
+          "sent": 43,
+          "sentDelta": 30.0,
+          "state6": "微冷",
+          "premDelta": 1.56,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.565
+    },
+    {
+      "date": "2026-07-27",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 77,
+        "state6": "过热",
+        "temp": 100,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.45,
+        "damian": null,
+        "lhb_net": 15.35,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "国际复材(净+7.2亿, 20%)",
+          "中船特气(净+6.48亿, 15.98%)",
+          "江海股份(净+3.53亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-28",
+          "sent": 36,
+          "sentDelta": -41.0,
+          "state6": "过冷",
+          "premDelta": -1.6,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-30",
+          "sent": 13,
+          "sentDelta": -64.0,
+          "state6": "冰点",
+          "premDelta": -3.11,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.95
+    },
+    {
+      "date": "2026-07-28",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 36,
+        "state6": "过冷",
+        "temp": 21,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.85,
+        "damian": null,
+        "lhb_net": 21.61,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "中际旭创(净+28.39亿, -15.69%)",
+          "新易盛(净+19.28亿, -17.13%)",
+          "岩山科技(净+2.81亿, 9.98%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-29",
+          "sent": 43,
+          "sentDelta": 7.0,
+          "state6": "微冷",
+          "premDelta": 0.17,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-07-31",
+          "sent": 67,
+          "sentDelta": 31.0,
+          "state6": "微热",
+          "premDelta": 1.11,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.145
+    },
+    {
+      "date": "2026-07-30",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 13,
+        "state6": "冰点",
+        "temp": 33,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -0.66,
+        "damian": null,
+        "lhb_net": -62.5,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "紫光股份(净+5.48亿, -9.99%)",
+          "长电科技(净+3.17亿, -10%)",
+          "万通发展(净+3.06亿, -10.03%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-07-31",
+          "sent": 67,
+          "sentDelta": 54.0,
+          "state6": "微热",
+          "premDelta": 2.62,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-04",
+          "sent": 95,
+          "sentDelta": 82.0,
+          "state6": "沸点",
+          "premDelta": 4.82,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.337
+    },
+    {
+      "date": "2026-07-31",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 67,
+        "state6": "微热",
+        "temp": 97,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 1.96,
+        "damian": null,
+        "lhb_net": 34.22,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "昆仑万维(净+9.44亿, 20%)",
+          "蓝色光标(净+8.04亿, 19.98%)",
+          "中国宝安(净+3.63亿, 10.07%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-03",
+          "sent": 49,
+          "sentDelta": -18.0,
+          "state6": "微冷",
+          "premDelta": -0.85,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-05",
+          "sent": 100,
+          "sentDelta": 33.0,
+          "state6": "沸点",
+          "premDelta": 3.26,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.442
+    },
+    {
+      "date": "2026-08-04",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 95,
+        "state6": "沸点",
+        "temp": 95,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 4.16,
+        "damian": null,
+        "lhb_net": 72.74,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "东山精密(净+15.87亿, 10%)",
+          "嘉立创(净+6.47亿, 146.28%)",
+          "行云科技(净+4.72亿, 20.01%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-05",
+          "sent": 100,
+          "sentDelta": 5.0,
+          "state6": "沸点",
+          "premDelta": 1.06,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-07",
+          "sent": 49,
+          "sentDelta": -46.0,
+          "state6": "微冷",
+          "premDelta": -3.06,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.26
+    },
+    {
+      "date": "2026-08-10",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 80,
+        "state6": "过热",
+        "temp": 52,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.66,
+        "damian": null,
+        "lhb_net": -1.86,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "风华高科(净+4.2亿, 5.85%)",
+          "翔鹭钨业(净+1.96亿, 10.01%)",
+          "立新能源(净+1.66亿, 10.03%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-11",
+          "sent": 26,
+          "sentDelta": -54.0,
+          "state6": "过冷",
+          "premDelta": -2.31,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-13",
+          "sent": 33,
+          "sentDelta": -47.0,
+          "state6": "过冷",
+          "premDelta": -2.01,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.285
+    },
+    {
+      "date": "2026-08-11",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 26,
+        "state6": "过冷",
+        "temp": 52,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.35,
+        "damian": null,
+        "lhb_net": 20.43,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "超纯应材(净+10.8亿, 662.24%)",
+          "哈药股份(净+3.18亿, 9.97%)",
+          "哈药股份(净+3.04亿, 9.97%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-12",
+          "sent": 80,
+          "sentDelta": 54.0,
+          "state6": "过热",
+          "premDelta": 2.32,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-14",
+          "sent": 13,
+          "sentDelta": -13.0,
+          "state6": "冰点",
+          "premDelta": -0.98,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.287
+    },
+    {
+      "date": "2026-08-12",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 80,
+        "state6": "过热",
+        "temp": 84,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.67,
+        "damian": null,
+        "lhb_net": 18.17,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "宏桥控股(净+4.31亿, 10%)",
+          "巨轮智能(净+2.58亿, 9.93%)",
+          "通鼎互联(净+1.79亿, 9.98%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-13",
+          "sent": 33,
+          "sentDelta": -47.0,
+          "state6": "过冷",
+          "premDelta": -2.02,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-17",
+          "sent": 85,
+          "sentDelta": 5.0,
+          "state6": "沸点",
+          "premDelta": 0.38,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.12
+    },
+    {
+      "date": "2026-08-13",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 33,
+        "state6": "过冷",
+        "temp": 44,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.65,
+        "damian": null,
+        "lhb_net": 14.53,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "中鼎股份(净+4.87亿, 9.98%)",
+          "中鼎股份(净+3.52亿, 9.98%)",
+          "移远通信(净+3.47亿, 9.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-14",
+          "sent": 13,
+          "sentDelta": -20.0,
+          "state6": "冰点",
+          "premDelta": -1.28,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-18",
+          "sent": 39,
+          "sentDelta": 6.0,
+          "state6": "过冷",
+          "premDelta": 0.29,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -0.547
+    },
+    {
+      "date": "2026-08-14",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 13,
+        "state6": "冰点",
+        "temp": 72,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -0.63,
+        "damian": null,
+        "lhb_net": 29.06,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "网宿科技(净+9.72亿, 20.01%)",
+          "中国稀土(净+5.22亿, 10%)",
+          "杭电股份(净+3.96亿, 10.02%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-17",
+          "sent": 85,
+          "sentDelta": 72.0,
+          "state6": "沸点",
+          "premDelta": 3.68,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-19",
+          "sent": 5,
+          "sentDelta": -8.0,
+          "state6": "冰点",
+          "premDelta": -2.01,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 1.813
+    },
+    {
+      "date": "2026-08-17",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 85,
+        "state6": "沸点",
+        "temp": 92,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 3.05,
+        "damian": null,
+        "lhb_net": 16.82,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "通富微电(净+10.21亿, 10.01%)",
+          "蓝盾光电(净+3.85亿, 15.82%)",
+          "兴森科技(净+3.45亿, 9.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-18",
+          "sent": 39,
+          "sentDelta": -46.0,
+          "state6": "过冷",
+          "premDelta": -2.11,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-20",
+          "sent": 7,
+          "sentDelta": -78.0,
+          "state6": "冰点",
+          "premDelta": -4.77,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.118
+    },
+    {
+      "date": "2026-08-18",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 39,
+        "state6": "过冷",
+        "temp": 31,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.94,
+        "damian": null,
+        "lhb_net": 24.44,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "中石科技(净+5.11亿, 20%)",
+          "旭光电子(净+4.4亿, 9.99%)",
+          "九州一轨(净+2.61亿, 12.32%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-19",
+          "sent": 5,
+          "sentDelta": -34.0,
+          "state6": "冰点",
+          "premDelta": -3.58,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-21",
+          "sent": 8,
+          "sentDelta": -31.0,
+          "state6": "冰点",
+          "premDelta": -2.6,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": -1.163
+    },
+    {
+      "date": "2026-08-19",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 5,
+        "state6": "冰点",
+        "temp": 2,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -2.64,
+        "damian": null,
+        "lhb_net": -32.96,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "鲁信创投(净+1.41亿, 10.03%)",
+          "宝泰隆(净+1.35亿, 10.14%)",
+          "宝泰隆(净+1.35亿, 10.14%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-20",
+          "sent": 7,
+          "sentDelta": 2.0,
+          "state6": "冰点",
+          "premDelta": 0.92,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-24",
+          "sent": 25,
+          "sentDelta": 20.0,
+          "state6": "过冷",
+          "premDelta": 2.69,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.187
+    },
+    {
+      "date": "2026-08-20",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 7,
+        "state6": "冰点",
+        "temp": 75,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -1.72,
+        "damian": null,
+        "lhb_net": 24.09,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "誉衡药业(净+4.31亿, 10%)",
+          "惠泰医疗(净+3.48亿, 16.51%)",
+          "通鼎互联(净+3.46亿, 9.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-21",
+          "sent": 8,
+          "sentDelta": 1.0,
+          "state6": "冰点",
+          "premDelta": 0.06,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-25",
+          "sent": 30,
+          "sentDelta": 23.0,
+          "state6": "过冷",
+          "premDelta": 2.08,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.027
+    },
+    {
+      "date": "2026-08-21",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 8,
+        "state6": "冰点",
+        "temp": 80,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": -1.66,
+        "damian": null,
+        "lhb_net": 47.09,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "山东黄金(净+8.56亿, 4.96%)",
+          "沃森生物(净+5.06亿, 6.48%)",
+          "湖南白银(净+4.09亿, 10.03%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-24",
+          "sent": 25,
+          "sentDelta": 17.0,
+          "state6": "过冷",
+          "premDelta": 1.71,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-26",
+          "sent": 74,
+          "sentDelta": 66.0,
+          "state6": "过热",
+          "premDelta": 4.0,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.568
+    },
+    {
+      "date": "2026-08-24",
+      "types": [
+        "冰点/过冷区",
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 25,
+        "state6": "过冷",
+        "temp": 25,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.05,
+        "damian": null,
+        "lhb_net": 8.98,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "盈新发展(净+3.73亿, 10.16%)",
+          "圣阳股份(净+3.63亿, 9.98%)",
+          "天洋新材(净+2.12亿, 10.03%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-25",
+          "sent": 30,
+          "sentDelta": 5.0,
+          "state6": "过冷",
+          "premDelta": 0.31,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-27",
+          "sent": 75,
+          "sentDelta": 50.0,
+          "state6": "过热",
+          "premDelta": 2.5,
+          "maxLbcDelta": 6
+        }
+      },
+      "score": 0.135
+    },
+    {
+      "date": "2026-08-25",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 30,
+        "state6": "过冷",
+        "temp": 74,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 0.36,
+        "damian": null,
+        "lhb_net": 24.48,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "亨通光电(净+18.5亿, 6.9%)",
+          "英维克(净+3.69亿, 10.01%)",
+          "金螳螂(净+2.68亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-26",
+          "sent": 74,
+          "sentDelta": 44.0,
+          "state6": "过热",
+          "premDelta": 1.98,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-08-28",
+          "sent": 71,
+          "sentDelta": 41.0,
+          "state6": "过热",
+          "premDelta": 1.88,
+          "maxLbcDelta": 7
+        }
+      },
+      "score": 1.063
+    },
+    {
+      "date": "2026-08-26",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 74,
+        "state6": "过热",
+        "temp": 77,
+        "max_lbc": 0,
+        "zt": 0,
+        "zb_rate": 0,
+        "prem_avg": 2.34,
+        "damian": null,
+        "lhb_net": 9.11,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "立新能源(净+3.52亿, 10.01%)",
+          "立新能源(净+3.52亿, 10.01%)",
+          "新大陆(净+2.19亿, 9.99%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-08-27",
+          "sent": 75,
+          "sentDelta": 1.0,
+          "state6": "过热",
+          "premDelta": 0.21,
+          "maxLbcDelta": 6
+        },
+        "in3Days": {
+          "date": "2026-08-31",
+          "sent": 45,
+          "sentDelta": -29.0,
+          "state6": "微冷",
+          "premDelta": -2.08,
+          "maxLbcDelta": 6
+        }
+      },
+      "score": 1.052
+    },
+    {
+      "date": "2026-08-31",
+      "types": [
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 45,
+        "state6": "微冷",
+        "temp": 67,
+        "max_lbc": 6,
+        "zt": 88,
+        "zb_rate": 25,
+        "prem_avg": 0.26,
+        "damian": 19,
+        "lhb_net": 6.43,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "数字媒体",
+            "net": 5.66,
+            "zt": 3,
+            "max_lbc": 1,
+            "core": [
+              "芒果超媒(1板)",
+              "掌阅科技(1板)"
+            ],
+            "follow": [
+              "中文在线(1板)"
+            ]
+          },
+          {
+            "theme": "计算机设",
+            "net": 4.23,
+            "zt": 2,
+            "max_lbc": 1,
+            "core": [
+              "力鼎光电(1板)",
+              "浪潮信息(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "家电零部",
+            "net": 2.63,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "康盛股份(1板)"
+            ],
+            "follow": []
+          }
+        ],
+        "ladder": [
+          "海鸥住工(6板/家居用品)",
+          "万向德农(5板/种植业)",
+          "捷荣技术(5板/消费电子)",
+          "锦龙股份(4板/证券Ⅱ)"
+        ],
+        "lhbBuy": [
+          "中文在线(净+5.97亿, 20.02%)",
+          "浪潮信息(净+4.23亿, 9.99%)",
+          "康盛股份(净+2.63亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-01",
+          "sent": 69,
+          "sentDelta": 24.0,
+          "state6": "微热",
+          "premDelta": 0.91,
+          "maxLbcDelta": 1
+        },
+        "in3Days": {
+          "date": "2026-09-03",
+          "sent": 32,
+          "sentDelta": -13.0,
+          "state6": "过冷",
+          "premDelta": -0.14,
+          "maxLbcDelta": -1
+        }
+      },
+      "score": 0.718
+    },
+    {
+      "date": "2026-09-01",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 69,
+        "state6": "微热",
+        "temp": 51,
+        "max_lbc": 7,
+        "zt": 83,
+        "zb_rate": 7,
+        "prem_avg": 1.17,
+        "damian": 13,
+        "lhb_net": -1.65,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "电力",
+            "net": 4.28,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "协鑫能科(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "种植业",
+            "net": 3.5,
+            "zt": 8,
+            "max_lbc": 6,
+            "core": [
+              "万向德农(6板)"
+            ],
+            "follow": [
+              "新赛股份(4板)",
+              "农发种业(1板)"
+            ]
+          },
+          {
+            "theme": "数字媒体",
+            "net": 2.29,
+            "zt": 2,
+            "max_lbc": 2,
+            "core": [
+              "芒果超媒(2板)"
+            ],
+            "follow": [
+              "掌阅科技(2板)"
+            ]
+          }
+        ],
+        "ladder": [
+          "海鸥住工(7板/家居用品)",
+          "捷荣技术(6板/消费电子)",
+          "万向德农(6板/种植业)",
+          "新赛股份(4板/种植业)"
+        ],
+        "lhbBuy": [
+          "协鑫能科(净+4.28亿, 9.97%)",
+          "神农种业(净+3.55亿, 20.03%)",
+          "神农种业(净+3.55亿, 20.03%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-02",
+          "sent": 15,
+          "sentDelta": -54.0,
+          "state6": "冰点",
+          "premDelta": -2.52,
+          "maxLbcDelta": -3
+        },
+        "in3Days": {
+          "date": "2026-09-04",
+          "sent": 23,
+          "sentDelta": -46.0,
+          "state6": "冰点",
+          "premDelta": -1.71,
+          "maxLbcDelta": -2
+        }
+      },
+      "score": -1.82
+    },
+    {
+      "date": "2026-09-02",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 15,
+        "state6": "冰点",
+        "temp": 31,
+        "max_lbc": 4,
+        "zt": 52,
+        "zb_rate": 22,
+        "prem_avg": -1.35,
+        "damian": 30,
+        "lhb_net": -3.48,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "汽车零部",
+            "net": 4.59,
+            "zt": 5,
+            "max_lbc": 1,
+            "core": [
+              "建设工业(1板)",
+              "飞龙股份(1板)"
+            ],
+            "follow": [
+              "光洋股份(1板)",
+              "一彬科技(1板)"
+            ]
+          },
+          {
+            "theme": "地面兵装",
+            "net": 2.12,
+            "zt": 2,
+            "max_lbc": 2,
+            "core": [
+              "内蒙一机(2板)"
+            ],
+            "follow": [
+              "长城军工(1板)"
+            ]
+          },
+          {
+            "theme": "航空装备",
+            "net": 1.53,
+            "zt": 2,
+            "max_lbc": 1,
+            "core": [
+              "博云新材(1板)",
+              "晟楠科技(1板)"
+            ],
+            "follow": []
+          }
+        ],
+        "ladder": [
+          "竞业达(4板/IT服务Ⅱ)",
+          "国芳集团(4板/一般零售)",
+          "集泰股份(3板/化学制品)",
+          "欢瑞世纪(3板/影视院线)",
+          "英 力 特(2板/化学原料)",
+          "茂业商业(2板/一般零售)"
+        ],
+        "lhbBuy": [
+          "飞龙股份(净+4.59亿, 10%)",
+          "内蒙一机(净+2.12亿, 10.01%)",
+          "博云新材(净+1.36亿, 10.01%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-03",
+          "sent": 32,
+          "sentDelta": 17.0,
+          "state6": "过冷",
+          "premDelta": 1.47,
+          "maxLbcDelta": 1
+        },
+        "in3Days": {
+          "date": "2026-09-07",
+          "sent": 87,
+          "sentDelta": 72.0,
+          "state6": "沸点",
+          "premDelta": 6.24,
+          "maxLbcDelta": 2
+        }
+      },
+      "score": 0.695
+    },
+    {
+      "date": "2026-09-03",
+      "types": [
+        "冰点/过冷区",
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 32,
+        "state6": "过冷",
+        "temp": 67,
+        "max_lbc": 5,
+        "zt": 44,
+        "zb_rate": 43,
+        "prem_avg": 0.12,
+        "damian": 12,
+        "lhb_net": 19.02,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "汽车零部",
+            "net": 2.51,
+            "zt": 4,
+            "max_lbc": 2,
+            "core": [
+              "光洋股份(2板)"
+            ],
+            "follow": [
+              "冠盛股份(1板)",
+              "明新旭腾(1板)"
+            ]
+          },
+          {
+            "theme": "工业金属",
+            "net": 2.43,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "白银有色(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "电网设备",
+            "net": 2.12,
+            "zt": 2,
+            "max_lbc": 2,
+            "core": [
+              "太阳电缆(2板)"
+            ],
+            "follow": [
+              "华盛昌(1板)"
+            ]
+          }
+        ],
+        "ladder": [
+          "国芳集团(5板/一般零售)",
+          "集泰股份(4板/化学制品)",
+          "龙版传媒(4板/出版)",
+          "云南旅游(2板/旅游及景)",
+          "太阳电缆(2板/电网设备)"
+        ],
+        "lhbBuy": [
+          "光洋股份(净+2.91亿, 10.03%)",
+          "黄河旋风(净+2.82亿, 7.93%)",
+          "白银有色(净+2.43亿, 10.06%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-04",
+          "sent": 23,
+          "sentDelta": -9.0,
+          "state6": "冰点",
+          "premDelta": -0.66,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-09-08",
+          "sent": 53,
+          "sentDelta": 21.0,
+          "state6": "微冷",
+          "premDelta": 2.79,
+          "maxLbcDelta": -1
+        }
+      },
+      "score": -0.26
+    },
+    {
+      "date": "2026-09-04",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 23,
+        "state6": "冰点",
+        "temp": 38,
+        "max_lbc": 5,
+        "zt": 39,
+        "zb_rate": 55,
+        "prem_avg": -0.54,
+        "damian": 15,
+        "lhb_net": 24.82,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "通信设备",
+            "net": 6.71,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "楚天龙(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "林业Ⅱ",
+            "net": 4.84,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "平潭发展(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "种植业",
+            "net": 2.89,
+            "zt": 2,
+            "max_lbc": 2,
+            "core": [
+              "亚盛集团(2板)"
+            ],
+            "follow": [
+              "敦煌种业(1板)"
+            ]
+          }
+        ],
+        "ladder": [
+          "龙版传媒(5板/出版)",
+          "恒盛能源(2板/电力)",
+          "新炬网络(2板/IT服务Ⅱ)",
+          "楚天龙(1板/通信设备)",
+          "翠微股份(1板/多元金融)"
+        ],
+        "lhbBuy": [
+          "楚天龙(净+6.71亿, 10%)",
+          "平潭发展(净+4.84亿, 9.99%)",
+          "远东股份(净+4.73亿, 0.71%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-07",
+          "sent": 87,
+          "sentDelta": 64.0,
+          "state6": "沸点",
+          "premDelta": 5.43,
+          "maxLbcDelta": 1
+        },
+        "in3Days": {
+          "date": "2026-09-09",
+          "sent": 42,
+          "sentDelta": 19.0,
+          "state6": "微冷",
+          "premDelta": 1.64,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 2.138
+    },
+    {
+      "date": "2026-09-07",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 87,
+        "state6": "沸点",
+        "temp": 87,
+        "max_lbc": 6,
+        "zt": 93,
+        "zb_rate": 17,
+        "prem_avg": 4.89,
+        "damian": 0,
+        "lhb_net": 70.12,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "元件",
+            "net": 44.88,
+            "zt": 14,
+            "max_lbc": 1,
+            "core": [
+              "超声电子(1板)",
+              "迅捷兴(1板)"
+            ],
+            "follow": [
+              "中京电子(1板)",
+              "兴森科技(1板)"
+            ]
+          },
+          {
+            "theme": "通信设备",
+            "net": 10.97,
+            "zt": 8,
+            "max_lbc": 1,
+            "core": [
+              "美格智能(1板)",
+              "剑桥科技(1板)"
+            ],
+            "follow": [
+              "共进股份(1板)",
+              "华脉科技(1板)"
+            ]
+          },
+          {
+            "theme": "电网设备",
+            "net": 2.58,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "华盛昌(1板)"
+            ],
+            "follow": []
+          }
+        ],
+        "ladder": [
+          "龙版传媒(6板/出版)",
+          "亚盛集团(3板/种植业)",
+          "百大集团(3板/一般零售)",
+          "海欣食品(2板/食品加工)",
+          "播恩集团(2板/饲料)"
+        ],
+        "lhbBuy": [
+          "沪电股份(净+17.43亿, 10%)",
+          "源杰科技(净+13.17亿, 16.1%)",
+          "光迅科技(净+10.97亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-08",
+          "sent": 53,
+          "sentDelta": -34.0,
+          "state6": "微冷",
+          "premDelta": -1.98,
+          "maxLbcDelta": -2
+        },
+        "in3Days": {
+          "date": "2026-09-10",
+          "sent": 21,
+          "sentDelta": -66.0,
+          "state6": "冰点",
+          "premDelta": -5.21,
+          "maxLbcDelta": -2
+        }
+      },
+      "score": -1.23
+    },
+    {
+      "date": "2026-09-10",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 21,
+        "state6": "冰点",
+        "temp": 49,
+        "max_lbc": 4,
+        "zt": 35,
+        "zb_rate": 39,
+        "prem_avg": -0.32,
+        "damian": 13,
+        "lhb_net": 5.98,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "元件",
+            "net": 6.41,
+            "zt": 2,
+            "max_lbc": 1,
+            "core": [
+              "金安国纪(1板)",
+              "超声电子(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "电力",
+            "net": 2.31,
+            "zt": 5,
+            "max_lbc": 2,
+            "core": [
+              "闽东电力(2板)"
+            ],
+            "follow": [
+              "芯能科技(1板)",
+              "湖南发展(1板)"
+            ]
+          },
+          {
+            "theme": "游戏Ⅱ",
+            "net": 1.56,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "游族网络(1板)"
+            ],
+            "follow": []
+          }
+        ],
+        "ladder": [
+          "桂林旅游(4板/旅游及景)",
+          "瑞尔特(3板/家居用品)",
+          "云煤能源(3板/焦炭Ⅱ)",
+          "新农开发(2板/种植业)",
+          "国创高新(2板/炼化及贸)"
+        ],
+        "lhbBuy": [
+          "金安国纪(净+5.49亿, 10%)",
+          "电科思仪(净+3.05亿, 237.5%)",
+          "华银电力(净+2.22亿, 10.06%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-11",
+          "sent": 35,
+          "sentDelta": 14.0,
+          "state6": "过冷",
+          "premDelta": 0.05,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-09-15",
+          "sent": 34,
+          "sentDelta": 13.0,
+          "state6": "过冷",
+          "premDelta": 0.63,
+          "maxLbcDelta": 1
+        }
+      },
+      "score": 0.242
+    },
+    {
+      "date": "2026-09-11",
+      "types": [
+        "冰点/过冷区",
+        "情绪跳升",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 35,
+        "state6": "过冷",
+        "temp": 31,
+        "max_lbc": 4,
+        "zt": 40,
+        "zb_rate": 31,
+        "prem_avg": -0.27,
+        "damian": 11,
+        "lhb_net": 20.68,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "元件",
+            "net": 5.99,
+            "zt": 9,
+            "max_lbc": 2,
+            "core": [
+              "超声电子(2板)"
+            ],
+            "follow": [
+              "协和电子(1板)",
+              "澳弘电子(1板)"
+            ]
+          },
+          {
+            "theme": "数字媒体",
+            "net": 1.96,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "风语筑(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "玻璃玻纤",
+            "net": 1.9,
+            "zt": 2,
+            "max_lbc": 2,
+            "core": [
+              "凯盛新能(2板)"
+            ],
+            "follow": [
+              "九鼎新材(2板)"
+            ]
+          }
+        ],
+        "ladder": [
+          "瑞尔特(4板/家居用品)",
+          "闽东电力(3板/电力)",
+          "鼎信通讯(3板/通信设备)",
+          "中新赛克(2板/计算机设)",
+          "凯盛新能(2板/玻璃玻纤)"
+        ],
+        "lhbBuy": [
+          "金安国纪(净+8.12亿, 7.86%)",
+          "长盈通(净+5.21亿, 15.49%)",
+          "博云新材(净+4.03亿, 7.44%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-14",
+          "sent": 61,
+          "sentDelta": 26.0,
+          "state6": "微热",
+          "premDelta": 4.01,
+          "maxLbcDelta": 0
+        },
+        "in3Days": {
+          "date": "2026-09-16",
+          "sent": 86,
+          "sentDelta": 51.0,
+          "state6": "沸点",
+          "premDelta": 3.92,
+          "maxLbcDelta": 2
+        }
+      },
+      "score": 1.102
+    },
+    {
+      "date": "2026-09-14",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 61,
+        "state6": "微热",
+        "temp": 61,
+        "max_lbc": 4,
+        "zt": 55,
+        "zb_rate": 35,
+        "prem_avg": 3.74,
+        "damian": 2,
+        "lhb_net": 54.63,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "元件",
+            "net": 15.21,
+            "zt": 6,
+            "max_lbc": 3,
+            "core": [
+              "超声电子(3板)"
+            ],
+            "follow": [
+              "澳弘电子(2板)",
+              "贤丰控股(1板)"
+            ]
+          },
+          {
+            "theme": "通用设备",
+            "net": 5.85,
+            "zt": 3,
+            "max_lbc": 1,
+            "core": [
+              "宏盛股份(1板)",
+              "黄河旋风(1板)"
+            ],
+            "follow": [
+              "华之杰(1板)"
+            ]
+          },
+          {
+            "theme": "电力",
+            "net": 4.81,
+            "zt": 3,
+            "max_lbc": 4,
+            "core": [
+              "闽东电力(4板)"
+            ],
+            "follow": [
+              "豫能控股(1板)",
+              "恒盛能源(1板)"
+            ]
+          }
+        ],
+        "ladder": [
+          "闽东电力(4板/电力)",
+          "中新赛克(3板/计算机设)",
+          "超声电子(3板/元件)",
+          "正和生态(2板/环境治理)",
+          "通达股份(2板/电网设备)"
+        ],
+        "lhbBuy": [
+          "科翔股份(净+8.89亿, 20%)",
+          "黄河旋风(净+5.85亿, 9.98%)",
+          "嘉立创(净+4.36亿, 8.33%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-15",
+          "sent": 34,
+          "sentDelta": -27.0,
+          "state6": "过冷",
+          "premDelta": -3.43,
+          "maxLbcDelta": 1
+        },
+        "in3Days": {
+          "date": "2026-09-17",
+          "sent": 36,
+          "sentDelta": -25.0,
+          "state6": "过冷",
+          "premDelta": -3.76,
+          "maxLbcDelta": 1
+        }
+      },
+      "score": -0.855
+    },
+    {
+      "date": "2026-09-15",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 34,
+        "state6": "过冷",
+        "temp": 52,
+        "max_lbc": 5,
+        "zt": 32,
+        "zb_rate": 43,
+        "prem_avg": 0.31,
+        "damian": 11,
+        "lhb_net": 19.68,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "通信设备",
+            "net": 8.35,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "通鼎互联(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "风电设备",
+            "net": 2.44,
+            "zt": 4,
+            "max_lbc": 1,
+            "core": [
+              "吉鑫科技(1板)",
+              "大金重工(1板)"
+            ],
+            "follow": [
+              "天顺风能(1板)",
+              "锡华科技(1板)"
+            ]
+          },
+          {
+            "theme": "塑料",
+            "net": 1.87,
+            "zt": 2,
+            "max_lbc": 3,
+            "core": [
+              "双星新材(3板)"
+            ],
+            "follow": [
+              "浙江众成(1板)"
+            ]
+          }
+        ],
+        "ladder": [
+          "闽东电力(5板/电力)",
+          "中新赛克(4板/计算机设)",
+          "双星新材(3板/塑料)",
+          "澳弘电子(3板/元件)"
+        ],
+        "lhbBuy": [
+          "通鼎互联(净+8.35亿, 10%)",
+          "天融信(净+2亿, 5%)",
+          "双星新材(净+1.87亿, 10.04%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-16",
+          "sent": 86,
+          "sentDelta": 52.0,
+          "state6": "沸点",
+          "premDelta": 3.34,
+          "maxLbcDelta": 1
+        },
+        "in3Days": {
+          "date": "2026-09-18",
+          "sent": 63,
+          "sentDelta": 29.0,
+          "state6": "微热",
+          "premDelta": 1.66,
+          "maxLbcDelta": -1
+        }
+      },
+      "score": 1.59
+    },
+    {
+      "date": "2026-09-16",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 86,
+        "state6": "沸点",
+        "temp": 84,
+        "max_lbc": 6,
+        "zt": 89,
+        "zb_rate": 11,
+        "prem_avg": 3.65,
+        "damian": 2,
+        "lhb_net": 45.36,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "通信设备",
+            "net": 20.5,
+            "zt": 6,
+            "max_lbc": 2,
+            "core": [
+              "通鼎互联(2板)"
+            ],
+            "follow": [
+              "中瓷电子(1板)",
+              "华脉科技(1板)"
+            ]
+          },
+          {
+            "theme": "半导体",
+            "net": 7.77,
+            "zt": 5,
+            "max_lbc": 2,
+            "core": [
+              "中晶科技(2板)"
+            ],
+            "follow": [
+              "有研新材(1板)",
+              "有研硅(1板)"
+            ]
+          },
+          {
+            "theme": "林业Ⅱ",
+            "net": 4.57,
+            "zt": 2,
+            "max_lbc": 1,
+            "core": [
+              "平潭发展(1板)",
+              "福建金森(1板)"
+            ],
+            "follow": []
+          }
+        ],
+        "ladder": [
+          "闽东电力(6板/电力)",
+          "澳弘电子(4板/元件)",
+          "博汇科技(3板/IT服务Ⅱ)"
+        ],
+        "lhbBuy": [
+          "光迅科技(净+10.15亿, 10%)",
+          "通鼎互联(净+9.14亿, 9.99%)",
+          "有研硅(净+7.06亿, 20%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-17",
+          "sent": 36,
+          "sentDelta": -50.0,
+          "state6": "过冷",
+          "premDelta": -3.67,
+          "maxLbcDelta": -1
+        },
+        "in3Days": {
+          "date": "2026-09-21",
+          "sent": 79,
+          "sentDelta": -7.0,
+          "state6": "过热",
+          "premDelta": -1.53,
+          "maxLbcDelta": -1
+        }
+      },
+      "score": -1.612
+    },
+    {
+      "date": "2026-09-17",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 36,
+        "state6": "过冷",
+        "temp": 51,
+        "max_lbc": 5,
+        "zt": 47,
+        "zb_rate": 30,
+        "prem_avg": -0.02,
+        "damian": 16,
+        "lhb_net": 6.06,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "汽车零部",
+            "net": 4.89,
+            "zt": 8,
+            "max_lbc": 1,
+            "core": [
+              "山子高科(1板)",
+              "北特科技(1板)"
+            ],
+            "follow": [
+              "天海电子(1板)",
+              "众泰汽车(1板)"
+            ]
+          },
+          {
+            "theme": "农产品加",
+            "net": 2.15,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "金健米业(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "互联网电",
+            "net": 2.14,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "跨境通(1板)"
+            ],
+            "follow": []
+          }
+        ],
+        "ladder": [
+          "澳弘电子(5板/元件)",
+          "中晶科技(3板/半导体)",
+          "华瓷股份(3板/家居用品)",
+          "内蒙新华(2板/出版)",
+          "世联行(2板/房地产服)"
+        ],
+        "lhbBuy": [
+          "山子高科(净+3.94亿, 9.85%)",
+          "金健米业(净+2.15亿, 9.97%)",
+          "跨境通(净+2.14亿, 9.91%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-18",
+          "sent": 63,
+          "sentDelta": 27.0,
+          "state6": "微热",
+          "premDelta": 1.99,
+          "maxLbcDelta": -1
+        },
+        "in3Days": {
+          "date": "2026-09-22",
+          "sent": 69,
+          "sentDelta": 33.0,
+          "state6": "微热",
+          "premDelta": 3.21,
+          "maxLbcDelta": 1
+        }
+      },
+      "score": 0.615
+    },
+    {
+      "date": "2026-09-18",
+      "types": [
+        "溢价转正",
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 63,
+        "state6": "微热",
+        "temp": 89,
+        "max_lbc": 4,
+        "zt": 78,
+        "zb_rate": 24,
+        "prem_avg": 1.97,
+        "damian": 3,
+        "lhb_net": 36.96,
+        "diverge": true
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "半导体",
+            "net": 9.98,
+            "zt": 5,
+            "max_lbc": 1,
+            "core": [
+              "诚邦股份(1板)",
+              "博通集成(1板)"
+            ],
+            "follow": [
+              "华天科技(1板)",
+              "盛景微(1板)"
+            ]
+          },
+          {
+            "theme": "房地产开",
+            "net": 5.25,
+            "zt": 2,
+            "max_lbc": 1,
+            "core": [
+              "绿地控股(1板)",
+              "万  科Ａ(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "光学光电",
+            "net": 4.19,
+            "zt": 2,
+            "max_lbc": 1,
+            "core": [
+              "华塑控股(1板)",
+              "惠科股份(1板)"
+            ],
+            "follow": []
+          }
+        ],
+        "ladder": [
+          "华瓷股份(4板/家居用品)",
+          "锡华科技(4板/风电设备)",
+          "内蒙新华(3板/出版)",
+          "世联行(3板/房地产服)",
+          "华软科技(2板/化学制品)",
+          "经纬股份(2板/工程咨询)"
+        ],
+        "lhbBuy": [
+          "华天科技(净+8.18亿, 10.01%)",
+          "万科A(净+5.25亿, 9.93%)",
+          "惠科股份(净+4.19亿, 10.02%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-21",
+          "sent": 79,
+          "sentDelta": 16.0,
+          "state6": "过热",
+          "premDelta": 0.15,
+          "maxLbcDelta": 1
+        },
+        "in3Days": {
+          "date": "2026-09-23",
+          "sent": 30,
+          "sentDelta": -33.0,
+          "state6": "过冷",
+          "premDelta": -3.22,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.458
+    },
+    {
+      "date": "2026-09-21",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 79,
+        "state6": "过热",
+        "temp": 72,
+        "max_lbc": 5,
+        "zt": 103,
+        "zb_rate": 20,
+        "prem_avg": 2.12,
+        "damian": 0,
+        "lhb_net": 12.17,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "玻璃玻纤",
+            "net": 5.55,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "中材科技(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "房地产服",
+            "net": 2.43,
+            "zt": 3,
+            "max_lbc": 4,
+            "core": [
+              "世联行(4板)"
+            ],
+            "follow": [
+              "华远控股(1板)",
+              "我爱我家(1板)"
+            ]
+          },
+          {
+            "theme": "医疗服务",
+            "net": 1.95,
+            "zt": 5,
+            "max_lbc": 3,
+            "core": [
+              "南华生物(3板)"
+            ],
+            "follow": [
+              "澳洋健康(1板)",
+              "诺禾致源(1板)"
+            ]
+          }
+        ],
+        "ladder": [
+          "华瓷股份(5板/家居用品)",
+          "内蒙新华(4板/出版)",
+          "世联行(4板/房地产服)",
+          "南华生物(3板/医疗服务)",
+          "龙头股份(3板/服装家纺)"
+        ],
+        "lhbBuy": [
+          "中材科技(净+5.55亿, 10%)",
+          "百花医药(净+2.28亿, 10.04%)",
+          "我爱我家(净+2.17亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-22",
+          "sent": 69,
+          "sentDelta": -10.0,
+          "state6": "微热",
+          "premDelta": 1.07,
+          "maxLbcDelta": 1
+        },
+        "in3Days": {
+          "date": "2026-09-24",
+          "sent": 46,
+          "sentDelta": -33.0,
+          "state6": "微冷",
+          "premDelta": -2.16,
+          "maxLbcDelta": 0
+        }
+      },
+      "score": 0.178
+    },
+    {
+      "date": "2026-09-23",
+      "types": [
+        "冰点/过冷区",
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 30,
+        "state6": "过冷",
+        "temp": 41,
+        "max_lbc": 4,
+        "zt": 51,
+        "zb_rate": 34,
+        "prem_avg": -1.25,
+        "damian": null,
+        "lhb_net": 28.86,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "商用车",
+            "net": 3.79,
+            "zt": 1,
+            "max_lbc": 2,
+            "core": [
+              "江淮汽车(2板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "半导体",
+            "net": 2.9,
+            "zt": 3,
+            "max_lbc": 1,
+            "core": [
+              "康强电子(1板)",
+              "领先股份(1板)"
+            ],
+            "follow": [
+              "慧智微-U(1板)"
+            ]
+          },
+          {
+            "theme": "通用设备",
+            "net": 2.72,
+            "zt": 6,
+            "max_lbc": 1,
+            "core": [
+              "威星智能(1板)",
+              "优利德(1板)"
+            ],
+            "follow": [
+              "东方中科(1板)",
+              "申科股份(1板)"
+            ]
+          }
+        ],
+        "ladder": [
+          "新华文轩(4板/出版)",
+          "大亚圣象(4板/家居用品)",
+          "泰慕士(3板/服装家纺)",
+          "新华传媒(3板/出版)",
+          "天威视讯(2板/电视广播)",
+          "澳弘电子(2板/元件)"
+        ],
+        "lhbBuy": [
+          "先导基电(净+11.08亿, 9.28%)",
+          "江淮汽车(净+3.79亿, 9.99%)",
+          "康强电子(净+2.78亿, 10.01%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-24",
+          "sent": 46,
+          "sentDelta": 16.0,
+          "state6": "微冷",
+          "premDelta": 1.21,
+          "maxLbcDelta": 1
+        },
+        "in3Days": null
+      },
+      "score": 0.635
+    },
+    {
+      "date": "2026-09-24",
+      "types": [
+        "情绪跳升"
+      ],
+      "env": {
+        "sent": 46,
+        "state6": "微冷",
+        "temp": 23,
+        "max_lbc": 5,
+        "zt": 52,
+        "zb_rate": 16,
+        "prem_avg": -0.04,
+        "damian": 20,
+        "lhb_net": 16.45,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "林业Ⅱ",
+            "net": 4.75,
+            "zt": 2,
+            "max_lbc": 1,
+            "core": [
+              "平潭发展(1板)",
+              "福建金森(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "IT服务Ⅱ",
+            "net": 3.03,
+            "zt": 2,
+            "max_lbc": 1,
+            "core": [
+              "海峡创新(1板)",
+              "路桥信息(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "通用设备",
+            "net": 2.08,
+            "zt": 6,
+            "max_lbc": 2,
+            "core": [
+              "东方中科(2板)"
+            ],
+            "follow": [
+              "大业股份(1板)",
+              "洛轴股份(1板)"
+            ]
+          }
+        ],
+        "ladder": [
+          "新华文轩(5板/出版)",
+          "泰慕士(4板/服装家纺)",
+          "新华传媒(4板/出版)",
+          "天威视讯(3板/电视广播)"
+        ],
+        "lhbBuy": [
+          "平潭发展(净+4.75亿, 10.03%)",
+          "海峡创新(净+2.88亿, 19.98%)",
+          "宁波东力(净+2.65亿, 10.03%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-09-28",
+          "sent": 25,
+          "sentDelta": -21.0,
+          "state6": "过冷",
+          "premDelta": -1.87,
+          "maxLbcDelta": 0
+        },
+        "in3Days": null
+      },
+      "score": -0.662
+    },
+    {
+      "date": "2026-09-28",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 25,
+        "state6": "过冷",
+        "temp": 8,
+        "max_lbc": 5,
+        "zt": 33,
+        "zb_rate": 25,
+        "prem_avg": -1.91,
+        "damian": 23,
+        "lhb_net": -1.17,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "汽车零部",
+            "net": 2.34,
+            "zt": 3,
+            "max_lbc": 3,
+            "core": [
+              "雪龙集团(3板)"
+            ],
+            "follow": [
+              "襄阳轴承(2板)",
+              "众泰汽车(1板)"
+            ]
+          },
+          {
+            "theme": "互联网电",
+            "net": 2.24,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "跨境通(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "影视院线",
+            "net": 1.24,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "博纳影业(1板)"
+            ],
+            "follow": []
+          }
+        ],
+        "ladder": [
+          "新华传媒(5板/出版)",
+          "雪龙集团(3板/汽车零部)",
+          "金辰股份(3板/光伏设备)",
+          "大业股份(2板/通用设备)",
+          "襄阳轴承(2板/汽车零部)"
+        ],
+        "lhbBuy": [
+          "超声电子(净+3.8亿, -9.4%)",
+          "跨境通(净+2.24亿, 10%)",
+          "众泰汽车(净+1.77亿, 9.8%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": null,
+        "in3Days": null
+      },
+      "score": 0.0
+    }
+  ]
+}
