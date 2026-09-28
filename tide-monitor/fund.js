@@ -47,4 +47,9 @@ const pctRank = (arr, v) => arr.length ? arr.filter(x => x <= v).length / arr.le
   const fs = require('fs');
   fs.writeFileSync(__dirname + '/fund-daily.json', JSON.stringify(rows, null, 0));
   console.log('\nsaved fund-daily.json, days=' + rows.length + ', range ' + rows[0].date + ' ~ ' + rows[rows.length - 1].date);
-})();
+})().catch(e => {
+  // Do NOT overwrite fund-daily.json on failure: aggregate.js uses its dates as the whole dataset
+  // timeline, so a failed fetch must leave the previous (good) file in place.
+  console.log('WARN fund.js failed: ' + (e && e.message ? e.message : e) + ' -> keep previous fund-daily.json (date axis unchanged)');
+  process.exitCode = 1;
+});
