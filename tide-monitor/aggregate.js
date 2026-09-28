@@ -159,4 +159,8 @@ const ZB = d => `https://push2ex.eastmoney.com/getTopicZBPool?ut=7eea3edcaed734b
 
   fs.writeFileSync(__dirname + '/tide-data.json', JSON.stringify({ generated: new Date().toISOString(), window: { start: dates[0], end: dates[dates.length - 1], days: dates.length }, rows }));
   console.log('已写 tide-data.json；rows=' + rows.length);
-})();
+})().catch(e => {
+  // 失败时不要写坏 tide-data.json（该文件在成功路径的最后才写，这里只是保住上一份 + 让失败可见）
+  console.log('WARN aggregate.js failed: ' + (e && e.message ? e.message : e) + ' -> keep previous tide-data.json');
+  process.exitCode = 1;
+});
