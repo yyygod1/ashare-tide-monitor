@@ -22,7 +22,8 @@ from pathlib import Path
 
 QD_DIR = os.environ.get("QD_DIR", r"D:\projects\my-quantdash").strip()
 TIDE_DATA = Path(os.environ.get("TIDE_DATA_PATH")
-                 or r"C:\Users\Administrator\.openclaw\workspace\tide-monitor\tide-data.json")A_DIR = Path(QD_DIR) / "data" / "markets" / "a_share"
+                 or r"C:\Users\Administrator\.openclaw\workspace\tide-monitor\tide-data.json")
+A_DIR = Path(QD_DIR) / "data" / "markets" / "a_share"
 OUT_JSON = Path(os.environ.get("REVIEW_MEMORY_PATH") or (A_DIR / "review_memory.json"))
 OUT_MD = Path(os.environ.get("REVIEW_MD_PATH") or (Path(QD_DIR) / "_bridge" / "state" / "复盘记忆.md"))
 TIDE_DATA_PATH = Path(os.environ.get("TIDE_DATA_PATH")
