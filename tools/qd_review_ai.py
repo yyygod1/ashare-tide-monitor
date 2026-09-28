@@ -75,7 +75,10 @@ def sign_of(value):
 def score_entry(entry: dict, actual: dict, prev_sent):
     p = entry.get("prediction") or {}
     sent_hit = in_range(actual.get("sent"), p.get("sentimentRange"))
+    state6_hit = (p.get("state6Next") == actual.get("state6")) if (p.get("state6Next") and actual.get("state6")) else None
     height_hit = in_range(actual.get("max_lbc"), p.get("heightRange"))
+    zt_hit = in_range(actual.get("zt"), p.get("ztRange"))
+    zb_rate_hit = in_range(actual.get("zb_rate"), p.get("zbRateRange"))
     prem_hit = (sign_of(actual.get("prem_avg")) == p.get("premiumSign")) if p.get("premiumSign") else None
     stance_hit = None
     if p.get("stance") and prev_sent is not None and actual.get("sent") is not None:
@@ -83,10 +86,12 @@ def score_entry(entry: dict, actual: dict, prev_sent):
             stance_hit = actual["sent"] > prev_sent
         elif p["stance"] == "追高区":
             stance_hit = actual["sent"] < prev_sent
-    items = [v for v in (sent_hit, height_hit, prem_hit, stance_hit) if v is not None]
+    items = [v for v in (sent_hit, state6_hit, height_hit, zt_hit, zb_rate_hit, prem_hit, stance_hit) if v is not None]
     hits = sum(1 for v in items if v)
     return {
-        "sentHit": sent_hit, "heightHit": height_hit, "premiumHit": prem_hit, "stanceHit": stance_hit,
+        "sentHit": sent_hit, "state6Hit": state6_hit, "heightHit": height_hit,
+        "ztHit": zt_hit, "zbRateHit": zb_rate_hit,
+        "premiumHit": prem_hit, "stanceHit": stance_hit,
         "scored": len(items), "hits": hits,
         "accuracy": round(hits / len(items), 2) if items else None,
     }
@@ -195,16 +200,16 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
 {calibration}
 
 请输出一份可读的复盘（400-600 字，中文，分四点）：
-1) **当前位置判断**：结合今日环境与上面统计，说明当前更接近哪类节点、是否属于历史上性价比较高的低吸区，还是需要回避的追高区；给出依据（引用上面的数字）。
+1) **当前位置判断**：结合今日环境与上面统计，说明当前更接近哪类节点、是否属于历史上性价比较高的低吸区，还是需要回避的追高区；给出依据（引用上面的数字），并给出**次日六态预判**及其**置信度（高/中/低）**。
 2) **明日关注方向**：依据历史上高性价比节点出现时的领头题材/梯队特征，说明明日应该重点观察哪类方向与哪类个股结构（如「首板/2板换手充分」「板块内核心 vs 跟风」），不要凭空推荐具体标的。
 3) **入场条件与失效条件**：给出可验证的触发（例如情绪分/高度/炸板率/溢价的数值条件）与明确的失效条件。
-4) **风险与仓位**：指出当前样本局限（节点数量、估算数据）与需要回避的情形。
+4) **风险与仓位**：指出当前样本局限（节点数量、估算数据）与需要回避的情形，并给出明确的**仓位与出手建议**（观望 / 1成试仓 / 3成 / 5成以上）。
 
 最后一行注明：以上为数据整理，不构成投资建议。
 
 然后在末尾追加**严格 JSON**（用 ```json 包起来，不要注释、不要多余文字），用于回测校准：
 ```json
-{{"stance":"低吸区|中性|追高区","sentimentRange":[下限,上限],"heightRange":[下限,上限],"premiumSign":"正|负|持平","focusThemes":["题材A"],"entryConditions":["可验证条件"],"invalidConditions":["失效条件"],"riskNote":"一句话风险"}}
+{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","focusThemes":["题材A"],"entryConditions":["可验证条件"],"invalidConditions":["失效条件"],"riskNote":"一句话风险"}}
 ```"""
 
 
