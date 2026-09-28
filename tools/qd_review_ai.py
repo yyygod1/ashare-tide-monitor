@@ -178,6 +178,20 @@ def score_entry(entry: dict, actual: dict, prev_sent):
     }
 
 
+def dedupe_by_date(entries: list[dict]) -> tuple[list[dict], int]:
+    """一天只保留一条（取最近一次生成）。返回 (新列表, 移除条数)。"""
+    best: dict[str, dict] = {}
+    for entry in entries:
+        key = entry.get("predictDate") or entry.get("id") or ""
+        if not key:
+            continue
+        prev = best.get(key)
+        if prev is None or (entry.get("createdAt") or "") >= (prev.get("createdAt") or ""):
+            best[key] = entry
+    out = sorted(best.values(), key=lambda e: e.get("predictDate") or "")
+    return out, len(entries) - len(out)
+
+
 def backfill(entries: list[dict], rows: list[dict]) -> int:
     by_date = {r.get("date"): i for i, r in enumerate(rows)}
     changed = 0
@@ -382,9 +396,13 @@ def main() -> int:
         return 1
 
     ledger = read_json(LEDGER_PATH, []) or []
+    ledger, removed = dedupe_by_date(ledger)
+    if removed:
+        print("[review-ai] 台账去重：一天一条，移除 %d 条历史重复" % removed)
     filled = backfill(ledger, history)
-    if filled:
+    if filled or removed:
         LEDGER_PATH.write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if filled:
         print("[review-ai] 回填 %d 条历史预测（含打分）" % filled)
 
     predict_date = state.get("date") or datetime.now().strftime("%Y-%m-%d")
@@ -435,6 +453,8 @@ def main() -> int:
         return 1
 
     prediction, text = parse_prediction(content)
+    # 一天只留一条：同一天重新生成则覆盖旧记录
+    ledger = [e for e in ledger if e.get("predictDate") != predict_date]
     ledger.append({
         "id": "%s-%s-%d" % (predict_date, cfg["model"], int(datetime.now().timestamp())),
         "predictDate": predict_date,
