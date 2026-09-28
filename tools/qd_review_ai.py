@@ -72,6 +72,87 @@ def sign_of(value):
     return "正" if value > 0.01 else ("负" if value < -0.01 else "持平")
 
 
+# ---------- 历史相似日匹配（环境向量最近邻）----------
+SIM_FEATURES = (
+    ("sent", 20.0, 1.0),      # (字段, 归一尺度, 权重)
+    ("temp", 30.0, 0.6),
+    ("max_lbc", 3.0, 0.6),
+    ("zt", 40.0, 0.4),
+    ("zb_rate", 15.0, 0.4),
+    ("prem_avg", 2.0, 0.4),
+)
+SIM_SKIP_TAIL = 5   # 排除最后 N 日（避免与自身/近邻重复）
+
+
+def _num(value):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def find_similar_days(rows: list[dict], memory: dict, top: int = 3) -> list[dict]:
+    """按环境向量找历史最近邻；返回匹配日的环境 + 其次日表现 + 当时梯队由 memory 节点补齐。"""
+    if len(rows) < SIM_SKIP_TAIL + 3:
+        return []
+    target = rows[-1]
+    # 节点日期 -> 梯队/题材（来自 qd_review.py 产出的记忆）
+    by_date = {}
+    for node in (memory.get("nodes") or []):
+        if node.get("date"):
+            by_date[node["date"]] = node.get("leaders") or {}
+
+    scored = []
+    for i, row in enumerate(rows[:-SIM_SKIP_TAIL]):
+        dist, used = 0.0, 0
+        for key, scale, weight in SIM_FEATURES:
+            a, b = _num(target.get(key)), _num(row.get(key))
+            if a is None or b is None:
+                continue
+            dist += weight * abs(a - b) / scale
+            used += 1
+        if used < 3:      # 样本字段太少不算
+            continue
+        scored.append((1.0 / (1.0 + dist / used), i, row))
+
+    scored.sort(key=lambda item: -item[0])
+    out = []
+    for similarity, index, row in scored[:top]:
+        nxt = rows[index + 1] if index + 1 < len(rows) else None
+        date = row.get("date")
+        leaders = by_date.get(date) or {}
+        out.append({
+            "date": date,
+            "similarity": round(similarity, 3),
+            "env": {k: row.get(k) for k in ("sent", "state6", "temp", "max_lbc", "zt", "zb_rate", "prem_avg", "damian")},
+            "nextDay": ({"date": nxt.get("date"), "sent": nxt.get("sent"), "state6": nxt.get("state6"),
+                         "max_lbc": nxt.get("max_lbc"), "prem_avg": nxt.get("prem_avg"),
+                         "sentDelta": (round((_num(nxt.get("sent")) or 0) - (_num(row.get("sent")) or 0), 1)
+                                       if _num(nxt.get("sent")) is not None and _num(row.get("sent")) is not None else None)}
+                        if nxt else None),
+            "ladder": (leaders.get("ladder") or [])[:6],
+            "themes": [t.get("theme") for t in (leaders.get("themes") or [])[:3]],
+        })
+    return out
+
+
+def render_similar(matches: list[dict]) -> str:
+    if not matches:
+        return "（历史样本不足，未做匹配）"
+    lines = []
+    for m in matches:
+        env = m.get("env") or {}
+        nxt = m.get("nextDay") or {}
+        lines.append("- %s（相似度 %s）｜环境：情绪分 %s（%s）｜温度 %s｜高度 %s｜涨停 %s 家｜炸板率 %s%%｜溢价 %s%%\n  → 次日：情绪分 %s（%s）｜六态 %s｜高度 %s｜溢价 %s%%\n  → 当时梯队：%s%s" % (
+            m.get("date"), m.get("similarity"), env.get("sent"), env.get("state6"), env.get("temp"),
+            env.get("max_lbc"), env.get("zt"), env.get("zb_rate"), env.get("prem_avg"),
+            nxt.get("sent"), ("+" + str(nxt.get("sentDelta"))) if (nxt.get("sentDelta") or 0) > 0 else nxt.get("sentDelta"),
+            nxt.get("state6"), nxt.get("max_lbc"), nxt.get("prem_avg"),
+            "；".join(m.get("ladder") or []) or "（无梯队记录）",
+            ("｜题材：" + "、".join(m.get("themes") or [])) if m.get("themes") else ""))
+    return "\n".join(lines)
+
+
 def score_entry(entry: dict, actual: dict, prev_sent):
     p = entry.get("prediction") or {}
     sent_hit = in_range(actual.get("sent"), p.get("sentimentRange"))
@@ -143,7 +224,7 @@ def calibration_summary(entries: list[dict], limit: int = 8) -> str:
 
 
 # ---------- 提示词（与前端同结构）----------
-def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = False) -> str:
+def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = False, similar_text: str = "") -> str:
     stats = "\n".join(
         "- %s：出现 %s 次，平均性价比 %s，次日情绪上行占比 %s" % (
             k, v.get("count"), v.get("avgScore"),
@@ -199,9 +280,12 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
 【你过去的预测与实际对照（用于自我校准，请根据失准项调整本次判断的尺度）】
 {calibration}
 
+【历史相似日匹配（按环境向量算的最近邻，含其次日表现与当时梯队）】
+{similar_text or '（无）'}
+
 请输出一份可读的复盘（400-600 字，中文，分四点）：
 1) **当前位置判断**：结合今日环境与上面统计，说明当前更接近哪类节点、是否属于历史上性价比较高的低吸区，还是需要回避的追高区；给出依据（引用上面的数字），并给出**次日六态预判**及其**置信度（高/中/低）**。
-2) **明日关注方向**：依据历史上高性价比节点出现时的领头题材/梯队特征，说明明日应该重点观察哪类方向与哪类个股结构（如「首板/2板换手充分」「板块内核心 vs 跟风」），不要凭空推荐具体标的。
+2) **明日关注方向**：依据**历史相似日的次日表现与其当时梯队**（上面已给出最近邻匹配），说明明日应重点观察哪类方向与哪类个股结构（如「3板以上接力」「2板卡位」「首板换手充分」），并给出**重点关注名单**（可包含具体个股——仅作为当时梯队里的观察对象，不是推荐；也可只给梯队层级）。
 3) **入场条件与失效条件**：给出可验证的触发（例如情绪分/高度/炸板率/溢价的数值条件）与明确的失效条件。
 4) **风险与仓位**：指出当前样本局限（节点数量、估算数据）与需要回避的情形，并给出明确的**仓位与出手建议**（观望 / 1成试仓 / 3成 / 5成以上）。
 
@@ -209,7 +293,7 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
 
 然后在末尾追加**严格 JSON**（用 ```json 包起来，不要注释、不要多余文字），用于回测校准：
 ```json
-{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","focusThemes":["题材A"],"entryConditions":["可验证条件"],"invalidConditions":["失效条件"],"riskNote":"一句话风险"}}
+{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","ladderFocus":"3板以上接力|2板卡位|首板换手","watchlist":["个股名(板数/题材)"],"focusThemes":["题材A"],"entryConditions":["可验证条件"],"invalidConditions":["失效条件"],"riskNote":"一句话风险"}}
 ```"""
 
 
@@ -305,7 +389,21 @@ def main() -> int:
 
     predict_date = state.get("date") or datetime.now().strftime("%Y-%m-%d")
     cfg = load_config()
-    prompt = build_prompt(memory, state, calibration_summary(ledger))
+    matches = find_similar_days(tide_rows, memory, top=3)
+    similar_text = render_similar(matches)
+    # 写出匹配结果（供页面展示与前端生成时使用）
+    try:
+        similar_path = Path(os.environ.get("REVIEW_SIMILAR_PATH") or (A_DIR / "review_similar.json"))
+        similar_path.parent.mkdir(parents=True, exist_ok=True)
+        similar_path.write_text(json.dumps({
+            "computedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+            "baseDate": predict_date,
+            "matches": matches,
+        }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print("[review-ai] 历史相似日匹配 %d 条 -> %s" % (len(matches), similar_path))
+    except Exception as exc:
+        print("[review-ai] 相似日文件写入失败：%s" % type(exc).__name__)
+    prompt = build_prompt(memory, state, calibration_summary(ledger), similar_text=similar_text)
 
     if args.dry_run:
         print("[review-ai] dry-run：提示词 %d 字，台账 %d 条（已复核 %d）"
