@@ -1,0 +1,88 @@
+{
+  "computedAt": "2026-09-29T14:41:15Z",
+  "baseDate": "2026-09-29",
+  "matches": [
+    {
+      "date": "2026-08-27",
+      "similarity": 0.867,
+      "env": {
+        "sent": 75,
+        "state6": "过热",
+        "temp": 93,
+        "max_lbc": 6,
+        "zt": 77,
+        "zb_rate": 18,
+        "prem_avg": 2.55,
+        "damian": null
+      },
+      "nextDay": {
+        "date": "2026-08-28",
+        "sent": 71,
+        "state6": "过热",
+        "max_lbc": 7,
+        "prem_avg": 2.24,
+        "sentDelta": -4.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-09-21",
+      "similarity": 0.845,
+      "env": {
+        "sent": 79,
+        "state6": "过热",
+        "temp": 72,
+        "max_lbc": 5,
+        "zt": 103,
+        "zb_rate": 20,
+        "prem_avg": 2.12,
+        "damian": 0
+      },
+      "nextDay": {
+        "date": "2026-09-22",
+        "sent": 69,
+        "state6": "微热",
+        "max_lbc": 6,
+        "prem_avg": 3.19,
+        "sentDelta": -10.0
+      },
+      "ladder": [
+        "华瓷股份(5板/家居用品)",
+        "内蒙新华(4板/出版)",
+        "世联行(4板/房地产服)",
+        "南华生物(3板/医疗服务)",
+        "龙头股份(3板/服装家纺)"
+      ],
+      "themes": [
+        "玻璃玻纤",
+        "房地产服",
+        "医疗服务"
+      ]
+    },
+    {
+      "date": "2026-08-28",
+      "similarity": 0.836,
+      "env": {
+        "sent": 71,
+        "state6": "过热",
+        "temp": 52,
+        "max_lbc": 7,
+        "zt": 82,
+        "zb_rate": 16,
+        "prem_avg": 2.24,
+        "damian": 6
+      },
+      "nextDay": {
+        "date": "2026-08-31",
+        "sent": 45,
+        "state6": "微冷",
+        "max_lbc": 6,
+        "prem_avg": 0.26,
+        "sentDelta": -26.0
+      },
+      "ladder": [],
+      "themes": []
+    }
+  ]
+}
