@@ -445,7 +445,7 @@ def calibration_summary(entries: list[dict], limit: int = 8) -> str:
 
 
 # ---------- 提示词（与前端同结构）----------
-def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = False, similar_text: str = "") -> str:
+def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = False, similar_text: str = "", matrix_text: str = "") -> str:
     stats = "\n".join(
         "- %s：出现 %s 次，平均性价比 %s，次日情绪上行占比 %s" % (
             k, v.get("count"), v.get("avgScore"),
@@ -503,6 +503,9 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
 
 【历史相似日匹配（按环境向量算的最近邻，含其次日表现与当时梯队）】
 {similar_text or '（无）'}
+
+【六态状态转移先验（walk-forward 估计；已附其历史成绩，若不如基准请勿过度依赖）】
+{matrix_text or '（未生成）'}
 
 请输出一份可读的复盘（400-600 字，中文，分四点）：
 1) **当前位置判断**：结合今日环境与上面统计，说明当前更接近哪类节点、是否属于历史上性价比较高的低吸区，还是需要回避的追高区；给出依据（引用上面的数字），并给出**次日六态预判**及其**置信度（高/中/低）**，同时给出 `state6Probs`（六态完整概率分布，六项之和必须为 1，可用 0 表示该态无可能）。
@@ -636,7 +639,26 @@ def main() -> int:
             sim.get("candidateCount"), similar_path))
     except Exception as exc:
         print("[review-ai] 相似日文件写入失败：%s" % type(exc).__name__)
-    prompt = build_prompt(memory, state, calibration_summary(ledger), similar_text=similar_text)
+    # P1：六态状态转移矩阵（walk-forward）—— 生成 review_state_matrix.json 并喂进提示词
+    matrix_text = ""
+    try:
+        from qd_state_matrix import build as _build_matrix, render_for_prompt as _render_matrix  # noqa: PLC0415
+        mdata = _build_matrix()
+        if mdata.get("ok"):
+            mout = Path(os.environ.get("REVIEW_STATE_MATRIX_PATH") or (A_DIR / "review_state_matrix.json"))
+            mout.parent.mkdir(parents=True, exist_ok=True)
+            mout.write_text(json.dumps(mdata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            matrix_text = _render_matrix(mdata)
+            row = {k: v for k, v in (mdata["matrix"].get(mdata.get("todayState")) or {}).items() if not k.startswith("_")}
+            top1 = max(row.items(), key=lambda kv: kv[1])[0] if row else "—"
+            print("[review-ai] 状态转移矩阵：今日 %s -> 明日 Top1 %s｜walk-forward Brier %s（基准 0.8064）"
+                  % (mdata.get("todayState"), top1, (mdata.get("walkForward") or {}).get("brier")))
+        else:
+            print("[review-ai] 状态转移矩阵不可用：%s" % mdata.get("reason"))
+    except Exception as exc:
+        print("[review-ai] 状态转移矩阵跳过（%s）" % type(exc).__name__)
+
+    prompt = build_prompt(memory, state, calibration_summary(ledger), similar_text=similar_text, matrix_text=matrix_text)
 
     if args.dry_run:
         print("[review-ai] dry-run：提示词 %d 字，台账 %d 条（已复核 %d）"
