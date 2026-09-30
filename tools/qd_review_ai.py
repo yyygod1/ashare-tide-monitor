@@ -82,6 +82,13 @@ SIM_FEATURES = (
     ("prem_avg", 2.0, 0.4),
 )
 SIM_SKIP_TAIL = 5   # 排除最后 N 日（避免与自身/近邻重复）
+# P1：相似日的 TopK / 阈值 / 降级
+#   TopK 3 -> 8：原来只出 3 条，导致「有效匹配 >=5 才算相似日为主」那档永远触发不了。
+#   阈值取「绝对下限」与「当日候选相似度 P75」的较大者：实测相似度挤在 0.77~0.82，
+#   固定 0.7 形同虚设（全过），改成相对分位才真有筛选力。
+SIM_TOP_K = 8
+SIM_MIN_SIM = 0.7
+SIM_MIN_EFFECTIVE = 3
 
 
 def _num(value):
@@ -91,10 +98,59 @@ def _num(value):
         return None
 
 
-def find_similar_days(rows: list[dict], memory: dict, top: int = 3) -> list[dict]:
-    """按环境向量找历史最近邻；返回匹配日的环境 + 其次日表现 + 当时梯队由 memory 节点补齐。"""
+def _quantile(nums: list[float], q: float) -> float:
+    if not nums:
+        return 0.0
+    s = sorted(nums)
+    return s[min(len(s) - 1, max(0, int(len(s) * q)))]
+
+
+def _state_baseline(rows: list[dict]) -> dict:
+    """同状态全局基准：与「今日六态」相同的历史日，其次日 情绪/Δsent/溢价/炸板 的分位数。
+
+    相似日样本不足时用它兜底 —— 避免提示词里出现「无匹配」这种零信息状态。
+    """
+    if not rows:
+        return {}
+    today_state = rows[-1].get("state6")
+    vals: dict = {"sent": [], "sentDelta": [], "prem_avg": [], "zb_rate": []}
+    peers = 0
+    for i in range(len(rows) - 1):
+        if rows[i].get("state6") != today_state:
+            continue
+        peers += 1
+        nxt = rows[i + 1]
+        a, b = _num(rows[i].get("sent")), _num(nxt.get("sent"))
+        if a is not None and b is not None:
+            vals["sentDelta"].append(round(b - a, 1))
+        for key in ("sent", "prem_avg", "zb_rate"):
+            v = _num(nxt.get(key))
+            if v is not None:
+                vals[key].append(v)
+
+    def stat(key: str):
+        arr = vals[key]
+        if not arr:
+            return None
+        return {"n": len(arr), "p25": _quantile(arr, 0.25),
+                "median": _quantile(arr, 0.5), "p75": _quantile(arr, 0.75)}
+
+    return {"state6": today_state, "count": peers, "nextSent": stat("sent"),
+            "nextSentDelta": stat("sentDelta"), "nextPremAvg": stat("prem_avg"),
+            "nextZbRate": stat("zb_rate")}
+
+
+def find_similar_days(rows: list[dict], memory: dict, top: int = SIM_TOP_K) -> dict:
+    """按环境向量找历史最近邻。
+
+    返回 dict：matches / threshold / similarityMode / candidateCount /
+    effectiveMatches / fallback。阈值 = max(绝对下限, 当日候选相似度 P75)；
+    有效匹配不足 SIM_MIN_EFFECTIVE 时 fallback 给「同状态全局基准」。
+    """
+    empty = {"matches": [], "threshold": SIM_MIN_SIM, "similarityMode": "absolute",
+             "candidateCount": 0, "effectiveMatches": 0, "fallback": _state_baseline(rows)}
     if len(rows) < SIM_SKIP_TAIL + 3:
-        return []
+        return empty
     target = rows[-1]
     # 节点日期 -> 梯队/题材（来自 qd_review.py 产出的记忆）
     by_date = {}
@@ -116,8 +172,17 @@ def find_similar_days(rows: list[dict], memory: dict, top: int = 3) -> list[dict
         scored.append((1.0 / (1.0 + dist / used), i, row))
 
     scored.sort(key=lambda item: -item[0])
+    if not scored:
+        return empty
+
+    sims = [s for s, _, _ in scored]
+    p75 = _quantile(sims, 0.75)
+    threshold = round(max(SIM_MIN_SIM, p75), 3)
+    mode = "relative" if p75 > SIM_MIN_SIM else "absolute"
+    picked = [(s, i, r) for s, i, r in scored[:top] if s >= threshold]
+
     out = []
-    for similarity, index, row in scored[:top]:
+    for similarity, index, row in picked:
         nxt = rows[index + 1] if index + 1 < len(rows) else None
         date = row.get("date")
         leaders = by_date.get(date) or {}
@@ -133,13 +198,19 @@ def find_similar_days(rows: list[dict], memory: dict, top: int = 3) -> list[dict
             "ladder": (leaders.get("ladder") or [])[:6],
             "themes": [t.get("theme") for t in (leaders.get("themes") or [])[:3]],
         })
-    return out
+    return {"matches": out, "threshold": threshold, "similarityMode": mode,
+            "candidateCount": len(scored), "effectiveMatches": len(out),
+            "fallback": (_state_baseline(rows) if len(out) < SIM_MIN_EFFECTIVE else None)}
 
 
-def render_similar(matches: list[dict]) -> str:
-    if not matches:
-        return "（历史样本不足，未做匹配）"
+def render_similar(matches: list[dict], meta: dict | None = None) -> str:
+    meta = meta or {}
     lines = []
+    if not matches:
+        head = "（相似日样本不足，已降级为「同状态全局基准」）"
+    else:
+        head = "- 匹配口径：阈值 %s（%s）｜有效匹配 %d/%s" % (
+            meta.get("threshold"), meta.get("similarityMode"), len(matches), meta.get("candidateCount") or len(matches))
     for m in matches:
         env = m.get("env") or {}
         nxt = m.get("nextDay") or {}
@@ -150,7 +221,86 @@ def render_similar(matches: list[dict]) -> str:
             nxt.get("state6"), nxt.get("max_lbc"), nxt.get("prem_avg"),
             "；".join(m.get("ladder") or []) or "（无梯队记录）",
             ("｜题材：" + "、".join(m.get("themes") or [])) if m.get("themes") else ""))
-    return "\n".join(lines)
+    fb = meta.get("fallback")
+    if fb:
+        def _fmt(st):
+            return "—" if not st else "中位 %s（P25 %s / P75 %s, n=%s）" % (
+                st.get("median"), st.get("p25"), st.get("p75"), st.get("n"))
+        lines.append("【同状态全局基准（六态=%s，历史 %s 天）】次日情绪分 %s｜次日Δsent %s｜次日溢价 %s｜次日炸板率 %s" % (
+            fb.get("state6"), fb.get("count"), _fmt(fb.get("nextSent")), _fmt(fb.get("nextSentDelta")),
+            _fmt(fb.get("nextPremAvg")), _fmt(fb.get("nextZbRate"))))
+    return "\n".join([head] + lines)
+
+
+# ---------- 台账分层与三态（与 services/reviewLedgerService.ts 逐字对齐）----------
+DIM_LABEL = {"sent": "情绪区间", "state6": "六态", "height": "高度区间", "zt": "涨停家数",
+             "zbRate": "炸板率", "premium": "溢价方向", "stance": "立场"}
+# 六态对次日的互信息仅 ~11.5%（2026-09-30 回填后实测、置换检验刚显著）-> 降为辅助维
+CORE_DIMS = ["sent", "premium", "stance"]
+EXTENDED_DIMS = ["height", "zt", "zbRate"]
+AUX_DIMS = ["state6"]
+ALL_DIMS = CORE_DIMS + EXTENDED_DIMS + AUX_DIMS
+# 基准（口径 2026-09-30；复跑 _bridge/qd_review_diag.py 可复现）
+REVIEW_BASELINES = {"state6Majority": 0.273, "state6TransitionTop1InSample": 0.331,
+                    "sentimentBand15": 0.397, "brierState6Prior": 0.8064, "brierDirPrior": 0.6622}
+
+
+def _dim_status(predicted: bool, actual_available: bool, hit) -> str:
+    if not predicted:
+        return "not_predicted"
+    if not actual_available:
+        return "no_actual"
+    return "hit" if hit else "miss"
+
+
+def _is_range(v) -> bool:
+    return isinstance(v, list) and len(v) == 2
+
+
+# ---------- P2/P3：概率评分 + 失准归因（与 reviewLedgerService.ts 对齐）----------
+STATE6_KEYS = ["冰点", "过冷", "微冷", "微热", "过热", "沸点"]
+MISS_REASONS = ["数据口径", "状态定义", "模型", "外部冲击"]
+
+
+def _brier_state6(probs, actual_state):
+    """六态多分类 Brier：Σ(p−y)²（容忍未归一化，先归一）"""
+    if not isinstance(probs, dict) or actual_state not in STATE6_KEYS:
+        return None
+    raw = [max(0.0, float(probs.get(k) or 0)) for k in STATE6_KEYS]
+    s = sum(raw)
+    if s <= 0:
+        return None
+    p = [v / s for v in raw]
+    return round(sum((v - (1.0 if STATE6_KEYS[i] == actual_state else 0.0)) ** 2 for i, v in enumerate(p)), 4)
+
+
+def _logloss_state6(probs, actual_state):
+    """六态 LogLoss（对实际态 −ln p；1e-6 下限避免 Infinity）"""
+    if not isinstance(probs, dict) or actual_state not in STATE6_KEYS:
+        return None
+    import math  # noqa: PLC0415
+    raw = [max(0.0, float(probs.get(k) or 0)) for k in STATE6_KEYS]
+    s = sum(raw)
+    if s <= 0:
+        return None
+    p = max(float(probs.get(actual_state) or 0) / s, 1e-6)
+    return round(-math.log(p), 4)
+
+
+def _classify_miss(actual: dict, prev_sent, dim_status: dict) -> list:
+    """失准归因（可解释、可复现）；样本不足在 stats 层标记"""
+    if not any(v == "miss" for v in dim_status.values()):
+        return []
+    reasons = []
+    if sum(1 for v in dim_status.values() if v == "no_actual") >= 2:
+        reasons.append("数据口径")
+    if prev_sent is not None and actual.get("sent") is not None and abs(actual["sent"] - prev_sent) > 40:
+        reasons.append("外部冲击")
+    if dim_status.get("state6") == "miss":
+        reasons.append("状态定义")
+    if not reasons:
+        reasons.append("模型")
+    return reasons
 
 
 def score_entry(entry: dict, actual: dict, prev_sent):
@@ -169,12 +319,33 @@ def score_entry(entry: dict, actual: dict, prev_sent):
             stance_hit = actual["sent"] < prev_sent
     items = [v for v in (sent_hit, state6_hit, height_hit, zt_hit, zb_rate_hit, prem_hit, stance_hit) if v is not None]
     hits = sum(1 for v in items if v)
+
+    # 三态：区分「未预测」/「无实际数据」/ 命中失准
+    dim_status = {
+        "sent": _dim_status(_is_range(p.get("sentimentRange")), actual.get("sent") is not None, sent_hit),
+        "state6": _dim_status(bool(p.get("state6Next")), actual.get("state6") is not None, state6_hit),
+        "height": _dim_status(_is_range(p.get("heightRange")), actual.get("max_lbc") is not None, height_hit),
+        "zt": _dim_status(_is_range(p.get("ztRange")), actual.get("zt") is not None, zt_hit),
+        "zbRate": _dim_status(_is_range(p.get("zbRateRange")), actual.get("zb_rate") is not None, zb_rate_hit),
+        "premium": _dim_status(bool(p.get("premiumSign")), actual.get("prem_avg") is not None, prem_hit),
+        "stance": _dim_status(bool(p.get("stance")), prev_sent is not None and actual.get("sent") is not None, stance_hit),
+    }
+    core_decided = [dim_status[k] for k in CORE_DIMS if dim_status[k] in ("hit", "miss")]
+    core_hits = sum(1 for s in core_decided if s == "hit")
+
     return {
         "sentHit": sent_hit, "state6Hit": state6_hit, "heightHit": height_hit,
         "ztHit": zt_hit, "zbRateHit": zb_rate_hit,
         "premiumHit": prem_hit, "stanceHit": stance_hit,
         "scored": len(items), "hits": hits,
         "accuracy": round(hits / len(items), 2) if items else None,
+        "dimStatus": dim_status,
+        "coreHits": core_hits,
+        "coreScored": len(core_decided),
+        "coreAccuracy": round(core_hits / len(core_decided), 2) if core_decided else None,
+        "brierState6": _brier_state6(p.get("state6Probs"), actual.get("state6")),
+        "logLoss": _logloss_state6(p.get("state6Probs"), actual.get("state6")),
+        "missReasons": _classify_miss(actual, prev_sent, dim_status),
     }
 
 
@@ -219,6 +390,11 @@ def calibration_summary(entries: list[dict], limit: int = 8) -> str:
         return "（暂无历史预测记录，这是第一批）"
     accs = [e["score"]["accuracy"] for e in reviewed if e["score"].get("accuracy") is not None]
     overall = round(sum(accs) / len(accs), 2) if accs else None
+    # 主指标：核心维池化（与前端 computeStats 同口径）
+    core_hits = sum(e["score"].get("coreHits", 0) for e in reviewed)
+    core_scored = sum(e["score"].get("coreScored", 0) for e in reviewed)
+    core = round(core_hits / core_scored, 2) if core_scored else None
+    main = core if core is not None else overall
     lines = []
     for entry in reviewed[-limit:]:
         p = entry.get("prediction") or {}
@@ -232,8 +408,12 @@ def calibration_summary(entries: list[dict], limit: int = 8) -> str:
                         a.get("sent"), a.get("state6"), a.get("max_lbc"), a.get("prem_avg"),
                         (str(round(s["accuracy"] * 100)) + "%") if s.get("accuracy") is not None else "—",
                         ("｜失准项：" + "、".join(miss)) if miss else ""))
-    head = "近 %d 次预测命中率：%s（已复核 %d 次）" % (
-        len(reviewed[-limit:]), (str(round(overall * 100)) + "%") if overall is not None else "—", len(reviewed))
+    head = ("近 %d 次预测：核心维（情绪区间/溢价方向/立场）命中率 %s（主指标）｜全维平均 %s｜已复核 %d 次"
+            "｜基准：六态多数类 %d%%、情绪 ±15 带宽 %d%%（低于基准即无优势）") % (
+        len(reviewed[-limit:]),
+        (str(round(main * 100)) + "%") if main is not None else "—",
+        (str(round(overall * 100)) + "%") if overall is not None else "—",
+        len(reviewed), round(REVIEW_BASELINES["state6Majority"] * 100), round(REVIEW_BASELINES["sentimentBand15"] * 100))
     return "\n".join([head] + lines)
 
 
@@ -298,7 +478,7 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
 {similar_text or '（无）'}
 
 请输出一份可读的复盘（400-600 字，中文，分四点）：
-1) **当前位置判断**：结合今日环境与上面统计，说明当前更接近哪类节点、是否属于历史上性价比较高的低吸区，还是需要回避的追高区；给出依据（引用上面的数字），并给出**次日六态预判**及其**置信度（高/中/低）**。
+1) **当前位置判断**：结合今日环境与上面统计，说明当前更接近哪类节点、是否属于历史上性价比较高的低吸区，还是需要回避的追高区；给出依据（引用上面的数字），并给出**次日六态预判**及其**置信度（高/中/低）**，同时给出 `state6Probs`（六态完整概率分布，六项之和必须为 1，可用 0 表示该态无可能）。
 2) **明日关注方向**：依据**历史相似日的次日表现与其当时梯队**（上面已给出最近邻匹配），说明明日应重点观察哪类方向与哪类个股结构（如「3板以上接力」「2板卡位」「首板换手充分」），并给出**重点关注名单**（可包含具体个股——仅作为当时梯队里的观察对象，不是推荐；也可只给梯队层级）。
 3) **入场条件与失效条件**：给出可验证的触发（例如情绪分/高度/炸板率/溢价的数值条件）与明确的失效条件。
 4) **风险与仓位**：指出当前样本局限（节点数量、估算数据）与需要回避的情形，并给出明确的**仓位与出手建议**（观望 / 1成试仓 / 3成 / 5成以上）。
@@ -307,7 +487,7 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
 
 然后在末尾追加**严格 JSON**（用 ```json 包起来，不要注释、不要多余文字），用于回测校准：
 ```json
-{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","ladderFocus":"3板以上接力|2板卡位|首板换手","watchlist":["个股名(板数/题材)"],"focusThemes":["题材A"],"entryConditions":["可验证条件"],"invalidConditions":["失效条件"],"riskNote":"一句话风险"}}
+{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","state6Probs":{{"冰点":0,"过冷":0,"微冷":0,"微热":0,"过热":0,"沸点":0}},"sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","ladderFocus":"3板以上接力|2板卡位|首板换手","watchlist":["个股名(板数/题材)"],"focusThemes":["题材A","题材B"],"entryConditions":["可验证条件"],"invalidConditions":["失效条件"],"riskNote":"一句话风险"}}
 ```"""
 
 
@@ -407,8 +587,9 @@ def main() -> int:
 
     predict_date = state.get("date") or datetime.now().strftime("%Y-%m-%d")
     cfg = load_config()
-    matches = find_similar_days(tide_rows, memory, top=3)
-    similar_text = render_similar(matches)
+    sim = find_similar_days(tide_rows, memory)
+    matches = sim.get("matches") or []
+    similar_text = render_similar(matches, sim)
     # 写出匹配结果（供页面展示与前端生成时使用）
     try:
         similar_path = Path(os.environ.get("REVIEW_SIMILAR_PATH") or (A_DIR / "review_similar.json"))
@@ -416,9 +597,16 @@ def main() -> int:
         similar_path.write_text(json.dumps({
             "computedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
             "baseDate": predict_date,
+            "threshold": sim.get("threshold"),
+            "similarityMode": sim.get("similarityMode"),
+            "candidateCount": sim.get("candidateCount"),
+            "effectiveMatches": sim.get("effectiveMatches"),
+            "fallback": sim.get("fallback"),
             "matches": matches,
         }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        print("[review-ai] 历史相似日匹配 %d 条 -> %s" % (len(matches), similar_path))
+        print("[review-ai] 历史相似日：有效 %d 条（阈值 %s/%s，候选 %d）-> %s" % (
+            sim.get("effectiveMatches"), sim.get("threshold"), sim.get("similarityMode"),
+            sim.get("candidateCount"), similar_path))
     except Exception as exc:
         print("[review-ai] 相似日文件写入失败：%s" % type(exc).__name__)
     prompt = build_prompt(memory, state, calibration_summary(ledger), similar_text=similar_text)
