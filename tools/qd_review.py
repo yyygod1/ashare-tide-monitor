@@ -193,11 +193,14 @@ def summarize(nodes: list[dict]) -> dict:
                 bucket["wins"] += 1
     out = {}
     for t, b in stats.items():
+        # 自证标签：类型名含「次日」= 定义里用了未来数据（如「低位拐点(次日验证)」），其胜率恒为 1，不可引用
+        forward_looking = "次日" in t
         out[t] = {
             "count": b["count"],
             "avgScore": round(b["sumScore"] / b["count"], 3) if b["count"] else None,
-            "winRate": round(b["wins"] / b["count"], 2) if b["count"] else None,
-            "desc": "次日情绪分上行=记为胜",
+            "winRate": None if forward_looking else (round(b["wins"] / b["count"], 2) if b["count"] else None),
+            "forwardLooking": forward_looking,
+            "desc": ("标签含次日信息，胜率自证、不可引用" if forward_looking else "次日情绪分上行=记为胜"),
         }
     return out
 
@@ -215,7 +218,8 @@ def render_md(nodes: list[dict], stats: dict, top: int) -> str:
         "| --- | --- | --- | --- |",
     ]
     for t, s in sorted(stats.items(), key=lambda kv: -(kv[1]["avgScore"] or -9)):
-        lines.append(f"| {t} | {s['count']} | {s['avgScore']} | {int((s['winRate'] or 0) * 100)}% |")
+        win_cell = "—（标签含次日信息，自证）" if s.get("forwardLooking") else f"{int((s['winRate'] or 0) * 100)}%"
+        lines.append(f"| {t} | {s['count']} | {s['avgScore']} | {win_cell} |")
     lines += [
         "",
         "## 二、最近节点（按日期倒序，最多 %d 条）" % top,

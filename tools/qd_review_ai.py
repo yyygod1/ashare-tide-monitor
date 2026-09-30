@@ -416,6 +416,7 @@ def calibration_summary(entries: list[dict], limit: int = 8) -> str:
     reviewed = [e for e in entries if e.get("score") and e.get("actual")]
     if not reviewed:
         return "（暂无历史预测记录，这是第一批）"
+    small_sample = len(reviewed) < 10
     accs = [e["score"]["accuracy"] for e in reviewed if e["score"].get("accuracy") is not None]
     overall = round(sum(accs) / len(accs), 2) if accs else None
     # 主指标：核心维池化（与前端 computeStats 同口径）
@@ -432,17 +433,20 @@ def calibration_summary(entries: list[dict], limit: int = 8) -> str:
                 (("sentHit", "情绪区间"), ("heightHit", "高度区间"), ("premiumHit", "溢价方向"), ("stanceHit", "立场"))
                 if s.get(key) is False]
         reasons = s.get("missReasons") or []
-        lines.append("- %s→%s｜预测 %s｜实际 情绪分 %s（%s）高度 %s 溢价 %s%%｜命中率 %s%s%s"
+        acc_txt = (("命中 %d/%d（n<10，不出百分比）" % (s.get("hits") or 0, s.get("scored") or 0)) if small_sample
+                   else ((str(round(s["accuracy"] * 100)) + "%") if s.get("accuracy") is not None else "—"))
+        lines.append("- %s→%s｜预测 %s｜实际 情绪分 %s（%s）高度 %s 溢价 %s%%｜%s%s%s"
                      % (entry.get("predictDate"), entry.get("targetDate"), p.get("stance") or "未结构化",
                         a.get("sent"), a.get("state6"), a.get("max_lbc"), a.get("prem_avg"),
-                        (str(round(s["accuracy"] * 100)) + "%") if s.get("accuracy") is not None else "—",
+                        acc_txt,
                         ("｜失准项：" + "、".join(miss)) if miss else "",
                         ("｜归因：" + "＋".join(reasons)) if reasons else ""))
     head = ("近 %d 次预测：核心维（情绪区间/溢价方向/立场）命中率 %s（主指标）｜全维平均 %s｜已复核 %d 次"
             "｜基准：六态多数类 %d%%、情绪 ±15 带宽 %d%%（低于基准即无优势）") % (
         len(reviewed[-limit:]),
-        (str(round(main * 100)) + "%") if main is not None else "—",
-        (str(round(overall * 100)) + "%") if overall is not None else "—",
+        (("—（n=%d<10，不出百分比）" % len(reviewed)) if small_sample
+         else ((str(round(main * 100)) + "%") if main is not None else "—")),
+        ("—" if small_sample else ((str(round(overall * 100)) + "%") if overall is not None else "—")),
         len(reviewed), round(REVIEW_BASELINES["state6Majority"] * 100), round(REVIEW_BASELINES["sentimentBand15"] * 100))
     return "\n".join([head] + lines)
 
@@ -463,10 +467,12 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
         k, v = item
         cnt = v.get("count") or 0
         wr = v.get("winRate")
-        ci = _wilson95(wr, cnt) if (wr is not None and cnt > 0) else None
+        is_fl = ("次日" in k) or bool(v.get("forwardLooking"))   # 标签含次日信息 => 胜率自证，不可引用
+        ci = _wilson95(wr, cnt) if (wr is not None and cnt > 0 and not is_fl) else None
         ci_txt = ("（95%%CI %d~%d%%）" % (int(ci[0] * 100 + 0.5), int(ci[1] * 100 + 0.5))) if ci else ""
-        wr_txt = (str(int(wr * 100 + 0.5)) + "%") if wr is not None else "—"
-        return "- %s：出现 %s 次，平均性价比 %s，次日情绪上行占比 %s%s" % (k, v.get("count"), v.get("avgScore"), wr_txt, ci_txt)
+        wr_txt = "—" if (wr is None or is_fl) else (str(int(wr * 100 + 0.5)) + "%")
+        fl = "（标签含次日信息，胜率自证，勿引用）" if is_fl else ""
+        return "- %s：出现 %s 次，平均性价比 %s，次日情绪上行占比 %s%s%s" % (k, v.get("count"), v.get("avgScore"), wr_txt, ci_txt, fl)
 
     _node_dates = sorted([nd.get("date") for nd in (memory.get("nodes") or []) if nd.get("date")])
     stat_window = ("样本窗口 %s ~ %s（买点节点 %d 个）" % (_node_dates[0], _node_dates[-1], len(_node_dates))) if _node_dates else "样本窗口 —"
@@ -513,7 +519,7 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
 
     return f"""【今日环境】{today}
 
-【历史买点节点类型统计（含次日验证胜率）】
+【历史买点节点类型统计（含次日验证胜率；带「胜率自证」的标签不可引用）】
 （{stat_window}）
 {stats}
 
@@ -529,17 +535,19 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
 【六态状态转移先验（walk-forward 估计；已附其历史成绩，若不如基准请勿过度依赖）】
 {matrix_text or '（未生成）'}
 
+【术语阈值（引用时必须用同一套口径）】昨涨停溢价：显著正 >1.5%／弱正 0~1.5%／弱负 -1.5%~0／显著负 <-1.5%；炸板率：低 <15%／中 15~25%／高 >25%。
+
 请输出一份可读的复盘（400-600 字，中文，分四点）：
-1) **当前位置判断**：结合今日环境与上面统计，说明当前更接近哪类节点、是否属于历史上性价比较高的低吸区，还是需要回避的追高区；给出依据（引用上面的数字）。**主结果**给出**次日情绪分区间**（sentimentRange）与**方向**（sentimentDirection：上行/震荡/下行），并给出**置信度（高/中/低）**。**六态仅作辅助标签**（历史可分性弱，勿当主结论）：一并给出 `state6Next` 与 `state6Probs`（六态完整概率分布，六项之和必须为 1，可用 0 表示该态无可能）。另给 `confidenceScore`（0~1 自评概率，须与 confidence 档位一致）与 `crossValidation`（节点统计／相似日／状态转移 三源方向一致性：偏多/偏空/分歧）。并在本段末写明**数据质量**（`dataQuality` 里 missing/uncertain 的字段及其对置信度的影响）。
-2) **明日关注方向**：依据**历史相似日的次日表现与其当时梯队**（上面已给出最近邻匹配），说明明日应重点观察哪类方向与哪类个股结构（如「3板以上接力」「2板卡位」「首板换手充分」），并给出**重点关注名单**（可包含具体个股——仅作为当时梯队里的观察对象，不是推荐；也可只给梯队层级）。
-3) **入场条件与失效条件**：给出可验证的触发（例如情绪分/高度/炸板率/溢价的数值条件）与明确的失效条件。触发必须拆两级：**entryNecessary = 必要条件，最多 2 条**（需全部满足才算触发）；**entryConfirm = 观察/确认项**（单独列出、不参与硬匹配，可为空）。并对**中间档**（如情绪分 70~85 的模糊区）给出处理，写进 `middleBand`。
-4) **风险与仓位**：指出当前样本局限（节点数量、估算数据）与需要回避的情形，并给出明确的**仓位与出手建议**（观望 / 1成试仓 / 3成 / 5成以上）。**硬约束**：样本不足时（台账已复核条数 < 30，或相似日有效匹配 < 3，或溢价 prem_avg 缺失）positionAdvice 必须为「观望」，并在正文说明样本不足。并回看上方校准段的**上一次预测 vs 实际**，用一句话给出**失准归因**（取 missReasons 枚举：数据口径／外部冲击／状态定义／模型）。
+1) **当前位置判断**：**首句必须是核心矛盾**（如资金温度 vs 最高板/涨停家数的背离），再展开。结合今日环境与上面统计，说明当前更接近哪类节点、是否属于历史上性价比较高的低吸区，还是需要回避的追高区；给出依据（引用上面的数字）。**主结果**给出**次日情绪分区间**（sentimentRange，**宽度 ≤12**，更宽必须说明理由并扣置信度）与**方向**（sentimentDirection：上行/震荡/下行），并给出**置信度（高/中/低）**。**六态仅作辅助标签**（历史可分性弱，勿当主结论）：一并给出 `state6Next` 与 `state6Probs`（六态完整概率分布，六项之和必须为 1，可用 0 表示该态无可能）。另给 `confidenceScore`（0~1 自评概率，须与 confidence 档位一致；正文必须写成「置信度：中（0.55）」这种带数值的形式）与 `crossValidation`（写法见第 2 点）。并在本段末写明**数据质量**（`dataQuality` 里 missing/uncertain 的字段及其对置信度的影响）；再单独一行以「基准对照：」开头（本次区间宽度对应的历史命中基准 vs 你的置信度）。
+2) **明日关注方向**：**先单独一行以「交叉验证：」开头**（节点统计＝偏多/偏空/—、相似日＝…、状态转移＝… ⇒ 综合：偏多/偏空/分歧；三源不一致则置信度压一档）。再依据**历史相似日的次日表现与其当时梯队**（上面已给出最近邻匹配），说明明日应重点观察哪类方向与哪类个股结构（如「3板以上接力」「2板卡位」「首板换手充分」），并给出**重点关注名单**（可包含具体个股——仅作为当时梯队里的观察对象，不是推荐；也可只给梯队层级）。
+3) **入场条件与失效条件**：给出可验证的触发（例如情绪分/高度/炸板率/溢价的数值条件）与明确的失效条件。触发必须拆两级：**entryNecessary = 必要条件，最多 2 条，且每条只写 1 个条件（禁止用「且/或/、」并列，多条件请拆到 entryConfirm）**（需全部满足才算触发）；**entryConfirm = 观察/确认项**（单独列出、不参与硬匹配，可为空）。并对**中间档**（如情绪分 70~85 的模糊区）给出处理，写进 `middleBand`：必须**无缝隙覆盖**「入场必要阈值」与「失效阈值」之间的全部模糊段（逐段给区间与动作，如 <40 失效 / 40~45 模糊 / ≥45 必要），不得只举例其一。
+4) **风险与仓位**：指出当前样本局限（节点数量、估算数据）与需要回避的情形，并给出明确的**仓位与出手建议**（观望 / 1成试仓 / 3成 / 5成以上）。**硬约束**：样本不足时（台账已复核条数 < 30，或相似日有效匹配 < 3，或溢价 prem_avg 缺失）positionAdvice 必须为「观望」，并在正文说明样本不足。并回看上方校准段的**上一次预测 vs 实际**，用一句话给出**失准归因**（取 missReasons 枚举：数据口径／外部冲击／状态定义／模型）。若校准段标注 n<10，正文不得引用百分比命中率（只能写命中 x/y）。
 
 最后一行注明：以上为数据整理，不构成投资建议。（字段补充：bigFaceRange=次日大面数区间、streakRange=次日连板家数区间、redRatioRange=次日全市场红盘率区间；拿不到就给 null。dataQuality 标注 zbRate/redRatio/bigFace 的取值来源状态：ok=正常取到 / missing=压根没有 / uncertain=估算或继承 / zero=确实为 0。missAttribution=失准归因（用上述枚举词）；dataBasis=数据口径：收盘实盘/回测/盘中）
 
 然后在末尾追加**严格 JSON**（用 ```json 包起来，不要注释、不要多余文字），用于回测校准：
 ```json
-{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","confidenceScore":0.0,"sentimentDirection":"上行|震荡|下行","crossValidation":"偏多|偏空|分歧","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","state6Probs":{{"冰点":0,"过冷":0,"微冷":0,"微热":0,"过热":0,"沸点":0}},"sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"bigFaceRange":[下限,上限],"streakRange":[下限,上限],"redRatioRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","ladderFocus":"3板以上接力|2板卡位|首板换手","watchlist":["个股名(板数/题材)"],"focusThemes":["题材A","题材B"],"entryNecessary":["必要条件，≤2条"],"entryConfirm":["观察/确认项"],"middleBand":"中间档(如情绪70-85)怎么处理","invalidConditions":["失效条件"],"dataQuality":{{"zbRate":"ok|missing|uncertain|zero","redRatio":"ok|missing|uncertain|zero","bigFace":"ok|missing|uncertain|zero"}},"missAttribution":"失准归因(用 missReasons 枚举词)","dataBasis":"收盘实盘|回测|盘中","riskNote":"一句话风险"}}
+{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","confidenceScore":0.0,"sentimentDirection":"上行|震荡|下行","crossValidation":"偏多|偏空|分歧","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","state6Probs":{{"冰点":0,"过冷":0,"微冷":0,"微热":0,"过热":0,"沸点":0}},"sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"bigFaceRange":[下限,上限],"streakRange":[下限,上限],"redRatioRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","ladderFocus":"3板以上接力|2板卡位|首板换手","watchlist":["个股名(板数/题材)"],"focusThemes":["题材A","题材B"],"entryNecessary":["必要条件(≤2条，每条仅1个条件)"],"entryConfirm":["观察/确认项"],"middleBand":"中间档(如情绪70-85)怎么处理","invalidConditions":["失效条件"],"dataQuality":{{"zbRate":"ok|missing|uncertain|zero","redRatio":"ok|missing|uncertain|zero","bigFace":"ok|missing|uncertain|zero"}},"missAttribution":"失准归因(用 missReasons 枚举词)","dataBasis":"收盘实盘|回测|盘中","riskNote":"一句话风险"}}
 ```"""
 
 
