@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import re
 import urllib.error
@@ -446,11 +447,29 @@ def calibration_summary(entries: list[dict], limit: int = 8) -> str:
 
 # ---------- 提示词（与前端同结构）----------
 def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = False, similar_text: str = "", matrix_text: str = "") -> str:
+    def _wilson95(p, n):
+        if n <= 0:
+            return None
+        z = 1.96
+        z2 = z * z
+        denom = 1 + z2 / n
+        center = (p + z2 / (2 * n)) / denom
+        half = (z * math.sqrt((p * (1 - p)) / n + z2 / (4 * n * n))) / denom
+        return max(0.0, center - half), min(1.0, center + half)
+
+    def _stat_line(item):
+        k, v = item
+        cnt = v.get("count") or 0
+        wr = v.get("winRate")
+        ci = _wilson95(wr, cnt) if (wr is not None and cnt > 0) else None
+        ci_txt = ("（95%%CI %d~%d%%）" % (int(ci[0] * 100 + 0.5), int(ci[1] * 100 + 0.5))) if ci else ""
+        wr_txt = (str(int(wr * 100 + 0.5)) + "%") if wr is not None else "—"
+        return "- %s：出现 %s 次，平均性价比 %s，次日情绪上行占比 %s%s" % (k, v.get("count"), v.get("avgScore"), wr_txt, ci_txt)
+
+    _node_dates = sorted([nd.get("date") for nd in (memory.get("nodes") or []) if nd.get("date")])
+    stat_window = ("样本窗口 %s ~ %s（买点节点 %d 个）" % (_node_dates[0], _node_dates[-1], len(_node_dates))) if _node_dates else "样本窗口 —"
     stats = "\n".join(
-        "- %s：出现 %s 次，平均性价比 %s，次日情绪上行占比 %s" % (
-            k, v.get("count"), v.get("avgScore"),
-            (str(round((v.get("winRate") or 0) * 100)) + "%") if v.get("winRate") is not None else "—")
-        for k, v in sorted((memory.get("stats") or {}).items(), key=lambda kv: -(kv[1].get("avgScore") or -9))
+        _stat_line(item) for item in sorted((memory.get("stats") or {}).items(), key=lambda kv: -(kv[1].get("avgScore") or -9))
     ) or "—"
     nodes = list(memory.get("nodes") or [])[-3 if compact else -8:]
     node_txt = []
@@ -484,15 +503,16 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
         node_txt.append("\n".join(block))
 
     hits = [k for k, v in ((state.get("veto") or {}).get("hits") or {}).items() if v]
-    today = "日期 %s｜情绪分 %s（%s）｜资金温度 %s｜最高板 %s｜炸板率 %s%%｜昨涨停溢价 %s%%｜大面 %s｜veto %s%s" % (
+    today = "日期 %s｜情绪分 %s（%s）｜资金温度 %s｜最高板 %s｜涨停家数 %s 家｜炸板率 %s%%｜昨涨停溢价 %s%%｜大面 %s｜veto %s%s" % (
         state.get("date"), state.get("sentiment"), state.get("state6"), state.get("fundTemp"),
-        state.get("maxBoard"), state.get("brokenRate"), state.get("premiumAvg"), state.get("bigFace"),
+        state.get("maxBoard"), state.get("limitUp"), state.get("brokenRate"), state.get("premiumAvg"), state.get("bigFace"),
         (state.get("veto") or {}).get("finalState") or "未生效",
         ("（命中 " + "、".join(hits) + "）") if hits else "")
 
     return f"""【今日环境】{today}
 
 【历史买点节点类型统计（含次日验证胜率）】
+（{stat_window}）
 {stats}
 
 【最近节点明细（含当时环境、领头题材与核心股、事后验证）】
@@ -508,16 +528,16 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
 {matrix_text or '（未生成）'}
 
 请输出一份可读的复盘（400-600 字，中文，分四点）：
-1) **当前位置判断**：结合今日环境与上面统计，说明当前更接近哪类节点、是否属于历史上性价比较高的低吸区，还是需要回避的追高区；给出依据（引用上面的数字）。**主结果**给出**次日情绪分区间**（sentimentRange）与**方向**（sentimentDirection：上行/震荡/下行），并给出**置信度（高/中/低）**。**六态仅作辅助标签**（历史可分性弱，勿当主结论）：一并给出 `state6Next` 与 `state6Probs`（六态完整概率分布，六项之和必须为 1，可用 0 表示该态无可能）。
+1) **当前位置判断**：结合今日环境与上面统计，说明当前更接近哪类节点、是否属于历史上性价比较高的低吸区，还是需要回避的追高区；给出依据（引用上面的数字）。**主结果**给出**次日情绪分区间**（sentimentRange）与**方向**（sentimentDirection：上行/震荡/下行），并给出**置信度（高/中/低）**。**六态仅作辅助标签**（历史可分性弱，勿当主结论）：一并给出 `state6Next` 与 `state6Probs`（六态完整概率分布，六项之和必须为 1，可用 0 表示该态无可能）。另给 `confidenceScore`（0~1 自评概率，须与 confidence 档位一致）与 `crossValidation`（节点统计／相似日／状态转移 三源方向一致性：偏多/偏空/分歧）。
 2) **明日关注方向**：依据**历史相似日的次日表现与其当时梯队**（上面已给出最近邻匹配），说明明日应重点观察哪类方向与哪类个股结构（如「3板以上接力」「2板卡位」「首板换手充分」），并给出**重点关注名单**（可包含具体个股——仅作为当时梯队里的观察对象，不是推荐；也可只给梯队层级）。
-3) **入场条件与失效条件**：给出可验证的触发（例如情绪分/高度/炸板率/溢价的数值条件）与明确的失效条件。触发必须拆两级：**entryNecessary = 必要条件，最多 2 条**（需全部满足才算触发）；**entryConfirm = 观察/确认项**（单独列出、不参与硬匹配，可为空）。
+3) **入场条件与失效条件**：给出可验证的触发（例如情绪分/高度/炸板率/溢价的数值条件）与明确的失效条件。触发必须拆两级：**entryNecessary = 必要条件，最多 2 条**（需全部满足才算触发）；**entryConfirm = 观察/确认项**（单独列出、不参与硬匹配，可为空）。并对**中间档**（如情绪分 70~85 的模糊区）给出处理，写进 `middleBand`。
 4) **风险与仓位**：指出当前样本局限（节点数量、估算数据）与需要回避的情形，并给出明确的**仓位与出手建议**（观望 / 1成试仓 / 3成 / 5成以上）。**硬约束**：样本不足时（台账已复核条数 < 30，或相似日有效匹配 < 3，或溢价 prem_avg 缺失）positionAdvice 必须为「观望」，并在正文说明样本不足。
 
-最后一行注明：以上为数据整理，不构成投资建议。（字段补充：bigFaceRange=次日大面数区间、streakRange=次日连板家数区间、redRatioRange=次日全市场红盘率区间；拿不到就给 null）
+最后一行注明：以上为数据整理，不构成投资建议。（字段补充：bigFaceRange=次日大面数区间、streakRange=次日连板家数区间、redRatioRange=次日全市场红盘率区间；拿不到就给 null。dataQuality 标注 zbRate/redRatio/bigFace 的取值来源状态：ok=正常取到 / missing=压根没有 / uncertain=估算或继承 / zero=确实为 0）
 
 然后在末尾追加**严格 JSON**（用 ```json 包起来，不要注释、不要多余文字），用于回测校准：
 ```json
-{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","sentimentDirection":"上行|震荡|下行","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","state6Probs":{{"冰点":0,"过冷":0,"微冷":0,"微热":0,"过热":0,"沸点":0}},"sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"bigFaceRange":[下限,上限],"streakRange":[下限,上限],"redRatioRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","ladderFocus":"3板以上接力|2板卡位|首板换手","watchlist":["个股名(板数/题材)"],"focusThemes":["题材A","题材B"],"entryNecessary":["必要条件，≤2条"],"entryConfirm":["观察/确认项"],"invalidConditions":["失效条件"],"riskNote":"一句话风险"}}
+{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","confidenceScore":0.0,"sentimentDirection":"上行|震荡|下行","crossValidation":"偏多|偏空|分歧","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","state6Probs":{{"冰点":0,"过冷":0,"微冷":0,"微热":0,"过热":0,"沸点":0}},"sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"bigFaceRange":[下限,上限],"streakRange":[下限,上限],"redRatioRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","ladderFocus":"3板以上接力|2板卡位|首板换手","watchlist":["个股名(板数/题材)"],"focusThemes":["题材A","题材B"],"entryNecessary":["必要条件，≤2条"],"entryConfirm":["观察/确认项"],"middleBand":"中间档(如情绪70-85)怎么处理","invalidConditions":["失效条件"],"dataQuality":{{"zbRate":"ok|missing|uncertain|zero","redRatio":"ok|missing|uncertain|zero","bigFace":"ok|missing|uncertain|zero"}},"riskNote":"一句话风险"}}
 ```"""
 
 
@@ -570,6 +590,7 @@ def derive_state(rows: list[dict]) -> dict:
         "state6": row.get("state6"),
         "fundTemp": row.get("temp"),
         "maxBoard": row.get("max_lbc"),
+        "limitUp": row.get("zt"),
         "brokenRate": row.get("zb_rate"),
         "premiumAvg": row.get("prem_avg"),
         "bigFace": row.get("damian"),
