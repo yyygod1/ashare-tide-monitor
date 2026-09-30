@@ -234,18 +234,27 @@ def render_similar(matches: list[dict], meta: dict | None = None) -> str:
 
 # ---------- 台账分层与三态（与 services/reviewLedgerService.ts 逐字对齐）----------
 DIM_LABEL = {"sent": "情绪区间", "state6": "六态", "height": "高度区间", "zt": "涨停家数",
-             "zbRate": "炸板率", "premium": "溢价方向", "stance": "立场"}
+             "zbRate": "炸板率", "premium": "溢价方向", "stance": "立场",
+             "streak": "连板家数", "bigFace": "大面数", "redRatio": "红盘率"}
 # 六态对次日的互信息仅 ~11.5%（2026-09-30 回填后实测、置换检验刚显著）-> 降为辅助维
 CORE_DIMS = ["sent", "premium", "stance"]
-EXTENDED_DIMS = ["height", "zt", "zbRate"]
+# P0c′ 新增三维按实测覆盖率定门槛：
+#   streak（zt_lianban）覆盖 100% -> 立即计入；
+#   bigFace（damian）覆盖 ~17% -> 计入（无 actual 自然归 no_actual，不进分母）；
+#   redRatio（market_red）仅 ~6% -> 标 pending_actual（暂不进分母）。
+EXTENDED_DIMS = ["height", "zt", "zbRate", "streak", "bigFace", "redRatio"]
 AUX_DIMS = ["state6"]
 ALL_DIMS = CORE_DIMS + EXTENDED_DIMS + AUX_DIMS
+DIM_GATE = {k: "active" for k in ALL_DIMS}
+DIM_GATE["redRatio"] = "pending_actual"
 # 基准（口径 2026-09-30；复跑 _bridge/qd_review_diag.py 可复现）
 REVIEW_BASELINES = {"state6Majority": 0.273, "state6TransitionTop1InSample": 0.331,
                     "sentimentBand15": 0.397, "brierState6Prior": 0.8064, "brierDirPrior": 0.6622}
 
 
-def _dim_status(predicted: bool, actual_available: bool, hit) -> str:
+def _dim_status(predicted: bool, actual_available: bool, hit, gate: str = "active") -> str:
+    if gate == "pending_actual":
+        return "pending_actual"
     if not predicted:
         return "not_predicted"
     if not actual_available:
@@ -317,19 +326,33 @@ def score_entry(entry: dict, actual: dict, prev_sent):
             stance_hit = actual["sent"] > prev_sent
         elif p["stance"] == "追高区":
             stance_hit = actual["sent"] < prev_sent
-    items = [v for v in (sent_hit, state6_hit, height_hit, zt_hit, zb_rate_hit, prem_hit, stance_hit) if v is not None]
-    hits = sum(1 for v in items if v)
+    big_face_hit = in_range(actual.get("bigFace"), p.get("bigFaceRange"))
+    streak_hit = in_range(actual.get("zt_lianban"), p.get("streakRange"))
+    red_ratio_hit = in_range(actual.get("marketRedRatio"), p.get("redRatioRange"))
 
-    # 三态：区分「未预测」/「无实际数据」/ 命中失准
-    dim_status = {
-        "sent": _dim_status(_is_range(p.get("sentimentRange")), actual.get("sent") is not None, sent_hit),
-        "state6": _dim_status(bool(p.get("state6Next")), actual.get("state6") is not None, state6_hit),
-        "height": _dim_status(_is_range(p.get("heightRange")), actual.get("max_lbc") is not None, height_hit),
-        "zt": _dim_status(_is_range(p.get("ztRange")), actual.get("zt") is not None, zt_hit),
-        "zbRate": _dim_status(_is_range(p.get("zbRateRange")), actual.get("zb_rate") is not None, zb_rate_hit),
-        "premium": _dim_status(bool(p.get("premiumSign")), actual.get("prem_avg") is not None, prem_hit),
-        "stance": _dim_status(bool(p.get("stance")), prev_sent is not None and actual.get("sent") is not None, stance_hit),
+    # 三态 + 覆盖率门槛：显式列出「预测是否给了该维」「实际是否有该维」，gate=pending_actual 不计分
+    pred_present = {
+        "sent": _is_range(p.get("sentimentRange")), "state6": bool(p.get("state6Next")),
+        "height": _is_range(p.get("heightRange")), "zt": _is_range(p.get("ztRange")),
+        "zbRate": _is_range(p.get("zbRateRange")), "premium": bool(p.get("premiumSign")),
+        "stance": bool(p.get("stance")), "bigFace": _is_range(p.get("bigFaceRange")),
+        "streak": _is_range(p.get("streakRange")), "redRatio": _is_range(p.get("redRatioRange")),
     }
+    actual_present = {
+        "sent": actual.get("sent") is not None, "state6": actual.get("state6") is not None,
+        "height": actual.get("max_lbc") is not None, "zt": actual.get("zt") is not None,
+        "zbRate": actual.get("zb_rate") is not None, "premium": actual.get("prem_avg") is not None,
+        "stance": prev_sent is not None and actual.get("sent") is not None,
+        "bigFace": actual.get("bigFace") is not None, "streak": actual.get("zt_lianban") is not None,
+        "redRatio": actual.get("marketRedRatio") is not None,
+    }
+    raw_hits = {"sent": sent_hit, "state6": state6_hit, "height": height_hit, "zt": zt_hit,
+                "zbRate": zb_rate_hit, "premium": prem_hit, "stance": stance_hit,
+                "bigFace": big_face_hit, "streak": streak_hit, "redRatio": red_ratio_hit}
+    dim_status = {k: _dim_status(pred_present[k], actual_present[k], raw_hits[k], DIM_GATE.get(k, "active"))
+                  for k in ALL_DIMS}
+    items = [dim_status[k] for k in ALL_DIMS if dim_status[k] in ("hit", "miss")]
+    hits = sum(1 for s in items if s == "hit")
     core_decided = [dim_status[k] for k in CORE_DIMS if dim_status[k] in ("hit", "miss")]
     core_hits = sum(1 for s in core_decided if s == "hit")
 
@@ -376,6 +399,10 @@ def backfill(entries: list[dict], rows: list[dict]) -> int:
         row = rows[idx]
         prev_sent = rows[idx - 1].get("sent") if idx > 0 else None
         actual = {k: row.get(k) for k in ("date", "sent", "state6", "max_lbc", "prem_avg", "zt", "zb_rate")}
+        # P0c′ 新增三维的实际值（字段名与 tide_history/tide-data 对齐）
+        actual["zt_lianban"] = row.get("zt_lianban")
+        actual["bigFace"] = row.get("damian")
+        actual["marketRedRatio"] = row.get("market_red")
         entry["targetDate"] = target
         entry["actual"] = actual
         entry["score"] = score_entry(entry, actual, prev_sent)
@@ -483,11 +510,11 @@ def build_prompt(memory: dict, state: dict, calibration: str, compact: bool = Fa
 3) **入场条件与失效条件**：给出可验证的触发（例如情绪分/高度/炸板率/溢价的数值条件）与明确的失效条件。
 4) **风险与仓位**：指出当前样本局限（节点数量、估算数据）与需要回避的情形，并给出明确的**仓位与出手建议**（观望 / 1成试仓 / 3成 / 5成以上）。
 
-最后一行注明：以上为数据整理，不构成投资建议。
+最后一行注明：以上为数据整理，不构成投资建议。（字段补充：bigFaceRange=次日大面数区间、streakRange=次日连板家数区间、redRatioRange=次日全市场红盘率区间；拿不到就给 null）
 
 然后在末尾追加**严格 JSON**（用 ```json 包起来，不要注释、不要多余文字），用于回测校准：
 ```json
-{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","state6Probs":{{"冰点":0,"过冷":0,"微冷":0,"微热":0,"过热":0,"沸点":0}},"sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","ladderFocus":"3板以上接力|2板卡位|首板换手","watchlist":["个股名(板数/题材)"],"focusThemes":["题材A","题材B"],"entryConditions":["可验证条件"],"invalidConditions":["失效条件"],"riskNote":"一句话风险"}}
+{{"stance":"低吸区|中性|追高区","confidence":"高|中|低","state6Next":"冰点|过冷|微冷|微热|过热|沸点|不确定","state6Probs":{{"冰点":0,"过冷":0,"微冷":0,"微热":0,"过热":0,"沸点":0}},"sentimentRange":[下限,上限],"heightRange":[下限,上限],"ztRange":[下限,上限],"zbRateRange":[下限,上限],"bigFaceRange":[下限,上限],"streakRange":[下限,上限],"redRatioRange":[下限,上限],"premiumSign":"正|负|持平","positionAdvice":"观望|1成试仓|3成|5成以上","ladderFocus":"3板以上接力|2板卡位|首板换手","watchlist":["个股名(板数/题材)"],"focusThemes":["题材A","题材B"],"entryConditions":["可验证条件"],"invalidConditions":["失效条件"],"riskNote":"一句话风险"}}
 ```"""
 
 
