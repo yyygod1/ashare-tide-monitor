@@ -1,0 +1,3 @@
+# Force LF for the contract-checked bridge script so core.autocrlf=true
+# cannot re-mangle line endings on checkout/pull/reset.
+tools/qd_review_ai.py text eol=lf
