@@ -111,6 +111,25 @@ const ZB = d => `https://push2ex.eastmoney.com/getTopicZBPool?ut=7eea3edcaed734b
   });
   if (kept) console.log('保留历史日涨停池数据: ' + kept + ' 天');
 
+  // —— 缺口段因子回填（2026-04-07~08-26）——
+  // 东财涨停/炸板池只回看约 20 个交易日、premium-daily 仅滚动约 1 个月，缺口段无法从实时接口重建；
+  // 故把当时抓到的真值存成源文件 tide-backfill.json，每次构建后按日期覆盖（对近期段零影响）。
+  try {
+    const bfPath = __dirname + '/tide-backfill.json';
+    if (fs.existsSync(bfPath)) {
+      const bf = JSON.parse(fs.readFileSync(bfPath, 'utf8'));
+      const bfKeys = ['zt', 'zt_first', 'zt_lianban', 'max_lbc', 'zb', 'zb_rate', 'prem_avg', 'prem_red', 'damian', 'n_prev'];
+      let bfn = 0;
+      rows.forEach(r => {
+        const v = bf.days && bf.days[r.date];
+        if (!v) return;
+        bfKeys.forEach(k => { if (v[k] != null) r[k] = v[k]; });
+        bfn++;
+      });
+      if (bfn) console.log('缺口段回填 tide-backfill: ' + bfn + ' 天');
+    }
+  } catch (e) { console.log('缺口段回填跳过: ' + e.message); }
+
   // 资金温度（仅作资金冷暖参考）：沪深主力净额在过去60个交易日的百分位
   const W = 60;
   fund.forEach((r, i) => { const win = fund.slice(Math.max(0, i - W), i + 1).map(x => x.main);
