@@ -448,7 +448,7 @@
   {
     "id": "2026-10-09-deepseek-chat-1791542910",
     "predictDate": "2026-10-09",
-    "targetDate": "",
+    "targetDate": "2026-10-12",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-09T10:48:30Z",
@@ -539,6 +539,150 @@
       "state6": "过热",
       "max_lbc": 9,
       "prem_avg": 2.78
+    },
+    "actual": {
+      "date": "2026-10-12",
+      "sent": 49,
+      "state6": "微冷",
+      "max_lbc": 10,
+      "prem_avg": 1.45,
+      "zt": 46,
+      "zb_rate": 35,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": true,
+      "state6Hit": false,
+      "heightHit": false,
+      "ztHit": true,
+      "zbRateHit": false,
+      "premiumHit": true,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 4,
+      "accuracy": 0.57,
+      "dimStatus": {
+        "sent": "hit",
+        "premium": "hit",
+        "stance": "hit",
+        "height": "miss",
+        "zt": "hit",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 3,
+      "coreScored": 3,
+      "coreAccuracy": 1.0,
+      "brierState6": 0.9902,
+      "logLoss": 1.9661,
+      "missReasons": [
+        "数据口径",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-10-12T17:29:25Z"
+  },
+  {
+    "id": "2026-10-12-deepseek-chat-1791826174",
+    "predictDate": "2026-10-12",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-10-12T17:29:34Z",
+    "prediction": {
+      "stance": "中性",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "震荡",
+      "crossValidation": "分歧",
+      "state6Next": "微冷",
+      "state6Probs": {
+        "冰点": 0.08,
+        "过冷": 0.21,
+        "微冷": 0.25,
+        "微热": 0.25,
+        "过热": 0.13,
+        "沸点": 0.08
+      },
+      "sentimentRange": [
+        44,
+        54
+      ],
+      "heightRange": [
+        8,
+        10
+      ],
+      "ztRange": [
+        40,
+        55
+      ],
+      "zbRateRange": [
+        28,
+        40
+      ],
+      "bigFaceRange": [
+        10,
+        18
+      ],
+      "streakRange": [
+        null,
+        null
+      ],
+      "redRatioRange": [
+        null,
+        null
+      ],
+      "premiumSign": "正",
+      "positionAdvice": "观望",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "新华传媒(10板/出版)",
+        "时代万恒(5板/电池)",
+        "九阳股份(5板/小家电)",
+        "紫竹高科(4板/电池)"
+      ],
+      "focusThemes": [
+        "电池",
+        "出版",
+        "小家电"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥45",
+        "次日炸板率≤30%"
+      ],
+      "entryConfirm": [
+        "昨涨停溢价转显著正(>1.5%)",
+        "高度不再扩张至11板以上",
+        "大面数回落至10家以内"
+      ],
+      "middleBand": "<40失效(观望)｜40~45模糊(仅1成试仓,需溢价转正配合)｜45~55必要区(可1~3成)｜55~70模糊(3成,需高度不破10)｜>70追高区(回避,不新开仓)",
+      "invalidConditions": [
+        "情绪分跌破40",
+        "炸板率升破40%",
+        "昨涨停溢价转负(<-1.5%)",
+        "最高板断板至7板以下"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "数据口径",
+      "dataBasis": "收盘实盘",
+      "riskNote": "高度虚高叠加温度偏冷与高炸板率，追高接力风险大，样本复核不足30条故从严观望。"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾：资金温度 41 与最高板 10 的背离——高度在扩张（9→10），但资金温度偏低、炸板率 35%（高）、大面 15 家，说明高位接力靠存量资金硬撑，增量不足。今日情绪分 49（微冷），昨涨停溢价 1.45%（弱正），veto 命中 T3、T6（过冷），属于「高度虚高 + 温度偏冷」的错配结构。\n\n节点归类：今日不满足「冰点/过冷区」的性价比条件（情绪分 49 未进入过冷区，温度 41 亦非冰点水平），也不属于「溢价转正」的典型形态（溢价 1.45% 仅为弱正，未达显著正 >1.5%）。更接近「情绪跳升后的回落中继」——昨日 10-09 为溢价转正/情绪跳升节点（性价比 -0.472），次日已验证为情绪分 -25 的回落，今日即为该回落的延续。历史统计中「情绪跳升」节点平均性价比 -0.336、次日上行占比仅 37%，属需回避的追高类节点，而非高性价比低吸区。\n\n主结果：次日情绪分区间 44~54（宽度 10），方向震荡，置信度：中（0.55）。六态辅助标签：微冷（历史可分性弱，不作主结论）。\n\n数据质量：zbRate=ok（35% 实盘取到）、bigFace=ok（15 家）、redRatio=missing（未提供全市场红盘率），redRatio 缺失使红盘率区间只能给 null，对置信度构成一档压制。\n\n基准对照：宽度 10 对应的历史命中基准约 40%（情绪 ±15 带宽基准），本次置信度中（0.55）略高于基准，但受 redRatio 缺失与状态转移先验弱（Top1 19% < 多数类 27.3%）拖累，不宜上调。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏空（情绪跳升次日上行仅 37%，溢价转正次日上行 45%）｜相似日＝分歧（8 个近邻中 4 个次日上行 +14~+42，3 个下行 -26~-29，1 个持平）｜状态转移＝偏空（微冷→微热 25%、过冷 21%、过热 21%，Top1 命中仅 19%）⇒ 综合：分歧。\n\n相似日梯队显示，次日走强的样本（07-08、05-18、07-30、08-11）多伴随高度小幅抬升或持平，走弱样本（05-20、07-16）则高度收缩。当前高度已至 10 板，接力风险偏高，重点观察 2 板卡位与首板换手充分的结构，回避 3 板以上高位接力。\n\n重点关注名单（仅作当时梯队观察对象，非推荐）：新华传媒(10板/出版)、时代万恒(5板/电池)、九阳股份(5板/小家电)、紫竹高科(4板/电池)。题材关注：电池、出版、小家电。\n\n**3) 入场条件与失效条件**\n\nentryNecessary（须全部满足）：① 次日情绪分 ≥ 45；② 次日炸板率 ≤ 30%。\n\nentryConfirm（观察项，不参与硬匹配）：昨涨停溢价转显著正（>1.5%）；高度不再扩张至 11 板以上；大面数回落至 10 家以内。\n\nmiddleBand（无缝隙覆盖）：<40 失效（观望）｜40~45 模糊（仅 1 成试仓，需溢价转正配合）｜45~55 必要区（可 1~3 成）｜55~70 模糊（3 成，需高度不破 10）｜>70 追高区（回避，不新开仓）。\n\ninvalidConditions：情绪分跌破 40；炸板率升破 40%；昨涨停溢价转负（<-1.5%）；最高板断板至 7 板以下。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 5 次（<30），相似日有效匹配 8 个（≥3），但 redRatio 缺失、状态转移先验弱于基准，样本不足约束下仓位从严。需回避情形：高度虚高 + 温度偏冷 + 炸板率高企三者叠加时的追高接力。\n\n仓位建议：观望（样本复核条数 <30，触发硬约束）。\n\n失准归因：上一次预测（10-09→10-12）失准项为高度区间，归因取「数据口径」。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-10-12",
+      "sent": 49,
+      "state6": "微冷",
+      "max_lbc": 10,
+      "prem_avg": 1.45
     },
     "actual": null,
     "score": null,
