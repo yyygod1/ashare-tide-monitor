@@ -590,7 +590,7 @@
   {
     "id": "2026-10-12-deepseek-chat-1791826174",
     "predictDate": "2026-10-12",
-    "targetDate": "",
+    "targetDate": "2026-10-13",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-12T17:29:34Z",
@@ -683,6 +683,138 @@
       "state6": "微冷",
       "max_lbc": 10,
       "prem_avg": 1.45
+    },
+    "actual": {
+      "date": "2026-10-13",
+      "sent": 45,
+      "state6": "微冷",
+      "max_lbc": 3,
+      "prem_avg": 0.88,
+      "zt": 67,
+      "zb_rate": 22,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": true,
+      "state6Hit": true,
+      "heightHit": false,
+      "ztHit": false,
+      "zbRateHit": false,
+      "premiumHit": true,
+      "stanceHit": null,
+      "scored": 7,
+      "hits": 3,
+      "accuracy": 0.43,
+      "dimStatus": {
+        "sent": "hit",
+        "premium": "hit",
+        "stance": "miss",
+        "height": "miss",
+        "zt": "miss",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "hit"
+      },
+      "coreHits": 2,
+      "coreScored": 3,
+      "coreAccuracy": 0.67,
+      "brierState6": 0.6988,
+      "logLoss": 1.3863,
+      "missReasons": [
+        "数据口径"
+      ]
+    },
+    "reviewedAt": "2026-10-13T15:39:17Z"
+  },
+  {
+    "id": "2026-10-13-deepseek-chat-1791905965",
+    "predictDate": "2026-10-13",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-10-13T15:39:25Z",
+    "prediction": {
+      "stance": "中性",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "震荡",
+      "crossValidation": "分歧",
+      "state6Next": "微冷",
+      "state6Probs": {
+        "冰点": 0.08,
+        "过冷": 0.16,
+        "微冷": 0.16,
+        "微热": 0.28,
+        "过热": 0.24,
+        "沸点": 0.08
+      },
+      "sentimentRange": [
+        42,
+        54
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        50,
+        75
+      ],
+      "zbRateRange": [
+        18,
+        28
+      ],
+      "bigFaceRange": [
+        6,
+        14
+      ],
+      "streakRange": null,
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "观望",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "时代万恒(5板/电池)",
+        "新华传媒(9板/出版)"
+      ],
+      "focusThemes": [
+        "电池",
+        "软件开发"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥45",
+        "次日炸板率≤25%"
+      ],
+      "entryConfirm": [
+        "昨涨停溢价>1.5%",
+        "最高板回升至4以上"
+      ],
+      "middleBand": "<40失效观望／40~45模糊仅1成试仓需溢价转正确认／≥45必要可考虑1~3成",
+      "invalidConditions": [
+        "情绪分跌破40",
+        "炸板率>30%",
+        "溢价<-1.5%"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "数据口径",
+      "dataBasis": "收盘实盘",
+      "riskNote": "样本不足且温度与高度背离，接力失败风险高，建议观望"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是：资金温度 64 偏中性偏暖，但最高板仅 3、涨停 67 家、大面 10，情绪分 45（微冷）——**温度与高度/情绪明显背离，属于「资金未撤但接力意愿弱」的缩量退潮尾段**。今日命中 veto 过冷（T2），说明系统层面已给出回避信号。对照节点统计：冰点/过冷区（43 次，次日上行 79%，CI 65~89%）是唯一有统计优势的节点，但今日情绪分 45 并不在过冷区（<40），更接近 2026-09-24（情绪 45、高度 5、溢价 -0.04%）那类「微冷+情绪跳升」节点，该节点次日情绪 -16、溢价 -1.87，属**需回避的追高/接力失败区**，而非高性价比低吸区。相似日 8 例次日情绪变化为 +12、-19、+24、+8、0、+29、+7、+27，方向高度分歧，均值偏上但方差极大。综合判断：**中性偏谨慎，不构成低吸区**。\n\n主结果：次日情绪分区间 **42~54**（宽度 12），方向**震荡**，置信度：**中（0.55）**。六态辅助标签：`state6Next` 微冷，概率分布见 JSON。数据质量：zbRate=ok、bigFace=ok、redRatio=missing（无全市场红盘率数据），缺失项使置信度下调一档至中。\n\n基准对照：区间宽度 12 对应的历史命中基准约 40%，本次置信度 0.55 略高于基准，但优势有限。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏空（微冷非过冷，无统计优势）｜相似日＝分歧（8 例方向 5 上 1 平 2 下）｜状态转移＝偏多（微冷→微热 28%、过热 24%）⇒ 综合：**分歧**，置信度压一档。\n\n相似日次日梯队无记录，无法给出具体接力结构验证。结合今日梯队（最高 3 板）与历史微冷节点表现，明日重点观察：**2 板卡位与首板换手充分**结构，回避 3 板以上接力（高度已压缩至 3，接力风险高）。重点关注名单仅作观察对象：时代万恒(5板/电池)、新华传媒(9板/出版) 等高位股是否补跌，以及电池、软件开发方向能否出现新的 2 板卡位。\n\n**3) 入场条件与失效条件**\n\nentryNecessary（须全部满足）：① 次日情绪分 ≥ 45；② 次日炸板率 ≤ 25%。\nentryConfirm（观察项）：昨涨停溢价转正 >1.5%；最高板回升至 4 以上。\nmiddleBand：<40 失效（观望）／40~45 模糊（仅 1 成试仓，需溢价转正确认）／≥45 必要（可考虑 1~3 成）。\n失效条件：情绪分跌破 40，或炸板率 >30%，或溢价转负 <-1.5%。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核仅 6 次（<30），相似日有效匹配 8 例（≥3 但梯队缺失），溢价 prem_avg 可读但节点样本不足。**硬约束下 positionAdvice 应为「观望」**，正文说明样本不足。上一次预测（2026-10-12→10-13）预测中性、实际微冷，失准项为高度区间，归因：**数据口径**。仓位建议：**观望**，不参与接力，等待情绪分与炸板率给出明确信号。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-10-13",
+      "sent": 45,
+      "state6": "微冷",
+      "max_lbc": 3,
+      "prem_avg": 0.88
     },
     "actual": null,
     "score": null,
