@@ -733,7 +733,7 @@
   {
     "id": "2026-10-13-deepseek-chat-1791905965",
     "predictDate": "2026-10-13",
-    "targetDate": "",
+    "targetDate": "2026-10-14",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-13T15:39:25Z",
@@ -815,6 +815,151 @@
       "state6": "微冷",
       "max_lbc": 3,
       "prem_avg": 0.88
+    },
+    "actual": {
+      "date": "2026-10-14",
+      "sent": 17,
+      "state6": "冰点",
+      "max_lbc": 4,
+      "prem_avg": -0.36,
+      "zt": 36,
+      "zb_rate": 40,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": false,
+      "heightHit": true,
+      "ztHit": false,
+      "zbRateHit": false,
+      "premiumHit": false,
+      "stanceHit": null,
+      "scored": 7,
+      "hits": 1,
+      "accuracy": 0.14,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "miss",
+        "stance": "miss",
+        "height": "hit",
+        "zt": "miss",
+        "zbRate": "miss",
+        "streak": "not_predicted",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 0,
+      "coreScored": 3,
+      "coreAccuracy": 0.0,
+      "brierState6": 1.04,
+      "logLoss": 2.5257,
+      "missReasons": [
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-10-14T13:24:16Z"
+  },
+  {
+    "id": "2026-10-14-deepseek-chat-1791984265",
+    "predictDate": "2026-10-14",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-10-14T13:24:25Z",
+    "prediction": {
+      "stance": "低吸区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "上行",
+      "crossValidation": "偏多",
+      "state6Next": "过冷",
+      "state6Probs": {
+        "冰点": 0,
+        "过冷": 0.42,
+        "微冷": 0.17,
+        "微热": 0.08,
+        "过热": 0.25,
+        "沸点": 0.08
+      },
+      "sentimentRange": [
+        25,
+        37
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        30,
+        45
+      ],
+      "zbRateRange": [
+        30,
+        42
+      ],
+      "bigFaceRange": [
+        10,
+        25
+      ],
+      "streakRange": [
+        5,
+        10
+      ],
+      "redRatioRange": null,
+      "premiumSign": "负",
+      "positionAdvice": "1成试仓",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "百洋股份(4板/饲料)",
+        "慈文传媒(4板/影视院线)",
+        "醋化股份(3板/化学制品)",
+        "冰山冷热(2板/通用设备)",
+        "荣丰控股(2板/房地产开)",
+        "电魂网络(1板/游戏Ⅱ)",
+        "富春股份(1板/游戏Ⅱ)",
+        "七匹狼(1板/服装家纺)",
+        "中恒集团(1板/中药Ⅱ)"
+      ],
+      "focusThemes": [
+        "游戏Ⅱ",
+        "服装家纺",
+        "中药Ⅱ"
+      ],
+      "entryNecessary": [
+        "情绪分回升至25以上",
+        "炸板率回落至35%以下"
+      ],
+      "entryConfirm": [
+        "昨涨停溢价转正",
+        "最高板维持4以上",
+        "大面数降至15以下"
+      ],
+      "middleBand": "<25失效；25~30模糊仅观察；30~37模糊偏确认可小仓试；≥37视为确认",
+      "invalidConditions": [
+        "情绪分跌破17",
+        "炸板率升破45%",
+        "最高板降至3以下",
+        "大面数升破30"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "状态定义",
+      "dataBasis": "收盘实盘",
+      "riskNote": "冰点后可能二次探底，溢价未转正前接力胜率不稳定，样本不足仅宜轻仓试错"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是：资金温度 38 与最高板 4、涨停 36 家并不算极端崩塌，但炸板率 40%（高）、大面 27 家、昨涨停溢价 -0.36%（弱负）显示接力资金正在被消耗，情绪分 17 的冰点更多来自亏钱效应而非高度归零。今日命中 veto 冰点（T3、T4、T6），属于典型「冰点/过冷区」节点：历史该标签出现 43 次，次日情绪上行占比 79%（95%CI 65~89%），平均性价比 0.595，是统计上偏正期望的一类；但今日节点性价比仅 0.0，明显低于该标签均值，说明位置对、强度弱。相似日 8 个有效匹配中，次日情绪分变化为 +63、+11、+17、+11、+63、+21、+14、+5，全部为正，方向一致性高，但幅度分化极大（+5 到 +63），因此方向偏多、幅度不可外推。六态先验（冰点→过冷 42%、过热 25%）walk-forward Top1 仅 27%，不优于多数类基准，仅作辅助标签。综合判断：属低吸区，但需确认信号，不宜直接重仓。置信度：中（0.55）。次日情绪分区间 25~37，方向上行。数据质量：zbRate 为实盘 ok，bigFace 为实盘 ok，redRatio 缺失（missing），故区间宽度取 12 已属上限，不再放宽。基准对照：区间宽度 12 对应的历史命中基准约 40%，我的置信度 0.55 略高于基准，主要靠相似日方向一致性支撑，幅度置信度低。\n\n交叉验证：节点统计＝偏多（冰点标签次日上行 79%）｜相似日＝偏多（8/8 次日情绪上行）｜状态转移＝偏多（过冷 42% 为最大单态）⇒ 综合：偏多。\n\n**2) 明日关注方向**\n\n相似日梯队显示，冰点次日修复时，出版、家居用品、服装家纺、电池、元件等中低位题材更容易出现卡位；今日领头题材为游戏Ⅱ、服装家纺、中药Ⅱ，均为 1 板结构，缺乏高标带动。明日重点观察：一是 4 板百洋股份、慈文传媒能否维持高度不炸，决定情绪修复上限；二是 3 板醋化股份与 2 板冰山冷热、荣丰控股的卡位质量；三是首板中电魂网络、富春股份、七匹狼、中恒集团能否换手充分后走出 2 板。结构上优先看「2 板卡位」与「首板换手充分」，回避高位断板后的反抽。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：1）情绪分回升至 25 以上；2）炸板率回落至 35% 以下。entryConfirm：昨涨停溢价转正、最高板维持 4 以上、大面数降至 15 以下。middleBand：<25 失效；25~30 模糊，仅观察不进场；30~37 模糊偏确认，可小仓试；≥37 视为确认。失效条件：情绪分跌破 17、炸板率升破 45%、最高板降至 3 以下、大面数升破 30。\n\n**4) 风险与仓位**\n\n台账已复核 7 次（<30），相似日有效匹配 8 个（≥3），但校准段 n<10，不能引用百分比命中率，只能写命中 x/y。上一次预测（2026-10-13→10-14）预测中性、实际冰点，命中 1/7，失准归因：状态定义。样本不足叠加 redRatio 缺失，仓位建议：1成试仓，确认信号出现前不超 1 成。风险：冰点后可能二次探底，溢价未转正前接力胜率不稳定。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-10-14",
+      "sent": 17,
+      "state6": "冰点",
+      "max_lbc": 4,
+      "prem_avg": -0.36
     },
     "actual": null,
     "score": null,
