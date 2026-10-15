@@ -865,7 +865,7 @@
   {
     "id": "2026-10-14-deepseek-chat-1791984265",
     "predictDate": "2026-10-14",
-    "targetDate": "",
+    "targetDate": "2026-10-15",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-14T13:24:25Z",
@@ -960,6 +960,145 @@
       "state6": "冰点",
       "max_lbc": 4,
       "prem_avg": -0.36
+    },
+    "actual": {
+      "date": "2026-10-15",
+      "sent": 30,
+      "state6": "过冷",
+      "max_lbc": 5,
+      "prem_avg": -3.29,
+      "zt": 36,
+      "zb_rate": 16,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": true,
+      "state6Hit": true,
+      "heightHit": true,
+      "ztHit": true,
+      "zbRateHit": false,
+      "premiumHit": true,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 6,
+      "accuracy": 0.86,
+      "dimStatus": {
+        "sent": "hit",
+        "premium": "hit",
+        "stance": "hit",
+        "height": "hit",
+        "zt": "hit",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "hit"
+      },
+      "coreHits": 3,
+      "coreScored": 3,
+      "coreAccuracy": 1.0,
+      "brierState6": 0.4406,
+      "logLoss": 0.8675,
+      "missReasons": [
+        "数据口径"
+      ]
+    },
+    "reviewedAt": "2026-10-15T13:09:51Z"
+  },
+  {
+    "id": "2026-10-15-deepseek-chat-1792069799",
+    "predictDate": "2026-10-15",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-10-15T13:09:59Z",
+    "prediction": {
+      "stance": "低吸区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "上行",
+      "crossValidation": "偏多",
+      "state6Next": "微冷",
+      "state6Probs": {
+        "冰点": 0.17,
+        "过冷": 0.14,
+        "微冷": 0.31,
+        "微热": 0.14,
+        "过热": 0.24,
+        "沸点": 0
+      },
+      "sentimentRange": [
+        30,
+        42
+      ],
+      "heightRange": [
+        5,
+        6
+      ],
+      "ztRange": [
+        35,
+        50
+      ],
+      "zbRateRange": [
+        12,
+        22
+      ],
+      "bigFaceRange": [
+        10,
+        20
+      ],
+      "streakRange": [
+        4,
+        7
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "1成试仓",
+      "ladderFocus": "3板以上接力",
+      "watchlist": [
+        "百洋股份(5板/饲料)",
+        "慈文传媒(5板/影视院线)",
+        "冰山冷热(3板/通用设备)",
+        "阳光乳业(3板/饮料乳品)",
+        "富春染织(2板/纺织制造)"
+      ],
+      "focusThemes": [
+        "元件",
+        "证券Ⅱ",
+        "医疗服务"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥40",
+        "次日昨涨停溢价≥-1.5%"
+      ],
+      "entryConfirm": [
+        "炸板率回落至15%以下",
+        "最高板维持5板及以上"
+      ],
+      "middleBand": "<40失效 / 40~45模糊(仅1成试仓，需溢价同步转正) / ≥45必要",
+      "invalidConditions": [
+        "情绪分跌破30",
+        "溢价再度低于-3%",
+        "最高板降至3板以下"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "数据口径",
+      "dataBasis": "收盘实盘",
+      "riskNote": "溢价-3.29%属极端负值，修复弹性不确定，redRatio缺失使区间上限置信度下调"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾：资金温度 18 与最高板 5、涨停 36 家之间的背离——温度已到极冷区，但高度未塌、涨停家数未缩至冰点水平，说明抛压集中在溢价端而非连板结构端。今日情绪分 30（过冷），昨涨停溢价 -3.29%（显著负），大面 18 家，炸板率 16%（中），veto 命中 T3/T5/T6/T7，属「过冷 + 溢价崩塌」组合。统计上，冰点/过冷区节点出现 44 次，次日情绪上行占比 80%（95%CI 66~89%），平均性价比 0.581，是四类节点中唯一正性价比且样本量足够的一类；而溢价转正（45%）与情绪跳升（35%）两类胜率均低于半数，今日虽同时挂「情绪跳升」标签，但该标签历史偏空，不作为主依据。因此当前更接近历史低吸区，而非追高区。但需注意：今日溢价 -3.29% 的绝对跌幅在近邻样本中偏极端，修复弹性存在不确定性。次日情绪分区间 30~42，方向上行，置信度：中（0.55）。六态辅助：state6Next 微冷，state6Probs 见 JSON。数据质量：zbRate=ok、bigFace=ok、redRatio=missing（未提供全市场红盘率），redRatio 缺失使区间上限置信度下调一档。基准对照：宽度 12 对应历史命中基准约 40%，本次置信度 0.55 略高于基准，但优势有限。\n\n交叉验证：节点统计＝偏多（过冷区 80% 上行）、相似日＝偏多（8 个近邻中 7 个次日情绪上行，仅 09-24 下行）、状态转移＝偏多（微冷 31% + 过热 24% 合计 55% 高于过冷 14%）⇒ 综合：偏多。\n\n**2) 明日关注方向**\n\n相似日梯队显示，过冷修复日的次日高度多落在 5~6 板，接力集中在当时最高板与 3 板层。今日梯队为百洋股份(5板)、慈文传媒(5板)、冰山冷热(3板)、阳光乳业(3板)，与 09-28 的「5板+3板×2」结构高度相似（相似度 0.883），该日次日高度升至 6、溢价转正 2.31%。重点观察：3 板以上接力能否维持（冰山冷热、阳光乳业），2 板卡位（富春染织、新华文轩）是否出现换手承接。重点关注名单（仅作梯队观察对象）：百洋股份(5板/饲料)、慈文传媒(5板/影视院线)、冰山冷热(3板/通用设备)、阳光乳业(3板/饮料乳品)、富春染织(2板/纺织制造)。题材端关注元件、证券Ⅱ、医疗服务三个今日净流入方向能否延续。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：① 次日情绪分 ≥ 40；② 次日昨涨停溢价 ≥ -1.5%。entryConfirm：炸板率回落至 15% 以下；最高板维持 5 板及以上。middleBand：<40 失效 / 40~45 模糊（仅 1 成试仓，需溢价同步转正）/ ≥45 必要。invalidConditions：情绪分跌破 30；溢价再度低于 -3%；最高板降至 3 板以下。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 8 次（<30），相似日有效匹配 8 个（≥3），溢价数据完整，但 redRatio 缺失。上一次预测（10-14→10-15）预测低吸区，实际情绪分 30、溢价 -3.29%，命中 6/7，失准项为溢价方向，归因：数据口径。仓位建议：1 成试仓，待情绪分与溢价双确认后再考虑加至 3 成。回避情形：溢价继续显著负且高度断层。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-10-15",
+      "sent": 30,
+      "state6": "过冷",
+      "max_lbc": 5,
+      "prem_avg": -3.29
     },
     "actual": null,
     "score": null,
