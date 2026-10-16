@@ -1,9 +1,9 @@
 {
-  "computedAt": "2026-10-15T13:09:51Z",
+  "computedAt": "2026-10-16T13:04:07Z",
   "baseDate": "2026-10-15",
   "threshold": 0.712,
   "similarityMode": "relative",
-  "candidateCount": 116,
+  "candidateCount": 115,
   "effectiveMatches": 8,
   "fallback": null,
   "matches": [
@@ -134,6 +134,30 @@
       "themes": []
     },
     {
+      "date": "2026-04-23",
+      "similarity": 0.779,
+      "env": {
+        "sent": 29,
+        "state6": "过冷",
+        "temp": 20,
+        "max_lbc": 5,
+        "zt": 50,
+        "zb_rate": 37.4,
+        "prem_avg": 1.24,
+        "damian": 5
+      },
+      "nextDay": {
+        "date": "2026-04-24",
+        "sent": 26,
+        "state6": "过冷",
+        "max_lbc": 3,
+        "prem_avg": -0.13,
+        "sentDelta": -3.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
       "date": "2026-09-23",
       "similarity": 0.774,
       "env": {
@@ -204,11 +228,11 @@
     },
     {
       "date": "2026-05-15",
-      "similarity": 0.765,
+      "similarity": 0.768,
       "env": {
-        "sent": 26,
+        "sent": 27,
         "state6": "过冷",
-        "temp": 21,
+        "temp": 22,
         "max_lbc": 6,
         "zt": 54,
         "zb_rate": 46,
@@ -221,31 +245,7 @@
         "state6": "微冷",
         "max_lbc": 6,
         "prem_avg": 0.18,
-        "sentDelta": 23.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-06-05",
-      "similarity": 0.757,
-      "env": {
-        "sent": 33,
-        "state6": "过冷",
-        "temp": 26,
-        "max_lbc": 5,
-        "zt": 71,
-        "zb_rate": 44.1,
-        "prem_avg": -0.7,
-        "damian": 21
-      },
-      "nextDay": {
-        "date": "2026-06-08",
-        "sent": 45,
-        "state6": "微冷",
-        "max_lbc": 6,
-        "prem_avg": 1.71,
-        "sentDelta": 12.0
+        "sentDelta": 22.0
       },
       "ladder": [],
       "themes": []
