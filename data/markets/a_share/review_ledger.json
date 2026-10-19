@@ -1010,7 +1010,7 @@
   {
     "id": "2026-10-15-deepseek-chat-1792069799",
     "predictDate": "2026-10-15",
-    "targetDate": "",
+    "targetDate": "2026-10-16",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-15T13:09:59Z",
@@ -1099,6 +1099,145 @@
       "state6": "过冷",
       "max_lbc": 5,
       "prem_avg": -3.29
+    },
+    "actual": {
+      "date": "2026-10-16",
+      "sent": 37,
+      "state6": "过冷",
+      "max_lbc": 11,
+      "prem_avg": -1.71,
+      "zt": 61,
+      "zb_rate": 45,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": true,
+      "state6Hit": false,
+      "heightHit": false,
+      "ztHit": false,
+      "zbRateHit": false,
+      "premiumHit": false,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 2,
+      "accuracy": 0.29,
+      "dimStatus": {
+        "sent": "hit",
+        "premium": "miss",
+        "stance": "hit",
+        "height": "miss",
+        "zt": "miss",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 2,
+      "coreScored": 3,
+      "coreAccuracy": 0.67,
+      "brierState6": 0.9418,
+      "logLoss": 1.9661,
+      "missReasons": [
+        "数据口径",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-10-19T15:20:39Z"
+  },
+  {
+    "id": "2026-10-19-deepseek-chat-1792423245",
+    "predictDate": "2026-10-19",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-10-19T15:20:45Z",
+    "prediction": {
+      "stance": "低吸区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "上行",
+      "crossValidation": "偏多",
+      "state6Next": "微冷",
+      "state6Probs": {
+        "冰点": 0.15,
+        "过冷": 0.21,
+        "微冷": 0.3,
+        "微热": 0.12,
+        "过热": 0.18,
+        "沸点": 0.04
+      },
+      "sentimentRange": [
+        32,
+        44
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        40,
+        60
+      ],
+      "zbRateRange": [
+        25,
+        35
+      ],
+      "bigFaceRange": [
+        12,
+        20
+      ],
+      "streakRange": [
+        4,
+        8
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "1成试仓",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "长春一东(2板/汽车零部)",
+        "海洋王(2板/照明设备)",
+        "慈文传媒(1板/影视院线)",
+        "大普微-UW(1板/计算机设)"
+      ],
+      "focusThemes": [
+        "汽车零部",
+        "影视院线",
+        "计算机设"
+      ],
+      "entryNecessary": [
+        "情绪分≥40",
+        "炸板率≤30%"
+      ],
+      "entryConfirm": [
+        "昨涨停溢价>1.0%",
+        "最高板回升至4板以上"
+      ],
+      "middleBand": "<32失效／32~40模糊观望／≥40必要",
+      "invalidConditions": [
+        "昨涨停溢价转负",
+        "大面数≥20",
+        "情绪分跌破32"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "数据口径",
+      "dataBasis": "收盘实盘",
+      "riskNote": "样本不足30条且溢价转正标签历史偏空，低吸信号偏弱，仅宜轻仓试错。"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾：资金温度 61 偏中性，但最高板仅 3、涨停 46 家、大面 17 家，赚钱效应与资金体量背离，属「有量无高度」的过冷磨底结构，而非趋势追高结构。今日同时命中「冰点/过冷区」（历史 45 次、次日情绪上行 78%，95%CI 64~88%）与「溢价转正」（21 次、次日上行仅 43%，95%CI 25~64%）两个标签，前者偏多、后者偏空，节点内部存在分歧；昨涨停溢价 0.64% 属弱正（0~1.5%），炸板率 31% 属高（>25%），说明承接质量一般。综合看更接近「过冷区低吸」而非追高区，但性价比 0.0 低于冰点区历史均值 0.56，属弱信号低吸，不宜重仓。次日情绪分区间 32~44，方向偏上行，置信度：中（0.55）。六态辅助标签：微冷概率最高。数据质量：zbRate、bigFace 为实盘取到（ok），redRatio 未提供（missing），对区间上限构成不确定性，已压低置信度一档。基准对照：区间宽度 12 对应历史情绪 ±15 带宽基准约 40%，本次置信度 0.55 略高于基准，但优势有限。\n\n交叉验证：节点统计＝偏多（过冷区 78% 上行，但溢价转正 43% 拖累）、相似日＝偏多（8 个近邻中 7 个次日上行，+11~+49）、状态转移＝偏空（过冷→微冷仅 30%，且该先验 Top1 命中 24% 低于基准 27.3%）⇒ 综合：偏多但存分歧，置信度维持中。\n\n**2) 明日关注方向**\n\n相似日次日多为「情绪分跳升、高度持平或微升」结构（如 2026-09-17 高度 5→4、2026-06-02 高度 3→3），说明修复以普涨为主、连板高度不易打开。重点观察 2 板卡位与首板换手充分结构，3 板以上（吉大正元、东方嘉盛）仅作情绪风向标，不追。关注名单（仅观察）：长春一东(2板/汽车零部)、海洋王(2板/照明设备)、慈文传媒(1板/影视院线)、大普微-UW(1板/计算机设)。题材聚焦汽车零部、影视院线、计算机设。\n\n**3) 入场条件与失效条件**\n\n必要条件：情绪分≥40；炸板率≤30%。确认项：昨涨停溢价转正扩大至 >1.0%；高度回升至 4 板以上。中间档：<32 失效／32~40 模糊观望／≥40 必要。\n\n**4) 风险与仓位**\n\n台账已复核 9 次（<30），相似日有效匹配 8 个（≥3），但样本仍不足，仓位建议 1成试仓。回避情形：溢价再度转负、大面数扩大至 20 以上。上次预测（10-15→10-16 低吸区）实际高度 11、溢价 -1.71%，命中 2/7，失准归因：数据口径＋状态定义。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-10-19",
+      "sent": 32,
+      "state6": "过冷",
+      "max_lbc": 3,
+      "prem_avg": 0.64
     },
     "actual": null,
     "score": null,
