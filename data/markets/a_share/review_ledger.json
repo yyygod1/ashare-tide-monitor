@@ -1150,7 +1150,7 @@
   {
     "id": "2026-10-19-deepseek-chat-1792423245",
     "predictDate": "2026-10-19",
-    "targetDate": "",
+    "targetDate": "2026-10-20",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-19T15:20:45Z",
@@ -1238,6 +1238,146 @@
       "state6": "过冷",
       "max_lbc": 3,
       "prem_avg": 0.64
+    },
+    "actual": {
+      "date": "2026-10-20",
+      "sent": 45,
+      "state6": "微冷",
+      "max_lbc": 4,
+      "prem_avg": 1.59,
+      "zt": 54,
+      "zb_rate": 35,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": true,
+      "heightHit": true,
+      "ztHit": true,
+      "zbRateHit": true,
+      "premiumHit": true,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 6,
+      "accuracy": 0.86,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "hit",
+        "stance": "hit",
+        "height": "hit",
+        "zt": "hit",
+        "zbRate": "hit",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "hit"
+      },
+      "coreHits": 2,
+      "coreScored": 3,
+      "coreAccuracy": 0.67,
+      "brierState6": 0.605,
+      "logLoss": 1.204,
+      "missReasons": [
+        "数据口径"
+      ]
+    },
+    "reviewedAt": "2026-10-20T13:23:42Z"
+  },
+  {
+    "id": "2026-10-20-deepseek-chat-1792502629",
+    "predictDate": "2026-10-20",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-10-20T13:23:49Z",
+    "prediction": {
+      "stance": "中性",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "震荡",
+      "crossValidation": "分歧",
+      "state6Next": "微热",
+      "state6Probs": {
+        "冰点": 0.12,
+        "过冷": 0.21,
+        "微冷": 0.12,
+        "微热": 0.29,
+        "过热": 0.17,
+        "沸点": 0.09
+      },
+      "sentimentRange": [
+        38,
+        50
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        45,
+        62
+      ],
+      "zbRateRange": [
+        28,
+        42
+      ],
+      "bigFaceRange": [
+        6,
+        14
+      ],
+      "streakRange": [
+        4,
+        8
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "1成试仓",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "吉大正元(4板/软件开发)",
+        "大业股份(3板/通用设备)",
+        "东安动力(3板/汽车零部)",
+        "慕思股份(2板/家居用品)",
+        "福莱新材(2板/塑料)",
+        "博通集成(1板/半导体)"
+      ],
+      "focusThemes": [
+        "消费电子",
+        "通用设备",
+        "半导体"
+      ],
+      "entryNecessary": [
+        "情绪分不低于38",
+        "炸板率不高于35%"
+      ],
+      "entryConfirm": [
+        "昨涨停溢价维持>1.5%",
+        "2板家数不减少"
+      ],
+      "middleBand": "<38失效；38~45模糊(仅1成试仓，待溢价转正再加)；≥45且炸板率回落至25%以下视为必要触发成立",
+      "invalidConditions": [
+        "情绪分跌破38",
+        "炸板率升破45%",
+        "最高板断至2板以下"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "状态定义",
+      "dataBasis": "收盘实盘",
+      "riskNote": "情绪跳升节点历史次日偏空且炸板率偏高，接力失败易放大回撤"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是资金温度（56）与最高板（4）同步走弱、而昨涨停溢价（1.59%，显著正）与涨停家数（54）尚可之间的背离——即“溢价偏暖但高度压缩”，说明资金愿意给昨涨停溢价，却不愿向上接力。\n\n今日被标注为「情绪跳升」，但该节点历史次日情绪上行占比仅 33%（95%CI 22~47%），平均性价比 -0.302，属统计上偏空的节点类型；同时炸板率 35%（高）、大面 9 家，均指向分歧未收敛。今日不属历史性价比较高的低吸区（冰点/过冷区 81% 上行、性价比 0.606 才是），也不构成过热追高区，定位为**中性偏谨慎**。\n\n相似日 8 个中，次日情绪下行 3 次（-1、-17、-28、-10 共 4 次下行）、上行 4 次（+24、+21、+8、+42），方向分歧明显，故次日情绪分区间取 38~50，方向震荡，置信度：中（0.55）。\n\n数据质量：zbRate、bigFace 为正常取到（ok），redRatio 缺失（missing），对区间宽度构成约束，故不进一步收窄。\n\n基准对照：区间宽度 12 对应的历史命中基准约 40%，本次置信度 0.55 略高于基准，优势有限。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏空（情绪跳升次日上行仅 33%）、相似日＝分歧（4 上 4 下）、状态转移＝偏多（微热 29% 为 Top1，但该先验 Top1 命中 26% 低于多数类 27.3%，信息弱）⇒ 综合：分歧。\n\n结构上，今日梯队为 4 板 1 家、3 板 2 家、2 板 2 家，高度压缩且断层明显，明日重点观察 **2 板卡位**（慕思股份、福莱新材）能否承接，以及 3 板（大业股份、东安动力）能否守住不炸；4 板吉大正元为高度唯一锚点，若断板则高度回落至 3。首板方向看半导体（博通集成、恒玄科技）换手是否充分。\n\n**3) 入场条件与失效条件**\n\n必要条件：情绪分不低于 38；炸板率不高于 35%。确认项：昨涨停溢价维持显著正（>1.5%）；2 板家数不减少。\n\n中间档处理：<38 失效；38~45 模糊（仅 1 成试仓，等溢价转正再加）；≥45 且炸板率回落至 25% 以下才视为必要触发成立。\n\n失效条件：情绪分跌破 38；或炸板率升破 45%；或最高板断至 2 板以下。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 10 次（<30），相似日有效匹配 8 个（≥3），溢价数据完整，但六态先验弱于基准，不宜重仓。回避情形：高炸板率下的 3 板以上接力、无梯队记录支撑的题材首板。仓位建议：**1 成试仓**。\n\n上次预测（10-19→10-20）判低吸区、实际情绪 45 微冷，失准归因为**状态定义**（微冷与过冷边界划分导致区间偏移）。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-10-20",
+      "sent": 45,
+      "state6": "微冷",
+      "max_lbc": 4,
+      "prem_avg": 1.59
     },
     "actual": null,
     "score": null,
