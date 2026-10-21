@@ -1288,7 +1288,7 @@
   {
     "id": "2026-10-20-deepseek-chat-1792502629",
     "predictDate": "2026-10-20",
-    "targetDate": "",
+    "targetDate": "2026-10-21",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-20T13:23:49Z",
@@ -1378,6 +1378,148 @@
       "state6": "微冷",
       "max_lbc": 4,
       "prem_avg": 1.59
+    },
+    "actual": {
+      "date": "2026-10-21",
+      "sent": 54,
+      "state6": "微冷",
+      "max_lbc": 4,
+      "prem_avg": 2.8,
+      "zt": 50,
+      "zb_rate": 28,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": false,
+      "heightHit": true,
+      "ztHit": true,
+      "zbRateHit": true,
+      "premiumHit": true,
+      "stanceHit": null,
+      "scored": 7,
+      "hits": 4,
+      "accuracy": 0.57,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "hit",
+        "stance": "miss",
+        "height": "hit",
+        "zt": "hit",
+        "zbRate": "hit",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 1,
+      "coreScored": 3,
+      "coreAccuracy": 0.33,
+      "brierState6": 0.954,
+      "logLoss": 2.1203,
+      "missReasons": [
+        "数据口径",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-10-21T13:32:34Z"
+  },
+  {
+    "id": "2026-10-21-deepseek-chat-1792589562",
+    "predictDate": "2026-10-21",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-10-21T13:32:42Z",
+    "prediction": {
+      "stance": "中性",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "震荡",
+      "crossValidation": "分歧",
+      "state6Next": "微冷",
+      "state6Probs": {
+        "冰点": 0.12,
+        "过冷": 0.15,
+        "微冷": 0.19,
+        "微热": 0.31,
+        "过热": 0.15,
+        "沸点": 0.08
+      },
+      "sentimentRange": [
+        44,
+        56
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        40,
+        60
+      ],
+      "zbRateRange": [
+        25,
+        35
+      ],
+      "bigFaceRange": [
+        5,
+        12
+      ],
+      "streakRange": [
+        4,
+        7
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "观望",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "大业股份(4板/通用设备)",
+        "海洋王(4板/照明设备)",
+        "润建股份(3板/通信服务)",
+        "日海智能(2板/通信设备)",
+        "泰尔股份(2板/通用设备)",
+        "粤传媒(2板/出版)"
+      ],
+      "focusThemes": [
+        "通用设备",
+        "出版",
+        "通信设备"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥48",
+        "昨涨停溢价>1.5%"
+      ],
+      "entryConfirm": [
+        "炸板率回落至25%以下",
+        "最高板升至5板且封板不炸"
+      ],
+      "middleBand": "<44失效不参与／44~48模糊仅观察／48~56必要区可1成试仓／56~70模糊需确认项成立才至3成／>70追高区不新开仓",
+      "invalidConditions": [
+        "情绪分跌破44",
+        "昨涨停溢价转负",
+        "炸板率升破35%",
+        "最高板回落至3板以下"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "状态定义",
+      "dataBasis": "收盘实盘",
+      "riskNote": "情绪跳升节点历史次日偏空且复核样本不足30条，溢价高开易回吐，仅宜观望或轻仓试错。"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是资金温度 64 偏暖、昨涨停溢价 2.8%（显著正）与最高板仅 4、涨停 50 家、炸板率 28%（高）之间的背离——赚钱效应集中在低位首板与 2 板，高位接力并未打开空间。今日被标记为「情绪跳升」，但该节点历史 51 次、次日情绪上行仅 33%（95%CI 22~47%）、平均性价比 -0.287，属统计上偏空的节点类型；与之相对，冰点/过冷区 42 次、次日上行 81%（67~90%）才是高性价比低吸区，而今日情绪分 54 已离开该区间。因此当前更接近「微冷平台上的跳升末端」，不属高性价比低吸区，也不构成典型追高区，宜定性为中性偏谨慎。相似日 8 例中 5 例次日情绪回落（-18、-27、-16、-27、-24），仅 3 例上行（+19、+8、-1），方向分歧偏下。次日情绪分区间 44~56，方向震荡，置信度：中（0.55）。六态仅作辅助：微冷态转移先验 Top1 为微热 31%，但该先验 walk-forward Top1 仅 31%、Brier 0.8631 劣于基准 0.8064，信息弱，不作主结论。\n\n基准对照：区间宽度 12 对应历史命中基准约 40%，本次置信度 0.55 略高于基准，属弱优势。\n\n数据质量：zbRate、bigFace 为 ok；redRatio 缺失（missing），对红盘率区间判断无支撑，已下调置信度一档的余量。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏空（情绪跳升次日上行 33%）｜相似日＝偏空（8 例中 5 例回落）｜状态转移＝偏多（微热 31%）⇒ 综合：分歧。\n\n历史相似日次日高度多为持平或 +1（5→5、4→5、3→4），溢价普遍收敛（2.91→1.1、3.74→0.31、2.44→-0.04），说明跳升后更可能是溢价回吐而非高度突破。结构上优先观察 2 板卡位与首板换手充分者，3 板以上接力需等高度确认。观察对象（仅作梯队观察，非推荐）：大业股份(4板/通用设备)、海洋王(4板/照明设备)、润建股份(3板/通信服务)、日海智能(2板/通信设备)、泰尔股份(2板/通用设备)、粤传媒(2板/出版)。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：① 次日情绪分 ≥48；② 昨涨停溢价维持 >1.5%。entryConfirm：炸板率回落至 25% 以下；最高板升至 5 板且封板不炸。middleBand：<44 失效（不参与）／44~48 模糊（仅观察，不出手）／48~56 必要区（满足必要条件可 1 成试仓）／56~70 模糊（需 entryConfirm 同时成立才加至 3 成）／>70 追高区（不新开仓）。失效条件：情绪分跌破 44；溢价转负（<0）；炸板率升破 35%；最高板回落至 3 板以下。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 11 次（<30），相似日有效匹配 8 例（≥3），溢价数据齐全，但复核条数不足，按硬约束 positionAdvice 取「观望」。需回避：高位 4 板接力、溢价高开后的首板追涨。仓位建议：观望为主，若次日满足必要条件可 1 成试仓，不加仓。上次预测（10-20→10-21）判「中性」、实际情绪分 54 上行 9 点，失准归因：状态定义。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-10-21",
+      "sent": 54,
+      "state6": "微冷",
+      "max_lbc": 4,
+      "prem_avg": 2.8
     },
     "actual": null,
     "score": null,

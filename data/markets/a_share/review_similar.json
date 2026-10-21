@@ -1,200 +1,210 @@
 {
-  "computedAt": "2026-10-20T13:23:42Z",
-  "baseDate": "2026-10-20",
-  "threshold": 0.792,
+  "computedAt": "2026-10-21T13:32:34Z",
+  "baseDate": "2026-10-21",
+  "threshold": 0.769,
   "similarityMode": "relative",
   "candidateCount": 116,
   "effectiveMatches": 8,
   "fallback": null,
   "matches": [
     {
-      "date": "2026-07-15",
-      "similarity": 0.913,
+      "date": "2026-09-08",
+      "similarity": 0.886,
       "env": {
-        "sent": 48,
-        "state6": "微冷",
-        "temp": 48,
+        "sent": 60,
+        "state6": "微热",
+        "temp": 67,
         "max_lbc": 4,
-        "zt": 71,
-        "zb_rate": 37.2,
-        "prem_avg": 1.44,
-        "damian": 10
+        "zt": 73,
+        "zb_rate": 34,
+        "prem_avg": 2.91,
+        "damian": 2
       },
       "nextDay": {
-        "date": "2026-07-16",
-        "sent": 47,
-        "state6": "微冷",
-        "max_lbc": 5,
-        "prem_avg": 2.42,
-        "sentDelta": -1.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-09-09",
-      "similarity": 0.883,
-      "env": {
+        "date": "2026-09-09",
         "sent": 42,
         "state6": "微冷",
-        "temp": 69,
         "max_lbc": 5,
-        "zt": 48,
-        "zb_rate": 36,
         "prem_avg": 1.1,
-        "damian": 12
-      },
-      "nextDay": {
-        "date": "2026-09-10",
-        "sent": 25,
-        "state6": "过冷",
-        "max_lbc": 4,
-        "prem_avg": -0.32,
-        "sentDelta": -17.0
+        "sentDelta": -18.0
       },
       "ladder": [],
       "themes": []
     },
     {
-      "date": "2026-10-13",
-      "similarity": 0.86,
+      "date": "2026-09-14",
+      "similarity": 0.884,
       "env": {
-        "sent": 45,
+        "sent": 60,
+        "state6": "微热",
+        "temp": 61,
+        "max_lbc": 4,
+        "zt": 55,
+        "zb_rate": 35,
+        "prem_avg": 3.74,
+        "damian": 2
+      },
+      "nextDay": {
+        "date": "2026-09-15",
+        "sent": 33,
+        "state6": "过冷",
+        "max_lbc": 5,
+        "prem_avg": 0.31,
+        "sentDelta": -27.0
+      },
+      "ladder": [
+        "闽东电力(4板/电力)",
+        "中新赛克(3板/计算机设)",
+        "超声电子(3板/元件)",
+        "正和生态(2板/环境治理)",
+        "通达股份(2板/电网设备)"
+      ],
+      "themes": [
+        "元件",
+        "通用设备",
+        "电力"
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "similarity": 0.866,
+      "env": {
+        "sent": 55,
+        "state6": "微热",
+        "temp": 77,
+        "max_lbc": 5,
+        "zt": 52,
+        "zb_rate": 39.6,
+        "prem_avg": 2.34,
+        "damian": 2
+      },
+      "nextDay": {
+        "date": "2026-08-27",
+        "sent": 74,
+        "state6": "过热",
+        "max_lbc": 6,
+        "prem_avg": 2.55,
+        "sentDelta": 19.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-06-03",
+      "similarity": 0.851,
+      "env": {
+        "sent": 50,
         "state6": "微冷",
         "temp": 64,
         "max_lbc": 3,
-        "zt": 67,
-        "zb_rate": 22,
-        "prem_avg": 0.88,
-        "damian": 10
-      },
-      "nextDay": {
-        "date": "2026-10-14",
-        "sent": 17,
-        "state6": "冰点",
-        "max_lbc": 4,
-        "prem_avg": -0.36,
-        "sentDelta": -28.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-04-23",
-      "similarity": 0.853,
-      "env": {
-        "sent": 49,
-        "state6": "微冷",
-        "temp": 33,
-        "max_lbc": 5,
-        "zt": 50,
-        "zb_rate": 37.4,
-        "prem_avg": 1.24,
+        "zt": 66,
+        "zb_rate": 46.2,
+        "prem_avg": 2.84,
         "damian": 5
       },
       "nextDay": {
-        "date": "2026-04-24",
-        "sent": 39,
-        "state6": "过冷",
-        "max_lbc": 3,
-        "prem_avg": -0.13,
-        "sentDelta": -10.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-08-07",
-      "similarity": 0.852,
-      "env": {
-        "sent": 46,
-        "state6": "微冷",
-        "temp": 87,
+        "date": "2026-06-04",
+        "sent": 58,
+        "state6": "微热",
         "max_lbc": 4,
-        "zt": 74,
-        "zb_rate": 32.2,
-        "prem_avg": 1.1,
-        "damian": 16
-      },
-      "nextDay": {
-        "date": "2026-08-10",
-        "sent": 70,
-        "state6": "过热",
-        "max_lbc": 5,
-        "prem_avg": 2.66,
-        "sentDelta": 24.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-04-24",
-      "similarity": 0.851,
-      "env": {
-        "sent": 39,
-        "state6": "过冷",
-        "temp": 50,
-        "max_lbc": 3,
-        "zt": 59,
-        "zb_rate": 36.4,
-        "prem_avg": -0.13,
-        "damian": 12
-      },
-      "nextDay": {
-        "date": "2026-04-27",
-        "sent": 60,
-        "state6": "微热",
-        "max_lbc": 3,
-        "prem_avg": 0.82,
-        "sentDelta": 21.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-08-25",
-      "similarity": 0.847,
-      "env": {
-        "sent": 47,
-        "state6": "微冷",
-        "temp": 74,
-        "max_lbc": 5,
-        "zt": 65,
-        "zb_rate": 32.5,
-        "prem_avg": 0.36,
-        "damian": 7
-      },
-      "nextDay": {
-        "date": "2026-08-26",
-        "sent": 55,
-        "state6": "微热",
-        "max_lbc": 5,
-        "prem_avg": 2.34,
+        "prem_avg": 1.17,
         "sentDelta": 8.0
       },
       "ladder": [],
       "themes": []
     },
     {
-      "date": "2026-08-11",
+      "date": "2026-05-11",
       "similarity": 0.846,
       "env": {
-        "sent": 40,
-        "state6": "微冷",
-        "temp": 52,
-        "max_lbc": 6,
-        "zt": 58,
-        "zb_rate": 37.7,
-        "prem_avg": 0.35,
-        "damian": 9
+        "sent": 62,
+        "state6": "微热",
+        "temp": 64,
+        "max_lbc": 5,
+        "zt": 92,
+        "zb_rate": 27.6,
+        "prem_avg": 2.51,
+        "damian": 7
       },
       "nextDay": {
-        "date": "2026-08-12",
-        "sent": 82,
-        "state6": "过热",
-        "max_lbc": 7,
-        "prem_avg": 2.67,
-        "sentDelta": 42.0
+        "date": "2026-05-12",
+        "sent": 46,
+        "state6": "微冷",
+        "max_lbc": 5,
+        "prem_avg": 2.05,
+        "sentDelta": -16.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-06-25",
+      "similarity": 0.845,
+      "env": {
+        "sent": 61,
+        "state6": "微热",
+        "temp": 67,
+        "max_lbc": 5,
+        "zt": 85,
+        "zb_rate": 30.6,
+        "prem_avg": 2.44,
+        "damian": 8
+      },
+      "nextDay": {
+        "date": "2026-06-26",
+        "sent": 34,
+        "state6": "过冷",
+        "max_lbc": 6,
+        "prem_avg": -0.04,
+        "sentDelta": -27.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-06-17",
+      "similarity": 0.835,
+      "env": {
+        "sent": 60,
+        "state6": "微热",
+        "temp": 68,
+        "max_lbc": 3,
+        "zt": 85,
+        "zb_rate": 25.6,
+        "prem_avg": 1.86,
+        "damian": 4
+      },
+      "nextDay": {
+        "date": "2026-06-18",
+        "sent": 36,
+        "state6": "过冷",
+        "max_lbc": 3,
+        "prem_avg": 0.64,
+        "sentDelta": -24.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-04-28",
+      "similarity": 0.819,
+      "env": {
+        "sent": 65,
+        "state6": "微热",
+        "temp": 40,
+        "max_lbc": 4,
+        "zt": 58,
+        "zb_rate": 27.7,
+        "prem_avg": 1.75,
+        "damian": 4
+      },
+      "nextDay": {
+        "date": "2026-04-29",
+        "sent": 64,
+        "state6": "微热",
+        "max_lbc": 3,
+        "prem_avg": 0.84,
+        "sentDelta": -1.0
       },
       "ladder": [],
       "themes": []
