@@ -1429,7 +1429,7 @@
   {
     "id": "2026-10-21-deepseek-chat-1792589562",
     "predictDate": "2026-10-21",
-    "targetDate": "",
+    "targetDate": "2026-10-22",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-21T13:32:42Z",
@@ -1520,6 +1520,148 @@
       "state6": "微冷",
       "max_lbc": 4,
       "prem_avg": 2.8
+    },
+    "actual": {
+      "date": "2026-10-22",
+      "sent": 18,
+      "state6": "冰点",
+      "max_lbc": 5,
+      "prem_avg": -2.2,
+      "zt": 33,
+      "zb_rate": 41,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": false,
+      "heightHit": true,
+      "ztHit": false,
+      "zbRateHit": false,
+      "premiumHit": false,
+      "stanceHit": null,
+      "scored": 7,
+      "hits": 1,
+      "accuracy": 0.14,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "miss",
+        "stance": "miss",
+        "height": "hit",
+        "zt": "miss",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 0,
+      "coreScored": 3,
+      "coreAccuracy": 0.0,
+      "brierState6": 0.958,
+      "logLoss": 2.1203,
+      "missReasons": [
+        "数据口径",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-10-22T13:34:11Z"
+  },
+  {
+    "id": "2026-10-22-deepseek-chat-1792676058",
+    "predictDate": "2026-10-22",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-10-22T13:34:18Z",
+    "prediction": {
+      "stance": "低吸区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "上行",
+      "crossValidation": "偏多",
+      "state6Next": "过冷",
+      "state6Probs": {
+        "冰点": 0.1,
+        "过冷": 0.5,
+        "微冷": 0.15,
+        "微热": 0.1,
+        "过热": 0.1,
+        "沸点": 0.05
+      },
+      "sentimentRange": [
+        20,
+        32
+      ],
+      "heightRange": [
+        4,
+        6
+      ],
+      "ztRange": [
+        30,
+        45
+      ],
+      "zbRateRange": [
+        30,
+        45
+      ],
+      "bigFaceRange": [
+        12,
+        22
+      ],
+      "streakRange": [
+        4,
+        8
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "观望",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "海洋王(5板/照明设备)",
+        "大业股份(5板/通用设备)",
+        "星光股份(3板/照明设备)",
+        "三峡新材(3板/玻璃玻纤)",
+        "海量数据(2板/IT服务Ⅱ)",
+        "出版传媒(2板/出版)"
+      ],
+      "focusThemes": [
+        "照明设备",
+        "基础建设",
+        "专用设备"
+      ],
+      "entryNecessary": [
+        "开盘后情绪分回升至≥25",
+        "昨涨停溢价转正(>0%)"
+      ],
+      "entryConfirm": [
+        "炸板率回落至<35%",
+        "大面数降至15以下"
+      ],
+      "middleBand": "<20失效；20~25模糊仅观察不建仓；≥25且溢价转正为必要触发",
+      "invalidConditions": [
+        "情绪分跌破18",
+        "溢价维持<-1.5%",
+        "炸板率升破45%",
+        "5板股集体断板"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "状态定义",
+      "dataBasis": "收盘实盘",
+      "riskNote": "冰点弱样本叠加redRatio缺失，区间上限存在下修风险"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是：资金温度 16 已到极冷，但最高板仍有 5 板、涨停 33 家，说明高位接力尚未完全瓦解，而昨涨停溢价 -2.2%（显著负）与大面 22 家表明亏钱效应已扩散——即“高度未死、溢价先死”的背离。\n\n今日情绪分 18 属冰点，命中 veto T3~T6，节点类型归入“冰点/过冷区”（历史 43 次，次日情绪上行占比 81%，95%CI 67~90%），但今日性价比仅 0.0，低于该类型均值 0.594，说明是“冰点中的弱冰点”，不宜按最优低吸样本对待。相似日 8 例中次日情绪分全部上行（+4~+63），方向偏多但幅度离散极大。六态先验给过冷 50%，但该先验 walk-forward 成绩（Top1 28%、Brier 0.8694）劣于基准 0.8064，仅作辅助。\n\n主结果：次日情绪分区间 20~32，方向上行，置信度：中（0.55）。基准对照：宽度 12 对应历史命中基准约 40%，本次置信度 0.55 略高于基准，但受样本与口径限制不宜上调。\n\n数据质量：zbRate、bigFace 为 ok；redRatio 缺失（missing），对区间上限构成下修压力。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏多（冰点区次日上行 81%）／相似日＝偏多（8/8 上行）／状态转移＝偏多（过冷 50%）⇒ 综合：偏多。\n\n相似日梯队显示，冰点次日多由 2~4 板中位股承接（如 10-14 的百洋股份 4 板、慈文传媒 4 板次日高度升至 5），而非高位 5 板延续。明日重点观察 2 板卡位与 3 板换手结构，5 板（海洋王、大业股份）只作情绪风向标，不作接力对象。关注名单：海洋王(5板/照明设备)、大业股份(5板/通用设备)、星光股份(3板/照明设备)、三峡新材(3板/玻璃玻纤)、海量数据(2板/IT服务Ⅱ)、出版传媒(2板/出版)。\n\n**3) 入场条件与失效条件**\n\n必要条件：① 开盘后情绪分回升至 ≥25；② 昨涨停溢价转正（>0%）。确认项：炸板率回落至 <35%、大面数降至 15 以下。中间档：情绪分 <20 失效；20~25 模糊，仅观察不建仓；≥25 且溢价转正才视为必要触发。\n\n失效条件：情绪分再度跌破 18、溢价维持 <-1.5%、炸板率升破 45%、5 板股出现集体断板。\n\n**4) 风险与仓位**\n\n台账已复核 12 次（<30），相似日有效匹配 8 例（≥3），但溢价均值缺失口径、redRatio 缺失，样本与数据双重不足，按硬约束仓位为观望。回避高位 5 板接力与炸板率 >40% 的追涨。上一次预测（10-21→10-22）判中性、实际冰点，失准归因：状态定义。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-10-22",
+      "sent": 18,
+      "state6": "冰点",
+      "max_lbc": 5,
+      "prem_avg": -2.2
     },
     "actual": null,
     "score": null,

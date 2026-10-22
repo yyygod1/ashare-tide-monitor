@@ -1,35 +1,35 @@
 {
-  "updatedAt": "2026-10-21T13:32:33Z",
+  "updatedAt": "2026-10-22T13:34:11Z",
   "rows": 121,
   "range": {
-    "start": "2026-04-22",
-    "end": "2026-10-21"
+    "start": "2026-04-23",
+    "end": "2026-10-22"
   },
   "stats": {
-    "低位拐点(次日验证)": {
-      "count": 37,
-      "avgScore": 0.871,
-      "winRate": null,
-      "forwardLooking": true,
-      "desc": "标签含次日信息，胜率自证、不可引用"
-    },
     "溢价转正": {
       "count": 21,
-      "avgScore": -0.124,
+      "avgScore": -0.128,
       "winRate": 0.43,
       "forwardLooking": false,
       "desc": "次日情绪分上行=记为胜"
     },
     "情绪跳升": {
-      "count": 51,
-      "avgScore": -0.287,
-      "winRate": 0.33,
+      "count": 50,
+      "avgScore": -0.311,
+      "winRate": 0.34,
       "forwardLooking": false,
       "desc": "次日情绪分上行=记为胜"
     },
+    "低位拐点(次日验证)": {
+      "count": 37,
+      "avgScore": 0.882,
+      "winRate": null,
+      "forwardLooking": true,
+      "desc": "标签含次日信息，胜率自证、不可引用"
+    },
     "冰点/过冷区": {
-      "count": 42,
-      "avgScore": 0.608,
+      "count": 43,
+      "avgScore": 0.594,
       "winRate": 0.81,
       "forwardLooking": false,
       "desc": "次日情绪分上行=记为胜"
@@ -37,61 +37,15 @@
   },
   "nodes": [
     {
-      "date": "2026-04-24",
-      "types": [
-        "低位拐点(次日验证)"
-      ],
-      "env": {
-        "sent": 44,
-        "state6": "微冷",
-        "temp": 67,
-        "max_lbc": 3,
-        "zt": 59,
-        "zb_rate": 36.4,
-        "prem_avg": -0.13,
-        "damian": 12,
-        "lhb_net": 38.78,
-        "diverge": null
-      },
-      "leaders": {
-        "themes": [],
-        "ladder": [],
-        "lhbBuy": [
-          "恩捷股份(净+7.82亿, 10.01%)",
-          "多氟多(净+7.2亿, 9.99%)",
-          "西藏珠峰(净+3.71亿, 9.99%)"
-        ]
-      },
-      "outcome": {
-        "nextDay": {
-          "date": "2026-04-27",
-          "sent": 67,
-          "sentDelta": 23.0,
-          "state6": "微热",
-          "premDelta": 0.95,
-          "maxLbcDelta": 0
-        },
-        "in3Days": {
-          "date": "2026-04-29",
-          "sent": 64,
-          "sentDelta": 20.0,
-          "state6": "微热",
-          "premDelta": 0.97,
-          "maxLbcDelta": 0
-        }
-      },
-      "score": 0.542
-    },
-    {
       "date": "2026-04-27",
       "types": [
         "溢价转正",
         "情绪跳升"
       ],
       "env": {
-        "sent": 67,
-        "state6": "微热",
-        "temp": 75,
+        "sent": 72,
+        "state6": "过热",
+        "temp": 100,
         "max_lbc": 3,
         "zt": 65,
         "zb_rate": 27.2,
@@ -112,8 +66,8 @@
       "outcome": {
         "nextDay": {
           "date": "2026-04-28",
-          "sent": 65,
-          "sentDelta": -2.0,
+          "sent": 67,
+          "sentDelta": -5.0,
           "state6": "微热",
           "premDelta": 0.93,
           "maxLbcDelta": 1
@@ -121,13 +75,13 @@
         "in3Days": {
           "date": "2026-04-30",
           "sent": 86,
-          "sentDelta": 19.0,
+          "sentDelta": 14.0,
           "state6": "沸点",
           "premDelta": 1.45,
           "maxLbcDelta": 1
         }
       },
-      "score": 0.288
+      "score": 0.238
     },
     {
       "date": "2026-04-30",
@@ -137,7 +91,7 @@
       "env": {
         "sent": 86,
         "state6": "沸点",
-        "temp": 57,
+        "temp": 67,
         "max_lbc": 4,
         "zt": 78,
         "zb_rate": 21.1,
@@ -158,22 +112,68 @@
       "outcome": {
         "nextDay": {
           "date": "2026-05-06",
-          "sent": 86,
-          "sentDelta": 0.0,
-          "state6": "沸点",
+          "sent": 84,
+          "sentDelta": -2.0,
+          "state6": "过热",
           "premDelta": 0.81,
           "maxLbcDelta": 0
         },
         "in3Days": {
           "date": "2026-05-08",
-          "sent": 74,
-          "sentDelta": -12.0,
+          "sent": 73,
+          "sentDelta": -13.0,
           "state6": "过热",
           "premDelta": 0.65,
           "maxLbcDelta": 0
         }
       },
-      "score": 0.135
+      "score": 0.102
+    },
+    {
+      "date": "2026-05-12",
+      "types": [
+        "低位拐点(次日验证)"
+      ],
+      "env": {
+        "sent": 45,
+        "state6": "微冷",
+        "temp": 9,
+        "max_lbc": 5,
+        "zt": 57,
+        "zb_rate": 32.8,
+        "prem_avg": 2.05,
+        "damian": 6,
+        "lhb_net": 3.36,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [],
+        "ladder": [],
+        "lhbBuy": [
+          "红板科技(净+6.65亿, 4.53%)",
+          "云南锗业(净+6.44亿, 10%)",
+          "汉缆股份(净+5.31亿, 10%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-05-13",
+          "sent": 86,
+          "sentDelta": 41.0,
+          "state6": "沸点",
+          "premDelta": 0.84,
+          "maxLbcDelta": 1
+        },
+        "in3Days": {
+          "date": "2026-05-15",
+          "sent": 27,
+          "sentDelta": -18.0,
+          "state6": "过冷",
+          "premDelta": -3.33,
+          "maxLbcDelta": 1
+        }
+      },
+      "score": 0.99
     },
     {
       "date": "2026-05-13",
@@ -183,7 +183,7 @@
       "env": {
         "sent": 86,
         "state6": "沸点",
-        "temp": 85,
+        "temp": 83,
         "max_lbc": 6,
         "zt": 112,
         "zb_rate": 19.5,
@@ -204,22 +204,22 @@
       "outcome": {
         "nextDay": {
           "date": "2026-05-14",
-          "sent": 24,
-          "sentDelta": -62.0,
+          "sent": 23,
+          "sentDelta": -63.0,
           "state6": "冰点",
           "premDelta": -3.22,
           "maxLbcDelta": -1
         },
         "in3Days": {
           "date": "2026-05-18",
-          "sent": 51,
-          "sentDelta": -35.0,
+          "sent": 52,
+          "sentDelta": -34.0,
           "state6": "微冷",
           "premDelta": -2.71,
           "maxLbcDelta": 0
         }
       },
-      "score": -1.737
+      "score": -1.753
     },
     {
       "date": "2026-05-14",
@@ -227,9 +227,9 @@
         "冰点/过冷区"
       ],
       "env": {
-        "sent": 24,
+        "sent": 23,
         "state6": "冰点",
-        "temp": 7,
+        "temp": 8,
         "max_lbc": 5,
         "zt": 54,
         "zb_rate": 38.9,
@@ -250,7 +250,7 @@
       "outcome": {
         "nextDay": {
           "date": "2026-05-15",
-          "sent": 28,
+          "sent": 27,
           "sentDelta": 4.0,
           "state6": "过冷",
           "premDelta": -0.95,
@@ -259,7 +259,7 @@
         "in3Days": {
           "date": "2026-05-19",
           "sent": 74,
-          "sentDelta": 50.0,
+          "sentDelta": 51.0,
           "state6": "过热",
           "premDelta": 3.03,
           "maxLbcDelta": 2
@@ -274,9 +274,9 @@
         "低位拐点(次日验证)"
       ],
       "env": {
-        "sent": 28,
+        "sent": 27,
         "state6": "过冷",
-        "temp": 27,
+        "temp": 29,
         "max_lbc": 6,
         "zt": 54,
         "zb_rate": 46,
@@ -297,8 +297,8 @@
       "outcome": {
         "nextDay": {
           "date": "2026-05-18",
-          "sent": 51,
-          "sentDelta": 23.0,
+          "sent": 52,
+          "sentDelta": 25.0,
           "state6": "微冷",
           "premDelta": 1.46,
           "maxLbcDelta": 0
@@ -306,13 +306,13 @@
         "in3Days": {
           "date": "2026-05-20",
           "sent": 37,
-          "sentDelta": 9.0,
+          "sentDelta": 10.0,
           "state6": "过冷",
           "premDelta": 1.02,
           "maxLbcDelta": 2
         }
       },
-      "score": 0.627
+      "score": 0.66
     },
     {
       "date": "2026-05-18",
@@ -321,9 +321,9 @@
         "情绪跳升"
       ],
       "env": {
-        "sent": 51,
+        "sent": 52,
         "state6": "微冷",
-        "temp": 56,
+        "temp": 60,
         "max_lbc": 6,
         "zt": 81,
         "zb_rate": 30.8,
@@ -345,7 +345,7 @@
         "nextDay": {
           "date": "2026-05-19",
           "sent": 74,
-          "sentDelta": 23.0,
+          "sentDelta": 22.0,
           "state6": "过热",
           "premDelta": 2.52,
           "maxLbcDelta": 1
@@ -353,13 +353,13 @@
         "in3Days": {
           "date": "2026-05-21",
           "sent": 13,
-          "sentDelta": -38.0,
+          "sentDelta": -39.0,
           "state6": "冰点",
           "premDelta": -1.55,
           "maxLbcDelta": -2
         }
       },
-      "score": 0.97
+      "score": 0.953
     },
     {
       "date": "2026-05-19",
@@ -369,7 +369,7 @@
       "env": {
         "sent": 74,
         "state6": "过热",
-        "temp": 76,
+        "temp": 81,
         "max_lbc": 7,
         "zt": 90,
         "zb_rate": 17.3,
@@ -398,8 +398,8 @@
         },
         "in3Days": {
           "date": "2026-05-22",
-          "sent": 71,
-          "sentDelta": -3.0,
+          "sent": 72,
+          "sentDelta": -2.0,
           "state6": "过热",
           "premDelta": -0.54,
           "maxLbcDelta": -4
@@ -415,7 +415,7 @@
       "env": {
         "sent": 37,
         "state6": "过冷",
-        "temp": 44,
+        "temp": 47,
         "max_lbc": 8,
         "zt": 61,
         "zb_rate": 35.7,
@@ -483,22 +483,22 @@
       "outcome": {
         "nextDay": {
           "date": "2026-05-22",
-          "sent": 71,
-          "sentDelta": 58.0,
+          "sent": 72,
+          "sentDelta": 59.0,
           "state6": "过热",
           "premDelta": 3.53,
           "maxLbcDelta": -1
         },
         "in3Days": {
           "date": "2026-05-26",
-          "sent": 28,
-          "sentDelta": 15.0,
+          "sent": 29,
+          "sentDelta": 16.0,
           "state6": "过冷",
           "premDelta": 3.08,
           "maxLbcDelta": -1
         }
       },
-      "score": 1.388
+      "score": 1.405
     },
     {
       "date": "2026-05-22",
@@ -507,7 +507,7 @@
         "情绪跳升"
       ],
       "env": {
-        "sent": 71,
+        "sent": 72,
         "state6": "过热",
         "temp": 100,
         "max_lbc": 3,
@@ -531,21 +531,21 @@
         "nextDay": {
           "date": "2026-05-25",
           "sent": 73,
-          "sentDelta": 2.0,
+          "sentDelta": 1.0,
           "state6": "过热",
           "premDelta": 1.72,
           "maxLbcDelta": 0
         },
         "in3Days": {
           "date": "2026-05-27",
-          "sent": 28,
-          "sentDelta": -43.0,
+          "sent": 30,
+          "sentDelta": -42.0,
           "state6": "过冷",
           "premDelta": -0.78,
           "maxLbcDelta": 0
         }
       },
-      "score": 0.32
+      "score": 0.303
     },
     {
       "date": "2026-05-26",
@@ -553,9 +553,9 @@
         "冰点/过冷区"
       ],
       "env": {
-        "sent": 28,
+        "sent": 29,
         "state6": "过冷",
-        "temp": 27,
+        "temp": 29,
         "max_lbc": 3,
         "zt": 46,
         "zb_rate": 35,
@@ -576,22 +576,22 @@
       "outcome": {
         "nextDay": {
           "date": "2026-05-27",
-          "sent": 28,
-          "sentDelta": 0.0,
+          "sent": 30,
+          "sentDelta": 1.0,
           "state6": "过冷",
           "premDelta": -0.33,
           "maxLbcDelta": 0
         },
         "in3Days": {
           "date": "2026-05-29",
-          "sent": 25,
+          "sent": 26,
           "sentDelta": -3.0,
           "state6": "过冷",
           "premDelta": -1.74,
           "maxLbcDelta": 2
         }
       },
-      "score": -0.055
+      "score": -0.038
     },
     {
       "date": "2026-05-27",
@@ -600,9 +600,9 @@
         "低位拐点(次日验证)"
       ],
       "env": {
-        "sent": 28,
+        "sent": 30,
         "state6": "过冷",
-        "temp": 30,
+        "temp": 32,
         "max_lbc": 3,
         "zt": 47,
         "zb_rate": 33.3,
@@ -624,21 +624,21 @@
         "nextDay": {
           "date": "2026-05-28",
           "sent": 61,
-          "sentDelta": 33.0,
+          "sentDelta": 31.0,
           "state6": "微热",
           "premDelta": -0.43,
           "maxLbcDelta": 1
         },
         "in3Days": {
           "date": "2026-06-01",
-          "sent": 77,
-          "sentDelta": 49.0,
+          "sent": 76,
+          "sentDelta": 46.0,
           "state6": "过热",
           "premDelta": 0.92,
           "maxLbcDelta": 1
         }
       },
-      "score": 0.645
+      "score": 0.612
     },
     {
       "date": "2026-05-28",
@@ -648,7 +648,7 @@
       "env": {
         "sent": 61,
         "state6": "微热",
-        "temp": 75,
+        "temp": 78,
         "max_lbc": 4,
         "zt": 101,
         "zb_rate": 26.2,
@@ -669,8 +669,8 @@
       "outcome": {
         "nextDay": {
           "date": "2026-05-29",
-          "sent": 25,
-          "sentDelta": -36.0,
+          "sent": 26,
+          "sentDelta": -35.0,
           "state6": "过冷",
           "premDelta": -0.98,
           "maxLbcDelta": 1
@@ -684,7 +684,7 @@
           "maxLbcDelta": -1
         }
       },
-      "score": -0.597
+      "score": -0.58
     },
     {
       "date": "2026-05-29",
@@ -693,9 +693,9 @@
         "低位拐点(次日验证)"
       ],
       "env": {
-        "sent": 25,
+        "sent": 26,
         "state6": "过冷",
-        "temp": 12,
+        "temp": 13,
         "max_lbc": 5,
         "zt": 49,
         "zb_rate": 50,
@@ -716,8 +716,8 @@
       "outcome": {
         "nextDay": {
           "date": "2026-06-01",
-          "sent": 77,
-          "sentDelta": 52.0,
+          "sent": 76,
+          "sentDelta": 50.0,
           "state6": "过热",
           "premDelta": 2.33,
           "maxLbcDelta": -1
@@ -725,13 +725,13 @@
         "in3Days": {
           "date": "2026-06-03",
           "sent": 50,
-          "sentDelta": 25.0,
+          "sentDelta": 24.0,
           "state6": "微冷",
           "premDelta": 2.87,
           "maxLbcDelta": -2
         }
       },
-      "score": 1.088
+      "score": 1.055
     },
     {
       "date": "2026-06-01",
@@ -740,9 +740,9 @@
         "情绪跳升"
       ],
       "env": {
-        "sent": 77,
+        "sent": 76,
         "state6": "过热",
-        "temp": 38,
+        "temp": 40,
         "max_lbc": 4,
         "zt": 118,
         "zb_rate": 22.6,
@@ -764,21 +764,21 @@
         "nextDay": {
           "date": "2026-06-02",
           "sent": 34,
-          "sentDelta": -43.0,
+          "sentDelta": -42.0,
           "state6": "过冷",
           "premDelta": -1.38,
           "maxLbcDelta": -1
         },
         "in3Days": {
           "date": "2026-06-04",
-          "sent": 58,
+          "sent": 57,
           "sentDelta": -19.0,
           "state6": "微热",
           "premDelta": -1.13,
           "maxLbcDelta": 0
         }
       },
-      "score": -1.113
+      "score": -1.097
     },
     {
       "date": "2026-06-02",
@@ -818,8 +818,8 @@
         },
         "in3Days": {
           "date": "2026-06-05",
-          "sent": 36,
-          "sentDelta": 2.0,
+          "sent": 35,
+          "sentDelta": 1.0,
           "state6": "过冷",
           "premDelta": -1.62,
           "maxLbcDelta": 2
@@ -835,7 +835,7 @@
       "env": {
         "sent": 50,
         "state6": "微冷",
-        "temp": 64,
+        "temp": 67,
         "max_lbc": 3,
         "zt": 66,
         "zb_rate": 46.2,
@@ -856,8 +856,8 @@
       "outcome": {
         "nextDay": {
           "date": "2026-06-04",
-          "sent": 58,
-          "sentDelta": 8.0,
+          "sent": 57,
+          "sentDelta": 7.0,
           "state6": "微热",
           "premDelta": -1.67,
           "maxLbcDelta": 1
@@ -871,53 +871,7 @@
           "maxLbcDelta": 3
         }
       },
-      "score": 0.022
-    },
-    {
-      "date": "2026-06-04",
-      "types": [
-        "情绪跳升"
-      ],
-      "env": {
-        "sent": 58,
-        "state6": "微热",
-        "temp": 38,
-        "max_lbc": 4,
-        "zt": 78,
-        "zb_rate": 26,
-        "prem_avg": 1.17,
-        "damian": 6,
-        "lhb_net": 82.7,
-        "diverge": false
-      },
-      "leaders": {
-        "themes": [],
-        "ladder": [],
-        "lhbBuy": [
-          "京东方A(净+14.73亿, 10.02%)",
-          "厦门钨业(净+11.94亿, 6.2%)",
-          "永鼎股份(净+10.67亿, 4.56%)"
-        ]
-      },
-      "outcome": {
-        "nextDay": {
-          "date": "2026-06-05",
-          "sent": 36,
-          "sentDelta": -22.0,
-          "state6": "过冷",
-          "premDelta": -1.87,
-          "maxLbcDelta": 1
-        },
-        "in3Days": {
-          "date": "2026-06-09",
-          "sent": 62,
-          "sentDelta": 4.0,
-          "state6": "微热",
-          "premDelta": 0.16,
-          "maxLbcDelta": -1
-        }
-      },
-      "score": -0.512
+      "score": 0.005
     },
     {
       "date": "2026-06-05",
@@ -926,9 +880,9 @@
         "低位拐点(次日验证)"
       ],
       "env": {
-        "sent": 36,
+        "sent": 35,
         "state6": "过冷",
-        "temp": 30,
+        "temp": 31,
         "max_lbc": 5,
         "zt": 71,
         "zb_rate": 44.1,
@@ -950,7 +904,7 @@
         "nextDay": {
           "date": "2026-06-08",
           "sent": 47,
-          "sentDelta": 11.0,
+          "sentDelta": 12.0,
           "state6": "微冷",
           "premDelta": 2.41,
           "maxLbcDelta": 1
@@ -958,13 +912,13 @@
         "in3Days": {
           "date": "2026-06-10",
           "sent": 42,
-          "sentDelta": 6.0,
+          "sentDelta": 7.0,
           "state6": "微冷",
           "premDelta": 1.0,
           "maxLbcDelta": -1
         }
       },
-      "score": 0.752
+      "score": 0.768
     },
     {
       "date": "2026-06-08",
@@ -975,7 +929,7 @@
       "env": {
         "sent": 47,
         "state6": "微冷",
-        "temp": 19,
+        "temp": 20,
         "max_lbc": 6,
         "zt": 55,
         "zb_rate": 30.1,
@@ -1068,7 +1022,7 @@
       "env": {
         "sent": 32,
         "state6": "过冷",
-        "temp": 56,
+        "temp": 58,
         "max_lbc": 3,
         "zt": 69,
         "zb_rate": 36.1,
@@ -1115,7 +1069,7 @@
       "env": {
         "sent": 42,
         "state6": "微冷",
-        "temp": 89,
+        "temp": 88,
         "max_lbc": 4,
         "zt": 88,
         "zb_rate": 43.3,
@@ -1144,8 +1098,8 @@
         },
         "in3Days": {
           "date": "2026-06-17",
-          "sent": 60,
-          "sentDelta": 18.0,
+          "sent": 61,
+          "sentDelta": 19.0,
           "state6": "微热",
           "premDelta": 1.55,
           "maxLbcDelta": -1
@@ -1190,8 +1144,8 @@
         },
         "in3Days": {
           "date": "2026-06-18",
-          "sent": 36,
-          "sentDelta": -30.0,
+          "sent": 37,
+          "sentDelta": -29.0,
           "state6": "过冷",
           "premDelta": -1.33,
           "maxLbcDelta": 0
@@ -1207,7 +1161,7 @@
       "env": {
         "sent": 81,
         "state6": "过热",
-        "temp": 70,
+        "temp": 72,
         "max_lbc": 4,
         "zt": 116,
         "zb_rate": 23.2,
@@ -1228,8 +1182,8 @@
       "outcome": {
         "nextDay": {
           "date": "2026-06-17",
-          "sent": 60,
-          "sentDelta": -21.0,
+          "sent": 61,
+          "sentDelta": -20.0,
           "state6": "微热",
           "premDelta": -2.36,
           "maxLbcDelta": -1
@@ -1243,7 +1197,7 @@
           "maxLbcDelta": 0
         }
       },
-      "score": -0.91
+      "score": -0.893
     },
     {
       "date": "2026-06-18",
@@ -1252,9 +1206,9 @@
         "低位拐点(次日验证)"
       ],
       "env": {
-        "sent": 36,
+        "sent": 37,
         "state6": "过冷",
-        "temp": 49,
+        "temp": 50,
         "max_lbc": 3,
         "zt": 91,
         "zb_rate": 36.3,
@@ -1276,7 +1230,7 @@
         "nextDay": {
           "date": "2026-06-22",
           "sent": 85,
-          "sentDelta": 49.0,
+          "sentDelta": 48.0,
           "state6": "沸点",
           "premDelta": 2.94,
           "maxLbcDelta": 1
@@ -1284,13 +1238,13 @@
         "in3Days": {
           "date": "2026-06-24",
           "sent": 52,
-          "sentDelta": 16.0,
+          "sentDelta": 15.0,
           "state6": "微冷",
           "premDelta": -0.75,
           "maxLbcDelta": 1
         }
       },
-      "score": 1.473
+      "score": 1.457
     },
     {
       "date": "2026-06-22",
@@ -1300,7 +1254,7 @@
       "env": {
         "sent": 85,
         "state6": "沸点",
-        "temp": 70,
+        "temp": 72,
         "max_lbc": 4,
         "zt": 132,
         "zb_rate": 17.1,
@@ -1347,7 +1301,7 @@
       "env": {
         "sent": 61,
         "state6": "微热",
-        "temp": 67,
+        "temp": 69,
         "max_lbc": 5,
         "zt": 85,
         "zb_rate": 30.6,
@@ -1441,7 +1395,7 @@
       "env": {
         "sent": 51,
         "state6": "微冷",
-        "temp": 47,
+        "temp": 48,
         "max_lbc": 3,
         "zt": 105,
         "zb_rate": 31.1,
@@ -1580,7 +1534,7 @@
       "env": {
         "sent": 47,
         "state6": "微冷",
-        "temp": 69,
+        "temp": 71,
         "max_lbc": 4,
         "zt": 104,
         "zb_rate": 31,
@@ -1601,8 +1555,8 @@
       "outcome": {
         "nextDay": {
           "date": "2026-07-06",
-          "sent": 27,
-          "sentDelta": -20.0,
+          "sent": 26,
+          "sentDelta": -21.0,
           "state6": "过冷",
           "premDelta": -2.06,
           "maxLbcDelta": 1
@@ -1616,7 +1570,7 @@
           "maxLbcDelta": 3
         }
       },
-      "score": -0.51
+      "score": -0.527
     },
     {
       "date": "2026-07-06",
@@ -1624,9 +1578,9 @@
         "冰点/过冷区"
       ],
       "env": {
-        "sent": 27,
+        "sent": 26,
         "state6": "过冷",
-        "temp": 30,
+        "temp": 31,
         "max_lbc": 5,
         "zt": 64,
         "zb_rate": 46.2,
@@ -1648,7 +1602,7 @@
         "nextDay": {
           "date": "2026-07-07",
           "sent": 20,
-          "sentDelta": -7.0,
+          "sentDelta": -6.0,
           "state6": "冰点",
           "premDelta": -1.59,
           "maxLbcDelta": 1
@@ -1656,13 +1610,13 @@
         "in3Days": {
           "date": "2026-07-09",
           "sent": 57,
-          "sentDelta": 30.0,
+          "sentDelta": 31.0,
           "state6": "微热",
           "premDelta": 2.3,
           "maxLbcDelta": 3
         }
       },
-      "score": -0.215
+      "score": -0.198
     },
     {
       "date": "2026-07-07",
@@ -1673,7 +1627,7 @@
       "env": {
         "sent": 20,
         "state6": "冰点",
-        "temp": 31,
+        "temp": 32,
         "max_lbc": 6,
         "zt": 33,
         "zb_rate": 49.3,
@@ -1813,7 +1767,7 @@
       "env": {
         "sent": 29,
         "state6": "过冷",
-        "temp": 56,
+        "temp": 57,
         "max_lbc": 2,
         "zt": 88,
         "zb_rate": 54,
@@ -1860,7 +1814,7 @@
       "env": {
         "sent": 9,
         "state6": "冰点",
-        "temp": 5,
+        "temp": 6,
         "max_lbc": 3,
         "zt": 27,
         "zb_rate": 47.7,
@@ -1907,7 +1861,7 @@
       "env": {
         "sent": 63,
         "state6": "微热",
-        "temp": 86,
+        "temp": 85,
         "max_lbc": 3,
         "zt": 79,
         "zb_rate": 28.4,
@@ -1936,8 +1890,8 @@
         },
         "in3Days": {
           "date": "2026-07-17",
-          "sent": 17,
-          "sentDelta": -46.0,
+          "sent": 18,
+          "sentDelta": -45.0,
           "state6": "冰点",
           "premDelta": -5.3,
           "maxLbcDelta": 0
@@ -1952,9 +1906,9 @@
         "低位拐点(次日验证)"
       ],
       "env": {
-        "sent": 17,
+        "sent": 18,
         "state6": "冰点",
-        "temp": 8,
+        "temp": 9,
         "max_lbc": 3,
         "zt": 32,
         "zb_rate": 41,
@@ -1976,7 +1930,7 @@
         "nextDay": {
           "date": "2026-07-20",
           "sent": 28,
-          "sentDelta": 11.0,
+          "sentDelta": 10.0,
           "state6": "过冷",
           "premDelta": 1.59,
           "maxLbcDelta": 0
@@ -1984,13 +1938,13 @@
         "in3Days": {
           "date": "2026-07-22",
           "sent": 42,
-          "sentDelta": 25.0,
+          "sentDelta": 24.0,
           "state6": "微冷",
           "premDelta": 2.57,
           "maxLbcDelta": 2
         }
       },
-      "score": 0.448
+      "score": 0.432
     },
     {
       "date": "2026-07-20",
@@ -2003,7 +1957,7 @@
       "env": {
         "sent": 28,
         "state6": "过冷",
-        "temp": 38,
+        "temp": 39,
         "max_lbc": 3,
         "zt": 53,
         "zb_rate": 49.6,
@@ -4685,7 +4639,7 @@
         "themes": [
           {
             "theme": "电池",
-            "net": 2.16,
+            "net": 2.37,
             "zt": 8,
             "max_lbc": 4,
             "core": [
@@ -4865,8 +4819,8 @@
         "themes": [
           {
             "theme": "游戏Ⅱ",
-            "net": 3.62,
-            "zt": 3,
+            "net": 1.81,
+            "zt": 2,
             "max_lbc": 1,
             "core": [
               "电魂网络(1板)",
@@ -4898,9 +4852,10 @@
         "ladder": [
           "百洋股份(4板/饲料)",
           "慈文传媒(4板/影视院线)",
-          "醋化股份(3板/化学制品)",
+          "哈空调(2板/通用设备)",
           "荣丰控股(2板/房地产开)",
-          "阳光乳业(2板/饮料乳品)"
+          "宝鼎科技(1板/元件)",
+          "富春染织(1板/纺织制造)"
         ],
         "lhbBuy": [
           "会稽山(净+2.12亿, -7.92%)",
@@ -4950,7 +4905,7 @@
         "themes": [
           {
             "theme": "元件",
-            "net": 2.4,
+            "net": 2.57,
             "zt": 5,
             "max_lbc": 1,
             "core": [
@@ -5156,10 +5111,10 @@
             "zt": 10,
             "max_lbc": 2,
             "core": [
-              "长春一东(2板)"
+              "保隆科技(2板)"
             ],
             "follow": [
-              "保隆科技(2板)",
+              "长春一东(2板)",
               "东安动力(2板)"
             ]
           }
@@ -5168,7 +5123,7 @@
           "吉大正元(3板/软件开发)",
           "东方嘉盛(3板/物流)",
           "海洋王(2板/照明设备)",
-          "京城股份(2板/通用设备)",
+          "保隆科技(2板/汽车零部)",
           "润建股份(1板/通信服务)",
           "海正药业(1板/化学制药)"
         ],
@@ -5187,7 +5142,14 @@
           "premDelta": 0.95,
           "maxLbcDelta": 1
         },
-        "in3Days": null
+        "in3Days": {
+          "date": "2026-10-22",
+          "sent": 18,
+          "sentDelta": -14.0,
+          "state6": "冰点",
+          "premDelta": -2.84,
+          "maxLbcDelta": 2
+        }
       },
       "score": 0.542
     },
@@ -5226,7 +5188,7 @@
           },
           {
             "theme": "通用设备",
-            "net": 2,
+            "net": 2.21,
             "zt": 6,
             "max_lbc": 3,
             "core": [
@@ -5334,16 +5296,99 @@
           }
         ],
         "ladder": [
-          "海洋王(4板/照明设备)",
           "东安动力(4板/汽车零部)",
+          "海洋王(4板/照明设备)",
           "润建股份(3板/通信服务)",
-          "日海智能(2板/通信设备)",
-          "泰尔股份(2板/通用设备)"
+          "同为股份(2板/计算机设)",
+          "日海智能(2板/通信设备)"
         ],
         "lhbBuy": [
           "长盈精密(净+3.76亿, 7.05%)",
           "龙旗科技(净+3.09亿, 5.36%)",
           "致尚科技(净+3.09亿, 17.12%)"
+        ]
+      },
+      "outcome": {
+        "nextDay": {
+          "date": "2026-10-22",
+          "sent": 18,
+          "sentDelta": -36.0,
+          "state6": "冰点",
+          "premDelta": -5.0,
+          "maxLbcDelta": 1
+        },
+        "in3Days": null
+      },
+      "score": -1.267
+    },
+    {
+      "date": "2026-10-22",
+      "types": [
+        "冰点/过冷区"
+      ],
+      "env": {
+        "sent": 18,
+        "state6": "冰点",
+        "temp": 16,
+        "max_lbc": 5,
+        "zt": 33,
+        "zb_rate": 41,
+        "prem_avg": -2.2,
+        "damian": 22,
+        "lhb_net": 7.01,
+        "diverge": false
+      },
+      "leaders": {
+        "themes": [
+          {
+            "theme": "基础建设",
+            "net": 1.72,
+            "zt": 1,
+            "max_lbc": 1,
+            "core": [
+              "北新路桥(1板)"
+            ],
+            "follow": []
+          },
+          {
+            "theme": "专用设备",
+            "net": 1.7,
+            "zt": 3,
+            "max_lbc": 1,
+            "core": [
+              "南矿集团(1板)",
+              "林州重机(1板)"
+            ],
+            "follow": [
+              "沈鼓集团(1板)"
+            ]
+          },
+          {
+            "theme": "照明设备",
+            "net": 1.49,
+            "zt": 3,
+            "max_lbc": 5,
+            "core": [
+              "海洋王(5板)"
+            ],
+            "follow": [
+              "星光股份(3板)",
+              "阳光照明(1板)"
+            ]
+          }
+        ],
+        "ladder": [
+          "海洋王(5板/照明设备)",
+          "大业股份(5板/通用设备)",
+          "星光股份(3板/照明设备)",
+          "三峡新材(3板/玻璃玻纤)",
+          "海量数据(2板/IT服务Ⅱ)",
+          "出版传媒(2板/出版)"
+        ],
+        "lhbBuy": [
+          "利亚德(净+1.83亿, 8.35%)",
+          "北新路桥(净+1.72亿, 10.06%)",
+          "沈鼓集团(净+1.7亿, 9.99%)"
         ]
       },
       "outcome": {
