@@ -1,9 +1,9 @@
 {
-  "computedAt": "2026-10-22T13:34:11Z",
+  "computedAt": "2026-10-23T13:10:02Z",
   "baseDate": "2026-10-22",
-  "threshold": 0.716,
+  "threshold": 0.718,
   "similarityMode": "relative",
-  "candidateCount": 116,
+  "candidateCount": 115,
   "effectiveMatches": 8,
   "fallback": null,
   "matches": [
@@ -22,22 +22,22 @@
       },
       "nextDay": {
         "date": "2026-07-20",
-        "sent": 28,
+        "sent": 29,
         "state6": "过冷",
         "max_lbc": 3,
         "prem_avg": 0.5,
-        "sentDelta": 10.0
+        "sentDelta": 11.0
       },
       "ladder": [],
       "themes": []
     },
     {
       "date": "2026-07-07",
-      "similarity": 0.864,
+      "similarity": 0.866,
       "env": {
         "sent": 20,
         "state6": "冰点",
-        "temp": 32,
+        "temp": 31,
         "max_lbc": 6,
         "zt": 33,
         "zb_rate": 49.3,
@@ -57,9 +57,9 @@
     },
     {
       "date": "2026-05-14",
-      "similarity": 0.851,
+      "similarity": 0.863,
       "env": {
-        "sent": 23,
+        "sent": 21,
         "state6": "冰点",
         "temp": 8,
         "max_lbc": 5,
@@ -70,11 +70,11 @@
       },
       "nextDay": {
         "date": "2026-05-15",
-        "sent": 27,
+        "sent": 26,
         "state6": "过冷",
         "max_lbc": 6,
         "prem_avg": -1.28,
-        "sentDelta": 4.0
+        "sentDelta": 5.0
       },
       "ladder": [],
       "themes": []
@@ -103,10 +103,9 @@
       "ladder": [
         "百洋股份(4板/饲料)",
         "慈文传媒(4板/影视院线)",
-        "哈空调(2板/通用设备)",
+        "醋化股份(3板/化学制品)",
         "荣丰控股(2板/房地产开)",
-        "宝鼎科技(1板/元件)",
-        "富春染织(1板/纺织制造)"
+        "哈空调(2板/通用设备)"
       ],
       "themes": [
         "游戏Ⅱ",
@@ -197,25 +196,25 @@
       ]
     },
     {
-      "date": "2026-05-29",
-      "similarity": 0.823,
+      "date": "2026-05-15",
+      "similarity": 0.826,
       "env": {
         "sent": 26,
         "state6": "过冷",
-        "temp": 13,
-        "max_lbc": 5,
-        "zt": 49,
-        "zb_rate": 50,
-        "prem_avg": -0.03,
-        "damian": 27
+        "temp": 23,
+        "max_lbc": 6,
+        "zt": 54,
+        "zb_rate": 46,
+        "prem_avg": -1.28,
+        "damian": 14
       },
       "nextDay": {
-        "date": "2026-06-01",
-        "sent": 76,
-        "state6": "过热",
-        "max_lbc": 4,
-        "prem_avg": 2.3,
-        "sentDelta": 50.0
+        "date": "2026-05-18",
+        "sent": 50,
+        "state6": "微冷",
+        "max_lbc": 6,
+        "prem_avg": 0.18,
+        "sentDelta": 24.0
       },
       "ladder": [],
       "themes": []
