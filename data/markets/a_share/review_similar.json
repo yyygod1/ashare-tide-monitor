@@ -1,220 +1,210 @@
 {
-  "computedAt": "2026-10-23T13:10:02Z",
-  "baseDate": "2026-10-22",
-  "threshold": 0.718,
+  "computedAt": "2026-10-26T14:55:29Z",
+  "baseDate": "2026-10-26",
+  "threshold": 0.766,
   "similarityMode": "relative",
-  "candidateCount": 115,
+  "candidateCount": 116,
   "effectiveMatches": 8,
   "fallback": null,
   "matches": [
     {
-      "date": "2026-07-17",
-      "similarity": 0.886,
+      "date": "2026-04-28",
+      "similarity": 0.914,
       "env": {
-        "sent": 18,
-        "state6": "冰点",
-        "temp": 9,
+        "sent": 60,
+        "state6": "微热",
+        "temp": 50,
+        "max_lbc": 4,
+        "zt": 58,
+        "zb_rate": 27.7,
+        "prem_avg": 1.75,
+        "damian": 4
+      },
+      "nextDay": {
+        "date": "2026-04-29",
+        "sent": 69,
+        "state6": "微热",
         "max_lbc": 3,
-        "zt": 32,
-        "zb_rate": 41,
-        "prem_avg": -1.09,
-        "damian": 15
-      },
-      "nextDay": {
-        "date": "2026-07-20",
-        "sent": 29,
-        "state6": "过冷",
-        "max_lbc": 3,
-        "prem_avg": 0.5,
-        "sentDelta": 11.0
+        "prem_avg": 0.84,
+        "sentDelta": 9.0
       },
       "ladder": [],
       "themes": []
     },
     {
-      "date": "2026-07-07",
-      "similarity": 0.866,
+      "date": "2026-06-04",
+      "similarity": 0.881,
       "env": {
-        "sent": 20,
-        "state6": "冰点",
-        "temp": 31,
-        "max_lbc": 6,
-        "zt": 33,
-        "zb_rate": 49.3,
-        "prem_avg": -2.72,
-        "damian": 27
-      },
-      "nextDay": {
-        "date": "2026-07-08",
-        "sent": 45,
-        "state6": "微冷",
-        "max_lbc": 7,
-        "prem_avg": 0.9,
-        "sentDelta": 25.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-05-14",
-      "similarity": 0.863,
-      "env": {
-        "sent": 21,
-        "state6": "冰点",
-        "temp": 8,
-        "max_lbc": 5,
-        "zt": 54,
-        "zb_rate": 38.9,
-        "prem_avg": -0.33,
-        "damian": 24
-      },
-      "nextDay": {
-        "date": "2026-05-15",
-        "sent": 26,
-        "state6": "过冷",
-        "max_lbc": 6,
-        "prem_avg": -1.28,
-        "sentDelta": 5.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-10-14",
-      "similarity": 0.843,
-      "env": {
-        "sent": 17,
-        "state6": "冰点",
+        "sent": 56,
+        "state6": "微热",
         "temp": 38,
         "max_lbc": 4,
-        "zt": 36,
-        "zb_rate": 40,
-        "prem_avg": -0.36,
-        "damian": 27
+        "zt": 78,
+        "zb_rate": 26,
+        "prem_avg": 1.17,
+        "damian": 6
       },
       "nextDay": {
-        "date": "2026-10-15",
-        "sent": 30,
+        "date": "2026-06-05",
+        "sent": 34,
         "state6": "过冷",
         "max_lbc": 5,
-        "prem_avg": -3.29,
-        "sentDelta": 13.0
-      },
-      "ladder": [
-        "百洋股份(4板/饲料)",
-        "慈文传媒(4板/影视院线)",
-        "醋化股份(3板/化学制品)",
-        "荣丰控股(2板/房地产开)",
-        "哈空调(2板/通用设备)"
-      ],
-      "themes": [
-        "游戏Ⅱ",
-        "服装家纺",
-        "中药Ⅱ"
-      ]
-    },
-    {
-      "date": "2026-07-24",
-      "similarity": 0.842,
-      "env": {
-        "sent": 20,
-        "state6": "冰点",
-        "temp": 33,
-        "max_lbc": 4,
-        "zt": 40,
-        "zb_rate": 44.2,
-        "prem_avg": -0.54,
-        "damian": 28
-      },
-      "nextDay": {
-        "date": "2026-07-27",
-        "sent": 83,
-        "state6": "过热",
-        "max_lbc": 5,
-        "prem_avg": 2.45,
-        "sentDelta": 63.0
+        "prem_avg": -0.7,
+        "sentDelta": -22.0
       },
       "ladder": [],
       "themes": []
     },
     {
-      "date": "2026-08-19",
-      "similarity": 0.842,
+      "date": "2026-07-15",
+      "similarity": 0.868,
       "env": {
-        "sent": 16,
-        "state6": "冰点",
-        "temp": 2,
-        "max_lbc": 3,
-        "zt": 36,
-        "zb_rate": 32.3,
-        "prem_avg": -2.64,
-        "damian": 39
-      },
-      "nextDay": {
-        "date": "2026-08-20",
-        "sent": 36,
-        "state6": "过冷",
-        "max_lbc": 4,
-        "prem_avg": -1.72,
-        "sentDelta": 20.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-09-28",
-      "similarity": 0.834,
-      "env": {
-        "sent": 29,
-        "state6": "过冷",
-        "temp": 8,
-        "max_lbc": 5,
-        "zt": 33,
-        "zb_rate": 25,
-        "prem_avg": -1.91,
-        "damian": 23
-      },
-      "nextDay": {
-        "date": "2026-09-29",
-        "sent": 70,
-        "state6": "过热",
-        "max_lbc": 6,
-        "prem_avg": 2.31,
-        "sentDelta": 41.0
-      },
-      "ladder": [
-        "新华传媒(5板/出版)",
-        "雪龙集团(3板/汽车零部)",
-        "金辰股份(3板/光伏设备)",
-        "大业股份(2板/通用设备)",
-        "襄阳轴承(2板/汽车零部)"
-      ],
-      "themes": [
-        "汽车零部",
-        "互联网电",
-        "影视院线"
-      ]
-    },
-    {
-      "date": "2026-05-15",
-      "similarity": 0.826,
-      "env": {
-        "sent": 26,
-        "state6": "过冷",
-        "temp": 23,
-        "max_lbc": 6,
-        "zt": 54,
-        "zb_rate": 46,
-        "prem_avg": -1.28,
-        "damian": 14
-      },
-      "nextDay": {
-        "date": "2026-05-18",
-        "sent": 50,
+        "sent": 47,
         "state6": "微冷",
+        "temp": 46,
+        "max_lbc": 4,
+        "zt": 71,
+        "zb_rate": 37.2,
+        "prem_avg": 1.44,
+        "damian": 10
+      },
+      "nextDay": {
+        "date": "2026-07-16",
+        "sent": 47,
+        "state6": "微冷",
+        "max_lbc": 5,
+        "prem_avg": 2.42,
+        "sentDelta": 0.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-09-14",
+      "similarity": 0.853,
+      "env": {
+        "sent": 60,
+        "state6": "微热",
+        "temp": 61,
+        "max_lbc": 4,
+        "zt": 55,
+        "zb_rate": 35,
+        "prem_avg": 3.74,
+        "damian": 2
+      },
+      "nextDay": {
+        "date": "2026-09-15",
+        "sent": 33,
+        "state6": "过冷",
+        "max_lbc": 5,
+        "prem_avg": 0.31,
+        "sentDelta": -27.0
+      },
+      "ladder": [
+        "闽东电力(4板/电力)",
+        "中新赛克(3板/计算机设)",
+        "超声电子(3板/元件)",
+        "正和生态(2板/环境治理)",
+        "通达股份(2板/电网设备)"
+      ],
+      "themes": [
+        "元件",
+        "通用设备",
+        "电力"
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "similarity": 0.848,
+      "env": {
+        "sent": 52,
+        "state6": "微冷",
+        "temp": 63,
+        "max_lbc": 5,
+        "zt": 92,
+        "zb_rate": 27.6,
+        "prem_avg": 2.51,
+        "damian": 7
+      },
+      "nextDay": {
+        "date": "2026-05-12",
+        "sent": 37,
+        "state6": "过冷",
+        "max_lbc": 5,
+        "prem_avg": 2.05,
+        "sentDelta": -15.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-09-08",
+      "similarity": 0.84,
+      "env": {
+        "sent": 60,
+        "state6": "微热",
+        "temp": 67,
+        "max_lbc": 4,
+        "zt": 73,
+        "zb_rate": 34,
+        "prem_avg": 2.91,
+        "damian": 2
+      },
+      "nextDay": {
+        "date": "2026-09-09",
+        "sent": 42,
+        "state6": "微冷",
+        "max_lbc": 5,
+        "prem_avg": 1.1,
+        "sentDelta": -18.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-06-29",
+      "similarity": 0.836,
+      "env": {
+        "sent": 51,
+        "state6": "微冷",
+        "temp": 45,
+        "max_lbc": 3,
+        "zt": 105,
+        "zb_rate": 31.1,
+        "prem_avg": 1.1,
+        "damian": 13
+      },
+      "nextDay": {
+        "date": "2026-06-30",
+        "sent": 77,
+        "state6": "过热",
+        "max_lbc": 3,
+        "prem_avg": 3,
+        "sentDelta": 26.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-08-26",
+      "similarity": 0.835,
+      "env": {
+        "sent": 55,
+        "state6": "微热",
+        "temp": 77,
+        "max_lbc": 5,
+        "zt": 52,
+        "zb_rate": 39.6,
+        "prem_avg": 2.34,
+        "damian": 2
+      },
+      "nextDay": {
+        "date": "2026-08-27",
+        "sent": 74,
+        "state6": "过热",
         "max_lbc": 6,
-        "prem_avg": 0.18,
-        "sentDelta": 24.0
+        "prem_avg": 2.55,
+        "sentDelta": 19.0
       },
       "ladder": [],
       "themes": []
