@@ -1856,7 +1856,7 @@
   {
     "id": "2026-10-27-deepseek-chat-1793109976",
     "predictDate": "2026-10-27",
-    "targetDate": "",
+    "targetDate": "2026-10-28",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-27T14:06:16Z",
@@ -1945,6 +1945,146 @@
       "state6": "过冷",
       "max_lbc": 5,
       "prem_avg": 0.55
+    },
+    "actual": {
+      "date": "2026-10-28",
+      "sent": 59,
+      "state6": "微热",
+      "max_lbc": 5,
+      "prem_avg": 2.37,
+      "zt": 72,
+      "zb_rate": 49,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": false,
+      "heightHit": true,
+      "ztHit": false,
+      "zbRateHit": false,
+      "premiumHit": true,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 3,
+      "accuracy": 0.43,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "hit",
+        "stance": "hit",
+        "height": "hit",
+        "zt": "miss",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 2,
+      "coreScored": 3,
+      "coreAccuracy": 0.67,
+      "brierState6": 0.9614,
+      "logLoss": 2.1203,
+      "missReasons": [
+        "数据口径",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-10-28T14:54:58Z"
+  },
+  {
+    "id": "2026-10-28-deepseek-chat-1793199306",
+    "predictDate": "2026-10-28",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-10-28T14:55:06Z",
+    "prediction": {
+      "stance": "追高区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "下行",
+      "crossValidation": "偏空",
+      "state6Next": "过冷",
+      "state6Probs": {
+        "冰点": 0.05,
+        "过冷": 0.45,
+        "微冷": 0.2,
+        "微热": 0.05,
+        "过热": 0.25,
+        "沸点": 0
+      },
+      "sentimentRange": [
+        42,
+        54
+      ],
+      "heightRange": [
+        4,
+        6
+      ],
+      "ztRange": [
+        45,
+        70
+      ],
+      "zbRateRange": [
+        35,
+        55
+      ],
+      "bigFaceRange": [
+        6,
+        15
+      ],
+      "streakRange": [
+        4,
+        7
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "1成试仓",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "襄阳轴承(5板/汽车零部)",
+        "青岛食品(3板/休闲食品)",
+        "光洋股份(3板/汽车零部)",
+        "东贝集团(2板/家电零部)",
+        "茂业商业(2板/一般零售)"
+      ],
+      "focusThemes": [
+        "汽车零部",
+        "塑料",
+        "电子化学"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥45",
+        "次日炸板率≤40%"
+      ],
+      "entryConfirm": [
+        "昨涨停溢价维持>1.5%",
+        "最高板不出现断板"
+      ],
+      "middleBand": "<40失效不参与；40~45模糊仅观察；45~59必要满足方可试仓；59~70模糊需entryConfirm至少一项成立；≥70追高区不新开仓",
+      "invalidConditions": [
+        "次日情绪分<40",
+        "次日炸板率>55%",
+        "最高板断板且大面数>15"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "状态定义",
+      "dataBasis": "收盘实盘",
+      "riskNote": "炸板率49%与温度84背离，高位股承接转弱，追高易吃大面"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是资金温度 84 与炸板率 49% 的背离：温度处高位、昨涨停溢价 2.37%（显著正），但炸板率已进入「高」档（>25%），涨停 72 家而大面 6 家，说明承接在变差、赚钱效应集中在少数高位股。今日被标记为「情绪跳升」节点，而该节点历史 50 次、平均性价比 -0.334、次日情绪上行占比仅 34%（95%CI 22~48%），属统计上偏空的节点类型；同时 veto 命中 T4（过冷），与情绪分 59 存在口径冲突，需降权处理。今日不属于历史性价比较高的低吸区（低吸区对应冰点/过冷，如今日 10-27 的 0.753、10-22 的 2.237），更接近需要回避的追高区。相似日 8 例中 6 例次日情绪分下行（-15 至 -27），仅 2 例上行（+19、+13），方向偏空。次日情绪分区间 42~54，方向下行。置信度：中（0.55）。\n\n交叉验证：节点统计＝偏空（情绪跳升均值 -0.334、上行占比 34%）、相似日＝偏空（8 例中 6 例下行）、状态转移＝偏空（微热→过冷 45%）⇒ 综合：偏空。\n\n基准对照：区间宽度 12 对应的历史命中基准约 40%，本次置信度 0.55 略高于基准，但六态先验 walk-forward 成绩（Top1 20%、Brier 0.8826）劣于基准 0.8064，故六态仅作辅助标签。\n\n数据质量：zbRate、bigFace 为 ok；redRatio 缺失（missing），不参与判断，对置信度构成下调压力。\n\n**2) 明日关注方向**\n\n相似日次日梯队显示，情绪下行日高度多维持或小幅抬升（6、6、5、8、2、5、4），但溢价普遍回落，说明高位接力风险大于机会。明日重点观察 2 板卡位与首板换手充分的结构，回避 3 板以上接力（今日襄阳轴承 5 板为最高板，孤高特征明显）。重点关注名单（仅作观察对象）：襄阳轴承(5板/汽车零部)、青岛食品(3板/休闲食品)、光洋股份(3板/汽车零部)、东贝集团(2板/家电零部)、茂业商业(2板/一般零售)。题材关注汽车零部、塑料、电子化学。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：①次日情绪分 ≥45；②次日炸板率 ≤40%。\nentryConfirm：昨涨停溢价维持显著正（>1.5%）；最高板不出现断板。\nmiddleBand：<40 失效（不参与）；40~45 模糊（仅观察，不出手）；45~59 必要（满足必要条件方可试仓）；59~70 模糊（需 entryConfirm 至少一项成立）；≥70 视为追高区，不新开仓。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 15 次（<30），相似日有效匹配 8 例（≥3），溢价数据完整；但六态先验弱于基准、veto 与情绪分口径冲突，判断可靠性受限。仓位建议：1 成试仓。回看上次预测（10-27→10-28 预测低吸区，实际情绪分 59 微热），失准归因：状态定义。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-10-28",
+      "sent": 59,
+      "state6": "微热",
+      "max_lbc": 5,
+      "prem_avg": 2.37
     },
     "actual": null,
     "score": null,
