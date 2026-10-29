@@ -1996,7 +1996,7 @@
   {
     "id": "2026-10-28-deepseek-chat-1793199306",
     "predictDate": "2026-10-28",
-    "targetDate": "",
+    "targetDate": "2026-10-29",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-28T14:55:06Z",
@@ -2085,6 +2085,149 @@
       "state6": "微热",
       "max_lbc": 5,
       "prem_avg": 2.37
+    },
+    "actual": {
+      "date": "2026-10-29",
+      "sent": 17,
+      "state6": "冰点",
+      "max_lbc": 4,
+      "prem_avg": -1.14,
+      "zt": 39,
+      "zb_rate": 39,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": false,
+      "heightHit": true,
+      "ztHit": false,
+      "zbRateHit": true,
+      "premiumHit": false,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 3,
+      "accuracy": 0.43,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "miss",
+        "stance": "hit",
+        "height": "hit",
+        "zt": "miss",
+        "zbRate": "hit",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 1,
+      "coreScored": 3,
+      "coreAccuracy": 0.33,
+      "brierState6": 1.21,
+      "logLoss": 2.9957,
+      "missReasons": [
+        "数据口径",
+        "外部冲击",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-10-29T15:00:04Z"
+  },
+  {
+    "id": "2026-10-29-deepseek-chat-1793286013",
+    "predictDate": "2026-10-29",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-10-29T15:00:13Z",
+    "prediction": {
+      "stance": "低吸区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "上行",
+      "crossValidation": "偏多",
+      "state6Next": "过冷",
+      "state6Probs": {
+        "冰点": 0.05,
+        "过冷": 0.45,
+        "微冷": 0.09,
+        "微热": 0.18,
+        "过热": 0.18,
+        "沸点": 0.05
+      },
+      "sentimentRange": [
+        20,
+        32
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        35,
+        55
+      ],
+      "zbRateRange": [
+        30,
+        42
+      ],
+      "bigFaceRange": [
+        15,
+        28
+      ],
+      "streakRange": [
+        5,
+        9
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "1成试仓",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "青岛食品(4板/休闲食品)",
+        "光洋股份(4板/汽车零部)",
+        "上海沪工(2板/通用设备)",
+        "澳洋健康(2板/医疗服务)",
+        "山东矿机(2板/专用设备)"
+      ],
+      "focusThemes": [
+        "通用设备",
+        "医疗服务",
+        "工程机械"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥20",
+        "次日昨涨停溢价≥-0.5%"
+      ],
+      "entryConfirm": [
+        "炸板率回落至30%以下",
+        "最高板不低于3板",
+        "大面数降至20家以内"
+      ],
+      "middleBand": "<20失效／20~26模糊(仅1成试仓，等溢价转正再加)／26~32模糊偏多(可3成)／≥32必要(按确认项执行)",
+      "invalidConditions": [
+        "情绪分<20",
+        "昨涨停溢价<-1.5%",
+        "炸板率>45%",
+        "最高板降至2板及以下"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "外部冲击",
+      "dataBasis": "收盘实盘",
+      "riskNote": "冰点性价比仅0.0且修复离散度大，溢价再度转负则低吸逻辑失效"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是：资金温度 8 与最高板 4 板、涨停 39 家之间并未出现“冰点应有的极低高度”，即情绪分 17 的冰点读数与 4 板梯队、39 家涨停存在背离，说明杀跌集中在溢价端（昨涨停溢价 -1.14%、大面 28 家、炸板率 39%）而非高度端。今日命中 veto 冰点（T3、T5、T6），节点类型归为「冰点/过冷区」，该类型历史出现 46 次、次日情绪上行占比 83%（95%CI 70~91%），平均性价比 0.637，属统计上偏有利的低吸区，而非追高区。但需注意今日性价比仅 0.0，低于该类型均值，且 10-28 情绪跳升后单日 -42 的塌陷属外部冲击型，样本内 10-22 同类冰点次日曾跳至 81，10-14 同类仅至 30，离散度大。\n\n主结果：次日情绪分区间 20~32（宽度 12），方向上行，置信度：中（0.55）。六态辅助标签 state6Next 取「过冷」，概率分布见 JSON（先验 Top1 仅 23% 命中、Brier 劣于基准，仅作辅助）。\n\n数据质量：zbRate=ok、bigFace=ok、redRatio=missing（全市场红盘率未提供），redRatio 缺失使区间上沿可信度下降，置信度不升档。\n\n基准对照：宽度 12 对应情绪 ±15 带宽历史命中基准约 40%，本次置信度 0.55 略高于基准，但受 redRatio 缺失与性价比 0.0 拖累，不上调至「高」。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏多（冰点类次日上行 83%）／相似日＝偏多（8 个近邻中 6 个次日情绪上行，+6~+63）／状态转移＝偏多（过冷 45%）⇒ 综合：偏多。\n\n相似日梯队显示，冰点次日修复多由中低位接力完成：10-22 由海洋王 5 板、大业股份 5 板带队跳升至 81；10-14 高度 4 仅修至 30，溢价反走 -3.29%，说明高度端不降反升时修复更弱。明日重点观察 2 板卡位与首板换手充分结构，3 板以上（东贝集团、文投控股）仅作情绪温度计，不追。关注名单（仅作观察对象）：青岛食品(4板/休闲食品)、光洋股份(4板/汽车零部)、上海沪工(2板/通用设备)、澳洋健康(2板/医疗服务)、山东矿机(2板/专用设备)。题材聚焦通用设备、医疗服务、工程机械。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：①次日情绪分 ≥20；②次日昨涨停溢价 ≥-0.5%。entryConfirm：炸板率回落至 30% 以下；最高板不低于 3 板；大面数降至 20 家以内。middleBand：<20 失效／20~26 模糊（仅 1 成试仓，等溢价转正再加）／26~32 模糊偏多（可 3 成）／≥32 必要（按确认项执行）。失效条件：情绪分 <20 或溢价 < -1.5% 或炸板率 >45% 或最高板降至 2 板及以下。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 16 次（<30），但相似日有效匹配 8 个（≥3）、溢价数据齐全，硬约束未触发「观望」；不过近 8 次核心维命中 53%、全维 44%，且冰点类性价比今日为 0.0，修复力度不可外推。回避情形：高开低走型溢价再度转负、4 板股集体断板。仓位建议：1 成试仓，确认项兑现后加至 3 成，不超 3 成。失准归因（上一次 10-28→10-29 预测追高区、实际冰点）：外部冲击。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-10-29",
+      "sent": 17,
+      "state6": "冰点",
+      "max_lbc": 4,
+      "prem_avg": -1.14
     },
     "actual": null,
     "score": null,
