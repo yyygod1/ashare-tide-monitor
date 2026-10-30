@@ -1,39 +1,15 @@
 {
-  "computedAt": "2026-10-29T15:00:04Z",
+  "computedAt": "2026-10-30T14:54:04Z",
   "baseDate": "2026-10-29",
-  "threshold": 0.713,
-  "similarityMode": "relative",
-  "candidateCount": 116,
+  "threshold": 0.7,
+  "similarityMode": "absolute",
+  "candidateCount": 115,
   "effectiveMatches": 8,
   "fallback": null,
   "matches": [
     {
-      "date": "2026-07-17",
-      "similarity": 0.937,
-      "env": {
-        "sent": 18,
-        "state6": "冰点",
-        "temp": 9,
-        "max_lbc": 3,
-        "zt": 32,
-        "zb_rate": 41,
-        "prem_avg": -1.09,
-        "damian": 15
-      },
-      "nextDay": {
-        "date": "2026-07-20",
-        "sent": 29,
-        "state6": "过冷",
-        "max_lbc": 3,
-        "prem_avg": 0.5,
-        "sentDelta": 11.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
       "date": "2026-10-22",
-      "similarity": 0.891,
+      "similarity": 0.908,
       "env": {
         "sent": 18,
         "state6": "冰点",
@@ -55,8 +31,8 @@
       "ladder": [
         "海洋王(5板/照明设备)",
         "大业股份(5板/通用设备)",
-        "三峡新材(3板/玻璃玻纤)",
         "星光股份(3板/照明设备)",
+        "三峡新材(3板/玻璃玻纤)",
         "海量数据(2板/IT服务Ⅱ)",
         "出版传媒(2板/出版)"
       ],
@@ -67,66 +43,8 @@
       ]
     },
     {
-      "date": "2026-10-14",
-      "similarity": 0.881,
-      "env": {
-        "sent": 17,
-        "state6": "冰点",
-        "temp": 38,
-        "max_lbc": 4,
-        "zt": 36,
-        "zb_rate": 40,
-        "prem_avg": -0.36,
-        "damian": 27
-      },
-      "nextDay": {
-        "date": "2026-10-15",
-        "sent": 30,
-        "state6": "过冷",
-        "max_lbc": 5,
-        "prem_avg": -3.29,
-        "sentDelta": 13.0
-      },
-      "ladder": [
-        "百洋股份(4板/饲料)",
-        "慈文传媒(4板/影视院线)",
-        "醋化股份(3板/化学制品)",
-        "冰山冷热(2板/通用设备)",
-        "超声电子(2板/元件)"
-      ],
-      "themes": [
-        "游戏Ⅱ",
-        "服装家纺",
-        "中药Ⅱ"
-      ]
-    },
-    {
-      "date": "2026-05-14",
-      "similarity": 0.874,
-      "env": {
-        "sent": 22,
-        "state6": "冰点",
-        "temp": 13,
-        "max_lbc": 5,
-        "zt": 54,
-        "zb_rate": 38.9,
-        "prem_avg": -0.33,
-        "damian": 24
-      },
-      "nextDay": {
-        "date": "2026-05-15",
-        "sent": 28,
-        "state6": "过冷",
-        "max_lbc": 6,
-        "prem_avg": -1.28,
-        "sentDelta": 6.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
       "date": "2026-08-19",
-      "similarity": 0.872,
+      "similarity": 0.902,
       "env": {
         "sent": 16,
         "state6": "冰点",
@@ -149,32 +67,66 @@
       "themes": []
     },
     {
-      "date": "2026-07-24",
-      "similarity": 0.867,
+      "date": "2026-07-17",
+      "similarity": 0.895,
       "env": {
-        "sent": 20,
+        "sent": 19,
         "state6": "冰点",
-        "temp": 33,
-        "max_lbc": 4,
-        "zt": 40,
-        "zb_rate": 44.2,
-        "prem_avg": -0.54,
-        "damian": 28
+        "temp": 10,
+        "max_lbc": 3,
+        "zt": 32,
+        "zb_rate": 41,
+        "prem_avg": -1.09,
+        "damian": 15
       },
       "nextDay": {
-        "date": "2026-07-27",
-        "sent": 83,
-        "state6": "过热",
-        "max_lbc": 5,
-        "prem_avg": 2.45,
-        "sentDelta": 63.0
+        "date": "2026-07-20",
+        "sent": 29,
+        "state6": "过冷",
+        "max_lbc": 3,
+        "prem_avg": 0.5,
+        "sentDelta": 10.0
       },
       "ladder": [],
       "themes": []
     },
     {
+      "date": "2026-10-14",
+      "similarity": 0.852,
+      "env": {
+        "sent": 17,
+        "state6": "冰点",
+        "temp": 38,
+        "max_lbc": 4,
+        "zt": 36,
+        "zb_rate": 40,
+        "prem_avg": -0.36,
+        "damian": 27
+      },
+      "nextDay": {
+        "date": "2026-10-15",
+        "sent": 30,
+        "state6": "过冷",
+        "max_lbc": 5,
+        "prem_avg": -3.29,
+        "sentDelta": 13.0
+      },
+      "ladder": [
+        "百洋股份(4板/饲料)",
+        "慈文传媒(4板/影视院线)",
+        "醋化股份(3板/化学制品)",
+        "荣丰控股(2板/房地产开)",
+        "哈空调(2板/通用设备)"
+      ],
+      "themes": [
+        "游戏Ⅱ",
+        "服装家纺",
+        "中药Ⅱ"
+      ]
+    },
+    {
       "date": "2026-07-13",
-      "similarity": 0.823,
+      "similarity": 0.849,
       "env": {
         "sent": 9,
         "state6": "冰点",
@@ -197,28 +149,86 @@
       "themes": []
     },
     {
-      "date": "2026-05-21",
-      "similarity": 0.821,
+      "date": "2026-07-24",
+      "similarity": 0.839,
       "env": {
-        "sent": 12,
+        "sent": 20,
         "state6": "冰点",
-        "temp": 15,
+        "temp": 33,
         "max_lbc": 4,
-        "zt": 33,
-        "zb_rate": 69.4,
-        "prem_avg": -1.37,
-        "damian": 21
+        "zt": 40,
+        "zb_rate": 44.2,
+        "prem_avg": -0.54,
+        "damian": 28
       },
       "nextDay": {
-        "date": "2026-05-22",
-        "sent": 64,
-        "state6": "微热",
-        "max_lbc": 3,
-        "prem_avg": 2.16,
-        "sentDelta": 52.0
+        "date": "2026-07-27",
+        "sent": 83,
+        "state6": "过热",
+        "max_lbc": 5,
+        "prem_avg": 2.45,
+        "sentDelta": 63.0
       },
       "ladder": [],
       "themes": []
+    },
+    {
+      "date": "2026-05-14",
+      "similarity": 0.837,
+      "env": {
+        "sent": 23,
+        "state6": "冰点",
+        "temp": 14,
+        "max_lbc": 5,
+        "zt": 54,
+        "zb_rate": 38.9,
+        "prem_avg": -0.33,
+        "damian": 24
+      },
+      "nextDay": {
+        "date": "2026-05-15",
+        "sent": 29,
+        "state6": "过冷",
+        "max_lbc": 6,
+        "prem_avg": -1.28,
+        "sentDelta": 6.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-09-28",
+      "similarity": 0.821,
+      "env": {
+        "sent": 29,
+        "state6": "过冷",
+        "temp": 8,
+        "max_lbc": 5,
+        "zt": 33,
+        "zb_rate": 25,
+        "prem_avg": -1.91,
+        "damian": 23
+      },
+      "nextDay": {
+        "date": "2026-09-29",
+        "sent": 70,
+        "state6": "过热",
+        "max_lbc": 6,
+        "prem_avg": 2.31,
+        "sentDelta": 41.0
+      },
+      "ladder": [
+        "新华传媒(5板/出版)",
+        "雪龙集团(3板/汽车零部)",
+        "金辰股份(3板/光伏设备)",
+        "大业股份(2板/通用设备)",
+        "襄阳轴承(2板/汽车零部)"
+      ],
+      "themes": [
+        "汽车零部",
+        "互联网电",
+        "影视院线"
+      ]
     }
   ]
 }
