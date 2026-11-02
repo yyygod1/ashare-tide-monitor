@@ -8,5 +8,4 @@
 
 昨日高标断板: 上海沪工(昨3板)
 
-大面名单: 拉取失败 Unexpected token '<', "<html>
-<h"... is not valid JSON
+大面名单(昨涨停今跌>4%, 0只): 
