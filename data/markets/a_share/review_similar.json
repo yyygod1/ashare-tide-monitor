@@ -1,234 +1,231 @@
 {
-  "computedAt": "2026-10-30T14:54:04Z",
-  "baseDate": "2026-10-29",
+  "computedAt": "2026-11-02T17:56:22Z",
+  "baseDate": "2026-11-02",
   "threshold": 0.7,
   "similarityMode": "absolute",
-  "candidateCount": 115,
+  "candidateCount": 116,
   "effectiveMatches": 8,
   "fallback": null,
   "matches": [
     {
-      "date": "2026-10-22",
-      "similarity": 0.908,
+      "date": "2026-07-23",
+      "similarity": 0.887,
       "env": {
-        "sent": 18,
-        "state6": "冰点",
-        "temp": 16,
-        "max_lbc": 5,
-        "zt": 33,
-        "zb_rate": 41,
-        "prem_avg": -2.2,
-        "damian": 22
-      },
-      "nextDay": {
-        "date": "2026-10-23",
-        "sent": 81,
-        "state6": "过热",
+        "sent": 92,
+        "state6": "沸点",
+        "temp": 65,
         "max_lbc": 6,
-        "prem_avg": 3.92,
-        "sentDelta": 63.0
-      },
-      "ladder": [
-        "海洋王(5板/照明设备)",
-        "大业股份(5板/通用设备)",
-        "星光股份(3板/照明设备)",
-        "三峡新材(3板/玻璃玻纤)",
-        "海量数据(2板/IT服务Ⅱ)",
-        "出版传媒(2板/出版)"
-      ],
-      "themes": [
-        "基础建设",
-        "专用设备",
-        "照明设备"
-      ]
-    },
-    {
-      "date": "2026-08-19",
-      "similarity": 0.902,
-      "env": {
-        "sent": 16,
-        "state6": "冰点",
-        "temp": 2,
-        "max_lbc": 3,
-        "zt": 36,
-        "zb_rate": 32.3,
-        "prem_avg": -2.64,
-        "damian": 39
+        "zt": 115,
+        "zb_rate": 21.6,
+        "prem_avg": 4.36,
+        "damian": 2
       },
       "nextDay": {
-        "date": "2026-08-20",
-        "sent": 36,
-        "state6": "过冷",
-        "max_lbc": 4,
-        "prem_avg": -1.72,
-        "sentDelta": 20.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-07-17",
-      "similarity": 0.895,
-      "env": {
-        "sent": 19,
-        "state6": "冰点",
-        "temp": 10,
-        "max_lbc": 3,
-        "zt": 32,
-        "zb_rate": 41,
-        "prem_avg": -1.09,
-        "damian": 15
-      },
-      "nextDay": {
-        "date": "2026-07-20",
-        "sent": 29,
-        "state6": "过冷",
-        "max_lbc": 3,
-        "prem_avg": 0.5,
-        "sentDelta": 10.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-10-14",
-      "similarity": 0.852,
-      "env": {
-        "sent": 17,
-        "state6": "冰点",
-        "temp": 38,
-        "max_lbc": 4,
-        "zt": 36,
-        "zb_rate": 40,
-        "prem_avg": -0.36,
-        "damian": 27
-      },
-      "nextDay": {
-        "date": "2026-10-15",
-        "sent": 30,
-        "state6": "过冷",
-        "max_lbc": 5,
-        "prem_avg": -3.29,
-        "sentDelta": 13.0
-      },
-      "ladder": [
-        "百洋股份(4板/饲料)",
-        "慈文传媒(4板/影视院线)",
-        "醋化股份(3板/化学制品)",
-        "荣丰控股(2板/房地产开)",
-        "哈空调(2板/通用设备)"
-      ],
-      "themes": [
-        "游戏Ⅱ",
-        "服装家纺",
-        "中药Ⅱ"
-      ]
-    },
-    {
-      "date": "2026-07-13",
-      "similarity": 0.849,
-      "env": {
-        "sent": 9,
-        "state6": "冰点",
-        "temp": 6,
-        "max_lbc": 3,
-        "zt": 27,
-        "zb_rate": 47.7,
-        "prem_avg": -2.65,
-        "damian": 41
-      },
-      "nextDay": {
-        "date": "2026-07-14",
-        "sent": 63,
-        "state6": "微热",
-        "max_lbc": 3,
-        "prem_avg": 4.21,
-        "sentDelta": 54.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-07-24",
-      "similarity": 0.839,
-      "env": {
+        "date": "2026-07-24",
         "sent": 20,
         "state6": "冰点",
-        "temp": 33,
         "max_lbc": 4,
-        "zt": 40,
-        "zb_rate": 44.2,
         "prem_avg": -0.54,
-        "damian": 28
-      },
-      "nextDay": {
-        "date": "2026-07-27",
-        "sent": 83,
-        "state6": "过热",
-        "max_lbc": 5,
-        "prem_avg": 2.45,
-        "sentDelta": 63.0
+        "sentDelta": -72.0
       },
       "ladder": [],
       "themes": []
     },
     {
-      "date": "2026-05-14",
-      "similarity": 0.837,
+      "date": "2026-09-07",
+      "similarity": 0.877,
       "env": {
-        "sent": 23,
-        "state6": "冰点",
-        "temp": 14,
-        "max_lbc": 5,
-        "zt": 54,
-        "zb_rate": 38.9,
-        "prem_avg": -0.33,
-        "damian": 24
+        "sent": 87,
+        "state6": "沸点",
+        "temp": 87,
+        "max_lbc": 6,
+        "zt": 93,
+        "zb_rate": 17,
+        "prem_avg": 4.89,
+        "damian": 0
       },
       "nextDay": {
-        "date": "2026-05-15",
-        "sent": 29,
-        "state6": "过冷",
-        "max_lbc": 6,
-        "prem_avg": -1.28,
-        "sentDelta": 6.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-09-28",
-      "similarity": 0.821,
-      "env": {
-        "sent": 29,
-        "state6": "过冷",
-        "temp": 8,
-        "max_lbc": 5,
-        "zt": 33,
-        "zb_rate": 25,
-        "prem_avg": -1.91,
-        "damian": 23
-      },
-      "nextDay": {
-        "date": "2026-09-29",
-        "sent": 70,
-        "state6": "过热",
-        "max_lbc": 6,
-        "prem_avg": 2.31,
-        "sentDelta": 41.0
+        "date": "2026-09-08",
+        "sent": 60,
+        "state6": "微热",
+        "max_lbc": 4,
+        "prem_avg": 2.91,
+        "sentDelta": -27.0
       },
       "ladder": [
-        "新华传媒(5板/出版)",
-        "雪龙集团(3板/汽车零部)",
-        "金辰股份(3板/光伏设备)",
-        "大业股份(2板/通用设备)",
-        "襄阳轴承(2板/汽车零部)"
+        "龙版传媒(6板/出版)",
+        "亚盛集团(3板/种植业)",
+        "百大集团(3板/一般零售)",
+        "海欣食品(2板/食品加工)",
+        "播恩集团(2板/饲料)"
       ],
       "themes": [
-        "汽车零部",
-        "互联网电",
-        "影视院线"
+        "元件",
+        "通信设备",
+        "电网设备"
       ]
+    },
+    {
+      "date": "2026-08-04",
+      "similarity": 0.836,
+      "env": {
+        "sent": 94,
+        "state6": "沸点",
+        "temp": 95,
+        "max_lbc": 7,
+        "zt": 137,
+        "zb_rate": 22.2,
+        "prem_avg": 4.16,
+        "damian": 0
+      },
+      "nextDay": {
+        "date": "2026-08-05",
+        "sent": 83,
+        "state6": "过热",
+        "max_lbc": 8,
+        "prem_avg": 5.22,
+        "sentDelta": -11.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-06-22",
+      "similarity": 0.819,
+      "env": {
+        "sent": 85,
+        "state6": "沸点",
+        "temp": 72,
+        "max_lbc": 4,
+        "zt": 132,
+        "zb_rate": 17.1,
+        "prem_avg": 3.58,
+        "damian": 5
+      },
+      "nextDay": {
+        "date": "2026-06-23",
+        "sent": 46,
+        "state6": "微冷",
+        "max_lbc": 5,
+        "prem_avg": 1.07,
+        "sentDelta": -39.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-09-16",
+      "similarity": 0.813,
+      "env": {
+        "sent": 84,
+        "state6": "过热",
+        "temp": 84,
+        "max_lbc": 6,
+        "zt": 89,
+        "zb_rate": 11,
+        "prem_avg": 3.65,
+        "damian": 2
+      },
+      "nextDay": {
+        "date": "2026-09-17",
+        "sent": 37,
+        "state6": "过冷",
+        "max_lbc": 5,
+        "prem_avg": -0.02,
+        "sentDelta": -47.0
+      },
+      "ladder": [
+        "闽东电力(6板/电力)",
+        "澳弘电子(4板/元件)",
+        "博汇科技(3板/IT服务Ⅱ)"
+      ],
+      "themes": [
+        "通信设备",
+        "半导体",
+        "林业Ⅱ"
+      ]
+    },
+    {
+      "date": "2026-10-23",
+      "similarity": 0.801,
+      "env": {
+        "sent": 81,
+        "state6": "过热",
+        "temp": 74,
+        "max_lbc": 6,
+        "zt": 82,
+        "zb_rate": 13,
+        "prem_avg": 3.92,
+        "damian": 7
+      },
+      "nextDay": {
+        "date": "2026-10-26",
+        "sent": 54,
+        "state6": "微冷",
+        "max_lbc": 4,
+        "prem_avg": 2.36,
+        "sentDelta": -27.0
+      },
+      "ladder": [
+        "海洋王(6板/照明设备)",
+        "大业股份(6板/通用设备)",
+        "上海九百(3板/一般零售)",
+        "赛福天(2板/通用设备)",
+        "睿能科技(2板/其他电子)"
+      ],
+      "themes": [
+        "广告营销",
+        "消费电子",
+        "自动化设"
+      ]
+    },
+    {
+      "date": "2026-06-16",
+      "similarity": 0.791,
+      "env": {
+        "sent": 80,
+        "state6": "过热",
+        "temp": 72,
+        "max_lbc": 4,
+        "zt": 116,
+        "zb_rate": 23.2,
+        "prem_avg": 4.22,
+        "damian": 6
+      },
+      "nextDay": {
+        "date": "2026-06-17",
+        "sent": 59,
+        "state6": "微热",
+        "max_lbc": 3,
+        "prem_avg": 1.86,
+        "sentDelta": -21.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-08-12",
+      "similarity": 0.777,
+      "env": {
+        "sent": 82,
+        "state6": "过热",
+        "temp": 84,
+        "max_lbc": 7,
+        "zt": 91,
+        "zb_rate": 20.2,
+        "prem_avg": 2.67,
+        "damian": 2
+      },
+      "nextDay": {
+        "date": "2026-08-13",
+        "sent": 35,
+        "state6": "过冷",
+        "max_lbc": 5,
+        "prem_avg": 0.65,
+        "sentDelta": -47.0
+      },
+      "ladder": [],
+      "themes": []
     }
   ]
 }

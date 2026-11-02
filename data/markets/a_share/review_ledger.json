@@ -2137,7 +2137,7 @@
   {
     "id": "2026-10-29-deepseek-chat-1793286013",
     "predictDate": "2026-10-29",
-    "targetDate": "",
+    "targetDate": "2026-10-30",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-10-29T15:00:13Z",
@@ -2228,6 +2228,147 @@
       "state6": "冰点",
       "max_lbc": 4,
       "prem_avg": -1.14
+    },
+    "actual": {
+      "date": "2026-10-30",
+      "sent": 35,
+      "state6": "过冷",
+      "max_lbc": 5,
+      "prem_avg": -0.18,
+      "zt": 47,
+      "zb_rate": 40,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": true,
+      "heightHit": true,
+      "ztHit": true,
+      "zbRateHit": true,
+      "premiumHit": false,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 5,
+      "accuracy": 0.71,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "miss",
+        "stance": "hit",
+        "height": "hit",
+        "zt": "hit",
+        "zbRate": "hit",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "hit"
+      },
+      "coreHits": 1,
+      "coreScored": 3,
+      "coreAccuracy": 0.33,
+      "brierState6": 0.3804,
+      "logLoss": 0.7985,
+      "missReasons": [
+        "数据口径"
+      ]
+    },
+    "reviewedAt": "2026-11-02T17:56:22Z"
+  },
+  {
+    "id": "2026-11-02-deepseek-chat-1793642190",
+    "predictDate": "2026-11-02",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-11-02T17:56:30Z",
+    "prediction": {
+      "stance": "追高区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "下行",
+      "crossValidation": "偏空",
+      "state6Next": "微热",
+      "state6Probs": {
+        "冰点": 0.2,
+        "过冷": 0.15,
+        "微冷": 0.2,
+        "微热": 0.3,
+        "过热": 0.15,
+        "沸点": 0
+      },
+      "sentimentRange": [
+        58,
+        70
+      ],
+      "heightRange": [
+        4,
+        6
+      ],
+      "ztRange": [
+        60,
+        100
+      ],
+      "zbRateRange": [
+        18,
+        30
+      ],
+      "bigFaceRange": [
+        0,
+        8
+      ],
+      "streakRange": [
+        null,
+        null
+      ],
+      "redRatioRange": [
+        null,
+        null
+      ],
+      "premiumSign": "正",
+      "positionAdvice": "观望",
+      "ladderFocus": "3板以上接力",
+      "watchlist": [
+        "青岛食品(6板/休闲食品)",
+        "澳洋健康(4板/医疗服务)",
+        "东方海洋(3板/农产品加)",
+        "桂林三金(3板/中药Ⅱ)"
+      ],
+      "focusThemes": [
+        "出版",
+        "影视院线",
+        "游戏Ⅱ"
+      ],
+      "entryNecessary": [
+        "次日情绪分≤70",
+        "次日炸板率≤25%"
+      ],
+      "entryConfirm": [
+        "昨涨停溢价>1.5%",
+        "最高板≥5板"
+      ],
+      "middleBand": "<40失效(冰点确认等右侧) / 40~55模糊(仅1成试仓待溢价转正确认) / 55~70必要区(可执行) / >70追高区不入场",
+      "invalidConditions": [
+        "情绪分≥85",
+        "炸板率>30%",
+        "昨涨停溢价转负(<0)"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "数据口径",
+      "dataBasis": "收盘实盘",
+      "riskNote": "沸点日梯队断层，首板扩散型普涨次日易快速退潮，追高回撤风险大。"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是：情绪分 91（沸点）、涨停 125 家、溢价 5.55% 的极端热度，与最高板仅 6 板、领头题材最高仅 1 板（出版、影视院线、游戏Ⅱ）之间的结构背离——赚钱效应集中在首板扩散，而非高度接力，属于典型的“高位普涨、梯队断层”结构。\n\n节点归类上，今日同时触发「溢价转正」（历史 22 次，次日上行仅 41%，CI 23~61%）与「情绪跳升」（53 次，次日上行 36%，CI 24~49%），两者平均性价比分别为 -0.178、-0.294，均为负值；而高性价比的「冰点/过冷区」（0.671，上行 83%）今日不成立。故当前不属于低吸区，更接近需回避的追高区。\n\n相似日 8 个有效匹配中，次日情绪分全部下行（-11 至 -72），中位数约 -27；六态转移先验四态均分 25%，且其 walk-forward 成绩（Top1 22%、Brier 0.886）劣于基准 0.8064，仅作辅助。\n\n主结果：次日情绪分区间 [58, 70]，方向下行，置信度：中（0.55）。六态辅助标签取「微热」。\n\n数据质量：zbRate=ok、bigFace=ok（0 为真实值）、redRatio=missing（未提供全市场红盘率），后者缺失使区间上沿不确定性上升，置信度未上调。\n\n基准对照：区间宽度 12 对应历史命中基准约 40%，本次置信度 0.55 略高于基准，主要依赖相似日一致性，非高置信。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏空（溢价转正/情绪跳升双负性价比）、相似日＝偏空（8/8 次日下行）、状态转移＝分歧（四态均分、先验弱于基准）⇒ 综合：偏空。\n\n相似日梯队显示，沸点次日高度普遍压缩 1~2 板（如 09-07 由 6 板降至 4 板、10-23 由 6 板降至 4 板）。明日重点观察：3 板以上接力（澳洋健康 4 板、东方海洋/桂林三金 3 板）能否守住，以及 2 板卡位是否出现断档；首板换手充分者（出版、影视院线方向）仅作情绪温度计，不宜作为主攻。重点关注名单（仅观察对象）：青岛食品(6板/休闲食品)、澳洋健康(4板/医疗服务)、东方海洋(3板/农产品加)、桂林三金(3板/中药Ⅱ)。\n\n**3) 入场条件与失效条件**\n\n必要条件（须全部满足）：① 次日情绪分 ≤70；② 次日炸板率 ≤25%。\n确认项：昨涨停溢价维持显著正（>1.5%）；最高板不低于 5 板。\n中间档处理：情绪分 <40 失效（冰点确认，等右侧）；40~55 模糊（仅 1 成试仓，等溢价转正确认）；55~70 必要区（可执行）；>70 视为追高区，不入场。\n失效条件：情绪分 ≥85 或炸板率 >30% 或溢价转负（<0），三者任一出现即放弃当日计划。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 17 条（<30），相似日有效匹配 8 个（≥3），溢价数据完整；但复核条数不足 30，按硬约束 positionAdvice 取「观望」。校准回看：上一次预测（10-29→10-30）预测低吸区、实际情绪分 35，失准归因取「数据口径」。回避情形：沸点日追首板扩散、梯队断层下的高位接力。仓位建议：观望，待情绪分回落至 55~70 且炸板率 ≤25% 再考虑 1 成试仓。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-11-02",
+      "sent": 91,
+      "state6": "沸点",
+      "max_lbc": 6,
+      "prem_avg": 5.55
     },
     "actual": null,
     "score": null,
