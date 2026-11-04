@@ -2421,7 +2421,7 @@
   {
     "id": "2026-11-03-deepseek-chat-1793721340",
     "predictDate": "2026-11-03",
-    "targetDate": "",
+    "targetDate": "2026-11-04",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-11-03T15:55:40Z",
@@ -2508,6 +2508,150 @@
       "state6": "过冷",
       "max_lbc": 4,
       "prem_avg": 1.54
+    },
+    "actual": {
+      "date": "2026-11-04",
+      "sent": 44,
+      "state6": "微冷",
+      "max_lbc": 3,
+      "prem_avg": -0.88,
+      "zt": 118,
+      "zb_rate": 22,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": true,
+      "state6Hit": true,
+      "heightHit": true,
+      "ztHit": false,
+      "zbRateHit": false,
+      "premiumHit": false,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 4,
+      "accuracy": 0.57,
+      "dimStatus": {
+        "sent": "hit",
+        "premium": "miss",
+        "stance": "hit",
+        "height": "hit",
+        "zt": "miss",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "hit"
+      },
+      "coreHits": 2,
+      "coreScored": 3,
+      "coreAccuracy": 0.67,
+      "brierState6": 0.6906,
+      "logLoss": 1.3863,
+      "missReasons": [
+        "数据口径"
+      ]
+    },
+    "reviewedAt": "2026-11-04T15:59:53Z"
+  },
+  {
+    "id": "2026-11-04-deepseek-chat-1793808001",
+    "predictDate": "2026-11-04",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-11-04T16:00:01Z",
+    "prediction": {
+      "stance": "中性",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "震荡",
+      "crossValidation": "分歧",
+      "state6Next": "微热",
+      "state6Probs": {
+        "冰点": 0.19,
+        "过冷": 0.19,
+        "微冷": 0.15,
+        "微热": 0.27,
+        "过热": 0.12,
+        "沸点": 0.08
+      },
+      "sentimentRange": [
+        40,
+        50
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        80,
+        120
+      ],
+      "zbRateRange": [
+        18,
+        28
+      ],
+      "bigFaceRange": [
+        8,
+        18
+      ],
+      "streakRange": [
+        null,
+        null
+      ],
+      "redRatioRange": [
+        null,
+        null
+      ],
+      "premiumSign": "负",
+      "positionAdvice": "观望",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "东方海洋(4板/农产品加)",
+        "阳光照明(4板/照明设备)",
+        "皇台酒业(3板/白酒Ⅱ)",
+        "浙文影业(2板/纺织制造)",
+        "大晟文化(2板/游戏Ⅱ)"
+      ],
+      "focusThemes": [
+        "电力",
+        "文娱用品",
+        "饲料"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥45",
+        "昨涨停溢价转正(>0)"
+      ],
+      "entryConfirm": [
+        "炸板率回落至<20%",
+        "最高板回升至≥4",
+        "大面数≤10"
+      ],
+      "middleBand": "<40失效空仓／40~45模糊仅观察／45~50必要1成试仓／>50且溢价为正可加至3成",
+      "invalidConditions": [
+        "情绪分跌破40",
+        "溢价降至<-1.5%",
+        "炸板率升破30%",
+        "高度回落至2板"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "数据口径",
+      "dataBasis": "收盘实盘",
+      "riskNote": "温度95与高度3背离，若炸板率抬升易演变为高位股补跌"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是资金温度 95 与最高板仅 3、昨涨停溢价 -0.88% 的背离：钱在场内（温度极高），但接力高度被压到 3 板、溢价转负，说明资金在做低位轮动而非高位接力。今日情绪分 44（微冷）、涨停 118 家、炸板率 22%（中档）、大面 15，veto 命中 T2、T3 过冷条件，属于「过冷区余波中的修复日」，而非标准冰点低吸区。统计上冰点/过冷区样本 45 次、次日情绪上行占比 87%（95%CI 74~94%），但今日已不在过冷区间内，性价比不可直接套用；溢价转正（41%）与情绪跳升（36%）两类均为负性价比，需回避追高。最近节点 11-03 冰点→11-04 仅修复 5 分、溢价再降 2.42、高度降 1，修复力度偏弱。综合判断为**中性偏防守**，非高性价比低吸区。次日情绪分区间 40~50，方向震荡，置信度：中（0.55）。六态辅助：微冷→微热概率最高但先验 walk-forward 仅 24% 命中、Brier 0.8769 劣于基准 0.8064，仅作标签。数据质量：zbRate ok、bigFace ok、redRatio missing（无全市场红盘率数据），后者缺失使区间上限不敢放宽，置信度压至 0.55。\n基准对照：区间宽度 10 对应历史命中基准约 40%，本次置信度 0.55 略高于基准，属弱优势。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏多（过冷区 87% 上行，但今日已脱离该区，权重打折）、相似日＝分歧（8 个近邻中 4 涨 4 跌，涨幅 +10/+23/+24/+17 对跌幅 -28/-20/-19/-29）、状态转移＝偏多（微热 27% 居首）⇒ 综合：分歧。\n相似日次日高度多在 3~5 之间、溢价方向对半，说明明日更可能是**低位轮动延续**而非高度突破。重点观察 2 板卡位与首板换手充分结构，3 板以上接力在高度仅 3 的环境下风险偏高。观察名单（仅作当时梯队观察对象）：东方海洋(4板/农产品加)、阳光照明(4板/照明设备)、皇台酒业(3板/白酒Ⅱ)、浙文影业(2板/纺织制造)、大晟文化(2板/游戏Ⅱ)；题材关注电力、文娱用品、饲料。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：① 次日情绪分 ≥45；② 昨涨停溢价转正（>0）。\nentryConfirm：炸板率回落至 <20%；最高板回升至 ≥4；大面数 ≤10。\nmiddleBand：<40 失效（空仓）／40~45 模糊（仅观察，不出手）／45~50 必要（1 成试仓）／>50 且溢价为正（可加至 3 成）。\n失效条件：情绪分跌破 40；溢价再降至 <-1.5%；炸板率升破 30%；高度回落至 2 板。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 19 次（<30），相似日有效匹配 8 个（≥3），但溢价 prem_avg 在部分节点缺失、redRatio 无数据，按硬约束样本不足，仓位建议为**观望**。需回避高位接力与溢价转负后的追涨。上一次预测（11-03→11-04）判低吸区、实际微冷 44 且溢价方向失准，归因：数据口径。\n风险提示：温度 95 与高度 3 的背离若以炸板率抬升收场，易演变为高位股补跌。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-11-04",
+      "sent": 44,
+      "state6": "微冷",
+      "max_lbc": 3,
+      "prem_avg": -0.88
     },
     "actual": null,
     "score": null,
