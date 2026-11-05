@@ -2558,7 +2558,7 @@
   {
     "id": "2026-11-04-deepseek-chat-1793808001",
     "predictDate": "2026-11-04",
-    "targetDate": "",
+    "targetDate": "2026-11-05",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-11-04T16:00:01Z",
@@ -2652,6 +2652,145 @@
       "state6": "微冷",
       "max_lbc": 3,
       "prem_avg": -0.88
+    },
+    "actual": {
+      "date": "2026-11-05",
+      "sent": 69,
+      "state6": "微热",
+      "max_lbc": 4,
+      "prem_avg": 4.43,
+      "zt": 84,
+      "zb_rate": 36,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": true,
+      "heightHit": true,
+      "ztHit": true,
+      "zbRateHit": false,
+      "premiumHit": false,
+      "stanceHit": null,
+      "scored": 7,
+      "hits": 3,
+      "accuracy": 0.43,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "miss",
+        "stance": "miss",
+        "height": "hit",
+        "zt": "hit",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "hit"
+      },
+      "coreHits": 0,
+      "coreScored": 3,
+      "coreAccuracy": 0.0,
+      "brierState6": 0.6484,
+      "logLoss": 1.3093,
+      "missReasons": [
+        "数据口径"
+      ]
+    },
+    "reviewedAt": "2026-11-05T16:15:18Z"
+  },
+  {
+    "id": "2026-11-05-deepseek-chat-1793895325",
+    "predictDate": "2026-11-05",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-11-05T16:15:25Z",
+    "prediction": {
+      "stance": "中性",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "下行",
+      "crossValidation": "偏空",
+      "state6Next": "过冷",
+      "state6Probs": {
+        "冰点": 0.06,
+        "过冷": 0.44,
+        "微冷": 0.22,
+        "微热": 0.06,
+        "过热": 0.17,
+        "沸点": 0.05
+      },
+      "sentimentRange": [
+        50,
+        62
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        55,
+        85
+      ],
+      "zbRateRange": [
+        28,
+        42
+      ],
+      "bigFaceRange": [
+        5,
+        15
+      ],
+      "streakRange": [
+        4,
+        8
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "观望",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "闽发铝业(4板/工业金属)",
+        "浙文影业(4板/纺织制造)",
+        "永臻股份(3板/光伏设备)",
+        "引力传媒(2板/广告营销)"
+      ],
+      "focusThemes": [
+        "光伏设备",
+        "广告营销",
+        "通用设备"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥55",
+        "炸板率≤30%"
+      ],
+      "entryConfirm": [
+        "昨涨停溢价维持>1.5%",
+        "高度升至5板以上"
+      ],
+      "middleBand": "<45失效不参与／45~55模糊仅1成试仓等确认／55~70必要区可3成／>70追高区不新开只减不加",
+      "invalidConditions": [
+        "情绪分跌破45",
+        "炸板率升破40%",
+        "溢价转负<-1.5%",
+        "高度回落至3板以下"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "数据口径",
+      "dataBasis": "收盘实盘",
+      "riskNote": "微热高位叠加溢价转正节点历史偏空，接力断板与炸板率抬升是主要回撤来源。"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是资金温度 77 与最高板仅 4 的背离——温度偏高但高度未打开，涨停 84 家、炸板率 36%（高）、大面 5，属“热度尚可、承接偏脆”的微热结构。今日同时触发「溢价转正 / 情绪跳升」节点，而该两类节点历史次日情绪上行占比仅 39%（23 次）与 35%（54 次），平均性价比 -0.26 / -0.324，属统计上偏空的节点类型；真正高胜率的是「冰点/过冷区」（83%，95%CI 69~91%），今日不在其中。因此当前不是高性价比低吸区，更接近需回避追高的中性偏空区。相似日 8 例中 6 例次日情绪下行（-16 至 -36），仅 09-18 上行 +13。主结果：次日情绪分区间 50~62，方向下行，置信度：中（0.55）。六态辅助：微热→过冷概率最高（44%），但该先验 Top1 命中 31%、Brier 0.8809 劣于基准 0.8064，仅作标签。数据质量：zbRate/redRatio/bigFace 中 redRatio 缺失（missing），bigFace 为实盘值（ok），zbRate 为实盘（ok），缺失项使置信度压一档。\n基准对照：区间宽度 12 对应历史命中基准约 40%，本次置信度 0.55 略高于基准，属弱优势。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏空、相似日＝偏空（6/8 下行）、状态转移＝偏空（过冷 44%）⇒ 综合：偏空。相似日梯队显示，微热高位次日多出现高度维持但溢价回落（如 09-14 高度 4→5、溢价 3.74%→0.31%），接力股易断板。明日重点观察 3 板以上接力（永臻股份 3 板/光伏设备、鲁阳节能 3 板/装修建材）能否守住，以及 2 板卡位（深中华A、金螳螂）的换手质量；首板换手充分者优先于高位接力。关注名单仅作梯队观察：闽发铝业(4板/工业金属)、浙文影业(4板/纺织制造)、永臻股份(3板/光伏设备)、引力传媒(2板/广告营销)。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：①次日情绪分 ≥55；②炸板率 ≤30%。entryConfirm：昨涨停溢价维持 >1.5%；高度升至 5 板以上。middleBand：<45 失效（不参与）／45~55 模糊（仅 1 成试仓、等确认）／55~70 必要区（可 3 成）／>70 追高区（不新开、只减不加）。失效条件：情绪分跌破 45、炸板率升破 40%、溢价转负 <-1.5%、高度回落至 3 板以下任一出现即离场。\n\n**4) 风险与仓位**\n\n样本局限：买点节点 96 个但已复核仅 20 次（<30），相似日有效匹配 8 个（≥3），溢价数据齐全；按硬约束复核条数不足，positionAdvice 取「观望」。需回避高位 4 板接力与炸板率 >35% 的追涨。仓位建议：观望，最多 1 成试仓。上次预测（11-04→11-05）判中性、实际微热且溢价 4.43%，失准归因：数据口径。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-11-05",
+      "sent": 69,
+      "state6": "微热",
+      "max_lbc": 4,
+      "prem_avg": 4.43
     },
     "actual": null,
     "score": null,
