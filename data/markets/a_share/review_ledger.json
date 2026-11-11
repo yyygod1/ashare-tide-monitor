@@ -2841,7 +2841,7 @@
   {
     "id": "2026-11-10-deepseek-chat-1794327104",
     "predictDate": "2026-11-10",
-    "targetDate": "",
+    "targetDate": "2026-11-11",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-11-10T16:11:44Z",
@@ -2929,6 +2929,147 @@
       "state6": "沸点",
       "max_lbc": 7,
       "prem_avg": 4.73
+    },
+    "actual": {
+      "date": "2026-11-11",
+      "sent": 69,
+      "state6": "微热",
+      "max_lbc": 4,
+      "prem_avg": 2.72,
+      "zt": 85,
+      "zb_rate": 18,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": false,
+      "heightHit": true,
+      "ztHit": false,
+      "zbRateHit": true,
+      "premiumHit": false,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 3,
+      "accuracy": 0.43,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "miss",
+        "stance": "hit",
+        "height": "hit",
+        "zt": "miss",
+        "zbRate": "hit",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 1,
+      "coreScored": 3,
+      "coreAccuracy": 0.33,
+      "brierState6": 0.9834,
+      "logLoss": 1.9661,
+      "missReasons": [
+        "数据口径",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-11-11T15:55:23Z"
+  },
+  {
+    "id": "2026-11-11-deepseek-chat-1794412532",
+    "predictDate": "2026-11-11",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-11-11T15:55:32Z",
+    "prediction": {
+      "stance": "中性",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "震荡",
+      "crossValidation": "偏空",
+      "state6Next": "过冷",
+      "state6Probs": {
+        "冰点": 0.05,
+        "过冷": 0.45,
+        "微冷": 0.25,
+        "微热": 0.05,
+        "过热": 0.15,
+        "沸点": 0.05
+      },
+      "sentimentRange": [
+        62,
+        74
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        60,
+        90
+      ],
+      "zbRateRange": [
+        15,
+        28
+      ],
+      "bigFaceRange": [
+        5,
+        15
+      ],
+      "streakRange": [
+        8,
+        16
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "1成试仓",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "闽发铝业(4板/工业金属)",
+        "东方新能(3板/电力)",
+        "日出东方(3板/厨卫电器)",
+        "亚玛顿(2板/光伏设备)",
+        "光洋股份(2板/汽车零部)"
+      ],
+      "focusThemes": [
+        "半导体",
+        "光学光电",
+        "汽车零部"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥62",
+        "炸板率≤25%"
+      ],
+      "entryConfirm": [
+        "昨涨停溢价维持>1.5%",
+        "最高板不跌破3"
+      ],
+      "middleBand": "<55失效／55~62模糊仅观察／62~74中性区1成试仓(需entryConfirm≥1项)／≥74且高度≥5可加至3成",
+      "invalidConditions": [
+        "情绪分<55",
+        "炸板率>30%",
+        "最高板≤2",
+        "溢价<-1.5%"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "状态定义",
+      "dataBasis": "收盘实盘",
+      "riskNote": "高度压缩叠加六态先验弱于基准，退潮中继易二次下探，仅宜轻仓试错。"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是资金温度 87 与最高板仅 4 的背离——钱还在场内，但高度已被压缩，说明这是「高位退潮后的余温」而非「新周期启动」。今日情绪分 69（微热）、涨停 85 家、炸板率 18%（中档）、昨涨停溢价 2.72%（显著正）、大面 9，对照节点统计：冰点/过冷区（n=42，次日上行 83%，CI 69~91%）才是高性价比低吸区，而今日不在其中；「情绪跳升」历史次日上行仅 34%（CI 23~47%）、平均性价比 -0.373，属需回避的追高类。昨日正是情绪跳升节点（11-10 情绪 92 沸点→今日 69，-23），已兑现一次退潮。故今日更接近「退潮中继的弱修复」，不是低吸区，也不宜追高，定性为中性偏防守。\n\n主结果：次日情绪分区间 62~74（宽度 12），方向震荡，置信度：中（0.55）。六态仅作辅助：微热→过冷 45%、微冷 25%、过热 15%、冰点 5%、微热 5%、沸点 5%，但该先验 walk-forward Top1 仅 21%、Brier 0.8945 劣于基准 0.8064，故不作主结论。\n\n数据质量：zbRate=ok、bigFace=ok、redRatio=missing（无全市场红盘率数据），redRatio 缺失使区间上限置信度下调一档。\n\n基准对照：区间宽度 12 对应历史命中基准约 40%，本次自评 0.55 略高于基准，但受 redRatio 缺失与六态先验弱拖累，不宜上调。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏空（跳升类次日上行 34%）｜相似日＝分歧（8 个近邻中 5 个次日下行 -16~-39，3 个上行 +1~+13）｜状态转移＝偏空（过冷 45%）⇒ 综合：偏空。\n\n相似日梯队显示，微热环境下次日多压缩高度（08-17 情绪 -39、07-21 -28、08-10 -29），仅 09-18（+13）与 08-27（+1）维持。故明日重点观察**2 板卡位与首板换手充分**结构，3 板以上接力风险偏高。观察名单（仅梯队观察对象，非推荐）：闽发铝业(4板/工业金属)、东方新能(3板/电力)、日出东方(3板/厨卫电器)、亚玛顿(2板/光伏设备)、光洋股份(2板/汽车零部)。题材关注半导体、光学光电、汽车零部。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：①次日情绪分 ≥62；②炸板率 ≤25%。\nentryConfirm：昨涨停溢价维持 >1.5%；最高板不跌破 3。\nmiddleBand：<55 失效（退潮确认）／55~62 模糊（仅观察不介入）／62~74 中性区（1 成试仓，需 entryConfirm 至少 1 项成立）／≥74 且高度≥5 才可加至 3 成。\n失效条件：情绪分 <55；或炸板率 >30%；或最高板降至 ≤2；或溢价转负 <-1.5%。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 22 次（<30），相似日有效匹配 8（≥3），但 redRatio 缺失、六态先验弱于基准，整体证据强度不足。回避情形：高度继续压缩、大面数放大至 15 以上。仓位建议：1 成试仓，不追高、不打板。\n\n回看上次预测（11-10→11-11 预测追高区，实际 69 微热、溢价 2.72%）：失准归因——状态定义（把沸点后的余温误判为追高延续，实际为退潮中继）。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-11-11",
+      "sent": 69,
+      "state6": "微热",
+      "max_lbc": 4,
+      "prem_avg": 2.72
     },
     "actual": null,
     "score": null,
