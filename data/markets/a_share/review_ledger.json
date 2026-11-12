@@ -2980,7 +2980,7 @@
   {
     "id": "2026-11-11-deepseek-chat-1794412532",
     "predictDate": "2026-11-11",
-    "targetDate": "",
+    "targetDate": "2026-11-12",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-11-11T15:55:32Z",
@@ -3070,6 +3070,150 @@
       "state6": "微热",
       "max_lbc": 4,
       "prem_avg": 2.72
+    },
+    "actual": {
+      "date": "2026-11-12",
+      "sent": 22,
+      "state6": "冰点",
+      "max_lbc": 5,
+      "prem_avg": -1.15,
+      "zt": 37,
+      "zb_rate": 49,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": false,
+      "heightHit": true,
+      "ztHit": false,
+      "zbRateHit": false,
+      "premiumHit": false,
+      "stanceHit": null,
+      "scored": 7,
+      "hits": 1,
+      "accuracy": 0.14,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "miss",
+        "stance": "miss",
+        "height": "hit",
+        "zt": "miss",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 0,
+      "coreScored": 3,
+      "coreAccuracy": 0.0,
+      "brierState6": 1.195,
+      "logLoss": 2.9957,
+      "missReasons": [
+        "数据口径",
+        "外部冲击",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-11-12T16:38:58Z"
+  },
+  {
+    "id": "2026-11-12-deepseek-chat-1794501546",
+    "predictDate": "2026-11-12",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-11-12T16:39:06Z",
+    "prediction": {
+      "stance": "低吸区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "上行",
+      "crossValidation": "偏多",
+      "state6Next": "过冷",
+      "state6Probs": {
+        "冰点": 0.05,
+        "过冷": 0.5,
+        "微冷": 0.1,
+        "微热": 0.1,
+        "过热": 0.05,
+        "沸点": 0.2
+      },
+      "sentimentRange": [
+        30,
+        42
+      ],
+      "heightRange": [
+        4,
+        6
+      ],
+      "ztRange": [
+        40,
+        70
+      ],
+      "zbRateRange": [
+        30,
+        50
+      ],
+      "bigFaceRange": [
+        5,
+        20
+      ],
+      "streakRange": [
+        8,
+        16
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "1成试仓",
+      "ladderFocus": "3板以上接力",
+      "watchlist": [
+        "日出东方(5板/厨卫电器)",
+        "大东方(5板/一般零售)",
+        "亚玛顿(4板/光伏设备)",
+        "东方环宇(4板/燃气Ⅱ)",
+        "惠发食品(3板/食品加工)",
+        "天普股份(3板/汽车零部)"
+      ],
+      "focusThemes": [
+        "医疗服务",
+        "电视广播",
+        "专用设备"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥30",
+        "昨涨停溢价转正(>0)"
+      ],
+      "entryConfirm": [
+        "炸板率回落至<40%",
+        "高度维持≥5",
+        "大面数<15"
+      ],
+      "middleBand": "<30失效／30~42模糊(仅1成试仓，等溢价转正确认)／≥42必要(可加至3成)",
+      "invalidConditions": [
+        "情绪分<25",
+        "溢价<-1.5%",
+        "高度跌破4",
+        "炸板率>55%"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "外部冲击",
+      "dataBasis": "收盘实盘",
+      "riskNote": "冰点修复幅度离散大，红盘率缺失，溢价未转正前不宜加仓"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾：资金温度 21 与最高板 5 并存，涨停仅 37 家、炸板率 49%、大面 26，说明高度靠少数存量连板硬撑，赚钱效应已塌陷——这是冰点区的典型结构，而非低吸确认。\n\n依据：今日情绪分 22、溢价 -1.15%（显著负）、炸板率 49%（高），veto 命中 T1/T3/T4/T5/T6；节点统计中「冰点/过冷区」39 次、次日情绪上行占比 82%（95%CI 67~91%），是唯一偏多的节点类型；但「溢价转正」35%、「情绪跳升」33% 均偏空，今日不属这两类。相似日 8 例中 6 例次日上行（+12~+64），2 例下行（-6、-13），方向偏多但幅度离散极大。六态先验：过冷 50%、沸点 20%，该先验 walk-forward Top1 仅 28%、Brier 0.9088 劣于基准 0.8064，仅作辅助。\n\n主结果：次日情绪分区间 [30,42]，方向上行，置信度：中（0.55）。宽度 12 已取上限，因相似日次日分布从 -13 到 +64，收敛性差。\n\n交叉验证：节点统计＝偏多、相似日＝偏多、状态转移＝偏多（过冷 50%）⇒ 综合：偏多。\n\n数据质量：zbRate/redRatio/bigFace 中 redRatio 缺失（missing），bigFace 为实盘计数（ok），炸板率 ok；红盘率缺失使区间上限不敢上移，置信度压至中。\n\n基准对照：区间宽度 12 对应历史命中基准约 40%，本次自评 0.55 略高于基准，但优势有限。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏多、相似日＝偏多、状态转移＝偏多 ⇒ 综合：偏多。\n\n相似日梯队显示，冰点次日修复多由「5板龙头续板＋2~3板卡位」完成（如 09-04 龙版传媒 5 板、10-22 海洋王/大业股份双 5 板）。今日梯队为日出东方(5板)、大东方(5板)、亚玛顿(4板)、东方环宇(4板)、惠发食品(3板)、天普股份(3板)，结构完整。重点观察 5 板能否续板定情绪、4 板能否卡位，首板换手充分者次之。领头题材医疗服务、电视广播均为 1 板，属超跌轮动，不宜追。\n\n**3) 入场条件与失效条件**\n\n必要条件（须全满足）：①次日情绪分 ≥30；②昨涨停溢价转正（>0）。\n确认项：炸板率回落至 <40%；高度维持 ≥5；大面数 <15。\n中间档：<30 失效／30~42 模糊（仅 1 成试仓，等溢价转正确认）／≥42 必要（可加至 3 成）。\n失效条件：情绪分 <25 或溢价 <-1.5% 或高度跌破 4 或炸板率 >55%。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 23 条（<30），相似日有效匹配 8 例（≥3），但红盘率缺失、六态先验劣于基准。仓位建议：1 成试仓，不追高、不打板，等溢价转正再谈加仓。\n\n失准归因：上一次（11-11→11-12）预测中性、实际冰点，归因「外部冲击」。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-11-12",
+      "sent": 22,
+      "state6": "冰点",
+      "max_lbc": 5,
+      "prem_avg": -1.15
     },
     "actual": null,
     "score": null,
