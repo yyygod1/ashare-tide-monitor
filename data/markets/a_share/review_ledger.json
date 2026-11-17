@@ -3265,7 +3265,7 @@
   {
     "id": "2026-11-16-deepseek-chat-1794852125",
     "predictDate": "2026-11-16",
-    "targetDate": "",
+    "targetDate": "2026-11-17",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-11-16T18:02:05Z",
@@ -3356,6 +3356,148 @@
       "state6": "过冷",
       "max_lbc": 4,
       "prem_avg": 0.83
+    },
+    "actual": {
+      "date": "2026-11-17",
+      "sent": 33,
+      "state6": "过冷",
+      "max_lbc": 3,
+      "prem_avg": 0.46,
+      "zt": 37,
+      "zb_rate": 35,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": false,
+      "heightHit": false,
+      "ztHit": true,
+      "zbRateHit": true,
+      "premiumHit": true,
+      "stanceHit": false,
+      "scored": 7,
+      "hits": 3,
+      "accuracy": 0.43,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "hit",
+        "stance": "miss",
+        "height": "miss",
+        "zt": "hit",
+        "zbRate": "hit",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 1,
+      "coreScored": 3,
+      "coreAccuracy": 0.33,
+      "brierState6": 0.8268,
+      "logLoss": 1.6607,
+      "missReasons": [
+        "数据口径",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-11-17T17:26:56Z"
+  },
+  {
+    "id": "2026-11-17-deepseek-chat-1794936423",
+    "predictDate": "2026-11-17",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-11-17T17:27:03Z",
+    "prediction": {
+      "stance": "低吸区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "上行",
+      "crossValidation": "偏多",
+      "state6Next": "微冷",
+      "state6Probs": {
+        "冰点": 0.14,
+        "过冷": 0.21,
+        "微冷": 0.25,
+        "微热": 0.11,
+        "过热": 0.25,
+        "沸点": 0.04
+      },
+      "sentimentRange": [
+        38,
+        48
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        35,
+        55
+      ],
+      "zbRateRange": [
+        28,
+        40
+      ],
+      "bigFaceRange": [
+        6,
+        14
+      ],
+      "streakRange": [
+        null,
+        null
+      ],
+      "redRatioRange": [
+        null,
+        null
+      ],
+      "premiumSign": "正",
+      "positionAdvice": "观望",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "华东重机(3板/工程机械)",
+        "顺钠股份(2板/电网设备)",
+        "长虹美菱(2板/白色家电)",
+        "有研新材(1板/半导体)"
+      ],
+      "focusThemes": [
+        "半导体",
+        "电网设备",
+        "照明设备"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥38",
+        "昨涨停溢价≥0%"
+      ],
+      "entryConfirm": [
+        "炸板率回落至<30%",
+        "最高板回升至≥4"
+      ],
+      "middleBand": "<33失效／33~38模糊(1成试仓)／38~48必要(可低吸)／>48转追高区不追",
+      "invalidConditions": [
+        "情绪分<33",
+        "溢价<-0.5%",
+        "大面≥15"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "状态定义",
+      "dataBasis": "收盘实盘",
+      "riskNote": "复核样本25条不足30，硬约束观望；高炸板率下接力容错差"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是「温度 48 中性偏冷 vs 最高板仅 3、涨停 37 家、大面 10」——资金并未退潮，但高度与赚钱效应被压制，属过冷区内的结构性缩量，而非冰点崩塌。今日命中 T2 veto（过冷），节点类型归入「冰点/过冷区」：该标签历史 41 次、平均性价比 0.66、次日情绪上行占比 80%（95%CI 65~89%），是统计上性价比较高的低吸区，而非追高区；但今日性价比记 0.0，低于该标签均值，说明位置偏低但缺乏拐点确认。昨涨停溢价 0.46% 属弱正，炸板率 35% 属高（>25%），大面 10 家显示接力容错仍差。相似日 8 例中次日情绪全部上行（+10~+51），但六态先验 walk-forward Top1 仅 21%、Brier 0.9308 劣于基准 0.8064，故六态只作辅助。主结果：次日情绪分 38~48，方向上行，置信度：中（0.55）。基准对照：区间宽度 10 对应历史命中基准约 40%，本次置信度中（0.55）仅略高于基准，不构成强优势。\n\n数据质量：zbRate、bigFace 为实盘取到（ok）；redRatio 未提供（missing），压低置信度一档。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏多（过冷区次日上行 80%）／相似日＝偏多（8/8 上行）／状态转移＝分歧（微冷 25%、过热 25%、过冷 21% 三态接近）⇒ 综合：偏多。结构上，相似日当时梯队多为 3~5 板高度，次日高度普遍 +0~+2，故重点看 3 板以上能否接力（华东重机 3 板/工程机械）与 2 板卡位（顺钠股份、长虹美菱）；首板方向半导体（有研新材）、照明设备（阳光照明）需换手充分才可跟。关注名单仅作观察：华东重机(3板/工程机械)、顺钠股份(2板/电网设备)、长虹美菱(2板/白色家电)、有研新材(1板/半导体)。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：①次日情绪分 ≥38；②昨涨停溢价 ≥0%。entryConfirm：炸板率回落至 <30%；高度回升至 ≥4。middleBand：<33 失效／33~38 模糊（仅 1 成试仓，等溢价转正再加）／38~48 必要（可低吸）／>48 转追高区（不追，等回踩）。失效条件：情绪分 <33 或溢价转负 <-0.5% 或大面 ≥15。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 25 次（<30），相似日有效匹配 8 例（≥3），溢价均值可算，但复核条数不足，按硬约束 positionAdvice 取「观望」；实际操作建议 1 成试仓、等确认再加。回避情形：高炸板率下的 3 板以上硬接力、无换手首板。上次预测（11-16→11-17）判低吸区、实际过冷 33，失准归因：状态定义。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-11-17",
+      "sent": 33,
+      "state6": "过冷",
+      "max_lbc": 3,
+      "prem_avg": 0.46
     },
     "actual": null,
     "score": null,
