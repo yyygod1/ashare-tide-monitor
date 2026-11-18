@@ -1,131 +1,73 @@
 {
-  "computedAt": "2026-11-17T17:26:56Z",
-  "baseDate": "2026-11-17",
-  "threshold": 0.778,
+  "computedAt": "2026-11-18T16:59:24Z",
+  "baseDate": "2026-11-18",
+  "threshold": 0.789,
   "similarityMode": "relative",
-  "candidateCount": 115,
+  "candidateCount": 116,
   "effectiveMatches": 8,
   "fallback": null,
   "matches": [
     {
-      "date": "2026-10-19",
-      "similarity": 0.917,
+      "date": "2026-09-09",
+      "similarity": 0.928,
       "env": {
-        "sent": 32,
-        "state6": "过冷",
-        "temp": 61,
-        "max_lbc": 3,
-        "zt": 46,
-        "zb_rate": 31,
-        "prem_avg": 0.64,
-        "damian": 17
+        "sent": 42,
+        "state6": "微冷",
+        "temp": 69,
+        "max_lbc": 5,
+        "zt": 48,
+        "zb_rate": 36,
+        "prem_avg": 1.1,
+        "damian": 12
       },
       "nextDay": {
-        "date": "2026-10-20",
+        "date": "2026-09-10",
+        "sent": 25,
+        "state6": "过冷",
+        "max_lbc": 4,
+        "prem_avg": -0.32,
+        "sentDelta": -17.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-10-20",
+      "similarity": 0.92,
+      "env": {
         "sent": 45,
         "state6": "微冷",
+        "temp": 56,
         "max_lbc": 4,
+        "zt": 54,
+        "zb_rate": 35,
         "prem_avg": 1.59,
-        "sentDelta": 13.0
-      },
-      "ladder": [
-        "吉大正元(3板/软件开发)",
-        "东方嘉盛(3板/物流)",
-        "海洋王(2板/照明设备)",
-        "京城股份(2板/通用设备)",
-        "润建股份(1板/通信服务)",
-        "海正药业(1板/化学制药)"
-      ],
-      "themes": [
-        "影视院线",
-        "计算机设",
-        "塑料"
-      ]
-    },
-    {
-      "date": "2026-07-20",
-      "similarity": 0.895,
-      "env": {
-        "sent": 32,
-        "state6": "过冷",
-        "temp": 43,
-        "max_lbc": 3,
-        "zt": 53,
-        "zb_rate": 49.6,
-        "prem_avg": 0.5,
-        "damian": 10
+        "damian": 9
       },
       "nextDay": {
-        "date": "2026-07-21",
-        "sent": 73,
-        "state6": "过热",
-        "max_lbc": 4,
-        "prem_avg": 1.2,
-        "sentDelta": 41.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-09-15",
-      "similarity": 0.886,
-      "env": {
-        "sent": 33,
-        "state6": "过冷",
-        "temp": 52,
-        "max_lbc": 5,
-        "zt": 32,
-        "zb_rate": 43,
-        "prem_avg": 0.31,
-        "damian": 11
-      },
-      "nextDay": {
-        "date": "2026-09-16",
-        "sent": 84,
-        "state6": "过热",
-        "max_lbc": 6,
-        "prem_avg": 3.65,
-        "sentDelta": 51.0
-      },
-      "ladder": [
-        "闽东电力(5板/电力)",
-        "中新赛克(4板/计算机设)",
-        "双星新材(3板/塑料)",
-        "澳弘电子(3板/元件)"
-      ],
-      "themes": [
-        "通信设备",
-        "风电设备",
-        "塑料"
-      ]
-    },
-    {
-      "date": "2026-06-11",
-      "similarity": 0.876,
-      "env": {
-        "sent": 36,
-        "state6": "过冷",
-        "temp": 64,
-        "max_lbc": 3,
-        "zt": 69,
-        "zb_rate": 36.1,
-        "prem_avg": 0.6,
-        "damian": 17
-      },
-      "nextDay": {
-        "date": "2026-06-12",
-        "sent": 50,
+        "date": "2026-10-21",
+        "sent": 54,
         "state6": "微冷",
         "max_lbc": 4,
-        "prem_avg": 0.31,
-        "sentDelta": 14.0
+        "prem_avg": 2.8,
+        "sentDelta": 9.0
       },
-      "ladder": [],
-      "themes": []
+      "ladder": [
+        "吉大正元(4板/软件开发)",
+        "东安动力(3板/汽车零部)",
+        "大业股份(3板/通用设备)",
+        "慕思股份(2板/家居用品)",
+        "福莱新材(2板/塑料)"
+      ],
+      "themes": [
+        "消费电子",
+        "通用设备",
+        "半导体"
+      ]
     },
     {
       "date": "2026-05-26",
-      "similarity": 0.872,
+      "similarity": 0.898,
       "env": {
         "sent": 43,
         "state6": "微冷",
@@ -148,97 +90,134 @@
       "themes": []
     },
     {
-      "date": "2026-09-10",
-      "similarity": 0.869,
+      "date": "2026-06-11",
+      "similarity": 0.86,
       "env": {
-        "sent": 25,
-        "state6": "过冷",
-        "temp": 49,
-        "max_lbc": 4,
-        "zt": 35,
-        "zb_rate": 39,
-        "prem_avg": -0.32,
-        "damian": 13
-      },
-      "nextDay": {
-        "date": "2026-09-11",
         "sent": 36,
         "state6": "过冷",
-        "max_lbc": 4,
-        "prem_avg": -0.27,
-        "sentDelta": 11.0
-      },
-      "ladder": [
-        "桂林旅游(4板/旅游及景)",
-        "瑞尔特(3板/家居用品)",
-        "云煤能源(3板/焦炭Ⅱ)",
-        "新农开发(2板/种植业)",
-        "国创高新(2板/炼化及贸)"
-      ],
-      "themes": [
-        "元件",
-        "电力",
-        "游戏Ⅱ"
-      ]
-    },
-    {
-      "date": "2026-08-24",
-      "similarity": 0.868,
-      "env": {
-        "sent": 32,
-        "state6": "过冷",
-        "temp": 25,
-        "max_lbc": 4,
-        "zt": 46,
-        "zb_rate": 33.8,
-        "prem_avg": 0.05,
-        "damian": 13
+        "temp": 64,
+        "max_lbc": 3,
+        "zt": 69,
+        "zb_rate": 36.1,
+        "prem_avg": 0.6,
+        "damian": 17
       },
       "nextDay": {
-        "date": "2026-08-25",
-        "sent": 47,
+        "date": "2026-06-12",
+        "sent": 50,
         "state6": "微冷",
-        "max_lbc": 5,
-        "prem_avg": 0.36,
-        "sentDelta": 15.0
+        "max_lbc": 4,
+        "prem_avg": 0.31,
+        "sentDelta": 14.0
       },
       "ladder": [],
       "themes": []
     },
     {
-      "date": "2026-09-23",
-      "similarity": 0.863,
+      "date": "2026-05-27",
+      "similarity": 0.859,
       "env": {
-        "sent": 31,
-        "state6": "过冷",
-        "temp": 41,
-        "max_lbc": 4,
-        "zt": 51,
-        "zb_rate": 34,
-        "prem_avg": -1.25,
-        "damian": null
+        "sent": 53,
+        "state6": "微冷",
+        "temp": 67,
+        "max_lbc": 3,
+        "zt": 47,
+        "zb_rate": 33.3,
+        "prem_avg": 1.38,
+        "damian": 9
       },
       "nextDay": {
-        "date": "2026-09-24",
-        "sent": 45,
+        "date": "2026-05-28",
+        "sent": 62,
+        "state6": "微热",
+        "max_lbc": 4,
+        "prem_avg": 0.95,
+        "sentDelta": 9.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-07-22",
+      "similarity": 0.854,
+      "env": {
+        "sent": 47,
         "state6": "微冷",
+        "temp": 67,
         "max_lbc": 5,
-        "prem_avg": -0.04,
-        "sentDelta": 14.0
+        "zt": 46,
+        "zb_rate": 54.3,
+        "prem_avg": 1.48,
+        "damian": 8
+      },
+      "nextDay": {
+        "date": "2026-07-23",
+        "sent": 92,
+        "state6": "沸点",
+        "max_lbc": 6,
+        "prem_avg": 4.36,
+        "sentDelta": 45.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-09-03",
+      "similarity": 0.843,
+      "env": {
+        "sent": 34,
+        "state6": "过冷",
+        "temp": 67,
+        "max_lbc": 5,
+        "zt": 44,
+        "zb_rate": 43,
+        "prem_avg": 0.12,
+        "damian": 12
+      },
+      "nextDay": {
+        "date": "2026-09-04",
+        "sent": 24,
+        "state6": "冰点",
+        "max_lbc": 5,
+        "prem_avg": -0.54,
+        "sentDelta": -10.0
       },
       "ladder": [
-        "新华文轩(4板/出版)",
-        "大亚圣象(4板/家居用品)",
-        "泰慕士(3板/服装家纺)",
-        "新华传媒(3板/出版)",
-        "天威视讯(2板/电视广播)",
-        "澳弘电子(2板/元件)"
+        "国芳集团(5板/一般零售)",
+        "集泰股份(4板/化学制品)",
+        "龙版传媒(4板/出版)",
+        "云南旅游(2板/旅游及景)",
+        "太阳电缆(2板/电网设备)"
       ],
       "themes": [
-        "商用车",
-        "半导体",
-        "电池"
+        "汽车零部",
+        "工业金属",
+        "电网设备"
       ]
+    },
+    {
+      "date": "2026-10-13",
+      "similarity": 0.842,
+      "env": {
+        "sent": 45,
+        "state6": "微冷",
+        "temp": 64,
+        "max_lbc": 3,
+        "zt": 67,
+        "zb_rate": 22,
+        "prem_avg": 0.88,
+        "damian": 10
+      },
+      "nextDay": {
+        "date": "2026-10-14",
+        "sent": 17,
+        "state6": "冰点",
+        "max_lbc": 4,
+        "prem_avg": -0.36,
+        "sentDelta": -28.0
+      },
+      "ladder": [],
+      "themes": []
     }
   ]
 }
