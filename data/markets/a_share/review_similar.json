@@ -1,220 +1,241 @@
 {
-  "computedAt": "2026-11-18T16:59:24Z",
-  "baseDate": "2026-11-18",
-  "threshold": 0.789,
+  "computedAt": "2026-11-19T17:08:37Z",
+  "baseDate": "2026-11-19",
+  "threshold": 0.704,
   "similarityMode": "relative",
   "candidateCount": 116,
   "effectiveMatches": 8,
   "fallback": null,
   "matches": [
     {
-      "date": "2026-09-09",
-      "similarity": 0.928,
+      "date": "2026-10-14",
+      "similarity": 0.886,
       "env": {
-        "sent": 42,
-        "state6": "微冷",
-        "temp": 69,
-        "max_lbc": 5,
-        "zt": 48,
-        "zb_rate": 36,
-        "prem_avg": 1.1,
-        "damian": 12
+        "sent": 17,
+        "state6": "冰点",
+        "temp": 38,
+        "max_lbc": 4,
+        "zt": 36,
+        "zb_rate": 40,
+        "prem_avg": -0.36,
+        "damian": 27
       },
       "nextDay": {
-        "date": "2026-09-10",
-        "sent": 25,
+        "date": "2026-10-15",
+        "sent": 30,
         "state6": "过冷",
-        "max_lbc": 4,
-        "prem_avg": -0.32,
-        "sentDelta": -17.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-10-20",
-      "similarity": 0.92,
-      "env": {
-        "sent": 45,
-        "state6": "微冷",
-        "temp": 56,
-        "max_lbc": 4,
-        "zt": 54,
-        "zb_rate": 35,
-        "prem_avg": 1.59,
-        "damian": 9
-      },
-      "nextDay": {
-        "date": "2026-10-21",
-        "sent": 54,
-        "state6": "微冷",
-        "max_lbc": 4,
-        "prem_avg": 2.8,
-        "sentDelta": 9.0
+        "max_lbc": 5,
+        "prem_avg": -3.29,
+        "sentDelta": 13.0
       },
       "ladder": [
-        "吉大正元(4板/软件开发)",
-        "东安动力(3板/汽车零部)",
-        "大业股份(3板/通用设备)",
-        "慕思股份(2板/家居用品)",
-        "福莱新材(2板/塑料)"
+        "百洋股份(4板/饲料)",
+        "慈文传媒(4板/影视院线)",
+        "醋化股份(3板/化学制品)",
+        "荣丰控股(2板/房地产开)",
+        "哈空调(2板/通用设备)"
       ],
       "themes": [
-        "消费电子",
-        "通用设备",
-        "半导体"
+        "游戏Ⅱ",
+        "服装家纺",
+        "中药Ⅱ"
       ]
     },
     {
-      "date": "2026-05-26",
-      "similarity": 0.898,
+      "date": "2026-07-24",
+      "similarity": 0.863,
       "env": {
-        "sent": 43,
-        "state6": "微冷",
-        "temp": 50,
-        "max_lbc": 3,
-        "zt": 46,
-        "zb_rate": 35,
-        "prem_avg": 1.71,
-        "damian": 12
-      },
-      "nextDay": {
-        "date": "2026-05-27",
-        "sent": 53,
-        "state6": "微冷",
-        "max_lbc": 3,
-        "prem_avg": 1.38,
-        "sentDelta": 10.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-06-11",
-      "similarity": 0.86,
-      "env": {
-        "sent": 36,
-        "state6": "过冷",
-        "temp": 64,
-        "max_lbc": 3,
-        "zt": 69,
-        "zb_rate": 36.1,
-        "prem_avg": 0.6,
-        "damian": 17
-      },
-      "nextDay": {
-        "date": "2026-06-12",
-        "sent": 50,
-        "state6": "微冷",
+        "sent": 22,
+        "state6": "冰点",
+        "temp": 35,
         "max_lbc": 4,
-        "prem_avg": 0.31,
-        "sentDelta": 14.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-05-27",
-      "similarity": 0.859,
-      "env": {
-        "sent": 53,
-        "state6": "微冷",
-        "temp": 67,
-        "max_lbc": 3,
-        "zt": 47,
-        "zb_rate": 33.3,
-        "prem_avg": 1.38,
-        "damian": 9
+        "zt": 40,
+        "zb_rate": 44.2,
+        "prem_avg": -0.54,
+        "damian": 28
       },
       "nextDay": {
-        "date": "2026-05-28",
-        "sent": 62,
-        "state6": "微热",
-        "max_lbc": 4,
-        "prem_avg": 0.95,
-        "sentDelta": 9.0
-      },
-      "ladder": [],
-      "themes": []
-    },
-    {
-      "date": "2026-07-22",
-      "similarity": 0.854,
-      "env": {
-        "sent": 47,
-        "state6": "微冷",
-        "temp": 67,
-        "max_lbc": 5,
-        "zt": 46,
-        "zb_rate": 54.3,
-        "prem_avg": 1.48,
-        "damian": 8
-      },
-      "nextDay": {
-        "date": "2026-07-23",
-        "sent": 92,
+        "date": "2026-07-27",
+        "sent": 87,
         "state6": "沸点",
-        "max_lbc": 6,
-        "prem_avg": 4.36,
-        "sentDelta": 45.0
+        "max_lbc": 5,
+        "prem_avg": 2.45,
+        "sentDelta": 65.0
       },
       "ladder": [],
       "themes": []
     },
     {
-      "date": "2026-09-03",
-      "similarity": 0.843,
+      "date": "2026-09-04",
+      "similarity": 0.845,
       "env": {
-        "sent": 34,
-        "state6": "过冷",
-        "temp": 67,
-        "max_lbc": 5,
-        "zt": 44,
-        "zb_rate": 43,
-        "prem_avg": 0.12,
-        "damian": 12
-      },
-      "nextDay": {
-        "date": "2026-09-04",
         "sent": 24,
         "state6": "冰点",
+        "temp": 38,
         "max_lbc": 5,
+        "zt": 39,
+        "zb_rate": 55,
         "prem_avg": -0.54,
-        "sentDelta": -10.0
+        "damian": 15
+      },
+      "nextDay": {
+        "date": "2026-09-07",
+        "sent": 87,
+        "state6": "沸点",
+        "max_lbc": 6,
+        "prem_avg": 4.89,
+        "sentDelta": 63.0
       },
       "ladder": [
-        "国芳集团(5板/一般零售)",
-        "集泰股份(4板/化学制品)",
-        "龙版传媒(4板/出版)",
-        "云南旅游(2板/旅游及景)",
-        "太阳电缆(2板/电网设备)"
+        "龙版传媒(5板/出版)",
+        "恒盛能源(2板/电力)",
+        "新炬网络(2板/IT服务Ⅱ)",
+        "楚天龙(1板/通信设备)",
+        "翠微股份(1板/多元金融)"
       ],
       "themes": [
-        "汽车零部",
-        "工业金属",
-        "电网设备"
+        "通信设备",
+        "林业Ⅱ",
+        "种植业"
       ]
     },
     {
-      "date": "2026-10-13",
-      "similarity": 0.842,
+      "date": "2026-09-10",
+      "similarity": 0.835,
       "env": {
-        "sent": 45,
-        "state6": "微冷",
-        "temp": 64,
+        "sent": 25,
+        "state6": "过冷",
+        "temp": 49,
+        "max_lbc": 4,
+        "zt": 35,
+        "zb_rate": 39,
+        "prem_avg": -0.32,
+        "damian": 13
+      },
+      "nextDay": {
+        "date": "2026-09-11",
+        "sent": 36,
+        "state6": "过冷",
+        "max_lbc": 4,
+        "prem_avg": -0.27,
+        "sentDelta": 11.0
+      },
+      "ladder": [
+        "桂林旅游(4板/旅游及景)",
+        "瑞尔特(3板/家居用品)",
+        "云煤能源(3板/焦炭Ⅱ)",
+        "新农开发(2板/种植业)",
+        "国创高新(2板/炼化及贸)"
+      ],
+      "themes": [
+        "元件",
+        "电力",
+        "游戏Ⅱ"
+      ]
+    },
+    {
+      "date": "2026-07-20",
+      "similarity": 0.83,
+      "env": {
+        "sent": 32,
+        "state6": "过冷",
+        "temp": 44,
         "max_lbc": 3,
-        "zt": 67,
-        "zb_rate": 22,
-        "prem_avg": 0.88,
+        "zt": 53,
+        "zb_rate": 49.6,
+        "prem_avg": 0.5,
         "damian": 10
       },
       "nextDay": {
-        "date": "2026-10-14",
-        "sent": 17,
+        "date": "2026-07-21",
+        "sent": 74,
+        "state6": "过热",
+        "max_lbc": 4,
+        "prem_avg": 1.2,
+        "sentDelta": 42.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-07-17",
+      "similarity": 0.823,
+      "env": {
+        "sent": 21,
+        "state6": "冰点",
+        "temp": 11,
+        "max_lbc": 3,
+        "zt": 32,
+        "zb_rate": 41,
+        "prem_avg": -1.09,
+        "damian": 15
+      },
+      "nextDay": {
+        "date": "2026-07-20",
+        "sent": 32,
+        "state6": "过冷",
+        "max_lbc": 3,
+        "prem_avg": 0.5,
+        "sentDelta": 11.0
+      },
+      "ladder": [],
+      "themes": []
+    },
+    {
+      "date": "2026-11-12",
+      "similarity": 0.812,
+      "env": {
+        "sent": 22,
+        "state6": "冰点",
+        "temp": 21,
+        "max_lbc": 5,
+        "zt": 37,
+        "zb_rate": 49,
+        "prem_avg": -1.15,
+        "damian": 26
+      },
+      "nextDay": {
+        "date": "2026-11-13",
+        "sent": 24,
         "state6": "冰点",
         "max_lbc": 4,
-        "prem_avg": -0.36,
-        "sentDelta": -28.0
+        "prem_avg": -1.74,
+        "sentDelta": 2.0
+      },
+      "ladder": [
+        "日出东方(5板/厨卫电器)",
+        "大东方(5板/一般零售)",
+        "亚玛顿(4板/光伏设备)",
+        "东方环宇(4板/燃气Ⅱ)",
+        "惠发食品(3板/食品加工)",
+        "天普股份(3板/汽车零部)"
+      ],
+      "themes": [
+        "医疗服务",
+        "电视广播",
+        "光伏设备"
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "similarity": 0.807,
+      "env": {
+        "sent": 20,
+        "state6": "冰点",
+        "temp": 37,
+        "max_lbc": 6,
+        "zt": 33,
+        "zb_rate": 49.3,
+        "prem_avg": -2.72,
+        "damian": 27
+      },
+      "nextDay": {
+        "date": "2026-07-08",
+        "sent": 48,
+        "state6": "微冷",
+        "max_lbc": 7,
+        "prem_avg": 0.9,
+        "sentDelta": 28.0
       },
       "ladder": [],
       "themes": []

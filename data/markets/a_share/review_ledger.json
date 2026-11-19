@@ -3546,7 +3546,7 @@
   {
     "id": "2026-11-18-deepseek-chat-1795021173",
     "predictDate": "2026-11-18",
-    "targetDate": "",
+    "targetDate": "2026-11-19",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-11-18T16:59:33Z",
@@ -3638,6 +3638,146 @@
       "state6": "微冷",
       "max_lbc": 4,
       "prem_avg": 1.46
+    },
+    "actual": {
+      "date": "2026-11-19",
+      "sent": 18,
+      "state6": "冰点",
+      "max_lbc": 3,
+      "prem_avg": -0.15,
+      "zt": 23,
+      "zb_rate": 51,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": false,
+      "heightHit": true,
+      "ztHit": false,
+      "zbRateHit": false,
+      "premiumHit": false,
+      "stanceHit": null,
+      "scored": 7,
+      "hits": 1,
+      "accuracy": 0.14,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "miss",
+        "stance": "miss",
+        "height": "hit",
+        "zt": "miss",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 0,
+      "coreScored": 3,
+      "coreAccuracy": 0.0,
+      "brierState6": 0.9372,
+      "logLoss": 2.0402,
+      "missReasons": [
+        "数据口径",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-11-19T17:08:37Z"
+  },
+  {
+    "id": "2026-11-19-deepseek-chat-1795108124",
+    "predictDate": "2026-11-19",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-11-19T17:08:44Z",
+    "prediction": {
+      "stance": "低吸区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "上行",
+      "crossValidation": "偏多",
+      "state6Next": "过冷",
+      "state6Probs": {
+        "冰点": 0.08,
+        "过冷": 0.5,
+        "微冷": 0.08,
+        "微热": 0.08,
+        "过热": 0.08,
+        "沸点": 0.18
+      },
+      "sentimentRange": [
+        20,
+        32
+      ],
+      "heightRange": [
+        3,
+        4
+      ],
+      "ztRange": [
+        20,
+        35
+      ],
+      "zbRateRange": [
+        40,
+        52
+      ],
+      "bigFaceRange": [
+        8,
+        15
+      ],
+      "streakRange": [
+        4,
+        7
+      ],
+      "redRatioRange": null,
+      "premiumSign": "持平",
+      "positionAdvice": "观望",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "真视通(3板/IT服务Ⅱ)",
+        "全筑股份(3板/装修装饰)",
+        "华升股份(2板/纺织制造)",
+        "京蓝科技(2板/环境治理)"
+      ],
+      "focusThemes": [
+        "汽车零部",
+        "小家电",
+        "元件"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥20",
+        "次日炸板率≤45%"
+      ],
+      "entryConfirm": [
+        "昨涨停溢价转正",
+        "最高板升至4以上"
+      ],
+      "middleBand": "<20失效；20~26模糊(仅1成试仓)；≥26必要(可加至3成)；≥40但炸板率>50%视为假修复不追",
+      "invalidConditions": [
+        "情绪分跌破15",
+        "炸板率>55%",
+        "溢价<-1.5%",
+        "最高板回落至2"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "状态定义",
+      "dataBasis": "收盘实盘",
+      "riskNote": "冰点次日幅度离散极大，高位3板接力易补跌"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是资金温度 41 与最高板仅 3、涨停 23 家、炸板率 51% 的全面走弱并存——温度未同步塌陷，但接力高度与封板质量已跌至冰点区特征。今日情绪分 18（冰点）、溢价 -0.15%（弱负）、大面 13，命中 veto 冰点（T2、T4、T6），属「冰点/过冷区」节点（历史 42 次，次日情绪上行占比 83%，95%CI 69~91%），但今日性价比 0.0，低于该节点均值 0.659，说明位置对、赔率一般。历史相似日 8 个有效匹配中，次日情绪上行 7 个（+2 至 +65），仅 11-12 一次基本持平，方向偏多但幅度离散极大。主结果：次日情绪分区间 20~32，方向震荡偏上，置信度：中（0.55）。六态辅助：过冷概率最高。数据质量：zbRate/redRatio/bigFace 中 redRatio 为 missing、bigFace 为 ok、zbRate 为 ok，redRatio 缺失压低置信度一档。\n基准对照：区间宽度 12 对应历史命中基准约 40%，本次置信度 0.55 略高于基准，优势有限。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏多（冰点区 83% 上行）、相似日＝偏多（7/8 上行）、状态转移＝偏多（过冷 50%）⇒ 综合：偏多。但三源同向仍不足以抵消幅度离散，置信度不再上调。相似日梯队显示，冰点次日的修复多由中低位接力完成（10-14 的 4 板、09-04 的 5 板），而非高位股延续。明日重点观察：2 板卡位（华升股份、京蓝科技）能否晋级、首板换手充分（襄阳轴承、九阳股份、中京电子）能否承接资金。重点关注名单：真视通(3板/IT服务Ⅱ)、全筑股份(3板/装修装饰)、华升股份(2板/纺织制造)、京蓝科技(2板/环境治理)——仅作梯队观察对象。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：①次日情绪分 ≥20；②次日炸板率 ≤45%。\nentryConfirm：昨涨停溢价转正、最高板升至 4 以上。\nmiddleBand：<20 失效；20~26 模糊（仅 1 成试仓）；≥26 必要（可加至 3 成）；若情绪分 ≥40 但炸板率 >50%，视为假修复，不追。\ninvalidConditions：情绪分跌破 15；炸板率 >55%；溢价 <-1.5%；最高板回落至 2。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 27 条（<30），相似日有效匹配 8 个（≥3），溢价数据齐全，但复核条数不足，positionAdvice 按硬约束取「观望」。需回避：高位 3 板接力（真视通、全筑股份）在冰点次日易补跌。仓位建议：观望为主，若触发必要条件仅 1 成试仓。上次预测（11-18→11-19）判中性、实际冰点，失准归因：状态定义。\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-11-19",
+      "sent": 18,
+      "state6": "冰点",
+      "max_lbc": 3,
+      "prem_avg": -0.15
     },
     "actual": null,
     "score": null,
