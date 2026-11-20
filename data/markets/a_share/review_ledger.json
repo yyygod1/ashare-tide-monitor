@@ -3689,7 +3689,7 @@
   {
     "id": "2026-11-19-deepseek-chat-1795108124",
     "predictDate": "2026-11-19",
-    "targetDate": "",
+    "targetDate": "2026-11-20",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-11-19T17:08:44Z",
@@ -3778,6 +3778,146 @@
       "state6": "冰点",
       "max_lbc": 3,
       "prem_avg": -0.15
+    },
+    "actual": {
+      "date": "2026-11-20",
+      "sent": 31,
+      "state6": "过冷",
+      "max_lbc": 4,
+      "prem_avg": -2.4,
+      "zt": 28,
+      "zb_rate": 20,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": true,
+      "state6Hit": true,
+      "heightHit": true,
+      "ztHit": true,
+      "zbRateHit": false,
+      "premiumHit": false,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 5,
+      "accuracy": 0.71,
+      "dimStatus": {
+        "sent": "hit",
+        "premium": "miss",
+        "stance": "hit",
+        "height": "hit",
+        "zt": "hit",
+        "zbRate": "miss",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "hit"
+      },
+      "coreHits": 2,
+      "coreScored": 3,
+      "coreAccuracy": 0.67,
+      "brierState6": 0.308,
+      "logLoss": 0.6931,
+      "missReasons": [
+        "数据口径"
+      ]
+    },
+    "reviewedAt": "2026-11-20T16:46:01Z"
+  },
+  {
+    "id": "2026-11-20-deepseek-chat-1795193169",
+    "predictDate": "2026-11-20",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-11-20T16:46:09Z",
+    "prediction": {
+      "stance": "低吸区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "震荡",
+      "crossValidation": "分歧",
+      "state6Next": "微冷",
+      "state6Probs": {
+        "冰点": 0.14,
+        "过冷": 0.21,
+        "微冷": 0.28,
+        "微热": 0.1,
+        "过热": 0.24,
+        "沸点": 0.03
+      },
+      "sentimentRange": [
+        30,
+        40
+      ],
+      "heightRange": [
+        3,
+        5
+      ],
+      "ztRange": [
+        25,
+        40
+      ],
+      "zbRateRange": [
+        15,
+        30
+      ],
+      "bigFaceRange": [
+        6,
+        14
+      ],
+      "streakRange": [
+        4,
+        8
+      ],
+      "redRatioRange": null,
+      "premiumSign": "负",
+      "positionAdvice": "观望",
+      "ladderFocus": "2板卡位",
+      "watchlist": [
+        "盛剑科技(4板/环保设备)",
+        "真视通(4板/IT服务Ⅱ)",
+        "中京电子(2板/元件)",
+        "华微电子(1板/半导体)"
+      ],
+      "focusThemes": [
+        "元件",
+        "IT服务Ⅱ",
+        "半导体"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥35",
+        "昨涨停溢价≥-1.5%"
+      ],
+      "entryConfirm": [
+        "炸板率<25%",
+        "最高板晋级至5板",
+        "元件题材净流入维持为正"
+      ],
+      "middleBand": "<30失效不参与；30~35模糊仅观察；35~45必要区满足两条可1成试仓；≥45且溢价转正可加至3成；>70转追高区回避",
+      "invalidConditions": [
+        "情绪分跌破25",
+        "溢价继续<-2.5%",
+        "炸板率升破35%",
+        "最高板断板且无3板承接"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "数据口径",
+      "dataBasis": "收盘实盘",
+      "riskNote": "溢价显著负叠加veto命中，接力资金仍亏钱，低吸信号未确认，样本复核不足30次仅宜观望。"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是：资金温度 23 与最高板 4、涨停 28 家之间没有出现极端崩塌，但昨涨停溢价 -2.4%（显著负）与大面 10 家说明接力资金仍在亏钱，属于「过冷区里的负溢价延续」，不是干净的冰点出清。今日命中 T5、T6、T7 三条 veto，情绪分 31 处于过冷而非冰点；对照统计，冰点/过冷区节点 43 次、次日情绪上行占比 81%（95%CI 67~90%），是历史性价比较高的低吸区；但「溢价转正」节点次日上行仅 35%、「情绪跳升」仅 32%，今日溢价为显著负、并非转正，故不构成追高区，也不构成强确认的低吸信号。相似日 8 个中 6 个次日情绪上行（+6~+41），但今日溢价 -2.4% 比多数相似日更差，需压低置信度。次日情绪分区间取 30~40（宽度 10），方向偏震荡略偏上行；置信度：中（0.55）。六态仅作辅助：过冷 21%、微冷 28%、过热 24%、冰点 14%、微热 10%、沸点 3%，先验 walk-forward Top1 仅 24%、Brier 0.9189 劣于基准 0.8064，故不作主结论。数据质量：zbRate=ok、bigFace=ok、redRatio=missing（未提供全市场红盘率），缺失项使置信度下调一档至中。\n\n基准对照：区间宽度 10 对应历史命中基准约 40%，本次置信度 0.55 略高于基准，属弱优势，不构成强信号。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏多（过冷区 81% 上行）｜相似日＝偏多（6/8 上行）｜状态转移＝分歧（微冷 28% vs 过热 24% vs 过冷 21%）⇒ 综合：偏多但分歧，置信度压一档。相似日梯队显示，次日走强多由 3~5 板高标带动（10-15 的百洋股份 5 板、慈文传媒 5 板；09-28 新华传媒 5 板），而今日最高仅 4 板（盛剑科技、真视通），高度偏低，接力结构偏弱。明日重点观察：4 板能否晋级打开高度、2 板卡位（中京电子/元件）能否换手充分，以及元件题材（净 8.19 亿）是否延续。关注名单仅作观察：盛剑科技(4板/环保设备)、真视通(4板/IT服务Ⅱ)、中京电子(2板/元件)、华微电子(1板/半导体)。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：① 次日情绪分 ≥35；② 昨涨停溢价回升至 ≥-1.5%（脱离显著负）。entryConfirm：炸板率回落至 <25%、最高板晋级至 5 板、元件题材净流入维持为正。middleBand：<30 失效（不参与）；30~35 模糊（仅观察，不出手）；35~45 必要区（满足两条必要条件可 1 成试仓）；≥45 且溢价转正可加至 3 成；>70 转追高区回避。失效条件：情绪分跌破 25、溢价继续 <-2.5%、炸板率升破 35%、最高板断板且无 3 板承接。\n\n**4) 风险与仓位**\n\n样本局限：台账已复核 28 次（<30），相似日有效匹配 8 个（≥3），但溢价 prem_avg 缺失、redRatio 缺失，按硬约束 positionAdvice 取「观望」。需回避：溢价显著负且大面 ≥10 的接力环境、4 板高标断板后的补跌。仓位建议：观望为主，若明日满足必要条件仅 1 成试仓，不追高。上一次预测（11-19→11-20）为低吸区，实际情绪分 31 命中区间但溢价方向失准，归因：数据口径。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-11-20",
+      "sent": 31,
+      "state6": "过冷",
+      "max_lbc": 4,
+      "prem_avg": -2.4
     },
     "actual": null,
     "score": null,
