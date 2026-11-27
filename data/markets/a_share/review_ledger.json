@@ -4250,7 +4250,7 @@
   {
     "id": "2026-11-25-deepseek-chat-1795631393",
     "predictDate": "2026-11-25",
-    "targetDate": "",
+    "targetDate": "2026-11-26",
     "providerLabel": "服务端自动(deepseek-chat)",
     "model": "deepseek-chat",
     "createdAt": "2026-11-25T18:29:53Z",
@@ -4341,6 +4341,147 @@
       "state6": "过冷",
       "max_lbc": 5,
       "prem_avg": -1.03
+    },
+    "actual": {
+      "date": "2026-11-26",
+      "sent": 65,
+      "state6": "微热",
+      "max_lbc": 5,
+      "prem_avg": 2.32,
+      "zt": 65,
+      "zb_rate": 31,
+      "zt_lianban": null,
+      "bigFace": null,
+      "marketRedRatio": null
+    },
+    "score": {
+      "sentHit": false,
+      "state6Hit": false,
+      "heightHit": true,
+      "ztHit": true,
+      "zbRateHit": true,
+      "premiumHit": true,
+      "stanceHit": true,
+      "scored": 7,
+      "hits": 5,
+      "accuracy": 0.71,
+      "dimStatus": {
+        "sent": "miss",
+        "premium": "hit",
+        "stance": "hit",
+        "height": "hit",
+        "zt": "hit",
+        "zbRate": "hit",
+        "streak": "no_actual",
+        "bigFace": "no_actual",
+        "redRatio": "pending_actual",
+        "state6": "miss"
+      },
+      "coreHits": 2,
+      "coreScored": 3,
+      "coreAccuracy": 0.67,
+      "brierState6": 0.9418,
+      "logLoss": 2.0402,
+      "missReasons": [
+        "数据口径",
+        "状态定义"
+      ]
+    },
+    "reviewedAt": "2026-11-27T17:54:37Z"
+  },
+  {
+    "id": "2026-11-26-deepseek-chat-1795802085",
+    "predictDate": "2026-11-26",
+    "targetDate": "",
+    "providerLabel": "服务端自动(deepseek-chat)",
+    "model": "deepseek-chat",
+    "createdAt": "2026-11-27T17:54:45Z",
+    "prediction": {
+      "stance": "追高区",
+      "confidence": "中",
+      "confidenceScore": 0.55,
+      "sentimentDirection": "下行",
+      "crossValidation": "偏空",
+      "state6Next": "过冷",
+      "state6Probs": {
+        "冰点": 0.1,
+        "过冷": 0.4,
+        "微冷": 0.25,
+        "微热": 0.1,
+        "过热": 0.1,
+        "沸点": 0.05
+      },
+      "sentimentRange": [
+        50,
+        62
+      ],
+      "heightRange": [
+        4,
+        6
+      ],
+      "ztRange": [
+        45,
+        70
+      ],
+      "zbRateRange": [
+        28,
+        40
+      ],
+      "bigFaceRange": [
+        0,
+        15
+      ],
+      "streakRange": [
+        8,
+        16
+      ],
+      "redRatioRange": null,
+      "premiumSign": "正",
+      "positionAdvice": "1成试仓",
+      "ladderFocus": "3板以上接力",
+      "watchlist": [
+        "克来机电(5板/汽车零部)",
+        "杭州解百(4板/一般零售)",
+        "利君股份(3板/航空装备)",
+        "证通电子(2板/计算机设)",
+        "青山纸业(2板/造纸)"
+      ],
+      "focusThemes": [
+        "计算机设",
+        "软件开发",
+        "造纸"
+      ],
+      "entryNecessary": [
+        "次日情绪分≥55",
+        "昨涨停溢价≥1.0%"
+      ],
+      "entryConfirm": [
+        "最高板维持5板及以上",
+        "炸板率回落至25%以下"
+      ],
+      "middleBand": "<45失效不参与／45~55模糊仅观察／55~70必要可轻仓／70~85模糊需溢价≥1.5%确认否则视为诱多／≥85失效回避",
+      "invalidConditions": [
+        "情绪分跌破45",
+        "溢价转负(<-0.5%)",
+        "最高板降至3板以下",
+        "炸板率升破40%"
+      ],
+      "dataQuality": {
+        "zbRate": "ok",
+        "redRatio": "missing",
+        "bigFace": "ok"
+      },
+      "missAttribution": "状态定义",
+      "dataBasis": "收盘实盘",
+      "riskNote": "微热高位日历史次日多回落，追高3板以上接力风险最大"
+    },
+    "predictionText": "**1) 当前位置判断**\n\n核心矛盾是：资金温度 75 与最高板仅 5 板、涨停 65 家之间不匹配——温度偏高但高度与涨停家数未同步扩张，说明资金在题材内部轮动而非全面进攻。今日情绪分 65（微热）、溢价 2.32%（显著正）、炸板率 31%（高），同时触发「溢价转正 / 情绪跳升」双标签，而这两类节点历史次日情绪上行占比仅 33%、31%，平均性价比为负（-0.352、-0.31），属**需要回避的追高区**，而非低吸区。唯一偏多线索是昨日 11-25 冰点节点次日验证成功（情绪 +30、溢价 +3.35），但该动能今日已释放完毕。相似日 8 例中 5 例次日情绪下行（-31、-18、-43、-32、-27），2 例上行（+19、+13），1 例持平，方向偏空。六态先验给过冷 40%，但该先验 walk-forward 成绩（Top1 20%、Brier 0.9051）劣于基准，仅作辅助。**主结果：次日情绪分 50~62，方向震荡偏下；置信度：中（0.55）**。数据质量：zbRate=ok、bigFace=ok（None 视为 0）、redRatio=missing（无全市场红盘率数据），redRatio 缺失使区间上限存在不确定性，已压低置信度一档。\n基准对照：区间宽度 12 对应历史命中基准约 40%，本次置信度 0.55 略高于基准，但优势有限。\n\n**2) 明日关注方向**\n\n交叉验证：节点统计＝偏空（溢价转正/情绪跳升次日上行仅 31~33%）、相似日＝偏空（5/8 下行）、状态转移＝偏空（过冷 40%）⇒ 综合：偏空。\n相似日梯队显示，微热高位日次日多出现高度维持或 +1（09-18 高度 4→5、08-26 高度 5→6、09-29 高度 6→7），但情绪分大幅回落，即**高度靠少数龙头硬撑、赚钱效应收缩**。明日重点观察 3 板以上接力是否断板（克来机电 5 板为最高标，断板即确认退潮），以及 2 板卡位（证通电子、青山纸业）能否换手晋级；首板换手充分者仅作低吸备选。重点关注名单（仅观察，非推荐）：克来机电(5板/汽车零部)、杭州解百(4板/一般零售)、利君股份(3板/航空装备)、证通电子(2板/计算机设)、青山纸业(2板/造纸)。\n\n**3) 入场条件与失效条件**\n\nentryNecessary：①次日情绪分 ≥55；②昨涨停溢价 ≥1.0%。\nentryConfirm：最高板维持 5 板及以上；炸板率回落至 25% 以下。\nmiddleBand：<45 失效（退潮确认，不参与）／45~55 模糊（仅观察，不新开仓）／55~70 必要（满足 entryNecessary 可轻仓）／70~85 模糊（需溢价同步 ≥1.5% 才确认，否则视为诱多）／≥85 失效（沸点追高区，回避）。\ninvalidConditions：情绪分跌破 45；溢价转负（<-0.5%）；最高板降至 3 板以下；炸板率升破 40%。\n\n**4) 风险与仓位**\n\n样本局限：买点节点 93 个但带胜率自证的标签不可引用，有效相似日仅 8 例（≥3 满足硬约束），溢价 prem_avg 未缺失，故不强制观望；但六态先验劣于基准、redRatio 缺失，判断可靠性打折。需回避情形：微热日追高 3 板以上接力、炸板率高位下的首板打板。仓位建议：**1 成试仓**，仅在 entryNecessary 全满足时出手，否则观望。回看上次预测（11-25→11-26 预测低吸区，实际情绪 65 微热），失准归因：状态定义——冰点次日跳升幅度超出区间带宽设定。\n\n以上为数据整理，不构成投资建议。",
+    "baseEnv": {
+      "date": "2026-11-26",
+      "sent": 65,
+      "state6": "微热",
+      "max_lbc": 5,
+      "prem_avg": 2.32
     },
     "actual": null,
     "score": null,
